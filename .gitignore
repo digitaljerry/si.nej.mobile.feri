@@ -1,0 +1,10 @@
+tmp
+/.project
+/build.log
+/build/
+/.settings/
+/.fastdev.lock
+.DS_Store
+.gitignore~
+*~
+/js/*.js
