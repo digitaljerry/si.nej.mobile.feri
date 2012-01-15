@@ -44,6 +44,10 @@ Ti.include(
   	'windows/PeopleWindow.js',
   	'windows/BoardDetailWindow.js',
   	'windows/PeopleDetailWindow.js',
+  	'windows/InformacijeWindow.js',
+  	'windows/UrnikiWindow.js',
+  	'windows/DiplomeWindow.js',
+  	'windows/DiplomeDetailWindow.js',
   	'windows/HtmlWindow.js',
   
   	// Create icons based on previous custom windows and
