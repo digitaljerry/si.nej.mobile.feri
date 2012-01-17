@@ -1,7 +1,7 @@
 
 (function () {
-
-    feri.ui.createBoardWindow = function (tabGroup) {
+	
+	feri.ui.createBoardWindow = function (tabGroup) {
         // Base row properties
         var baseRow = {
             hasChild: true,
@@ -121,18 +121,19 @@
 			data.push(sessionRow);
         }
         
-        // OGLASNA DESKA
+        // TABLES
         
         feri.tableview = Titanium.UI.createTableView({
             data: data
         });
-        feri.tableview2 = Titanium.UI.createTableView();
+        feri.tableview2 = feri.ui.createBoardCatTable();
         
-        feri.oglasnaTableView.add(feri.tableview2);
+        //feri.oglasnaTableView.add(feri.tableview2);
         feri.oglasnaTableView.add(feri.tableview);
         
         feri.oglasnaDeskaTable = 'tableview';
         
+        // zadnje objave click handler
         feri.tableview.addEventListener('click', function (e) {
 			if (e.rowData.nid) {
                 feri.navGroup.open(feri.ui.createBoardDetailWindow({
@@ -144,8 +145,21 @@
             }
         });
         
+        // oglasna deska click handler
+        feri.tableview2.addEventListener('click', function (e) {
+			if (e.rowData.uid) {
+				feri.navGroup.open(feri.ui.createBoardCatWindow({
+		    		title: e.rowData.favTitle,
+		    		uid: e.rowData.uid
+		    	}), {
+		    		animated: true
+		    	});
+            }
+        });
+        
         feri.boardWindow.add(feri.oglasnaTableView);
 
         return feri.boardWindow;
     };
+    
 })();

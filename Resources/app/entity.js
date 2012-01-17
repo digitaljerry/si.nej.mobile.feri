@@ -85,3 +85,41 @@ Drupal.entity.sites.main.types.user.schema = {
 
 };
 Drupal.entity.sites.main.types.user.schema.prototype = Drupal.constructPrototype(Drupal.entity.DefaultSchema);
+
+// Define our entity storage rules.
+Drupal.entity.sites.main.types.node_cat.schema = {
+    fields: function () {
+        return {
+            fields: {
+                title: {
+                    type: 'VARCHAR'
+                }
+            },
+            indexes: {
+                title_idx: ['title']
+            }
+        };
+    },
+
+    getFieldValues: function (entity, values) {
+        values.changed = entity.changed;
+    },
+
+    /**
+     * Retrieves updates for this entity type.
+     *
+     * @param {string} bundle
+     *   The bundle type we want to retrieve.
+     * @param {Drupal.entity.Datastore} store
+     *   The datastore to which to save the retrieved entities.
+     * @param func
+     *   A callback function to call after the fetching process has been completed.
+     */
+    defaultFetcher: function (bundle, store, func) {
+    	alert('in');
+        var url = 'http://feri.tux.si/mobile/board/tree/';
+        //var url = 'http://codestrong.com/mobile/sessions/' + bundle;
+        this.prototype.defaultFetcher.apply(this, [bundle, store, func, url]);
+    }
+};
+Drupal.entity.sites.main.types.node_cat.schema.prototype = Drupal.constructPrototype(Drupal.entity.DefaultSchema);

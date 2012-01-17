@@ -34,10 +34,14 @@ if (!Drupal.db.getConnection('main').tableExists('node')) {
 if (!Drupal.db.getConnection('main').tableExists('user')) {
   	Drupal.entity.db('main', 'user').initializeSchema();
 }
+if (!Drupal.db.getConnection('main').tableExists('node_cat')) {
+  	Drupal.entity.db('main', 'node_cat').initializeSchema();
+}
 
 Ti.include(
 	// All Codestrong windows
   	'windows/ModalActivityIndicatorWindow.js',
+  	'windows/BoardCatWindow.js',
   	'windows/BoardWindow.js',
   	'windows/MapWindow.js',
   	'windows/AboutWindow.js',
