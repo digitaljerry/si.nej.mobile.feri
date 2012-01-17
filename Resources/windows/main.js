@@ -171,6 +171,7 @@
         updateCount = 0;
         Drupal.entity.db('main', 'node').fetchUpdates('session');
         Drupal.entity.db('main', 'user').fetchUpdates('user');
+        Drupal.entity.db('main', 'node_cat').fetchUpdates('node_cat');
     });
     
     Ti.addEventListener('feri:flip_oglasna', function (e) {

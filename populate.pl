@@ -26,6 +26,7 @@ my $sql = "";
 # CREATE TABLES
 $sql .= "CREATE TABLE user(uid INTEGER DEFAULT NULL, full_name VARCHAR DEFAULT NULL, name VARCHAR DEFAULT NULL, company VARCHAR DEFAULT NULL, picture VARCHAR, bio VARCHAR, data BLOB DEFAULT NULL);\n";
 $sql .= "CREATE TABLE node(nid INTEGER DEFAULT NULL, title VARCHAR DEFAULT NULL, instructors VARCHAR DEFAULT NULL, body VARCHAR DEFAULT NULL, room VARCHAR DEFAULT NULL, start_date VARCHAR DEFAULT NULL, end_date VARCHAR DEFAULT NULL, data BLOB DEFAULT NULL);\n\n";
+$sql .= "CREATE TABLE node_cat(uid INTEGER DEFAULT NULL, title VARCHAR DEFAULT NULL, parent INTEGER DEFAULT NULL, data BLOB DEFAULT NULL);\n\n";
 
 # Process JSON for speakers
 my $json = decode_json(getJsonFromUrl('http://codestrong.com/mobile/speakers'));
