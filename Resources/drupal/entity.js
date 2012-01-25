@@ -58,6 +58,54 @@ Drupal.entity = {
                     requestUrl: function (id) {
                         return 'user/' + id;
                     }
+                },
+                board_categories: {
+                    label: 'Board categories',
+                    entity_keys: {
+                        id: 'uid',
+                        bundle: 'type',
+                        label: 'title'
+                    },
+                    schema: {},
+                    requestUrl: function (id) {
+                        return 'board_categories/' + id;
+                    }
+                },
+                board_notifications: {
+                    label: 'Board notifications',
+                    entity_keys: {
+                        id: 'uid',
+                        bundle: 'type',
+                        label: 'title'
+                    },
+                    schema: {},
+                    requestUrl: function (id) {
+                        return 'board_notifications/' + id;
+                    }
+                },
+                people: {
+                    label: 'People',
+                    entity_keys: {
+                        id: 'uid',
+                        bundle: 'type',
+                        label: 'title'
+                    },
+                    schema: {},
+                    requestUrl: function (id) {
+                        return 'people/' + id;
+                    }
+                },
+                degrees: {
+                    label: 'Degrees',
+                    entity_keys: {
+                        id: 'uid',
+                        bundle: 'type',
+                        label: 'title'
+                    },
+                    schema: {},
+                    requestUrl: function (id) {
+                        return 'degrees/' + id;
+                    }
                 }
             }
         }

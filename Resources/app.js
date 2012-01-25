@@ -37,6 +37,18 @@ if (!Drupal.db.getConnection('main').tableExists('user')) {
 if (!Drupal.db.getConnection('main').tableExists('node_cat')) {
   	Drupal.entity.db('main', 'node_cat').initializeSchema();
 }
+if (!Drupal.db.getConnection('main').tableExists('board_categories')) {
+  	Drupal.entity.db('main', 'board_categories').initializeSchema();
+}
+if (!Drupal.db.getConnection('main').tableExists('board_notifications')) {
+  	Drupal.entity.db('main', 'board_notifications').initializeSchema();
+}
+if (!Drupal.db.getConnection('main').tableExists('people')) {
+  	Drupal.entity.db('main', 'people').initializeSchema();
+}
+if (!Drupal.db.getConnection('main').tableExists('degrees')) {
+  	Drupal.entity.db('main', 'degrees').initializeSchema();
+}
 
 Ti.include(
 	// All Codestrong windows

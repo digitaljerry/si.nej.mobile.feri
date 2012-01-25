@@ -1,7 +1,7 @@
 
 (function () {
 	
-	feri.ui.createBoardWindow = function (tabGroup) {
+	feri.ui.createBoardWindow = function (w) {
         // Base row properties
         var baseRow = {
             hasChild: true,
@@ -12,6 +12,9 @@
             }
         };
         baseRow[feri.ui.backgroundSelectedProperty + 'Color'] = feri.ui.backgroundSelectedColor;
+        
+        var data = [];
+        var commonPadding = 15;
 
         // Creates a TableViewRow using the base row properties and a given
         // params object
@@ -38,11 +41,129 @@
             fullscreen: false
         });
         
-        // ZADNJA OBVESTILA
+        // if we have the title from a category
+        if ( w != undefined ) {
+        	// set the title
+        	feri.boardWindow.title = w.title;
+        	
+        	// add a header
+        	var headerRow = Ti.UI.createTableViewRow({
+	            height: 'auto',
+	            left: 0,
+	            top: -5,
+	            bottom: 10,
+	            layout: 'vertical',
+	            className: 'mainHeaderRow',
+	            backgroundPosition: 'bottom left',
+	            selectionStyle: 'none'
+	        });
+	        
+	        var titleLabel = Ti.UI.createLabel({
+                text: feri.cleanSpecialChars(w.title),
+                font: {
+                    fontSize: 28,
+                    fontWeight: 'bold'
+                },
+                textAlign: 'left',
+                color: '#000',
+                left: commonPadding,
+                top: 18,
+                bottom: 7,
+                right: commonPadding,
+                height: 'auto'
+            });
+            
+            // sql check
+            
+            var rows = Drupal.entity.db('main', 'board_categories').execute('SELECT * FROM board_categories WHERE uid = ' + w.category);
+			Titanium.API.info('ROW COUNT = ' + rows.getRowCount());
+			
+			/*while (rows.isValidRow())
+			{
+				Titanium.API.info('ID: ' + rows.field(0) + ' NAME: ' + rows.fieldByName('name'));
+				rows.next();
+			}
+			rows.close();*/
+			
+            if ( w.prevtitle != undefined ) {
+            	var subtitleLabel = Ti.UI.createLabel({
+	                text: feri.cleanSpecialChars(w.title),
+	                font: {
+	                    fontSize: 18,
+	                    fontWeight: 'normal'
+	                },
+	                textAlign: 'left',
+	                color: '#000',
+	                left: commonPadding,
+	                top: 'auto',
+	                bottom: 5,
+	                right: 'auto',
+	                height: 'auto'
+	            });
+	            titleLabel.text = feri.cleanSpecialChars(w.prevtitle);
+	            
+	            headerRow.add(titleLabel);
+	            headerRow.add(subtitleLabel);	
+            }
+            
+            data.push(headerRow);
+            data.push(feri.ui.createHeaderRow('Nastavitve'));
+            
+            // do the priljubljene row
+            var favRow = Ti.UI.createTableViewRow({height:45});
+            var favLabel = Ti.UI.createLabel({
+                text: 'Priljubljene',
+                font: {
+                    fontSize: 16,
+                    fontWeight: 'bold'
+                },
+                top: 10,
+                left: 10,
+                height: 'auto'
+            });
+            var favSwitch = Ti.UI.createSwitch({
+				value:false,
+				right:10,
+				top:10
+			});
+			favRow.add(favLabel);
+			favRow.add(favSwitch);
+			data.push(favRow);
+			
+			var pushRow = Ti.UI.createTableViewRow({height:45});
+            var pushLabel = Ti.UI.createLabel({
+                text: 'Push obvestila',
+                font: {
+                    fontSize: 16,
+                    fontWeight: 'bold'
+                },
+                top: 10,
+                left: 10,
+                height: 'auto'
+            });
+            var pushSwitch = Ti.UI.createSwitch({
+				value:false,
+				right:10,
+				top:10
+			});
+			pushRow.add(pushLabel);
+			pushRow.add(pushSwitch);
+			data.push(pushRow);
+            
+            // do the push row
+        }
         
-        var data = [];
+        // ZADNJA OBVESTILA
+		
         var conn = Drupal.db.getConnection('main');
-        var rows = conn.query("SELECT nid FROM node ORDER BY nid DESC");
+        
+        var where = "";
+		if ( w != undefined )
+			where = "WHERE category = " + w.category;
+        
+        var rows = conn.query("SELECT nid FROM node "+where+" ORDER BY nid DESC");
+        Ti.API.debug("SELECT nid FROM node "+where+" ORDER BY nid DESC");
+        
         var nids = [];
 
         while (rows.isValidRow()) {
@@ -126,7 +247,7 @@
         feri.tableview = Titanium.UI.createTableView({
             data: data
         });
-        feri.tableview2 = feri.ui.createBoardCatTable();
+        feri.tableview2 = feri.ui.createBoardCatTable(undefined, true);
         
         //feri.oglasnaTableView.add(feri.tableview2);
         feri.oglasnaTableView.add(feri.tableview);
@@ -148,12 +269,22 @@
         // oglasna deska click handler
         feri.tableview2.addEventListener('click', function (e) {
 			if (e.rowData.uid) {
-				feri.navGroup.open(feri.ui.createBoardCatWindow({
-		    		title: e.rowData.favTitle,
-		    		uid: e.rowData.uid
-		    	}), {
-		    		animated: true
-		    	});
+				if (e.rowData.isLeaf == true) {
+					feri.navGroup.open(feri.ui.createBoardWindow({
+	                    title: e.rowData.favTitle,
+	                    category: e.rowData.uid
+	                }), {
+	                    animated: true
+	                });
+				} else {
+					feri.navGroup.open(feri.ui.createBoardCatWindow({
+			    		title: e.rowData.favTitle,
+			    		uid: e.rowData.uid,
+			    		leaf: e.rowData.isLeaf
+			    	}), {
+			    		animated: true
+			    	});
+				}
             }
         });
         

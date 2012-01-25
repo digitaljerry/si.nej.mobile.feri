@@ -171,7 +171,7 @@
         updateCount = 0;
         Drupal.entity.db('main', 'node').fetchUpdates('session');
         Drupal.entity.db('main', 'user').fetchUpdates('user');
-        Drupal.entity.db('main', 'node_cat').fetchUpdates('node_cat');
+        //Drupal.entity.db('main', 'board_categories').fetchUpdates('board_categories');
     });
     
     Ti.addEventListener('feri:flip_oglasna', function (e) {
@@ -198,7 +198,12 @@
     		});
     });
     
+    Ti.addEventListener('feri:fix_tables', function (e) {
+        Drupal.entity.db('main', 'board_categories').fixTables('board_categories');
+    });
+    
     Ti.Gesture.addEventListener('shake',function(e) {
 		Ti.fireEvent('feri:update_data');
+		Ti.fireEvent('feri:fix_tables');
 	});
 })();

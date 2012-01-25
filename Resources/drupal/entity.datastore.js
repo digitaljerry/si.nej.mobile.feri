@@ -226,6 +226,7 @@ Drupal.entity.Datastore.prototype.loadByField = function (field, values, order, 
     Ti.API.debug(query);
     
     var rows = this.connection.query(query, values);
+    
     if (rows) {
         while (rows.isValidRow()) {
             var data = rows.fieldByName('data');
@@ -259,6 +260,23 @@ Drupal.entity.Datastore.prototype.loadByField = function (field, values, order, 
 Drupal.entity.Datastore.prototype.remove = function (id) {
     this.connection.query("DELETE FROM " + this.entityType + " WHERE " + this.idField + " = ?", [id]);
     return this.connection.rowsAffected;
+};
+
+Drupal.entity.Datastore.prototype.doQuery = function (query) {
+    
+    Ti.API.debug(query);
+    var rows = this.connection.query(query);
+    if (rows) {
+        while (rows.isValidRow()) {
+            var data = rows.fieldByName('data');
+            var entity = JSON.parse(data);
+            entities.push(entity);
+            rows.next();
+        }
+        rows.close();
+    }
+    
+    return entities;
 };
 
 Drupal.entity.Datastore.prototype.fetchUpdates = function (bundle) {
@@ -357,4 +375,48 @@ Drupal.entity.Datastore.prototype.getSchema = function () {
     }
 
     return this.schemaDefinition;
+};
+
+Drupal.entity.Datastore.prototype.fixTables = function (table) {
+    
+    var query = 'SELECT * FROM ' + table;
+    Ti.API.debug('Fixing: ' + query);
+    
+    var resultSet = this.connection.query(query);
+	var fieldCount = resultSet.fieldCount();
+	var fields = [];
+	for(var i = 0; i < fieldCount;i++) {
+	    fields.push(resultSet.fieldName(i));
+	};
+	
+	while (resultSet.isValidRow()) {
+		var result = {};
+		var uid = resultSet.fieldByName('uid');
+		
+	    for(var i=0; i < fields.length; i++) {
+	    	if ( fields[i] != 'data' ) {
+	    		result[fields[i]] = resultSet.fieldByName(fields[i]);
+	    	}
+	    }
+	    var json_result = JSON.stringify(result).replace(/\'/g, "\\'");;
+		
+		var query2 = 'UPDATE ' + table + ' SET data = \'' + json_result + '\' WHERE uid = ' + uid;
+		this.connection.query(query2);
+		Ti.API.debug(query2);	    
+	    
+	    resultSet.next();
+	};
+	resultSet.close();
+	
+	/*var query = 'SELECT data FROM node_cat';
+    Ti.API.debug('Fixing: ' + query);
+    
+    var resultSet = this.connection.query(query);
+    var nekej;
+	while (resultSet.isValidRow()) {
+	    nekej = resultSet.fieldByName('data');
+	    resultSet.next();
+	};
+	Ti.API.debug(nekej);
+	resultSet.close();*/
 };

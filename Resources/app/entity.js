@@ -116,10 +116,163 @@ Drupal.entity.sites.main.types.node_cat.schema = {
      *   A callback function to call after the fetching process has been completed.
      */
     defaultFetcher: function (bundle, store, func) {
-    	alert('in');
         var url = 'http://feri.tux.si/mobile/board/tree/';
         //var url = 'http://codestrong.com/mobile/sessions/' + bundle;
         this.prototype.defaultFetcher.apply(this, [bundle, store, func, url]);
     }
 };
 Drupal.entity.sites.main.types.node_cat.schema.prototype = Drupal.constructPrototype(Drupal.entity.DefaultSchema);
+
+// Define our entity storage rules.
+Drupal.entity.sites.main.types.board_categories.schema = {
+    fields: function () {
+        return {
+            fields: {
+                uid: {
+                    type: 'INTEGER'
+                },
+                title: {
+                    type: 'VARCHAR'
+                },
+                parent: {
+                    type: 'INTEGER'
+                },
+                kind: {
+                    type: 'VARCHAR'
+                },
+                favourite: {
+                    type: 'INTEGER'
+                },
+                push: {
+                    type: 'INTEGER'
+                }
+            },
+            indexes: {
+                uid_idx: ['uid'],
+                parent_idx: ['parent']
+            }
+        };
+    },
+
+    getFieldValues: function (entity, values) {
+        values.changed = entity.changed;
+    }
+};
+Drupal.entity.sites.main.types.board_categories.schema.prototype = Drupal.constructPrototype(Drupal.entity.DefaultSchema);
+
+// Define our entity storage rules.
+Drupal.entity.sites.main.types.board_notifications.schema = {
+    fields: function () {
+        return {
+            fields: {
+                uid: {
+                    type: 'INTEGER'
+                },
+                category: {
+                    type: 'INTEGER'
+                },
+                title: {
+                    type: 'VARCHAR'
+                },
+                description: {
+                    type: 'TEXT'
+                },
+                link: {
+                    type: 'VARCHAR'
+                },
+                pubDate: {
+                    type: 'VARCHAR'
+                },
+                author: {
+                    type: 'VARCHAR'
+                }
+            },
+            indexes: {
+                uid_idx: ['uid'],
+                category_idx: ['category']
+            }
+        };
+    },
+
+    getFieldValues: function (entity, values) {
+        values.changed = entity.changed;
+    }
+};
+Drupal.entity.sites.main.types.board_notifications.schema.prototype = Drupal.constructPrototype(Drupal.entity.DefaultSchema);
+
+// Define our entity storage rules.
+Drupal.entity.sites.main.types.people.schema = {
+    fields: function () {
+        return {
+            fields: {
+                uid: {
+                    type: 'INTEGER'
+                },
+                title: {
+                    type: 'VARCHAR'
+                },
+                position: {
+                    type: 'VARCHAR'
+                },
+                first_name: {
+                    type: 'VARCHAR'
+                },
+                last_name: {
+                    type: 'VARCHAR'
+                },
+                email: {
+                    type: 'VARCHAR'
+                },
+                office: {
+                    type: 'VARCHAR'
+                },
+                hours: {
+                    type: 'VARCHAR'
+                },
+                phone: {
+                    type: 'VARCHAR'
+                }
+            },
+            indexes: {
+                uid_idx: ['uid'],
+                last_name_idx: ['last_name']
+            }
+        };
+    },
+
+    getFieldValues: function (entity, values) {
+        values.changed = entity.changed;
+    }
+};
+Drupal.entity.sites.main.types.people.schema.prototype = Drupal.constructPrototype(Drupal.entity.DefaultSchema);
+
+// Define our entity storage rules.
+Drupal.entity.sites.main.types.degrees.schema = {
+    fields: function () {
+        return {
+            fields: {
+                uid: {
+                    type: 'INTEGER'
+                },
+                link: {
+                    type: 'VARCHAR'
+                },
+                description: {
+                    type: 'TEXT'
+                },
+                pubDate: {
+                    type: 'VARCHAR'
+                }
+            },
+            indexes: {
+                uid_idx: ['uid']
+            }
+        };
+    },
+
+    getFieldValues: function (entity, values) {
+        values.changed = entity.changed;
+    }
+};
+Drupal.entity.sites.main.types.degrees.schema.prototype = Drupal.constructPrototype(Drupal.entity.DefaultSchema);
+
