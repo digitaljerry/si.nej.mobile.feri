@@ -59,8 +59,8 @@ Drupal.entity = {
                         return 'user/' + id;
                     }
                 },
-                board_categories: {
-                    label: 'Board categories',
+                board_parents: {
+                    label: 'Board parents',
                     entity_keys: {
                         id: 'uid',
                         bundle: 'type',
@@ -68,7 +68,19 @@ Drupal.entity = {
                     },
                     schema: {},
                     requestUrl: function (id) {
-                        return 'board_categories/' + id;
+                        return 'board_parents/' + id;
+                    }
+                },
+                board_children: {
+                    label: 'Board children',
+                    entity_keys: {
+                        id: 'uid',
+                        bundle: 'type',
+                        label: 'title'
+                    },
+                    schema: {},
+                    requestUrl: function (id) {
+                        return 'board_children/' + id;
                     }
                 },
                 board_notifications: {

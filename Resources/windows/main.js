@@ -171,7 +171,7 @@
         updateCount = 0;
         Drupal.entity.db('main', 'node').fetchUpdates('session');
         Drupal.entity.db('main', 'user').fetchUpdates('user');
-        //Drupal.entity.db('main', 'board_categories').fetchUpdates('board_categories');
+        //Drupal.entity.db('main', 'board_parents').fetchUpdates('board_parents');
     });
     
     Ti.addEventListener('feri:flip_oglasna', function (e) {
@@ -199,7 +199,8 @@
     });
     
     Ti.addEventListener('feri:fix_tables', function (e) {
-        Drupal.entity.db('main', 'board_categories').fixTables('board_categories');
+        Drupal.entity.db('main', 'board_parents').fixTables('board_parents');
+        Drupal.entity.db('main', 'board_children').fixTables('board_children');
     });
     
     Ti.Gesture.addEventListener('shake',function(e) {

@@ -224,6 +224,8 @@ Drupal.entity.Datastore.prototype.loadByField = function (field, values, order, 
         query += ' ORDER BY ' + order.join(', ') + ((direction == true) ? '' : ' DESC');
     }
     Ti.API.debug(query);
+    Ti.API.debug(values);
+    Ti.API.debug('Values length: ' + values.length);
     
     var rows = this.connection.query(query, values);
     
@@ -232,10 +234,15 @@ Drupal.entity.Datastore.prototype.loadByField = function (field, values, order, 
             var data = rows.fieldByName('data');
             var entity = JSON.parse(data);
             entities.push(entity);
+            
+            // json debug
+            Ti.API.debug('+ ' + entity.title);
+            
             rows.next();
         }
         rows.close();
     }
+    Ti.API.debug('Rows length: ' + entities.length);
 
     return entities;
 };

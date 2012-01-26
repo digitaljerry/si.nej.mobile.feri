@@ -11,8 +11,11 @@
 				where = "parent = " + parent;	
 		}
 		
+		Ti.API.debug('SQL WHERE: ' + where);
+		
+		// PARENTS
 		var conn = Drupal.db.getConnection('main');
-        var rows = conn.query("SELECT uid FROM board_categories WHERE "+where+"");
+		var rows = conn.query("SELECT uid FROM board_parents WHERE "+where+"");
         var uids = [];
 		
         while (rows.isValidRow()) {
@@ -22,7 +25,29 @@
         rows.close();
         
         // Create session rows
-        var nodes = Drupal.entity.db('main', 'board_categories').loadMultiple(uids, ['uid,kind'], false);
+        Ti.API.debug('UIDs: ' + uids);
+        var nodes1 = Drupal.entity.db('main', 'board_parents').loadMultiple(uids, ['uid'], false);
+        for (var num = 0, numNodes = nodes1.length; num < numNodes; num++) {
+        	nodes1[num].kind = 'laf';
+        }  
+        
+        // CHILDREN
+        var rows2 = conn.query("SELECT uid FROM board_children WHERE "+where+"");
+        var uids2 = [];
+		
+        while (rows2.isValidRow()) {
+            uids2.push(rows2.fieldByName('uid'));
+            rows2.next();
+        }
+        rows2.close();
+        
+        var nodes2 = Drupal.entity.db('main', 'board_children').loadMultiple(uids2, ['uid'], false);
+        for (var num = 0, numNodes = nodes2.length; num < numNodes; num++) {
+        	nodes2[num].kind = 'node';
+        }
+        
+        // merge arrays
+        var nodes = nodes1.concat(nodes2);
 		
 		return nodes;
 	}
@@ -45,22 +70,21 @@
         // oglasna deska click handler
         tableview.addEventListener('click', function (e) {
 			if (e.rowData.uid) {
-				if (e.rowData.isLeaf == true) {
+				/*if (e.rowData.isLeaf == true) {
 					feri.navGroup.open(feri.ui.createBoardWindow({
 	                    title: e.rowData.catTitle,
 	                    category: e.rowData.uid
 	                }), {
 	                    animated: true
 	                });
-				} else {
+				} else {*/
 					feri.navGroup.open(feri.ui.createBoardCatWindow({
 			    		title: e.rowData.catTitle,
-			    		uid: e.rowData.uid,
-			    		leaf: e.rowData.isLeaf
+			    		uid: e.rowData.uid
 			    	}), {
 			    		animated: true
 			    	});
-				}
+				//}
             }
         });
         
@@ -94,13 +118,15 @@
 	                focusable: true
 	            });
 	            
-	            if ( fav.kind == 'node' ) {
+	            /*if ( fav.kind == 'node' ) {
 	            	favRow.hasChild = true;
 	            	favRow.isLeaf = false;
 	            } else {
 	            	favRow.hasDetail = true;
 	            	favRow.isLeaf = true;
-	            }
+	            }*/
+	           	favRow.hasDetail = true;
+	            favRow.isLeaf = true;
 				
 	            var leftSpace = 10;
 	            var titleColor = '#1C4980';
@@ -125,17 +151,17 @@
 	        
 	        data2.push(feri.ui.createHeaderRow('Kategorije'));
     	}
-    	
+    	Ti.API.debug('6');
     	// OGLASNA DESKA
-        var cats;
-        /*if ( w != undefined)
+        var cats = [];
+        if ( w != undefined)
         	cats = getNodeCat(w.uid);
         else
-        	cats = getNodeCat();*/
-        Ti.API.debug('---');
-        cats = getNodeCat();
+        	cats = getNodeCat();
         
-		for (var catNum = 0, numCats = cats.length; catNum < numCats; catNum++) {
+        Ti.API.debug('Length: ' + cats.length);
+        
+        for (var catNum = 0, numCats = cats.length; catNum < numCats; catNum++) {
             var cat = cats[catNum];
             var catTitle = feri.cleanSpecialChars(cat.title);
             var catRow = Ti.UI.createTableViewRow({
@@ -162,7 +188,7 @@
             var titleColor = '#1C4980';
             
             var catLabel = Ti.UI.createLabel({
-                text: catTitle,
+                text: catTitle + ' ' + cat.uid + ' /  ' + cat.parent,
                 font: {
                     fontSize: 16,
                     fontWeight: 'bold'

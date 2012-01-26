@@ -124,7 +124,7 @@ Drupal.entity.sites.main.types.node_cat.schema = {
 Drupal.entity.sites.main.types.node_cat.schema.prototype = Drupal.constructPrototype(Drupal.entity.DefaultSchema);
 
 // Define our entity storage rules.
-Drupal.entity.sites.main.types.board_categories.schema = {
+Drupal.entity.sites.main.types.board_parents.schema = {
     fields: function () {
         return {
             fields: {
@@ -136,9 +136,6 @@ Drupal.entity.sites.main.types.board_categories.schema = {
                 },
                 parent: {
                     type: 'INTEGER'
-                },
-                kind: {
-                    type: 'VARCHAR'
                 },
                 favourite: {
                     type: 'INTEGER'
@@ -158,7 +155,41 @@ Drupal.entity.sites.main.types.board_categories.schema = {
         values.changed = entity.changed;
     }
 };
-Drupal.entity.sites.main.types.board_categories.schema.prototype = Drupal.constructPrototype(Drupal.entity.DefaultSchema);
+Drupal.entity.sites.main.types.board_parents.schema.prototype = Drupal.constructPrototype(Drupal.entity.DefaultSchema);
+
+// Define our entity storage rules.
+Drupal.entity.sites.main.types.board_children.schema = {
+    fields: function () {
+        return {
+            fields: {
+                uid: {
+                    type: 'INTEGER'
+                },
+                title: {
+                    type: 'VARCHAR'
+                },
+                parent: {
+                    type: 'INTEGER'
+                },
+                favourite: {
+                    type: 'INTEGER'
+                },
+                push: {
+                    type: 'INTEGER'
+                }
+            },
+            indexes: {
+                uid_idx: ['uid'],
+                parent_idx: ['parent']
+            }
+        };
+    },
+
+    getFieldValues: function (entity, values) {
+        values.changed = entity.changed;
+    }
+};
+Drupal.entity.sites.main.types.board_children.schema.prototype = Drupal.constructPrototype(Drupal.entity.DefaultSchema);
 
 // Define our entity storage rules.
 Drupal.entity.sites.main.types.board_notifications.schema = {

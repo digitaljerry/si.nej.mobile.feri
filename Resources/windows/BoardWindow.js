@@ -23,9 +23,7 @@
         }
 
         // Create data for TableView
-        var data = [
-	        
-        ];
+        var data = [];
         
         feri.oglasnaTableView = Titanium.UI.createView({
 			height:'100%',
@@ -74,8 +72,7 @@
             });
             
             // sql check
-            
-            var rows = Drupal.entity.db('main', 'board_categories').execute('SELECT * FROM board_categories WHERE uid = ' + w.category);
+            var rows = Drupal.entity.db('main', 'board_parents').execute('SELECT * FROM board_parents WHERE uid = ' + w.category);
 			Titanium.API.info('ROW COUNT = ' + rows.getRowCount());
 			
 			/*while (rows.isValidRow())
@@ -243,13 +240,15 @@
         }
         
         // TABLES
-        
         feri.tableview = Titanium.UI.createTableView({
             data: data
         });
-        feri.tableview2 = feri.ui.createBoardCatTable(undefined, true);
         
+        feri.tableview2 = feri.ui.createBoardCatTable(undefined, false);
+        
+        // if user has set oglasna deska as default view do thise
         //feri.oglasnaTableView.add(feri.tableview2);
+        // else this
         feri.oglasnaTableView.add(feri.tableview);
         
         feri.oglasnaDeskaTable = 'tableview';
@@ -269,22 +268,21 @@
         // oglasna deska click handler
         feri.tableview2.addEventListener('click', function (e) {
 			if (e.rowData.uid) {
-				if (e.rowData.isLeaf == true) {
+				/*if (e.rowData.isLeaf == true) {
 					feri.navGroup.open(feri.ui.createBoardWindow({
 	                    title: e.rowData.favTitle,
 	                    category: e.rowData.uid
 	                }), {
 	                    animated: true
 	                });
-				} else {
+				} else {*/
 					feri.navGroup.open(feri.ui.createBoardCatWindow({
 			    		title: e.rowData.favTitle,
-			    		uid: e.rowData.uid,
-			    		leaf: e.rowData.isLeaf
+			    		uid: e.rowData.uid
 			    	}), {
 			    		animated: true
 			    	});
-				}
+				//}
             }
         });
         
