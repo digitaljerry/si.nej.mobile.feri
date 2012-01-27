@@ -246,12 +246,17 @@
         
         feri.tableview2 = feri.ui.createBoardCatTable(undefined, false);
         
-        // if user has set oglasna deska as default view do thise
-        //feri.oglasnaTableView.add(feri.tableview2);
-        // else this
-        feri.oglasnaTableView.add(feri.tableview);
-        
-        feri.oglasnaDeskaTable = 'tableview';
+        // choose if show latest or categorized view
+        if (!Titanium.App.Properties.getString('boardLatest')) {
+			Titanium.App.Properties.setString('boardLatest','latest');
+		}
+		
+		// if user has set oglasna deska as default view do thise
+		if (Titanium.App.Properties.getString('boardLatest') == 'latest') {
+			feri.oglasnaTableView.add(feri.tableview);
+		} else {
+			feri.oglasnaTableView.add(feri.tableview2);
+		}
         
         // zadnje objave click handler
         feri.tableview.addEventListener('click', function (e) {
@@ -268,6 +273,7 @@
         // oglasna deska click handler
         feri.tableview2.addEventListener('click', function (e) {
 			if (e.rowData.uid) {
+				alert(e.rowData.kind);
 				/*if (e.rowData.isLeaf == true) {
 					feri.navGroup.open(feri.ui.createBoardWindow({
 	                    title: e.rowData.favTitle,
@@ -285,8 +291,8 @@
 				//}
             }
         });
-        
-        feri.boardWindow.add(feri.oglasnaTableView);
+		
+		feri.boardWindow.add(feri.oglasnaTableView);
 
         return feri.boardWindow;
     };

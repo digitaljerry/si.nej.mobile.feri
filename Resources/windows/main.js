@@ -175,27 +175,19 @@
     });
     
     Ti.addEventListener('feri:flip_oglasna', function (e) {
-    	if ( feri.oglasnaDeskaTable == 'tableview' ) {
-        	Ti.fireEvent('feri:flip_table', {'table':'Oglasna deska'});
-        	feri.oglasnaDeskaTable = 'tableview2';
-    	} else {
-        	Ti.fireEvent('feri:flip_table2', {'table':'Zadnja obvestila'});
-        	feri.oglasnaDeskaTable = 'tableview';
-    	}
-    });
-    
-    Ti.addEventListener('feri:flip_table', function (e) {
-    	feri.oglasnaTableView.animate({view:feri.tableview2,transition:Ti.UI.iPhone.AnimationStyle.FLIP_FROM_RIGHT},
+    	if ( Titanium.App.Properties.getString('boardLatest') == 'latest' ) {
+    		feri.oglasnaTableView.animate({view:feri.tableview2,transition:Ti.UI.iPhone.AnimationStyle.FLIP_FROM_RIGHT},
     		function () {
     			feri.boardWindow.setTitle(e.table);
+    			Titanium.App.Properties.setString('boardLatest','category');
     		});
-    });
-    
-    Ti.addEventListener('feri:flip_table2', function (e) {
-    	feri.oglasnaTableView.animate({view:feri.tableview,transition:Ti.UI.iPhone.AnimationStyle.FLIP_FROM_LEFT},
+    	} else {
+			feri.oglasnaTableView.animate({view:feri.tableview,transition:Ti.UI.iPhone.AnimationStyle.FLIP_FROM_LEFT},
 			function () {
     			feri.boardWindow.setTitle(e.table);
-    		});
+    			Titanium.App.Properties.setString('boardLatest','latest');
+    		});    		
+    	}
     });
     
     Ti.addEventListener('feri:fix_tables', function (e) {
