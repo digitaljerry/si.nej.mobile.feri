@@ -3,6 +3,8 @@
 	
 	function getNodeCat(parent) {
 		
+		var conn = Drupal.db.getConnection('main');
+		
 		var where = "parent = 0";
 		if ( parent != undefined ) {
 			if ( parent == '-1' )
@@ -13,27 +15,31 @@
 		
 		Ti.API.debug('SQL WHERE: ' + where);
 		
-		// PARENTS
-		var conn = Drupal.db.getConnection('main');
-		var rows = conn.query("SELECT uid FROM board_parents WHERE "+where+"");
-        var uids = [];
+		var uids = [];
+		var uids2 = [];
+		var nodes1 = [];
+		var nodes2 = [];
 		
-        while (rows.isValidRow()) {
-            uids.push(rows.fieldByName('uid'));
-            rows.next();
-        }
-        rows.close();
-        
-        // Create session rows
-        Ti.API.debug('UIDs: ' + uids);
-        var nodes1 = Drupal.entity.db('main', 'board_parents').loadMultiple(uids, ['uid'], false);
-        for (var num = 0, numNodes = nodes1.length; num < numNodes; num++) {
-        	nodes1[num].kind = 'leaf';
+		// PARENTS (only if we're not fetching favorites')
+		if ( parent != '-1' && parent != undefined ) {
+			var rows = conn.query("SELECT uid FROM board_parents WHERE "+where+"");
+			
+	        while (rows.isValidRow()) {
+	            uids.push(rows.fieldByName('uid'));
+	            rows.next();
+	        }
+	        rows.close();
+	        
+	        // Create session rows
+	        Ti.API.debug('UIDs: ' + uids);
+	        nodes1 = Drupal.entity.db('main', 'board_parents').loadMultiple(uids, ['uid'], false);
+	        for (var num = 0, numNodes = nodes1.length; num < numNodes; num++) {
+	        	nodes1[num].kind = 'leaf';
+        	}
         }  
         
         // CHILDREN
         var rows2 = conn.query("SELECT uid FROM board_children WHERE "+where+"");
-        var uids2 = [];
 		
         while (rows2.isValidRow()) {
             uids2.push(rows2.fieldByName('uid'));
@@ -41,7 +47,7 @@
         }
         rows2.close();
         
-        var nodes2 = Drupal.entity.db('main', 'board_children').loadMultiple(uids2, ['uid'], false);
+        nodes2 = Drupal.entity.db('main', 'board_children').loadMultiple(uids2, ['uid'], false);
         for (var num = 0, numNodes = nodes2.length; num < numNodes; num++) {
         	nodes2[num].kind = 'node';
         }

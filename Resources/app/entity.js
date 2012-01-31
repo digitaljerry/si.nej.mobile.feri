@@ -136,12 +136,6 @@ Drupal.entity.sites.main.types.board_parents.schema = {
                 },
                 parent: {
                     type: 'INTEGER'
-                },
-                favourite: {
-                    type: 'INTEGER'
-                },
-                push: {
-                    type: 'INTEGER'
                 }
             },
             indexes: {

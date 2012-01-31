@@ -167,10 +167,10 @@
     });
 
     Ti.addEventListener('feri:update_data', function (e) {
-        feri.ui.activityIndicator.showModal('Loading news and people...', updateTimeout, 'Connection timed out. All session and speaker data may not have updated.');
+        feri.ui.activityIndicator.showModal('Posodabljam ...', updateTimeout, 'Napaka pri povezavi.');
         updateCount = 0;
-        Drupal.entity.db('main', 'node').fetchUpdates('session');
-        Drupal.entity.db('main', 'user').fetchUpdates('user');
+        //Drupal.entity.db('main', 'node').fetchUpdates('session');
+        //Drupal.entity.db('main', 'user').fetchUpdates('user');
         //Drupal.entity.db('main', 'board_parents').fetchUpdates('board_parents');
     });
     
@@ -199,6 +199,6 @@
     
     Ti.Gesture.addEventListener('shake',function(e) {
 		Ti.fireEvent('feri:update_data');
-		Ti.fireEvent('feri:fix_tables');
+		//Ti.fireEvent('feri:fix_tables');
 	});
 })();
