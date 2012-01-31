@@ -203,20 +203,67 @@ Drupal.entity.DefaultSchema.prototype.getFieldValues = function (entity, values)
     // Do nothing.
 };
 
-Drupal.entity.DefaultSchema.prototype.defaultFetcher = function (bundle, store, func, fetchUrl) {
+Drupal.entity.DefaultSchema.prototype.defaultFetcher = function (bundle, store, func, fetchUrl, preDataFunc) {
 	
 	var xhr = Titanium.Network.createHTTPClient();
     xhr.onload = function () {
     	
-    	var entities = JSON.parse(this.responseText).entities;
+    	// Call our post-completion callback.
+    	var data = {};
+    	
+    	//
+    	// this goes somewhere else, but we don't yet know how to put it there - start
+    	//
+    	preDataFunc = function (fetchedData) {
+    		
+    		//alert(eval(fetchedData));
+    		
+    		var incomingData = JSON.parse(fetchedData);
+    		var entities = [];
+    		
+    		for (var i = 0; i < incomingData.length; i++) {
+    			
+    			// mapping
+    			var entity = {
+    				picture: '',
+    				name: feri.trim(incomingData[i].Ime),
+    				full_name: feri.trim(incomingData[i].Ime + ' ' + incomingData[i].Priimek),
+    				title: incomingData[i].HabilitacijskiNazivKratki + ' ' + incomingData[i].Priimek + ' ' + incomingData[i].Ime + ', ' + incomingData[i].SkrajsaniPoklic,
+    				company: '',
+    				position: incomingData[i].NazivDelovnegaMesta,
+    				uid: incomingData[i].Id,
+    				bio: '',
+    				hours: incomingData[i].GovorilneUre,
+    				office: incomingData[i].Kabinet,
+    				tel: '02 ' + incomingData[i].Telefon,
+    				email: incomingData[i].Email
+    			};
+            	
+            	entities.push({entity: entity});
+        	}
+        	
+    		return entities;
+    	};
+    	//
+    	// this goes somewhere else, but we don't yet know how to put it there - end
+    	//
+    	
+    	var entities = {};
+    	
+        if (preDataFunc) {
+            entities = preDataFunc(this.responseText);
+        } else {
+        	entities = JSON.parse(data).entities;
+        }
+    	
         var length = entities.length;
-
+		
         Ti.API.debug('Downloading ' + length + ' entities of type ' + store.entityType);
-
+		
         for (var i = 0; i < length; i++) {
             store.save(entities[i].entity);
         }
-
+        
         // Call our post-completion callback.
         if (func) {
             func();

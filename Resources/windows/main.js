@@ -156,21 +156,19 @@
     }
 
     // Handle sessions and speaker updates
-    var updateCount = 0;
     Ti.addEventListener('drupal:entity:datastore:update_completed', function (e) {
-        updateCount++;
-        if (updateCount >= 2) {
-            updateCount = 0;
-            Ti.App.fireEvent('app:update_people');
-            feri.ui.activityIndicator.hideModal();
-        }
+    	
+    	// update the windows
+        Ti.App.fireEvent('app:update_people');
+        
+        // hide the modal and cleanup
+        feri.ui.activityIndicator.hideModal();
     });
 
     Ti.addEventListener('feri:update_data', function (e) {
         feri.ui.activityIndicator.showModal('Posodabljam ...', updateTimeout, 'Napaka pri povezavi.');
-        updateCount = 0;
         //Drupal.entity.db('main', 'node').fetchUpdates('session');
-        //Drupal.entity.db('main', 'user').fetchUpdates('user');
+        Drupal.entity.db('main', 'user').fetchUpdates('user');
         //Drupal.entity.db('main', 'board_parents').fetchUpdates('board_parents');
     });
     

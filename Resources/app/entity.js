@@ -67,7 +67,7 @@ Drupal.entity.sites.main.types.user.schema = {
             }
         };
     },
-
+    
     /**
      * Retrieves updates for this entity type.
      *
@@ -78,8 +78,11 @@ Drupal.entity.sites.main.types.user.schema = {
      * @param {function} func
      *   A callback functino that will be called when the fetch is complete.
      */
+    // read more @ http://osebje.feri.uni-mb.si/
     defaultFetcher: function (bundle, store, func) {
-        this.prototype.defaultFetcher.apply(this, [bundle, store, func, 'http://feri.tux.si/mobile/zaposleni/']);
+    	//this.prototype.defaultFetcher.apply(this, [bundle, store, func, 'http://feri.tux.si/mobile/zaposleni/']);
+    	this.prototype.defaultFetcher.apply(this, [bundle, store, func, 'http://feri.tux.si/mobile/zaposleni2/']);
+        //this.prototype.defaultFetcher.apply(this, [bundle, store, func, 'http://osebje.feri.uni-mb.si/cache/data/sm=7038805.txt']);
         //this.prototype.defaultFetcher.apply(this, [bundle, store, func, 'http://codestrong.com/mobile/speakers']);
     }
 

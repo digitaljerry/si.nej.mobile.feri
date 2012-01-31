@@ -294,7 +294,7 @@ Drupal.entity.Datastore.prototype.fetchUpdates = function (bundle) {
             bundle: bundle
         });
     };
-
+    
     if (this.entityInfo.schema.fetchers && this.entityInfo.schema.fetchers[bundle]) {
         this.entityInfo.schema.fetchers[bundle](this, callback);
     } else if (this.entityInfo.schema.defaultFetcher) {

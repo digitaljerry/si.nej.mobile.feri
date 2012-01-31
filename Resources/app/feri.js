@@ -50,6 +50,16 @@ var feri = {
   		return '';
 	};
 	
+	feri.trim = function(str) {
+		return str.replace(/^\s+|\s+$/g,"");
+	}
+	feri.ltrim = function(str) {
+		return str.replace(/^\s+/,"");
+	}
+	feri.rtrim = function(str) {
+		return str.replace(/\s+$/,"");
+	}
+	
 	feri.android.menu = {
 		data: [],
 		init: function(params) {
