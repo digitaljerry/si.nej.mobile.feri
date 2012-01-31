@@ -53,7 +53,7 @@
             data: data
         });
         
-        feri.tableview2 = feri.ui.createBoardCatTable(undefined, false);
+        feri.tableviewFirst = feri.ui.createBoardCatTable(undefined, true);
         
         // choose if show latest or categorized view
         if (!Titanium.App.Properties.getString('boardLatest')) {
@@ -64,7 +64,7 @@
 		if (Titanium.App.Properties.getString('boardLatest') == 'latest') {
 			feri.oglasnaTableView.add(feri.tableview);
 		} else {
-			feri.oglasnaTableView.add(feri.tableview2);
+			feri.oglasnaTableView.add(feri.tableviewFirst);
 		}
         
         // zadnje objave click handler
@@ -80,7 +80,7 @@
         });
         
         // oglasna deska click handler
-        feri.tableview2.addEventListener('click', function (e) {
+        feri.tableviewFirst.addEventListener('click', function (e) {
 			if (e.rowData.uid) {
 				if (e.rowData.hasChild == true) {
 					feri.navGroup.open(feri.ui.createBoardCatDetailWindow({
@@ -165,6 +165,7 @@
                 color: titleColor,
                 left: leftSpace,
                 top: 10,
+                bottom: 10,
                 right: 10,
                 height: 'auto',
                 touchEnabled: false

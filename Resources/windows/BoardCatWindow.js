@@ -96,52 +96,70 @@
     // cat window
     feri.ui.createBoardCatTable = function(w, addFavRows) {
     	
-    	var data2 = [];
+    	// geting the data from new method
+    	var data = feri.ui.getBoardCatTableData(w, addFavRows);
+        var tableview = Titanium.UI.createTableView({
+        	data: data
+        });
+        
+        return tableview;
+    };
+    
+    feri.ui.getBoardCatTableData = function(w, addFavRows) {
     	
+    	var data = [];
+    	
+    	// add the favourites
     	if( addFavRows == true ) {
-    		// add the favourites
-	        data2.push(feri.ui.createHeaderRow('Priljubljene'));
 	        
 	        var favs = getNodeCat('-1');
-	        for (var favNum = 0, numFavs = favs.length; favNum < numFavs; favNum++) {
-	            var fav = favs[favNum];
-	            var favTitle = feri.cleanSpecialChars(fav.title);
-	            var favRow = Ti.UI.createTableViewRow({
-	                className: 'cs_fav',
-	                selectedColor: '#000',
-	                backgroundColor: '#fff',
-	                color: '#000',
-	                uid: fav.uid,
-	                catTitle: favTitle,
-	                hasDetail: true,
-	                height: 'auto',
-	                layout: 'vertical',
-	                focusable: true
-	            });
-	            
-	            var leftSpace = 10;
-	            var titleColor = '#1C4980';
-	            
-	            var favLabel = Ti.UI.createLabel({
-	                text: favTitle,
-	                font: {
-	                    fontSize: 16,
-	                    fontWeight: 'bold'
-	                },
-	                left: leftSpace,
-	                top: 10,
-	                right: 10,
-	                height: 'auto',
-	                touchEnabled: false
-	            });
-	
-	            favRow.add(favLabel);
-	            
-				data2.push(favRow);
-	        }
 	        
-	        data2.push(feri.ui.createHeaderRow('Kategorije'));
+	        if ( favs.length > 0 ) {
+	        	
+	        	data.push(feri.ui.createHeaderRow('Priljubljene'));
+	        
+		        for (var favNum = 0, numFavs = favs.length; favNum < numFavs; favNum++) {
+		            var fav = favs[favNum];
+		            var favTitle = feri.cleanSpecialChars(fav.title);
+		            var favRow = Ti.UI.createTableViewRow({
+		                className: 'cs_fav',
+		                selectedColor: '#000',
+		                backgroundColor: '#fff',
+		                color: '#000',
+		                uid: fav.uid,
+		                catTitle: favTitle,
+		                hasDetail: false,
+		                hasChild: true,
+		                height: 'auto',
+		                layout: 'vertical',
+		                focusable: true
+		            });
+		            
+		            var leftSpace = 10;
+		            var titleColor = '#1C4980';
+		            
+		            var favLabel = Ti.UI.createLabel({
+		                text: favTitle,
+		                font: {
+		                    fontSize: 16,
+		                    fontWeight: 'bold'
+		                },
+		                left: leftSpace,
+		                top: 10,
+		                bottom: 10,
+		                right: 10,
+		                height: 'auto',
+		                touchEnabled: false
+		            });
+		
+		            favRow.add(favLabel);
+		            
+					data.push(favRow);
+		        }
+	        }
     	}
+    	
+    	data.push(feri.ui.createHeaderRow('Kategorije'));
     	
     	// OGLASNA DESKA
         var cats = [];
@@ -184,6 +202,7 @@
                 },
                 left: leftSpace,
                 top: 10,
+                bottom: 10,
                 right: 10,
                 height: 'auto',
                 touchEnabled: false
@@ -191,15 +210,10 @@
 
             catRow.add(catLabel);
             
-			data2.push(catRow);
+			data.push(catRow);
         }
         
-        // TABLES
-        var tableview = Titanium.UI.createTableView({
-        	data: data2
-        });
-        
-        return tableview;
-    };
+        return data;
+    } 
     
 })();

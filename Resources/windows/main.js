@@ -176,7 +176,7 @@
     
     Ti.addEventListener('feri:flip_oglasna', function (e) {
     	if ( Titanium.App.Properties.getString('boardLatest') == 'latest' ) {
-    		feri.oglasnaTableView.animate({view:feri.tableview2,transition:Ti.UI.iPhone.AnimationStyle.FLIP_FROM_RIGHT},
+    		feri.oglasnaTableView.animate({view:feri.tableviewFirst,transition:Ti.UI.iPhone.AnimationStyle.FLIP_FROM_RIGHT},
     		function () {
     			feri.boardWindow.setTitle(e.table);
     			Titanium.App.Properties.setString('boardLatest','category');

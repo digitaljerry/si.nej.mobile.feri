@@ -47,6 +47,7 @@
                 color: titleColor,
                 left: leftSpace,
                 top: 10,
+                bottom: 10,
                 right: 10,
                 height: 'auto',
                 touchEnabled: false

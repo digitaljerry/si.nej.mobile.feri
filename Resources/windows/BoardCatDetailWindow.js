@@ -4,6 +4,9 @@
 	feri.ui.createBoardCatDetailWindow = function (w) {
 		
 		var conn = Drupal.db.getConnection('main');
+		
+		// getting entity from db
+		var catData = Drupal.entity.db('main', 'board_children').load(w.category);
         
         // Base row properties
         var baseRow = {
@@ -59,7 +62,7 @@
             color: '#000',
             left: commonPadding,
             top: 18,
-            bottom: 7,
+            bottom: 10,
             right: commonPadding,
             height: 'auto'
         });
@@ -86,6 +89,7 @@
 			right:10,
 			top:10
 		});
+		
 		favRow.add(favLabel);
 		favRow.add(favSwitch);
 		data.push(favRow);
@@ -111,6 +115,12 @@
 		pushRow.add(pushSwitch);
 		data.push(pushRow);
 		
+		// here
+		if (catData.favourite)
+			favSwitch.value = true;
+		if (catData.push)
+			pushSwitch.value = true;
+		
 		// add obvestila
 		data = data.concat(feri.ui.getBoardData());
         
@@ -128,6 +138,20 @@
                     animated: true
                 });
             }
+        });
+        
+        // switch click listeners
+        favSwitch.addEventListener('change', function (e) {
+        	if (e.value == true)
+        		catData.favourite = true;
+        	else
+        		catData.favourite = false;
+        	
+        	//catData.save();
+        	Drupal.entity.db('main', 'board_children').save(catData);
+        	
+        	// update the initial table
+        	feri.tableviewFirst.setData(feri.ui.getBoardCatTableData(undefined, true));
         });
         
         boardDetailWindow.add(tableview);
