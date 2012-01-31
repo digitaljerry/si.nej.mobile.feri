@@ -180,12 +180,14 @@
     		function () {
     			feri.boardWindow.setTitle(e.table);
     			Titanium.App.Properties.setString('boardLatest','category');
+    			feri.boardWindow.setTitle('Oglasna deska');
     		});
     	} else {
 			feri.oglasnaTableView.animate({view:feri.tableview,transition:Ti.UI.iPhone.AnimationStyle.FLIP_FROM_LEFT},
 			function () {
     			feri.boardWindow.setTitle(e.table);
     			Titanium.App.Properties.setString('boardLatest','latest');
+    			feri.boardWindow.setTitle('Zadnja obvestila');
     		});    		
     	}
     });
