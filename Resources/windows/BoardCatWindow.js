@@ -28,7 +28,7 @@
         Ti.API.debug('UIDs: ' + uids);
         var nodes1 = Drupal.entity.db('main', 'board_parents').loadMultiple(uids, ['uid'], false);
         for (var num = 0, numNodes = nodes1.length; num < numNodes; num++) {
-        	nodes1[num].kind = 'laf';
+        	nodes1[num].kind = 'leaf';
         }  
         
         // CHILDREN
@@ -70,21 +70,21 @@
         // oglasna deska click handler
         tableview.addEventListener('click', function (e) {
 			if (e.rowData.uid) {
-				/*if (e.rowData.isLeaf == true) {
-					feri.navGroup.open(feri.ui.createBoardWindow({
+				if (e.rowData.hasChild == true) {
+					feri.navGroup.open(feri.ui.createBoardCatDetailWindow({
 	                    title: e.rowData.catTitle,
 	                    category: e.rowData.uid
 	                }), {
 	                    animated: true
 	                });
-				} else {*/
+				} else {
 					feri.navGroup.open(feri.ui.createBoardCatWindow({
 			    		title: e.rowData.catTitle,
 			    		uid: e.rowData.uid
 			    	}), {
 			    		animated: true
 			    	});
-				//}
+				}
             }
         });
         
@@ -113,21 +113,12 @@
 	                color: '#000',
 	                uid: fav.uid,
 	                catTitle: favTitle,
+	                hasDetail: true,
 	                height: 'auto',
 	                layout: 'vertical',
 	                focusable: true
 	            });
 	            
-	            /*if ( fav.kind == 'node' ) {
-	            	favRow.hasChild = true;
-	            	favRow.isLeaf = false;
-	            } else {
-	            	favRow.hasDetail = true;
-	            	favRow.isLeaf = true;
-	            }*/
-	           	favRow.hasDetail = true;
-	            favRow.isLeaf = true;
-				
 	            var leftSpace = 10;
 	            var titleColor = '#1C4980';
 	            
@@ -151,7 +142,7 @@
 	        
 	        data2.push(feri.ui.createHeaderRow('Kategorije'));
     	}
-    	Ti.API.debug('6');
+    	
     	// OGLASNA DESKA
         var cats = [];
         if ( w != undefined)
@@ -178,17 +169,15 @@
             
             if ( cat.kind == 'node' ) {
             	catRow.hasChild = true;
-            	catRow.isLeaf = false;
             } else {
             	catRow.hasDetail = true;
-            	catRow.isLeaf = true;
             }
 			
             var leftSpace = 10;
             var titleColor = '#1C4980';
             
             var catLabel = Ti.UI.createLabel({
-                text: catTitle + ' ' + cat.uid + ' /  ' + cat.parent,
+                text: catTitle,
                 font: {
                     fontSize: 16,
                     fontWeight: 'bold'
@@ -204,7 +193,7 @@
             
 			data2.push(catRow);
         }
-        Ti.API.debug('+++');
+        
         // TABLES
         var tableview = Titanium.UI.createTableView({
         	data: data2

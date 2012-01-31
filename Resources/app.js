@@ -57,6 +57,7 @@ Ti.include(
 	// All Codestrong windows
   	'windows/ModalActivityIndicatorWindow.js',
   	'windows/BoardCatWindow.js',
+  	'windows/BoardCatDetailWindow.js',
   	'windows/BoardWindow.js',
   	'windows/MapWindow.js',
   	'windows/AboutWindow.js',
