@@ -216,7 +216,7 @@ Drupal.entity.DefaultSchema.prototype.defaultFetcher = function (bundle, store, 
     	//
     	preDataFunc = function (fetchedData) {
     		
-    		//alert(eval(fetchedData));
+    		fetchedData = fetchedData.replace('var zaposleniFERI=', '');
     		
     		var incomingData = JSON.parse(fetchedData);
     		var entities = [];
@@ -250,8 +250,10 @@ Drupal.entity.DefaultSchema.prototype.defaultFetcher = function (bundle, store, 
     	
     	var entities = {};
     	
-        if (preDataFunc) {
+        if (bundle == 'user') {
             entities = preDataFunc(this.responseText);
+        } else if (bundle == 'node') {
+        	alert('mapping the nodes');
         } else {
         	entities = JSON.parse(data).entities;
         }

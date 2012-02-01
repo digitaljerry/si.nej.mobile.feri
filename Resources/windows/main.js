@@ -169,7 +169,7 @@
         feri.ui.activityIndicator.showModal('Posodabljam ...', updateTimeout, 'Napaka pri povezavi.');
         //Drupal.entity.db('main', 'node').fetchUpdates('session');
         Drupal.entity.db('main', 'user').fetchUpdates('user');
-        //Drupal.entity.db('main', 'board_parents').fetchUpdates('board_parents');
+        //Drupal.entity.db('main', 'node').fetchUpdates('node');
     });
     
     Ti.addEventListener('feri:flip_oglasna', function (e) {

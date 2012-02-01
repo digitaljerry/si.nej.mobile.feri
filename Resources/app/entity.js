@@ -80,10 +80,13 @@ Drupal.entity.sites.main.types.user.schema = {
      */
     // read more @ http://osebje.feri.uni-mb.si/
     defaultFetcher: function (bundle, store, func) {
+    	
+    	// obsolete:
     	//this.prototype.defaultFetcher.apply(this, [bundle, store, func, 'http://feri.tux.si/mobile/zaposleni/']);
-    	this.prototype.defaultFetcher.apply(this, [bundle, store, func, 'http://feri.tux.si/mobile/zaposleni2/']);
-        //this.prototype.defaultFetcher.apply(this, [bundle, store, func, 'http://osebje.feri.uni-mb.si/cache/data/sm=7038805.txt']);
-        //this.prototype.defaultFetcher.apply(this, [bundle, store, func, 'http://codestrong.com/mobile/speakers']);
+    	//this.prototype.defaultFetcher.apply(this, [bundle, store, func, 'http://codestrong.com/mobile/speakers']);
+    	
+    	//this.prototype.defaultFetcher.apply(this, [bundle, store, func, 'http://feri.tux.si/mobile/zaposleni2/']);
+        this.prototype.defaultFetcher.apply(this, [bundle, store, func, 'http://osebje.feri.uni-mb.si/cache/data/sm=7038.txt']);
     }
 
 };
