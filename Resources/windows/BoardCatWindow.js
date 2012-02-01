@@ -1,17 +1,28 @@
 
 (function () {
 	
-	function getNodeCat(parent) {
+	/**
+	 * Returns the nodes
+	 * 
+	 */
+	function getNodeCat(parent, includesParents, onlyFavs) {
+		
+		var where = '';
+		
+		if ( parent != undefined )
+			where = ' WHERE parent = ' + parent;
+		if ( parent == false )
+			where = ' WHERE parent = 0';
+		
+		if ( includesParents == undefined )
+			includesParents = false;
+		
+		if ( onlyFavs == undefined )
+			onlyFavs = false;
+		if ( onlyFavs == true )
+			where = ' WHERE favourite = 1';
 		
 		var conn = Drupal.db.getConnection('main');
-		
-		var where = "parent = 0";
-		if ( parent != undefined ) {
-			if ( parent == '-1' )
-				where = "favourite = 1";
-			else
-				where = "parent = " + parent;	
-		}
 		
 		Ti.API.debug('SQL WHERE: ' + where);
 		
@@ -21,8 +32,8 @@
 		var nodes2 = [];
 		
 		// PARENTS (only if we're not fetching favorites')
-		if ( parent != '-1' && parent != undefined ) {
-			var rows = conn.query("SELECT uid FROM board_parents WHERE "+where+"");
+		if ( includesParents == true ) {
+			var rows = conn.query("SELECT uid FROM board_parents" + where);
 			
 	        while (rows.isValidRow()) {
 	            uids.push(rows.fieldByName('uid'));
@@ -39,7 +50,7 @@
         }  
         
         // CHILDREN
-        var rows2 = conn.query("SELECT uid FROM board_children WHERE "+where+"");
+        var rows2 = conn.query("SELECT uid FROM board_children" + where);
 		
         while (rows2.isValidRow()) {
             uids2.push(rows2.fieldByName('uid'));
@@ -118,7 +129,7 @@
     	// add the favourites
     	if( addFavRows == true ) {
 	        
-	        var favs = getNodeCat('-1');
+	        var favs = getNodeCat(false, false, true);
 	        
 	        if ( favs.length > 0 ) {
 	        	
@@ -170,9 +181,9 @@
     	// OGLASNA DESKA
         var cats = [];
         if ( w != undefined)
-        	cats = getNodeCat(w.uid);
+        	cats = getNodeCat(w.uid, true, false);
         else
-        	cats = getNodeCat();
+        	cats = getNodeCat(0, true, false);
         
         Ti.API.debug('Length: ' + cats.length);
         
