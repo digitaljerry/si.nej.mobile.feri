@@ -46,7 +46,15 @@ Drupal.entity.sites.main.types.node.schema = {
      *   A callback function to call after the fetching process has been completed.
      */
     defaultFetcher: function (bundle, store, func) {
-        var url = 'http://feri.tux.si/mobile/board/latest' + bundle;
+    	
+    	// get all uid's from the database
+    	
+    	
+        //var url = 'http://feri.tux.si/mobile/board/latest' + bundle;
+        //var url = 'http://www.feri.uni-mb.si/odeska/getxml.aspx?pIDs=13,51,42,15,25,45,77,81&max=50&stDni=60';
+        var url = 'http://www.feri.uni-mb.si/odeska/getxml.aspx?pIDs=162,160,159,158,157,156,155,154,153,152,151,150,145,144,143,135,130,128,118,112,105,102,101,100,99,98,97,96,95,94,93,92,91,90,89,88,87,86,85,84,83,77,7,5,4&max=50&stDni=60';
+        //var url = 'http://rss.cnn.com/services/podcasting/newscast/rss.xml';
+        
         //var url = 'http://codestrong.com/mobile/sessions/' + bundle;
         this.prototype.defaultFetcher.apply(this, [bundle, store, func, url]);
     }

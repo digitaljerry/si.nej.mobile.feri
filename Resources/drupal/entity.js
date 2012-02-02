@@ -214,7 +214,7 @@ Drupal.entity.DefaultSchema.prototype.defaultFetcher = function (bundle, store, 
     	//
     	// this goes somewhere else, but we don't yet know how to put it there - start
     	//
-    	preDataFunc = function (fetchedData) {
+    	preDataFuncUser = function (fetchedData) {
     		
     		fetchedData = fetchedData.replace('var zaposleniFERI=', '');
     		
@@ -244,6 +244,57 @@ Drupal.entity.DefaultSchema.prototype.defaultFetcher = function (bundle, store, 
         	
     		return entities;
     	};
+    	
+    	preDataFuncNode = function (fetchedData) {
+    		
+    		var entities = [];
+    		
+    		Ti.API.info('>>> got the feed! ... ');
+    		try {
+    			
+    			var doc = fetchedData.documentElement;
+				var items = doc.getElementsByTagName("item");
+				
+				var x = 0;
+				var doctitle = doc.evaluate("//channel/title/text()").item(0).nodeValue;
+				for (var c=0;c<items.length;c++) {
+					
+					var item = items.item(c);
+					
+					// parse guid
+					var chopchop = item.getElementsByTagName("guid").item(0).text;
+					chopchop = chopchop.replace('http://www.feri.uni-mb.si/odeska/brnj2.asp?id', '');
+					chopchop = chopchop.split('=');
+					
+					var guid = chopchop[1].replace('&amp;', '').replace('oce', '');
+					var oce = chopchop[2];
+					
+					chopchop = item.getElementsByTagName("author").item(0).text;
+					chopchop = chopchop.split('(');
+					var author = chopchop[0];
+					
+					// mapping
+	    			var entity = {
+	    				nid: guid,
+	    				title: item.getElementsByTagName("title").item(0).text,
+	    				body: item.getElementsByTagName("description").item(0).text,
+	    				author: author,
+	    				date: item.getElementsByTagName("pubDate").item(0).text,
+	    				date_archive: '',
+	    				files: '',
+	    				category: oce,
+	    				time: ''
+	    			};
+	    			
+	    			entities.push({entity: entity});
+				}
+				
+    		} catch (e) {
+    			alert(e);
+    		}
+    		
+    		return entities;
+    	};
     	//
     	// this goes somewhere else, but we don't yet know how to put it there - end
     	//
@@ -251,13 +302,13 @@ Drupal.entity.DefaultSchema.prototype.defaultFetcher = function (bundle, store, 
     	var entities = {};
     	
         if (bundle == 'user') {
-            entities = preDataFunc(this.responseText);
+            entities = preDataFuncUser(this.responseText);
         } else if (bundle == 'node') {
-        	alert('mapping the nodes');
+        	entities = preDataFuncNode(this.responseXML);
         } else {
         	entities = JSON.parse(data).entities;
         }
-    	
+        
         var length = entities.length;
 		
         Ti.API.debug('Downloading ' + length + ' entities of type ' + store.entityType);

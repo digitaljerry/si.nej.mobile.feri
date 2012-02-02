@@ -114,8 +114,8 @@
 			where = "WHERE category = " + catUid;
         
         var conn = Drupal.db.getConnection('main');
-        var rows = conn.query("SELECT nid FROM node "+where+" ORDER BY nid DESC");
-        Ti.API.debug("SELECT nid FROM node "+where+" ORDER BY nid DESC");
+        var rows = conn.query("SELECT nid FROM node "+where+" ORDER BY nid DESC LIMIT 30");
+        Ti.API.debug("SELECT nid FROM node "+where+" ORDER BY nid DESC LIMIT 30");
         
         var nids = [];
 

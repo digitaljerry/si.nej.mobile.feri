@@ -5,7 +5,7 @@
 	 * Returns the nodes
 	 * 
 	 */
-	function getNodeCat(parent, includesParents, onlyFavs) {
+	function getNodeCat(parent, includesParents, onlyFavs, getAll) {
 		
 		var where = '';
 		
@@ -21,6 +21,11 @@
 			onlyFavs = false;
 		if ( onlyFavs == true )
 			where = ' WHERE favourite = 1';
+		
+		if ( getAll == undefined )
+			getAll = false;
+		if ( getAll == true )
+			where = '';
 		
 		var conn = Drupal.db.getConnection('main');
 		
@@ -125,6 +130,14 @@
     feri.ui.getBoardCatTableData = function(w, addFavRows) {
     	
     	var data = [];
+    	
+    	// get all uid's from the database
+    	var all = getNodeCat(false, false, false, true);
+    	var allUids = '';
+    	for (var allNum = 0, numAll = all.length; allNum < numAll; allNum++) {
+    		allUids = allUids + ',' +all[allNum].uid; 
+    	}
+    	Titanium.API.info('All uids: ' + allUids);
     	
     	// add the favourites
     	if( addFavRows == true ) {

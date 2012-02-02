@@ -122,7 +122,7 @@
 			pushSwitch.value = true;
 		
 		// add obvestila
-		data = data.concat(feri.ui.getBoardData());
+		data = data.concat(feri.ui.getBoardData(w.category));
         
         var tableview = Titanium.UI.createTableView({
         	data: data
