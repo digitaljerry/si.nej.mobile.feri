@@ -120,7 +120,7 @@
             }
             
             // Get the author information.
-	        var authorData = Drupal.entity.db('main', 'user').loadByField('full_name', authorList); //sessionData.instructors);
+	        var authorData = Drupal.entity.db('main', 'user').loadByField('email', authorList); //sessionData.instructors);
 	        
 	        if ( authorData[0] ) { 
 	        	tvData.push(feri.ui.createHeaderRow((authorList.length > 1) ? 'Authors' : 'Author'));
