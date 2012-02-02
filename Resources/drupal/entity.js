@@ -250,47 +250,42 @@ Drupal.entity.DefaultSchema.prototype.defaultFetcher = function (bundle, store, 
     		var entities = [];
     		
     		Ti.API.info('>>> got the feed! ... ');
-    		try {
     			
-    			var doc = fetchedData.documentElement;
-				var items = doc.getElementsByTagName("item");
+			var doc = fetchedData.documentElement;
+			var items = doc.getElementsByTagName("item");
+			
+			var x = 0;
+			var doctitle = doc.evaluate("//channel/title/text()").item(0).nodeValue;
+			for (var c=0;c<items.length;c++) {
 				
-				var x = 0;
-				var doctitle = doc.evaluate("//channel/title/text()").item(0).nodeValue;
-				for (var c=0;c<items.length;c++) {
-					
-					var item = items.item(c);
-					
-					// parse guid
-					var chopchop = item.getElementsByTagName("guid").item(0).text;
-					chopchop = chopchop.replace('http://www.feri.uni-mb.si/odeska/brnj2.asp?id', '');
-					chopchop = chopchop.split('=');
-					
-					var guid = chopchop[1].replace('&amp;', '').replace('oce', '');
-					var oce = chopchop[2];
-					
-					chopchop = item.getElementsByTagName("author").item(0).text;
-					chopchop = chopchop.split('(');
-					var author = chopchop[0];
-					
-					// mapping
-	    			var entity = {
-	    				nid: guid,
-	    				title: item.getElementsByTagName("title").item(0).text,
-	    				body: item.getElementsByTagName("description").item(0).text,
-	    				author: author,
-	    				date: item.getElementsByTagName("pubDate").item(0).text,
-	    				date_archive: '',
-	    				files: '',
-	    				category: oce,
-	    				time: ''
-	    			};
-	    			
-	    			entities.push({entity: entity});
-				}
+				var item = items.item(c);
 				
-    		} catch (e) {
-    			alert(e);
+				// parse guid
+				var chopchop = item.getElementsByTagName("guid").item(0).text;
+				chopchop = chopchop.replace('http://www.feri.uni-mb.si/odeska/brnj2.asp?id', '');
+				chopchop = chopchop.split('=');
+				
+				var guid = chopchop[1].replace('&amp;', '').replace('oce', '');
+				var oce = chopchop[2];
+				
+				chopchop = item.getElementsByTagName("author").item(0).text;
+				chopchop = chopchop.split('(');
+				var author = chopchop[0];
+				
+				// mapping
+    			var entity = {
+    				nid: guid,
+    				title: item.getElementsByTagName("title").item(0).text,
+    				body: item.getElementsByTagName("description").item(0).text,
+    				author: author,
+    				date: item.getElementsByTagName("pubDate").item(0).text,
+    				date_archive: '',
+    				files: '',
+    				category: oce,
+    				time: ''
+    			};
+    			entities.push({entity: entity});
+    			
     		}
     		
     		return entities;

@@ -197,6 +197,6 @@
     
     Ti.Gesture.addEventListener('shake',function(e) {
 		Ti.fireEvent('feri:update_data');
-		//Ti.fireEvent('feri:fix_tables');
+		Ti.fireEvent('feri:fix_tables');
 	});
 })();

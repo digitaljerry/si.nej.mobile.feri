@@ -55,7 +55,7 @@
         
         feri.tableviewFirst = feri.ui.createBoardCatTable(undefined, true);
         
-        // choose if show latest or categorized view
+        	// choose if show latest or categorized view
         if (!Titanium.App.Properties.getString('boardLatest')) {
 			Titanium.App.Properties.setString('boardLatest','latest');
 		}
@@ -114,8 +114,8 @@
 			where = "WHERE category = " + catUid;
         
         var conn = Drupal.db.getConnection('main');
-        var rows = conn.query("SELECT nid FROM node "+where+" ORDER BY nid DESC LIMIT 30");
-        Ti.API.debug("SELECT nid FROM node "+where+" ORDER BY nid DESC LIMIT 30");
+        var rows = conn.query("SELECT nid FROM node "+where+" ORDER BY nid DESC LIMIT 25");
+        Ti.API.debug("SELECT nid FROM node "+where+" ORDER BY nid DESC LIMIT 25");
         
         var nids = [];
 

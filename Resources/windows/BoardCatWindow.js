@@ -48,7 +48,7 @@
 	        
 	        // Create session rows
 	        Ti.API.debug('UIDs: ' + uids);
-	        nodes1 = Drupal.entity.db('main', 'board_parents').loadMultiple(uids, ['uid'], false);
+	        nodes1 = Drupal.entity.db('main', 'board_parents').loadMultiple(uids, ['title'], true);
 	        for (var num = 0, numNodes = nodes1.length; num < numNodes; num++) {
 	        	nodes1[num].kind = 'leaf';
         	}
@@ -63,7 +63,7 @@
         }
         rows2.close();
         
-        nodes2 = Drupal.entity.db('main', 'board_children').loadMultiple(uids2, ['uid'], false);
+        nodes2 = Drupal.entity.db('main', 'board_children').loadMultiple(uids2, ['title'], true);
         for (var num = 0, numNodes = nodes2.length; num < numNodes; num++) {
         	nodes2[num].kind = 'node';
         }
@@ -132,12 +132,12 @@
     	var data = [];
     	
     	// get all uid's from the database
-    	var all = getNodeCat(false, false, false, true);
+    	/*var all = getNodeCat(false, false, false, true);
     	var allUids = '';
     	for (var allNum = 0, numAll = all.length; allNum < numAll; allNum++) {
     		allUids = allUids + ',' +all[allNum].uid; 
     	}
-    	Titanium.API.info('All uids: ' + allUids);
+    	Titanium.API.info('All uids: ' + allUids);*/
     	
     	// add the favourites
     	if( addFavRows == true ) {
