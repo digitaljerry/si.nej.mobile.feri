@@ -118,6 +118,22 @@ Drupal.entity = {
                     requestUrl: function (id) {
                         return 'degrees/' + id;
                     }
+                },
+                zadnje_diplome: {
+                    label: 'Zadnje diplome',
+                    entity_keys: {
+                        id: 'uid',
+                        label: 'title'
+                    },
+                    schema: {}
+                },
+                aktualne_diplome: {
+                    label: 'Aktualne diplome',
+                    entity_keys: {
+                        id: 'uid',
+                        label: 'title'
+                    },
+                    schema: {}
                 }
             }
         }
@@ -290,6 +306,87 @@ Drupal.entity.DefaultSchema.prototype.defaultFetcher = function (bundle, store, 
     		
     		return entities;
     	};
+    	
+    	preDataFuncAktualneDiplome = function (fetchedData) {
+    		
+    		var entities = [];
+    		
+    		Ti.API.info('>>> got the feed! ... ');
+    		
+    		var doc = fetchedData.documentElement;
+			var items = doc.getElementsByTagName("li");
+			
+			for (var c=0;c<items.length;c++) {
+				
+				var item = items.item(c);
+				
+				// parse guid
+				/*var chopchop = item.getElementsByTagName("link").item(0).text;
+				chopchop = chopchop.split('id=');
+				var dkum_uid = chopchop[1]; 
+				
+				var chopchop = item.getElementsByTagName("description").item(0).text;
+				chopchop = chopchop.split('<br />');
+				var author = chopchop[0].replace(':', '');
+				var description = chopchop[4];*/
+				var candidate = feri.trim(item.getElementsByTagName("div").item(2).text.replace('Kandidat:', ''));
+				var title = feri.trim(item.getElementsByTagName("div").item(1).text);
+				var details = item.getElementsByTagName("div").item(0).text;
+				
+				// mapping
+    			var entity = {
+    				uid: (title.length + candidate.length + details.length),
+    				title: title,
+    				details: details,
+    				candidate: candidate
+    			};
+    			entities.push({entity: entity});
+    		}
+    		
+    		return entities;
+    	};
+    	
+    	preDataFuncZadnjeDiplome = function (fetchedData) {
+    		
+    		var entities = [];
+    		
+    		Ti.API.info('>>> got the feed! ... ');
+    			
+			var doc = fetchedData.documentElement;
+			var items = doc.getElementsByTagName("item");
+			
+			var x = 0;
+			var doctitle = doc.evaluate("//channel/title/text()").item(0).nodeValue;
+			for (var c=0;c<items.length;c++) {
+				
+				var item = items.item(c);
+				
+				// parse guid
+				var chopchop = item.getElementsByTagName("link").item(0).text;
+				chopchop = chopchop.split('id=');
+				var dkum_uid = chopchop[1]; 
+				
+				var chopchop = item.getElementsByTagName("description").item(0).text;
+				chopchop = chopchop.split('<br />');
+				var author = chopchop[0].replace(':', '');
+				var description = chopchop[4];
+				
+				// mapping
+    			var entity = {
+    				uid: dkum_uid,
+    				title: item.getElementsByTagName("title").item(0).text,
+    				description: description,
+    				author: author,
+    				date: item.getElementsByTagName("pubDate").item(0).text,
+    				link: item.getElementsByTagName("link").item(0).text
+    			};
+    			entities.push({entity: entity});
+    			
+    		}
+    		
+    		return entities;
+    	};
+    	
     	//
     	// this goes somewhere else, but we don't yet know how to put it there - end
     	//
@@ -300,6 +397,10 @@ Drupal.entity.DefaultSchema.prototype.defaultFetcher = function (bundle, store, 
             entities = preDataFuncUser(this.responseText);
         } else if (bundle == 'node') {
         	entities = preDataFuncNode(this.responseXML);
+        } else if (bundle == 'aktualne_diplome') {
+        	entities = preDataFuncAktualneDiplome(this.responseXML);
+        } else if (bundle == 'zadnje_diplome') {
+        	entities = preDataFuncZadnjeDiplome(this.responseXML);
         } else {
         	entities = JSON.parse(data).entities;
         }

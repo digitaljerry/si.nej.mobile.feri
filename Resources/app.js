@@ -52,6 +52,12 @@ if (!Drupal.db.getConnection('main').tableExists('people')) {
 if (!Drupal.db.getConnection('main').tableExists('degrees')) {
   	Drupal.entity.db('main', 'degrees').initializeSchema();
 }
+if (!Drupal.db.getConnection('main').tableExists('aktualne_diplome')) {
+  	Drupal.entity.db('main', 'aktualne_diplome').initializeSchema();
+}
+if (!Drupal.db.getConnection('main').tableExists('zadnje_diplome')) {
+  	Drupal.entity.db('main', 'zadnje_diplome').initializeSchema();
+}
 
 Ti.include(
 	// All Codestrong windows

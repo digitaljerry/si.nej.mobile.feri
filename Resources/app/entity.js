@@ -286,20 +286,20 @@ Drupal.entity.sites.main.types.people.schema = {
 Drupal.entity.sites.main.types.people.schema.prototype = Drupal.constructPrototype(Drupal.entity.DefaultSchema);
 
 // Define our entity storage rules.
-Drupal.entity.sites.main.types.degrees.schema = {
+Drupal.entity.sites.main.types.aktualne_diplome.schema = {
     fields: function () {
         return {
             fields: {
                 uid: {
                     type: 'INTEGER'
                 },
-                link: {
+                title: {
                     type: 'VARCHAR'
                 },
-                description: {
-                    type: 'TEXT'
+                details: {
+                    type: 'VARCHAR'
                 },
-                pubDate: {
+                candidate: {
                     type: 'VARCHAR'
                 }
             },
@@ -311,7 +311,75 @@ Drupal.entity.sites.main.types.degrees.schema = {
 
     getFieldValues: function (entity, values) {
         values.changed = entity.changed;
+    },
+    
+    /**
+     * Retrieves updates for this entity type.
+     *
+     * @param {string} bundle
+     *   The bundle type we want to retrieve.
+     * @param {Drupal.entity.Datastore} store
+     *   The datastore to which to save the retrieved entities.
+     * @param func
+     *   A callback function to call after the fetching process has been completed.
+     */
+    defaultFetcher: function (bundle, store, func) {
+    	
+    	var url = 'http://www.feri.uni-mb.si/zadnjizagovori.html';
+    	
+        this.prototype.defaultFetcher.apply(this, [bundle, store, func, url]);
     }
 };
-Drupal.entity.sites.main.types.degrees.schema.prototype = Drupal.constructPrototype(Drupal.entity.DefaultSchema);
+Drupal.entity.sites.main.types.aktualne_diplome.schema.prototype = Drupal.constructPrototype(Drupal.entity.DefaultSchema);
 
+Drupal.entity.sites.main.types.zadnje_diplome.schema = {
+    fields: function () {
+        return {
+            fields: {
+                uid: {
+                    type: 'INTEGER'
+                },
+                title: {
+                    type: 'VARCHAR'
+                },
+                date: {
+                    type: 'VARCHAR'
+                },
+                author: {
+                    type: 'VARCHAR'
+                },
+                description: {
+                    type: 'TEXT'
+                },
+                link: {
+                    type: 'VARCHAR'
+                }
+            },
+            indexes: {
+                uid_idx: ['uid']
+            }
+        };
+    },
+
+    getFieldValues: function (entity, values) {
+        values.changed = entity.changed;
+    },
+    
+    /**
+     * Retrieves updates for this entity type.
+     *
+     * @param {string} bundle
+     *   The bundle type we want to retrieve.
+     * @param {Drupal.entity.Datastore} store
+     *   The datastore to which to save the retrieved entities.
+     * @param func
+     *   A callback function to call after the fetching process has been completed.
+     */
+    defaultFetcher: function (bundle, store, func) {
+    	
+    	var url = 'http://dkum.uni-mb.si/rss.php?o=3&v=dip';
+        
+        this.prototype.defaultFetcher.apply(this, [bundle, store, func, url]);
+    }
+};
+Drupal.entity.sites.main.types.zadnje_diplome.schema.prototype = Drupal.constructPrototype(Drupal.entity.DefaultSchema);
