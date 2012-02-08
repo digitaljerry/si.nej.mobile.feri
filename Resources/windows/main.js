@@ -169,7 +169,9 @@
         feri.ui.activityIndicator.showModal('Posodabljam ...', updateTimeout, 'Napaka pri povezavi.');
         //Drupal.entity.db('main', 'node').fetchUpdates('session');
         //Drupal.entity.db('main', 'user').fetchUpdates('user');
-        Drupal.entity.db('main', 'node').fetchUpdates('node');
+        //Drupal.entity.db('main', 'node').fetchUpdates('node');
+        Drupal.entity.db('main', 'aktualne_diplome').fetchUpdates('aktualne_diplome');
+        Drupal.entity.db('main', 'zadnje_diplome').fetchUpdates('zadnje_diplome');
     });
     
     Ti.addEventListener('feri:flip_oglasna', function (e) {
@@ -193,10 +195,12 @@
     Ti.addEventListener('feri:fix_tables', function (e) {
         Drupal.entity.db('main', 'board_parents').fixTables('board_parents');
         Drupal.entity.db('main', 'board_children').fixTables('board_children');
+        Drupal.entity.db('main', 'aktualne_diplome').fixTables('aktualne_diplome');
+        Drupal.entity.db('main', 'zadnje_diplome').fixTables('zadnje_diplome');
     });
     
     Ti.Gesture.addEventListener('shake',function(e) {
 		Ti.fireEvent('feri:update_data');
-		Ti.fireEvent('feri:fix_tables');
+		//Ti.fireEvent('feri:fix_tables');
 	});
 })();

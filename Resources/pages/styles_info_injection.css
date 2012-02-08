@@ -1,12 +1,17 @@
 
-.tbl {
-	display:none;
-}
-
 #colLevo {
 	display:none !important;
 }
 
 div.PortalPot {
 	display:none !important;
+}
+
+#tblGlava {
+	display: none !important;
+}
+
+td {
+	font-size: 16px;
+	line-height: 2em;
 }
