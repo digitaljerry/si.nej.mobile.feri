@@ -1,4 +1,8 @@
 
+body {
+	background-image: none !important;
+}
+
 #colLevo {
 	display:none !important;
 }
@@ -12,6 +16,15 @@ div.PortalPot {
 }
 
 td {
-	font-size: 16px;
-	line-height: 2em;
+	font: 28px tahoma,verdana,sans-serif !important;
+	line-height: 2em !important;
+}
+
+.PortalTitle {
+	font-size: 40px !important;
+}
+
+.PortalSklop {
+	font-weight: bold;
+	font-size: 30px !important;
 }
