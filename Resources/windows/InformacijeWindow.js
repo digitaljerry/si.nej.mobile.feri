@@ -32,7 +32,7 @@
 		
 		infoWindow.setToolbar([flexSpace,bb2,flexSpace]);
         
-        //injecting css for better display on mobile
+        // injecting css for better display on mobile
         // inject our css when the web view finishes loading (because we need to inject into the head element)
 		webview.addEventListener('load', function () {
 		    // first, specify the CSS file that we should load
@@ -57,6 +57,8 @@
 		    // running this on an external URL, so it won't have Ti injected! web.url is the same method evalJS uses
 		    
 		    webview.setVisible(true);
+		    
+		    webview.setBottom(30);
 		});
 		
 		webview.addEventListener('beforeload', function () {
