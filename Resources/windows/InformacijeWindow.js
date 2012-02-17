@@ -20,17 +20,7 @@
             visible: false
         });
         
-        // web controls
-		var bb2 = Titanium.UI.createButtonBar({
-			labels:['Back', 'Reload', 'Forward'],
-			backgroundColor:'#003'
-		});
-		
-		var flexSpace = Titanium.UI.createButton({
-			systemButton:Titanium.UI.iPhone.SystemButton.FLEXIBLE_SPACE
-		});
-		
-		infoWindow.setToolbar([flexSpace,bb2,flexSpace]);
+        feri.getWebcontrols(infoWindow, webview);
         
         // injecting css for better display on mobile
         // inject our css when the web view finishes loading (because we need to inject into the head element)
@@ -59,31 +49,6 @@
 		    webview.setVisible(true);
 		    
 		    webview.setBottom(30);
-		});
-		
-		webview.addEventListener('beforeload', function () {
-			webview.setVisible(false);
-		});
-		
-		webview.addEventListener('load',function(e)
-		{
-			Ti.API.debug("url = "+webview.url);
-			Ti.API.debug("event url = "+e.url);
-		});
-		bb2.addEventListener('click',function(ce)
-		{
-			if (ce.index == 0)
-			{
-				webview.goBack();
-			}
-			else if (ce.index == 1)
-			{
-				webview.reload();
-			}
-			else
-			{
-				webview.goForward();
-			}
 		});
 		
 		infoWindow.add(webview);

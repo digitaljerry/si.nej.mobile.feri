@@ -21,35 +21,7 @@
         	url: dkum_url
         });
         
-		// web controls
-		var bb2 = Titanium.UI.createButtonBar({
-			labels:['Back', 'Reload', 'Forward'],
-			backgroundColor:'#003'
-		});
-		var flexSpace = Titanium.UI.createButton({
-			systemButton:Titanium.UI.iPhone.SystemButton.FLEXIBLE_SPACE
-		});
-		dkumWindow.setToolbar([flexSpace,bb2,flexSpace]);
-		webview.addEventListener('load',function(e)
-		{
-			Ti.API.debug("url = "+webview.url);
-			Ti.API.debug("event url = "+e.url);
-		});
-		bb2.addEventListener('click',function(ce)
-		{
-			if (ce.index == 0)
-			{
-				webview.goBack();
-			}
-			else if (ce.index == 1)
-			{
-				webview.reload();
-			}
-			else
-			{
-				webview.goForward();
-			}
-		});
+		feri.getWebcontrols(dkumWindow, webview);
 		
 		dkumWindow.add(webview);
         
