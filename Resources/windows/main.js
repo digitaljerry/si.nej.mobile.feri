@@ -169,9 +169,9 @@
         feri.ui.activityIndicator.showModal('Posodabljam ...', updateTimeout, 'Napaka pri povezavi.');
         //Drupal.entity.db('main', 'node').fetchUpdates('session');
         //Drupal.entity.db('main', 'user').fetchUpdates('user');
-        //Drupal.entity.db('main', 'node').fetchUpdates('node');
-        Drupal.entity.db('main', 'aktualne_diplome').fetchUpdates('aktualne_diplome');
-        Drupal.entity.db('main', 'zadnje_diplome').fetchUpdates('zadnje_diplome');
+        Drupal.entity.db('main', 'node').fetchUpdates('node');
+        //Drupal.entity.db('main', 'aktualne_diplome').fetchUpdates('aktualne_diplome');
+        //Drupal.entity.db('main', 'zadnje_diplome').fetchUpdates('zadnje_diplome');
     });
     
     Ti.addEventListener('feri:flip_oglasna', function (e) {

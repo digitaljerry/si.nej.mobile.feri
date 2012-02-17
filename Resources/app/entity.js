@@ -4,16 +4,27 @@ Drupal.entity.sites.main.types.node.schema = {
     fields: function () {
         return {
             fields: {
-                changed: {
+                nid: {
                     type: 'INTEGER'
+                },
+                title: {
+                    type: 'VARCHAR'
+                },
+                body: {
+                    type: 'TEXT'
                 },
                 author: {
                     type: 'VARCHAR'
+                },
+                date: {
+                    type: 'VARCHAR'
+                },
+                category: {
+                    type: 'INTEGER'
                 }
             },
             indexes: {
-                'node_changed': ['changed'],
-                'room_idx': ['room']
+            	nid_idx: ['nid']
             }
         };
     },
@@ -215,9 +226,6 @@ Drupal.entity.sites.main.types.board_notifications.schema = {
                 },
                 description: {
                     type: 'TEXT'
-                },
-                link: {
-                    type: 'VARCHAR'
                 },
                 pubDate: {
                     type: 'VARCHAR'

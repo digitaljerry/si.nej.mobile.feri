@@ -89,31 +89,12 @@
             headerRow.add(datetime);
         }
         
-        if (sessionData.body) {
-            var body = Ti.UI.createLabel({
-                text: feri.cleanSpecialChars(sessionData.body.replace('\n', '\n\n')),
-                backgroundColor: '#fff',
-                textAlign: 'left',
-                color: '#000',
-                height: 'auto',
-                width: feri.isAndroid() ? '92%' : 'auto',
-                top: 15,
-                bottom: 15,
-                font: {
-                    fontSize: 16
-                }
-            });
-            bodyRow.add(body);
-        }
+        var boardDetailWebview = Titanium.UI.createWebView({
+			html:'<html><body style="font-family: Helvetica !important;"><p><h1 style="font-size: 28px;">'+sessionData.title+'</h1><h3 style="font-size: 18px;">'+sessionData.date+'</h3></p>'+sessionData.body+'</body></html>',
+			height:'100%'
+		});
 
-        if (!feri.isAndroid()) {
-            body.right = commonPadding;
-            body.left = commonPadding;
-        }
-
-        tvData.push(headerRow);
-
-        if (sessionData.author) {
+        /*if (sessionData.author) {
             var authorList = sessionData.author.split(",");
             for (var k = 0; k < authorList.length; k++) {
                 authorList[k] = authorList[k].replace(/^\s+|\s+$/g, '');
@@ -128,7 +109,7 @@
 	        		tvData.push(renderAuthor(authorData[j]));
             	}
             }
-        }
+        }*/
         
         tvData.push(feri.ui.createHeaderRow('Obvestilo'));
         tvData.push(bodyRow);
@@ -143,8 +124,8 @@
             }
         }
 
-        tv.addEventListener('click', function (e) {
-        	
+        /*tv.addEventListener('click', function (e) {
+        	alert(e.source);
             if (e.source.author != undefined) {
                 var fullName = e.source.author.full_name || '';
                 feri.navGroup.open(feri.ui.createPeopleDetailWindow({
@@ -159,9 +140,34 @@
             	Ti.Platform.openURL(e.source.file);
             }
             
+        });*/
+       
+       	var toolbarActive = false;
+       
+       	// open on web
+		var bb2 = Titanium.UI.createButtonBar({
+			labels:['Odpri na spletu'],
+			backgroundColor:'#003'
+		});
+		var flexSpace = Titanium.UI.createButton({
+			systemButton:Titanium.UI.iPhone.SystemButton.FLEXIBLE_SPACE
+		});
+		sessionDetailWindow.setToolbar([flexSpace,bb2,flexSpace]);
+		bb2.addEventListener('click',function(ce)
+		{
+			boardDetailWebview.url = 'http://www.feri.uni-mb.si/odeska/brnj2.asp?id=' + sessionData.nid;
+			feri.getWebcontrols(sessionDetailWindow, boardDetailWebview);
+		});
+       
+       	boardDetailWebview.addEventListener('beforeload', function (e) {
+       		if (e.url && toolbarActive == false)
+       			feri.getWebcontrols(sessionDetailWindow, boardDetailWebview);
+       		return;
+        	//feri.getWebcontrols(sessionDetailWindow, boardDetailWebview);
         });
-        tv.setData(tvData);
-        sessionDetailWindow.add(tv);
+        //tv.setData(tvData);
+        //sessionDetailWindow.add(tv);
+        sessionDetailWindow.add(boardDetailWebview);
 
         return sessionDetailWindow;
     };

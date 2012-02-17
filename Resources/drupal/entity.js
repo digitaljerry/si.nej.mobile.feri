@@ -295,10 +295,7 @@ Drupal.entity.DefaultSchema.prototype.defaultFetcher = function (bundle, store, 
     				body: item.getElementsByTagName("description").item(0).text,
     				author: author,
     				date: item.getElementsByTagName("pubDate").item(0).text,
-    				date_archive: '',
-    				files: '',
-    				category: oce,
-    				time: ''
+    				category: oce
     			};
     			entities.push({entity: entity});
     			
