@@ -50,8 +50,12 @@
         
         // TABLES
         feri.tableview = Titanium.UI.createTableView({
-            data: data
+            data: data,
+            filterAttribute:'search'
         });
+        
+        // make it searchable
+        feri.getSearchbar(feri.tableview);
         
         feri.tableviewFirst = feri.ui.createBoardCatTable(undefined, true);
         
@@ -142,7 +146,8 @@
                 sessionTitle: sessionTitle,
                 height: 'auto',
                 layout: 'vertical',
-                focusable: true
+                focusable: true,
+                search: sessionTitle
             });
 			sessionRow[feri.ui.backgroundSelectedProperty + 'Color'] = feri.ui.backgroundSelectedColor;
 

@@ -30,7 +30,7 @@
             height: 1,
             opacity: 0
         });
-
+        
         var headerRow = Ti.UI.createTableViewRow({
             height: 'auto',
             left: 0,

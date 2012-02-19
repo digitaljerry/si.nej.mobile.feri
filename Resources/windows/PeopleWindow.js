@@ -12,8 +12,12 @@
 
         // Create the table view
         var tableview = Titanium.UI.createTableView({
-            backgroundColor: '#fff'
+            backgroundColor: '#fff',
+            filterAttribute:'search'
         });
+        
+        // make it searchable
+        feri.getSearchbar(tableview);
 
         PeopleWindow.doRefresh = function () {
             var nameList = getNameList();
@@ -52,7 +56,7 @@
                     selectedColor: '#999',
                     backgroundColor: '#fff',
                     color: '#000',
-                    name: name,
+                    search: name,
                     uid: uid,
                     height: 40,
                     layout: 'auto'

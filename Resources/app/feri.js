@@ -107,4 +107,31 @@ var feri = {
 			}
 		});
 	}
+	
+	feri.getSearchbar = function(tableview) {
+		// search bar
+		var search = Titanium.UI.createSearchBar({
+			barColor:'#414444',
+			showCancel:false,
+			hintText:'search'
+		});
+		
+		search.addEventListener('change', function(e)
+		{
+			e.value; // search string as user types
+		});
+		
+		search.addEventListener('return', function(e)
+		{
+			search.blur();
+		});
+		
+		search.addEventListener('cancel', function(e)
+		{
+			search.blur();
+		});
+		
+		tableview.search = search;
+		tableview.searchHidden = true;
+	}
 })();

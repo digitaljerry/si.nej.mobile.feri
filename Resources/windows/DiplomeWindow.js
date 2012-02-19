@@ -42,7 +42,8 @@
                 uid: diploma.uid,
                 diplomaTitle: diplomaTitle,
                 height: 'auto',
-                layout: 'vertical'
+                layout: 'vertical',
+                search: diplomaTitle + ' ' + diploma.candidate
             });
 			
             var leftSpace = 10;
@@ -113,7 +114,8 @@
                 more: true,
                 height: 'auto',
                 layout: 'vertical',
-                focusable: true
+                focusable: true,
+                search: diplomaTitle + ' ' + diploma.author
             });
 			
             var leftSpace = 10;
@@ -185,8 +187,12 @@
         data.push(tableRow);
         
         diplomeTableView = Titanium.UI.createTableView({
-        	data: data
+        	data: data,
+        	filterAttribute:'search'
         });
+        
+        // make it searchable
+        feri.getSearchbar(diplomeTableView);
         
         diplomeWindow.add(diplomeTableView);
         
