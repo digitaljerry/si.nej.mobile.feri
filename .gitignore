@@ -8,3 +8,4 @@ tmp
 .gitignore~
 *~
 /js/*.js
+Resources/main.sql
