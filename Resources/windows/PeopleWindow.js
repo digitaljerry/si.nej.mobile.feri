@@ -21,24 +21,12 @@
 
         PeopleWindow.doRefresh = function () {
             var nameList = getNameList();
-            var sortedNames = nameList.sort(function (a, b) {
-                a = a.toLowerCase();
-                b = b.toLowerCase();
-                if (a > b) {
-                    return 1;
-                }
-                if (a < b) {
-                    return -1;
-                }
-                return 0;
-            });
 
             var headerLetter = '';
-            var index = [];
             var presenterRow = [];
             var data = [];
-            for (var i in sortedNames) {
-                var user = sortedNames[i].split(':');
+            for (var i in nameList) {
+                var user = nameList[i].split(':');
                 var uid = parseInt(user[1]) + 0;
                 var fullName = user[0] + '';
 
@@ -119,21 +107,15 @@
                 }
 
                 // If there is a new last name first letter, insert a header in the table.
-                // We also push a new index so we can create a right side index for iphone.
                 if (headerLetter == '' || name.charAt(0).toUpperCase() != headerLetter) {
                     headerLetter = name.charAt(0).toUpperCase();
                     data.push(feri.ui.createHeaderRow(headerLetter));
-                    index.push({
-                        title: headerLetter,
-                        index: i
-                    });
                 }
-
+                
                 data.push(presenterRow);
             }
 
             tableview.setData(data);
-            tableview.index = index;
         };
 
         PeopleWindow.doRefresh();
@@ -146,8 +128,6 @@
             if (!e.rowData.uid) {
                 return;
             }
-            // event data
-            var index = e.index;
             
             feri.navGroup.open(feri.ui.createPeopleDetailWindow({
                 title: e.rowData.name,
@@ -167,7 +147,7 @@
 
     function getNameList() {
         var conn = Drupal.db.getConnection('main');
-        var rows = conn.query("SELECT uid, name, full_name FROM user");
+        var rows = conn.query("SELECT uid, name, full_name FROM user ORDER BY surname ASC");
         var nameList = [];
         
         if (rows) {

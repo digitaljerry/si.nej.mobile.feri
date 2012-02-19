@@ -243,6 +243,7 @@ Drupal.entity.DefaultSchema.prototype.defaultFetcher = function (bundle, store, 
     			var entity = {
     				picture: '',
     				name: feri.trim(incomingData[i].Ime),
+    				surname: feri.trim(incomingData[i].Priimek),
     				full_name: feri.trim(incomingData[i].Ime + ' ' + incomingData[i].Priimek),
     				title: incomingData[i].HabilitacijskiNazivKratki + ' ' + incomingData[i].Priimek + ' ' + incomingData[i].Ime + ', ' + incomingData[i].SkrajsaniPoklic,
     				company: '',

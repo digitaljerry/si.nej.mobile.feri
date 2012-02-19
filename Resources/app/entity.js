@@ -76,7 +76,37 @@ Drupal.entity.sites.main.types.user.schema = {
     fields: function () {
         return {
             fields: {
+            	uid: {
+                    type: 'INTEGER'
+                },
                 full_name: {
+                    type: 'VARCHAR'
+                },
+                name: {
+                    type: 'VARCHAR'
+                },
+                surname: {
+                    type: 'VARCHAR'
+                },
+                full_name: {
+                    type: 'VARCHAR'
+                },
+                hours: {
+                    type: 'VARCHAR'
+                },
+                office: {
+                    type: 'VARCHAR'
+                },
+                tel: {
+                    type: 'VARCHAR'
+                },
+                email: {
+                    type: 'VARCHAR'
+                },
+                position: {
+                    type: 'VARCHAR'
+                },
+                title: {
                     type: 'VARCHAR'
                 }
             },
