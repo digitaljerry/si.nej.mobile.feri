@@ -1,6 +1,5 @@
 
 (function () {
-    var updateTimeout = 25000;
     var i = 0;
     var navWindow;
     var mainWindow = Ti.UI.createWindow({
@@ -166,7 +165,7 @@
     });
 
     Ti.addEventListener('feri:update_data', function (e) {
-        feri.ui.activityIndicator.showModal('Posodabljam ...', updateTimeout, 'Napaka pri povezavi.');
+        feri.ui.activityIndicator.showModal('Posodabljam ...', feri.updateTimeout, 'Napaka pri povezavi.');
         //Drupal.entity.db('main', 'node').fetchUpdates('session');
         Drupal.entity.db('main', 'user').fetchUpdates('user');
         Drupal.entity.db('main', 'node').fetchUpdates('node');

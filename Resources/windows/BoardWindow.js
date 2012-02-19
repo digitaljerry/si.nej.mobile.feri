@@ -35,7 +35,7 @@
 
         // create main day window
         feri.boardWindow = Titanium.UI.createWindow({
-            id: 'win1',
+            id: 'boardWindow',
             title: 'Zadnja obvestila',
             backgroundColor: '#fff',
             barColor: '#414444',
@@ -76,6 +76,7 @@
 			if (e.rowData.nid) {
                 feri.navGroup.open(feri.ui.createBoardDetailWindow({
                     title: e.rowData.sessionTitle,
+                    sessionTitle: e.rowData.sessionTitle,
                     nid: e.rowData.nid
                 }), {
                     animated: true

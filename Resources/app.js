@@ -73,7 +73,7 @@ Ti.include(
   	'windows/InformacijeWindow.js',
   	'windows/UrnikiWindow.js',
   	'windows/DiplomeWindow.js',
-  	'windows/DiplomeDKUMWindow.js',
+  	'windows/WebViewWindow.js',
   	'windows/DiplomeZadnjeWindow.js',
   	'windows/HtmlWindow.js',
   
@@ -87,3 +87,4 @@ Ti.include(
 Ti.App.addEventListener('openURL', function(e){
   	Ti.Platform.openURL(e.url);
 });
+

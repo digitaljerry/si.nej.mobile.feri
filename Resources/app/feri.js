@@ -6,7 +6,9 @@ var feri = {
     ui: {},
     __isLargeScreen: undefined,
     __isAndroid: undefined,
-    navGroup: undefined
+    navGroup: undefined,
+    updateTimeout: 25000,
+    loadTimeout: 10000
 };
 
 (function() {
@@ -134,4 +136,5 @@ var feri = {
 		tableview.search = search;
 		tableview.searchHidden = true;
 	}
+	
 })();

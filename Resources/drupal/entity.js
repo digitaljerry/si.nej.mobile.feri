@@ -227,6 +227,8 @@ Drupal.entity.DefaultSchema.prototype.defaultFetcher = function (bundle, store, 
     	// Call our post-completion callback.
     	var data = {};
     	
+    	feri.actIndStart();
+    	
     	//
     	// this goes somewhere else, but we don't yet know how to put it there - start
     	//

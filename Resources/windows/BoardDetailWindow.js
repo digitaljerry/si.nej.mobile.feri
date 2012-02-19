@@ -6,6 +6,7 @@
             title: 'title here',
             nid: ''
         });
+        
         var commonPadding = 15;
         var sessionDetailWindow = Titanium.UI.createWindow({
             id: 'boardDetailWindow',
@@ -155,8 +156,14 @@
 		sessionDetailWindow.setToolbar([flexSpace,bb2,flexSpace]);
 		bb2.addEventListener('click',function(ce)
 		{
-			boardDetailWebview.url = 'http://www.feri.uni-mb.si/odeska/brnj2.asp?id=' + sessionData.nid;
-			feri.getWebcontrols(sessionDetailWindow, boardDetailWebview);
+			//feri.ui.activityIndicator.showModal('Nalagam ...', feri.loadTimeout, 'Napaka pri povezavi.');
+			//boardDetailWebview.url = 'http://www.feri.uni-mb.si/odeska/brnj2.asp?id=' + sessionData.nid;
+			//feri.getWebcontrols(sessionDetailWindow, boardDetailWebview);
+			
+			var url = 'http://www.feri.uni-mb.si/odeska/brnj2.asp?id=' + settings.nid;
+			feri.navGroup.open(feri.ui.createWebViewWindow({url: url}), {
+				animated: true
+			});
 		});
        
        	boardDetailWebview.addEventListener('beforeload', function (e) {
@@ -168,6 +175,11 @@
         //tv.setData(tvData);
         //sessionDetailWindow.add(tv);
         sessionDetailWindow.add(boardDetailWebview);
+        
+        boardDetailWebview.addEventListener('load', function (e) {
+       		feri.ui.activityIndicator.hideModal();
+       		return;
+        });
 
         return sessionDetailWindow;
     };

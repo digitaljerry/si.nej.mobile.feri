@@ -47,9 +47,12 @@
 		    webview.setVisible(true);
 		    
 		    webview.setBottom(30);
+		    
+		    feri.ui.activityIndicator.hideModal();
 		});
 		
 		webview.addEventListener('beforeload', function () {
+			feri.ui.activityIndicator.showModal('Nalagam ...', feri.loadTimeout, 'Napaka pri povezavi.');
 			webview.setVisible(false);
 		});
         

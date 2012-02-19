@@ -198,7 +198,7 @@
         
         diplomeTableView.addEventListener('click', function (e) {
         	if ( e.rowData.dkum == true ) {
-        		feri.navGroup.open(feri.ui.createDiplomeDKUMWindow({}), {
+        		feri.navGroup.open(feri.ui.createWebViewWindow({url: 'http://dkum.uni-mb.si/Iskanje.php?type=napredno&niz0=&vrsta=dip&vir=3&chkFullOnly=on'}), {
 	                animated: true
 	            });
 	        } else if ( e.rowData.more == true ) {

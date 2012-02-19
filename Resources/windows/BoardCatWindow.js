@@ -78,7 +78,7 @@
         
         // create main day window
         var boardWindow = Titanium.UI.createWindow({
-            id: 'win1',
+            id: 'boardCatWindow',
             title: w.title,
             backgroundColor: '#fff',
             barColor: '#414444',

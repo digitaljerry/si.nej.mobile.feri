@@ -25,7 +25,7 @@
         // injecting css for better display on mobile
         // inject our css when the web view finishes loading (because we need to inject into the head element)
 		webview.addEventListener('load', function () {
-		    // first, specify the CSS file that we should load
+			// first, specify the CSS file that we should load
 		    var cssFileName = 'pages/styles_info_injection.css';
 		    // read in the contents
 		    var cssFromFile = Ti.Filesystem.getFile(cssFileName);
@@ -49,6 +49,12 @@
 		    webview.setVisible(true);
 		    
 		    webview.setBottom(30);
+		    
+		    feri.ui.activityIndicator.hideModal();
+		});
+		
+		webview.addEventListener('beforeload', function () {
+			feri.ui.activityIndicator.showModal('Nalagam ...', feri.loadTimeout, 'Napaka pri povezavi.');
 		});
 		
 		infoWindow.add(webview);

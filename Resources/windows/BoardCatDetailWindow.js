@@ -33,7 +33,7 @@
         
         // create main day window
         var boardDetailWindow = Titanium.UI.createWindow({
-            id: 'boardDetailWindow',
+            id: 'boardCatDetailWindow',
             title: w.title,
             backgroundColor: '#fff',
             barColor: '#414444',
@@ -132,7 +132,7 @@
         tableview.addEventListener('click', function (e) {
 			if (e.rowData.nid) {
                 feri.navGroup.open(feri.ui.createBoardDetailWindow({
-                    title: '',
+                    title: e.rowData.sessionTitle,
                     nid: e.rowData.nid
                 }), {
                     animated: true

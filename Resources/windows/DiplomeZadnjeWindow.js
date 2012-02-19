@@ -136,7 +136,7 @@
 
         tv.addEventListener('click', function (e) {
         	if ( e.rowData.dkum_url ) {
-        		feri.navGroup.open(feri.ui.createDiplomeDKUMWindow({url: e.rowData.dkum_url}), {
+        		feri.navGroup.open(feri.ui.createWebViewWindow({url: e.rowData.dkum_url}), {
 	                animated: true
 	            });
 	        }
