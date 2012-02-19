@@ -19,6 +19,8 @@
         peopleDetailWindow.orientationModes = [Ti.UI.PORTRAIT];
 
         var tvData = [];
+        var commonPadding = 15;
+        
         var tv = Ti.UI.createTableView({
             textAlign: 'left',
             width: '100%',
@@ -29,23 +31,14 @@
             opacity: 0
         });
 
-        var av = Ti.UI.createImageView({
-            image: peopleData.picture.replace(/^\s+|\s+$/g, '') || 'images/userpict-large.png',
-            left: 0,
-            top: 0,
-            height: 110,
-            width: 110,
-            defaultImage: 'images/userpict-large.png',
-            backgroundColor: '#000',
-            touchEnabled: false
-        });
         var headerRow = Ti.UI.createTableViewRow({
-            height: 110,
-            className: 'presHeaderRow',
+            height: 'auto',
             left: 0,
             top: -5,
-            bottom: 0,
+            bottom: 10,
             layout: 'vertical',
+            className: 'mainHeaderRow',
+            backgroundPosition: 'bottom left',
             selectionStyle: 'none'
         });
 
@@ -91,24 +84,21 @@
             selectionStyle: 'none'
         });
 
-        // Add the avatar image to the view
-        headerRow.add(av);
-
         if (peopleData.full_name != undefined) {
             var fullName = Ti.UI.createLabel({
-                text: feri.cleanSpecialChars(peopleData.full_name),
-                font: {
-                    fontSize: 20,
-                    fontWeight: 'bold'
-                },
-                textAlign: 'left',
-                color: '#000',
-                height: 'auto',
-                left: 120,
-                top: -95,
-                ellipsize: true,
-                touchEnabled: false
-            });
+	            text: feri.cleanSpecialChars(peopleData.full_name),
+	            font: {
+	                fontSize: 28,
+	                fontWeight: 'bold'
+	            },
+	            textAlign: 'left',
+	            color: '#000',
+	            left: commonPadding,
+	            top: 18,
+	            bottom: 10,
+	            right: commonPadding,
+	            height: 'auto'
+	        });
             headerRow.add(fullName);
         }
 
@@ -122,8 +112,9 @@
                 textAlign: 'left',
                 color: '#666',
                 height: 'auto',
-                left: 120,
-                touchEnabled: false
+                left: commonPadding,
+                touchEnabled: false,
+                bottom: commonPadding
             });
             headerRow.add(position);
         }
