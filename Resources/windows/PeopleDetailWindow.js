@@ -30,7 +30,11 @@
             height: 1,
             opacity: 0
         });
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> 0934856... Removed image from people detail window.
         var headerRow = Ti.UI.createTableViewRow({
             height: 'auto',
             left: 0,
