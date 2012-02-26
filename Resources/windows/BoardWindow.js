@@ -209,6 +209,27 @@
 			data.push(sessionRow);
         }
         
+        if (data.length == 0) {
+        	
+        	data.push(feri.ui.createHeaderRow('Obvestila'));
+        	
+        	var sessionRow = Ti.UI.createTableViewRow({
+                hasChild: false,
+                className: 'cs_session',
+                selectedColor: '#000',
+                backgroundColor: '#fff',
+                color: '#CCCCCC',
+                date: '',
+                nid: 0,
+                height: 'auto',
+                layout: 'vertical',
+                focusable: true,
+                title: 'Ni obvestil'
+            });
+            
+            data.push(sessionRow);
+        }
+        
         return data;
 	};
     
