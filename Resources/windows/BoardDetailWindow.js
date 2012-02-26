@@ -72,9 +72,14 @@
             headerRow.add(titleLabel);
         }
 
+		var dateWithTime = '';
         if (sessionData.date) {
+        	
+        	var timestamp = feri.datetime.strtotime(sessionData.date);
+        	dateWithTime = feri.datetime.normalDate(timestamp) + ' ' + feri.datetime.cleanTime(sessionData.date);
+        	
             var datetime = Ti.UI.createLabel({
-                text: sessionData.date,
+                text: dateWithTime,
                 font: {
                     fontSize: 18,
                     fontWeight: 'normal'
@@ -91,7 +96,7 @@
         }
         
         var boardDetailWebview = Titanium.UI.createWebView({
-			html:'<html><body style="font-family: Helvetica !important;"><p><h1 style="font-size: 28px;">'+sessionData.title+'</h1><h3 style="font-size: 18px;">'+sessionData.date+'</h3></p>'+sessionData.body+'</body></html>',
+			html:'<html><body style="font-family: Helvetica !important;"><p><h1 style="font-size: 28px;">'+sessionData.title+'</h1><h3 style="font-size: 18px;">'+dateWithTime+'</h3></p>'+sessionData.body+'</body></html>',
 			height:'100%'
 		});
 

@@ -157,9 +157,16 @@
             
             // If there is a new session time, insert a header in the table.
             var headerRow = undefined;
-            if (lastDate == '' || session.date != lastDate) {
-                lastDate = session.date;
-                headerRow = feri.ui.createHeaderRow(lastDate);
+            
+            var newDate = feri.datetime.strtotime(session.date);
+            var delta = lastDate - newDate;
+            if ( delta < 0 )
+            	delta = -1 * delta;
+             
+            if (lastDate == '' || delta > 86400) {
+                lastDate = feri.datetime.strtotime(session.date);
+                
+                headerRow = feri.ui.createHeaderRow(feri.datetime.shortDate(lastDate));
             }
 
             var titleLabel = Ti.UI.createLabel({

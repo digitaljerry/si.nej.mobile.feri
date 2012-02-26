@@ -161,7 +161,7 @@
 	};
 	
 	feri.datetime.prettyDate = function (time) {
-	    var monthname = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+	    var monthname = ["Jan", "Feb", "Mar", "Apr", "Maj", "Jun", "Jul", "Avg", "Sep", "Okt", "Nov", "Dec"];
 	    var date = new Date(time * 1000),
 	        diff = (((new Date()).getTime() - date.getTime()) / 1000),
 	        day_diff = Math.floor(diff / 86400);
@@ -192,44 +192,44 @@
 	feri.datetime.dayToName = function (day) {
 	    switch (day) {
 	    case 0:
-	        return 'Sunday';
+	        return 'Nedelja';
 	    case 1:
-	        return 'Monday';
+	        return 'Ponedeljek';
 	    case 2:
-	        return 'Tuesday';
+	        return 'Torek';
 	    case 3:
-	        return 'Wednesday';
+	        return 'Sreda';
 	    case 4:
-	        return 'Thursday';
+	        return 'Četrtek';
 	    case 5:
-	        return 'Friday';
+	        return 'Petek';
 	    case 6:
-	        return 'Saturday';
+	        return 'Sobota';
 	    }
 	};
 	
 	feri.datetime.monthToName = function (month) {
 	    switch (month) {
 	    case 1:
-	        return 'January';
+	        return 'Januar';
 	    case 2:
-	        return 'February';
+	        return 'Februar';
 	    case 3:
-	        return 'March';
+	        return 'Marec';
 	    case 4:
 	        return 'April';
 	    case 5:
-	        return 'May';
+	        return 'Maj';
 	    case 6:
-	        return 'June';
+	        return 'Junij';
 	    case 7:
-	        return 'July';
+	        return 'Julij';
 	    case 8:
-	        return 'August';
+	        return 'Avgust';
 	    case 9:
 	        return 'September';
 	    case 10:
-	        return 'October';
+	        return 'Oktober';
 	    case 11:
 	        return 'November';
 	    case 12:
@@ -254,19 +254,51 @@
 	};
 	
 	feri.datetime.cleanTime = function (time) {
-	    var shortTime = time.substr(11, 5);
-	    var mins = shortTime.substr(2, 5);
-	    var hour = parseFloat(shortTime.slice(0, 2));
-	    var ampm = 'AM';
-	
-	    // Assume that 12 means noon, not midnight.
-	    if (hour == 12) {
-	        ampm = 'PM';
-	    } else if (hour >= 12) {
-	        hour -= 12;
-	        ampm = 'PM';
-	    }
-	    return hour + "" + mins + "" + ampm;
+	    var shortTime = time.substr(16, 6);
+	    return shortTime;
 	};
+	
+	feri.datetime.normalDate = function (time) {
+	    var monthname = ["Jan", "Feb", "Mar", "Apr", "Maj", "Jun", "Jul", "Avg", "Sep", "Okt", "Nov", "Dec"];
+	    var date = new Date(time * 1000),
+	        diff = (((new Date()).getTime() - date.getTime()) / 1000),
+	        day_diff = Math.floor(diff / 86400);
+	    if (isNaN(day_diff) || day_diff < 0) {
+	        return '';
+	    }
+	    
+        var date_year = date.getFullYear();
+        var month_name = monthname[date.getMonth()];
+        var date_month = date.getMonth() + 1;
+        if (date_month < 10) {
+            date_month = "0" + date_month;
+        }
+        var date_monthday = date.getDate();
+        if (date_monthday < 10) {
+            date_monthday = "0" + date_monthday;
+        }
+        return date_monthday + " " + month_name + " " + date_year;
+	}
+	
+	feri.datetime.shortDate = function (time) {
+	    var monthname = ["Jan", "Feb", "Mar", "Apr", "Maj", "Jun", "Jul", "Avg", "Sep", "Okt", "Nov", "Dec"];
+	    var date = new Date(time * 1000),
+	        diff = (((new Date()).getTime() - date.getTime()) / 1000),
+	        day_diff = Math.floor(diff / 86400);
+	    if (isNaN(day_diff) || day_diff < 0) {
+	        return '';
+	    }
+	    
+        var month_name = monthname[date.getMonth()];
+        var date_month = date.getMonth() + 1;
+        if (date_month < 10) {
+            date_month = "0" + date_month;
+        }
+        var date_monthday = date.getDate();
+        if (date_monthday < 10) {
+            date_monthday = "0" + date_monthday;
+        }
+        return date_monthday + " " + month_name;
+	}
 })();
 	
