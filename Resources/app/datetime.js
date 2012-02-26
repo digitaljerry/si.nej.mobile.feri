@@ -285,9 +285,6 @@
 	    var date = new Date(time * 1000),
 	        diff = (((new Date()).getTime() - date.getTime()) / 1000),
 	        day_diff = Math.floor(diff / 86400);
-	    if (isNaN(day_diff) || day_diff < 0) {
-	        return '';
-	    }
 	    
         var month_name = monthname[date.getMonth()];
         var date_month = date.getMonth() + 1;
