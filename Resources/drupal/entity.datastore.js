@@ -59,7 +59,11 @@ Drupal.entity.Datastore.prototype.save = function (entity) {
     // We're only using a very simple (if dynamic) schema,
     // so this lets us avoid having to write a dynamic
     // update builder for now.
-    this.remove(entity[this.idField]);
+    
+    // new stuff
+    // we already did a TRUNCATE so deleting isn't needed anymore
+    //this.remove(entity[this.idField]);
+    
     return this.insert(entity);
 };
 
@@ -426,4 +430,10 @@ Drupal.entity.Datastore.prototype.fixTables = function (table) {
 	};
 	Ti.API.debug(nekej);
 	resultSet.close();*/
+};
+
+Drupal.entity.Datastore.prototype.truncateTable = function (table) {
+    var query = 'DELETE FROM ' + table;
+    Ti.API.debug('Emptying the table: ' + query);
+    return this.connection.query(query);
 };

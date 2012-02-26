@@ -411,6 +411,9 @@ Drupal.entity.DefaultSchema.prototype.defaultFetcher = function (bundle, store, 
         var length = entities.length;
 		
         Ti.API.debug('Downloading ' + length + ' entities of type ' + store.entityType);
+        
+        // ok we apperantly got new data, so we can do a TRUNCATE
+        Drupal.entity.db('main', bundle).truncateTable(bundle);
 		
         for (var i = 0; i < length; i++) {
             store.save(entities[i].entity);
