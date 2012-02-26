@@ -239,6 +239,11 @@ Drupal.entity.DefaultSchema.prototype.defaultFetcher = function (bundle, store, 
     		
     		for (var i = 0; i < incomingData.length; i++) {
     			
+    			// checking for right data
+    			var phone = '';
+    			if ( incomingData[i].Telefon != '' && incomingData[i].Telefon != 'undefined' )
+    				var phone = '02 ' + incomingData[i].Telefon;
+    			
     			// mapping
     			var entity = {
     				picture: '',
@@ -252,7 +257,7 @@ Drupal.entity.DefaultSchema.prototype.defaultFetcher = function (bundle, store, 
     				bio: '',
     				hours: incomingData[i].GovorilneUre,
     				office: incomingData[i].Kabinet,
-    				tel: '02 ' + incomingData[i].Telefon,
+    				tel: phone,
     				email: incomingData[i].Email
     			};
             	
