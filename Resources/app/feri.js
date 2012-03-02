@@ -62,6 +62,14 @@ var feri = {
 		return str.replace(/\s+$/,"");
 	}
 	
+	feri.is_int = function(value) { 
+	  if((parseFloat(value) == parseInt(value)) && !isNaN(value)){
+	      return true;
+	  } else { 
+	      return false;
+	  } 
+	}
+	
 	feri.android.menu = {
 		data: [],
 		init: function(params) {

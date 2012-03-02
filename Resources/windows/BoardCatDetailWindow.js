@@ -7,6 +7,8 @@
 		
 		// getting entity from db
 		var catData = Drupal.entity.db('main', 'board_children').load(w.category);
+		
+		var catTitle = w.title.split(',')[0];
         
         // Base row properties
         var baseRow = {
@@ -34,7 +36,7 @@
         // create main day window
         var boardDetailWindow = Titanium.UI.createWindow({
             id: 'boardCatDetailWindow',
-            title: w.title,
+            title: catTitle,
             backgroundColor: '#fff',
             barColor: '#414444',
             fullscreen: false
@@ -53,7 +55,7 @@
         });
         
         var titleLabel = Ti.UI.createLabel({
-            text: feri.cleanSpecialChars(w.title),
+            text: feri.cleanSpecialChars(catTitle),
             font: {
                 fontSize: 28,
                 fontWeight: 'bold'
@@ -68,6 +70,34 @@
         });
         
         headerRow.add(titleLabel);
+        
+        // if we have a category that starts with number
+        // we need to get it's parent
+        if ( feri.is_int(w.title[0]) ) {
+        	var rows = conn.query("SELECT parent FROM board_children WHERE uid = " + w.category);
+        	var parentUid = rows.fieldByName('parent');
+        	
+        	var rows = conn.query("SELECT title FROM board_parents WHERE uid = " + parentUid);
+        	var titleLabelDetail = rows.fieldByName('title');
+        	rows.close();
+        	
+        	var addTitleLabel = Ti.UI.createLabel({
+	            text: feri.cleanSpecialChars(titleLabelDetail),
+	            font: {
+	                fontSize: 20,
+	                fontWeight: 'bold'
+	            },
+	            textAlign: 'left',
+	            color: '#000',
+	            left: commonPadding,
+	            top: 0,
+	            bottom: 10,
+	            right: commonPadding,
+	            height: 'auto'
+	        });
+	        
+	        headerRow.add(addTitleLabel);
+        }
         
         data.push(headerRow);
         data.push(feri.ui.createHeaderRow('Nastavitve'));

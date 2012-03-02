@@ -143,6 +143,7 @@
     	if( addFavRows == true ) {
 	        
 	        var favs = getNodeCat(false, false, true);
+	        var conn = Drupal.db.getConnection('main');
 	        
 	        if ( favs.length > 0 ) {
 	        	
@@ -150,7 +151,18 @@
 	        
 		        for (var favNum = 0, numFavs = favs.length; favNum < numFavs; favNum++) {
 		            var fav = favs[favNum];
+		            
 		            var favTitle = feri.cleanSpecialChars(fav.title);
+		            
+		            // if we have a category that starts with number
+		            // we need to get it's parent
+		            if ( feri.is_int(fav.title[0]) ) {
+		            	var rows = conn.query("SELECT title FROM board_parents WHERE uid = " + fav.parent);
+		            	var addTitle = rows.fieldByName('title');
+		            	rows.close();
+				        favTitle = favTitle + ', ' + addTitle;
+		            }
+		            
 		            var favRow = Ti.UI.createTableViewRow({
 		                className: 'cs_fav',
 		                selectedColor: '#000',
