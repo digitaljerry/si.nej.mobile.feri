@@ -147,8 +147,8 @@
         	else
         		catData.favourite = false;
         	
-        	//catData.save();
-        	Drupal.entity.db('main', 'board_children').save(catData);
+        	// save with force remove
+        	Drupal.entity.db('main', 'board_children').save(catData, true);
         	
         	// update the initial table
         	feri.tableviewFirst.setData(feri.ui.getBoardCatTableData(undefined, true));

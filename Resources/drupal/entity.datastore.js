@@ -54,7 +54,11 @@ Drupal.entity.Datastore.prototype.getIdField = function () {
  *   object.  It is (or should be) safe to simply use an 
  *   entity object retrieved from a Drupal site.
  */
-Drupal.entity.Datastore.prototype.save = function (entity) {
+Drupal.entity.Datastore.prototype.save = function (entity, forceRemove) {
+	
+	if ( forceRemove == 'undefined' || forceRemove == 0 )
+		forceRemove = false;
+	
     // For simplicity, we'll just do a delete/insert cycle.
     // We're only using a very simple (if dynamic) schema,
     // so this lets us avoid having to write a dynamic
@@ -62,7 +66,9 @@ Drupal.entity.Datastore.prototype.save = function (entity) {
     
     // new stuff
     // we already did a TRUNCATE so deleting isn't needed anymore
-    //this.remove(entity[this.idField]);
+    // unless we force it !
+    if ( forceRemove )
+    	this.remove(entity[this.idField]);
     
     return this.insert(entity);
 };
