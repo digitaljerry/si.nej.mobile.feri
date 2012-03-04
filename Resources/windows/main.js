@@ -287,8 +287,23 @@
         Drupal.entity.db('main', 'user').fixTables('user');
     });
     
+    if (
+    	Titanium.App.Properties.getString('feri.refreshOnShake') == '' ||
+    	Titanium.App.Properties.getString('feri.refreshOnShake') == 'undefined'
+    ) {
+    	Titanium.App.Properties.setString('feri.refreshOnShake', 'true');
+    }
+    	
     Ti.Gesture.addEventListener('shake',function(e) {
-		Ti.fireEvent('feri:update_data');
-		//Ti.fireEvent('feri:fix_tables');
+		if ( Titanium.App.Properties.getString('feri.refreshOnShake') == 'true' ) {
+			Ti.fireEvent('feri:update_data');
+			//Ti.fireEvent('feri:fix_tables');
+		}
 	});
+	
+	// check if we need to reload data on load
+	if ( Titanium.App.Properties.getString('feri.refreshOnLoad') == 'true' ) {
+		Ti.fireEvent('feri:update_data');
+	}
+	
 })();

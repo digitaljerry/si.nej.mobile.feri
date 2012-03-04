@@ -95,7 +95,12 @@ var feri = {
 		var flexSpace = Titanium.UI.createButton({
 			systemButton:Titanium.UI.iPhone.SystemButton.FLEXIBLE_SPACE
 		});
-		window.setToolbar([flexSpace,bb2,flexSpace]);
+		
+		// TODO
+		if ( !feri.isAndroid ) {
+			window.setToolbar([flexSpace,bb2,flexSpace]);
+		} else {}
+		
 		webview.addEventListener('load',function(e)
 		{
 			Ti.API.debug("url = "+webview.url);

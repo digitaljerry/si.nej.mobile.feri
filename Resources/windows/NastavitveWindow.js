@@ -31,20 +31,27 @@
 		var row1 = Ti.UI.createTableViewRow({
 			height:50,
 			title:'Shake to reload',
-			header:'Osveži oglasno desko'
-			});
+			header:'Osveži oglasno desko',
+			refreshOnShake:true
+		});
 		var sw1 = Ti.UI.createSwitch({
 			right:10,
 			value:false
 		});
 		var row2 = Ti.UI.createTableViewRow({
 			height:50,
-			title:'Ob zagonu'
-			});
+			title:'Ob zagonu',
+			refreshOnLoad:true
+		});
 		var sw2 = Ti.UI.createSwitch({
 			right:10,
-			value:true
+			value:false
 		});
+		
+		if ( Titanium.App.Properties.getString('feri.refreshOnShake') == 'true' )
+			sw1.value = true;
+		if ( Titanium.App.Properties.getString('feri.refreshOnLoad') == 'true' )
+			sw2.value = true;
 	
 		row1.add(sw1);
 		row2.add(sw2);
@@ -56,15 +63,8 @@
 			data:inputData,
 			style:Titanium.UI.iPhone.TableViewStyle.GROUPED
 		});
-        
-        // create table view event listener
-        tableView.addEventListener('click', function (e) {
-            
-        });
 
-        // add table view to the window
-        NastavitveWindow.add(tableView);
-        
+        // create table view event listener
         tableView.addEventListener('click', function (e) {
 			
 			var section = e.section;
@@ -88,6 +88,23 @@
 			}
 			
 		});
+		
+		sw1.addEventListener('change',function(e) {
+			if ( e.value )
+				Titanium.App.Properties.setString('feri.refreshOnShake', 'true');
+			else
+				Titanium.App.Properties.setString('feri.refreshOnShake', 'false');
+		});
+		
+		sw2.addEventListener('change',function(e) {
+			if ( e.value )
+				Titanium.App.Properties.setString('feri.refreshOnLoad', 'true');
+			else
+				Titanium.App.Properties.setString('feri.refreshOnLoad', 'false');
+		});
+				
+		// add table view to the window
+        NastavitveWindow.add(tableView);
 		
         return NastavitveWindow;
     };
