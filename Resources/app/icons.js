@@ -42,8 +42,7 @@
 			},
 			{
 				image: 'images/dashboard/nastavitve' + imageSuffix + '.png',
-				func: feri.ui.createNastavitveWindow,
-				args: {url: feri.ui.sponsorsPage, title:'Sponsors'}
+				func: feri.ui.createNastavitveWindow
 			},
 			{
 				image: 'images/dashboard/about' + imageSuffix + '.png',
