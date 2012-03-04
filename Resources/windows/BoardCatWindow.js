@@ -93,19 +93,37 @@
         tableview.addEventListener('click', function (e) {
 			if (e.rowData.uid) {
 				if (e.rowData.hasChild == true) {
-					feri.navGroup.open(feri.ui.createBoardCatDetailWindow({
-	                    title: e.rowData.catTitle,
-	                    category: e.rowData.uid
-	                }), {
-	                    animated: true
-	                });
+					
+					if (feri.useDashboard) {
+						feri.navGroup.open(feri.ui.createBoardCatDetailWindow({
+		                    title: e.rowData.catTitle,
+		                    category: e.rowData.uid
+		                }), {
+		                    animated: true
+		                });
+	                } else {
+	                	feri.tabOglasna.open(feri.ui.createBoardCatDetailWindow({
+		                    title: e.rowData.catTitle,
+		                    category: e.rowData.uid
+		                }),{animated:true});
+	                }
+	                
 				} else {
-					feri.navGroup.open(feri.ui.createBoardCatWindow({
-			    		title: e.rowData.catTitle,
-			    		uid: e.rowData.uid
-			    	}), {
-			    		animated: true
-			    	});
+					
+					if (feri.useDashboard) {
+						feri.navGroup.open(feri.ui.createBoardCatWindow({
+				    		title: e.rowData.catTitle,
+				    		uid: e.rowData.uid
+				    	}), {
+				    		animated: true
+				    	});
+			    	} else {
+			    		feri.tabOglasna.open(feri.ui.createBoardCatWindow({
+				    		title: e.rowData.catTitle,
+				    		uid: e.rowData.uid
+				    	}),{animated:true});
+			    	}
+			    	
 				}
             }
         });

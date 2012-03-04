@@ -74,13 +74,22 @@
         // zadnje objave click handler
         feri.tableview.addEventListener('click', function (e) {
 			if (e.rowData.nid) {
-                feri.navGroup.open(feri.ui.createBoardDetailWindow({
-                    title: e.rowData.sessionTitle,
-                    sessionTitle: e.rowData.sessionTitle,
-                    nid: e.rowData.nid
-                }), {
-                    animated: true
-                });
+                
+                if (feri.useDashboard) {
+                	feri.navGroup.open(feri.ui.createBoardDetailWindow({
+                    	title: e.rowData.sessionTitle,
+                    	sessionTitle: e.rowData.sessionTitle,
+                    	nid: e.rowData.nid
+                	}), {
+                    	animated: true
+                	});
+                } else {
+                	feri.tabOglasna.open(feri.ui.createBoardDetailWindow({
+                    	title: e.rowData.sessionTitle,
+                    	sessionTitle: e.rowData.sessionTitle,
+                    	nid: e.rowData.nid
+                	}),{animated:true});
+                }
             }
         });
         
@@ -88,19 +97,37 @@
         feri.tableviewFirst.addEventListener('click', function (e) {
 			if (e.rowData.uid) {
 				if (e.rowData.hasChild == true) {
-					feri.navGroup.open(feri.ui.createBoardCatDetailWindow({
-	                    title: e.rowData.catTitle,
-	                    category: e.rowData.uid
-	                }), {
-	                    animated: true
-	                });
+					
+					if (feri.useDashboard) {
+						feri.navGroup.open(feri.ui.createBoardCatDetailWindow({
+		                    title: e.rowData.catTitle,
+		                    category: e.rowData.uid
+		                }), {
+		                    animated: true
+		                });
+		            } else {
+		            	feri.tabOglasna.open(feri.ui.createBoardCatDetailWindow({
+		                    title: e.rowData.catTitle,
+		                    category: e.rowData.uid
+		                }),{animated:true});
+		            }
+	                
+	                
 				} else {
-					feri.navGroup.open(feri.ui.createBoardCatWindow({
-			    		title: e.rowData.catTitle,
-			    		uid: e.rowData.uid
-			    	}), {
-			    		animated: true
-			    	});
+					
+					if (feri.useDashboard) {
+						feri.navGroup.open(feri.ui.createBoardCatWindow({
+				    		title: e.rowData.catTitle,
+				    		uid: e.rowData.uid
+				    	}), {
+				    		animated: true
+				    	});
+			   		} else {
+			   			feri.tabOglasna.open(feri.ui.createBoardCatWindow({
+				    		title: e.rowData.catTitle,
+				    		uid: e.rowData.uid
+				    	}),{animated:true});
+			   		}
 				}
             }
         });

@@ -169,9 +169,13 @@
 				//feri.getWebcontrols(sessionDetailWindow, boardDetailWebview);
 				
 				var url = 'http://www.feri.uni-mb.si/odeska/brnj2.asp?id=' + settings.nid;
-				feri.navGroup.open(feri.ui.createWebViewWindow({url: url}), {
-					animated: true
-				});
+				if (feri.useDashboard) {
+					feri.navGroup.open(feri.ui.createWebViewWindow({url: url}), {
+						animated: true
+					});
+				} else {
+					feri.tabOglasna.open(feri.ui.createWebViewWindow({url: url}),{animated:true});
+				}
 			});
 		}
        

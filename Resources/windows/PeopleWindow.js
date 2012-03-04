@@ -129,13 +129,21 @@
                 return;
             }
             
-            feri.navGroup.open(feri.ui.createPeopleDetailWindow({
-                title: e.rowData.name,
-                uid: e.rowData.uid,
-                name: e.rowData.name
-            }), {
-                animated: true
-            });
+            if (feri.useDashboard) {
+	            feri.navGroup.open(feri.ui.createPeopleDetailWindow({
+	                title: e.rowData.name,
+	                uid: e.rowData.uid,
+	                name: e.rowData.name
+	            }), {
+	                animated: true
+	            });
+            } else {
+            	feri.tabPeople.open(feri.ui.createPeopleDetailWindow({
+	                title: e.rowData.name,
+	                uid: e.rowData.uid,
+	                name: e.rowData.name
+	            }),{animated:true});
+            }
         });
 
         // add table view to the window

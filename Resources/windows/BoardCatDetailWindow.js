@@ -161,12 +161,19 @@
 		// zadnje objave click handler
         tableview.addEventListener('click', function (e) {
 			if (e.rowData.nid) {
-                feri.navGroup.open(feri.ui.createBoardDetailWindow({
-                    title: e.rowData.sessionTitle,
-                    nid: e.rowData.nid
-                }), {
-                    animated: true
-                });
+				if (feri.useDashboard) {
+	                feri.navGroup.open(feri.ui.createBoardDetailWindow({
+	                    title: e.rowData.sessionTitle,
+	                    nid: e.rowData.nid
+	                }), {
+	                    animated: true
+	                });
+	            } else {
+	            	feri.tabOglasna.open(feri.ui.createBoardDetailWindow({
+	                    title: e.rowData.sessionTitle,
+	                    nid: e.rowData.nid
+	                }),{animated:true});
+	            }
             }
         });
         

@@ -83,9 +83,3 @@ Ti.include(
   	'app/icons.js',
   	'windows/main.js'
 );
-
-// open (sponsor) URLs in the native browser, not a webview
-Ti.App.addEventListener('openURL', function(e){
-  	Ti.Platform.openURL(e.url);
-});
-

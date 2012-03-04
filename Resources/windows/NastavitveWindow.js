@@ -12,8 +12,8 @@
         
         // Create the table view
         var inputData = [
-			{title:'Dashboard', hasCheck:true, header:'Oblika'},
-			{title:'Zavihki'},
+			{title:'Dashboard', switchAppUse: 'dashboard', header:'Oblika'},
+			{title:'Zavihki', switchAppUse: 'tabs'},
 			{title:'Dashboard', hasCheck:true, header:'Začetna stran'},
 			{title:'Oglasna deska'},
 			{title:'Urnik'},
@@ -22,6 +22,11 @@
 			{title:'Diplome'},
 			{title:'Informacije'}
 		];
+		
+		if ( feri.useDashboard == true )
+			inputData[0].hasCheck = true;
+		else
+			inputData[1].hasCheck = true;
 		
 		var row1 = Ti.UI.createTableViewRow({
 			height:50,
@@ -59,6 +64,30 @@
 
         // add table view to the window
         NastavitveWindow.add(tableView);
+        
+        tableView.addEventListener('click', function (e) {
+			
+			var section = e.section;
+			
+			// app use switch
+			if ( e.rowData.switchAppUse ) {
+				if ( e.rowData.switchAppUse == 'dashboard' && feri.useDashboard == false) {
+					section.rows[0].hasCheck = true;
+					section.rows[1].hasCheck = false;
+					Titanium.App.Properties.setString('feri.useDashboard', 'true');
+					feri.useDashboard = true;
+					Ti.include('windows/main.js');
+				} else if ( e.rowData.switchAppUse == 'tabs' && feri.useDashboard == true) {
+					section.rows[0].hasCheck = false;
+					section.rows[1].hasCheck = true;
+					Titanium.App.Properties.setString('feri.useDashboard', 'false');
+					feri.useDashboard = false;
+					feri.ui.activityIndicator.showModal('Posodabljam ...');
+					Ti.include('windows/main.js');
+				}
+			}
+			
+		});
 		
         return NastavitveWindow;
     };
