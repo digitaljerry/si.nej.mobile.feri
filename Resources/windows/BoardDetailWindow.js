@@ -198,20 +198,7 @@
     };
 
     function renderAuthor(author) {
-        var userPict = author.picture.replace(/^\s+|\s+$/g, '') || 'images/userpict-large.png';
-
-        var av = Ti.UI.createImageView({
-            image: userPict,
-            left: 5,
-            top: 5,
-            height: 50,
-            width: 50,
-            defaultImage: 'images/userpict-large.png',
-            backgroundColor: '#000',
-            touchEnabled: false
-        });
-
-        var presRow = Ti.UI.createTableViewRow({
+       var presRow = Ti.UI.createTableViewRow({
             author: author,
             height: 60,
             className: 'authorRow',
@@ -221,8 +208,7 @@
             layout: 'vertical'
         });
         presRow[feri.ui.backgroundSelectedProperty + 'Color'] = feri.ui.backgroundSelectedColor;
-
-        presRow.add(av);
+        
         var authorFullName2 = Ti.UI.createLabel({
             author: author,
             text: feri.cleanSpecialChars(author.full_name),
@@ -271,18 +257,6 @@
 	}
     
     function renderFile(filename) {
-    	/*var filePict = author.picture.replace(/^\s+|\s+$/g, '') || 'images/userpict-large.png';
-		
-        var av = Ti.UI.createImageView({
-            image: filePict,
-            left: 5,
-            top: 5,
-            height: 50,
-            width: 50,
-            defaultImage: 'images/userpict-large.png',
-            backgroundColor: '#000',
-            touchEnabled: false
-        });*/
 
         var fileRow = Ti.UI.createTableViewRow({
         	file:filename,
@@ -292,8 +266,6 @@
             layout: 'vertical'
         });
         //fileRow[feri.ui.backgroundSelectedProperty + 'Color'] = feri.ui.backgroundSelectedColor;
-		
-        //fileRow.add(av);
         
         var filename = Ti.UI.createLabel({
             text: feri.cleanSpecialChars(getFileName(filename)),
