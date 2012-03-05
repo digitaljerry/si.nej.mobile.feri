@@ -4,7 +4,7 @@
     	
     	feri.urniki_url = 'http://www.feri.uni-mb.si/urniki1/groups.php';
     	
-        var urnikiWindow = Titanium.UI.createWindow({
+    	var urnikiWindow = Titanium.UI.createWindow({
             id: 'urnikiWindow',
             title: 'Urniki',
             backgroundColor: '#FFF',
@@ -15,9 +15,9 @@
         
         //infoWindow.add(feri.ui.createTabbedScrollableView({data:data}));
         var webview = Ti.UI.createWebView({
-            url: feri.urniki_url,
-            width: '100%',
-            height: '100%'
+            //url: feri.urniki_url,
+            //width: '100%',
+            //height: '100%'
         });
         
         // injecting css for better display on mobile
@@ -55,6 +55,8 @@
 			feri.ui.activityIndicator.showModal('Nalagam ...', feri.loadTimeout, 'Napaka pri povezavi.');
 			webview.setVisible(false);
 		});
+		feri.ui.activityIndicator.showModal('Nalagam ...', feri.loadTimeout, 'Napaka pri povezavi.');
+		webview.setVisible(false);
         
         urnikiWindow.add(webview);
 		
@@ -65,6 +67,22 @@
             webview.height = '100%';
             webview.width = '100%';
         });
+        
+        var xhr = Ti.Network.createHTTPClient();
+		xhr.open('POST', feri.urniki_url);
+		xhr.onload = function () {
+			webview.html = this.responseText;
+			
+			webview.setVisible(true);
+		    feri.ui.activityIndicator.hideModal();
+		};
+        xhr.send({
+			date_field:"12.03.2012",
+			branch_id:"58",
+			program_index:"15",
+			groups_index:"1,2,3,4,5,6,7,8,9",
+			groups_values:"64,71,72,73,148,149,150,258,259"
+		});
         
         return urnikiWindow;
     };
