@@ -3,15 +3,13 @@
 		feri.ui = {
 			mainBackgroundImage: 'images/home_ipad.png',
 			dashboardHeight: 510,
-			dashboardWidth: 612,
-			sponsorsPage:'pages/sponsors_ipad.html'
+			dashboardWidth: 612
 		};
 	} else {
 		feri.ui = {
 			mainBackgroundImage: 'images/home.png',
 			dashboardHeight: 255,
-			dashboardWidth: 306,
-			sponsorsPage:'pages/sponsors.html'
+			dashboardWidth: 306
 		};
 	}
 	

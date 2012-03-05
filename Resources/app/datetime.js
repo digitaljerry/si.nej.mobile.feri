@@ -23,25 +23,25 @@
 	    strTmp = strTmp.toLowerCase();
 	    var __is = {
 	        day: {
-	            'sun': 0,
-	            'mon': 1,
-	            'tue': 2,
-	            'wed': 3,
-	            'thu': 4,
-	            'fri': 5,
-	            'sat': 6
+	            'ned': 0,
+	            'pon': 1,
+	            'tor': 2,
+	            'sre': 3,
+	            'čet': 4,
+	            'pet': 5,
+	            'sob': 6
 	        },
 	        mon: {
 	            'jan': 0,
 	            'feb': 1,
 	            'mar': 2,
 	            'apr': 3,
-	            'may': 4,
+	            'maj': 4,
 	            'jun': 5,
 	            'jul': 6,
-	            'aug': 7,
+	            'avg': 7,
 	            'sep': 8,
-	            'oct': 9,
+	            'okt': 9,
 	            'nov': 10,
 	            'dec': 11
 	        }
@@ -185,10 +185,6 @@
 	    diff < 60 && "just now" || diff < 120 && "1 minute ago" || diff < 3600 && Math.floor(diff / 60) + " minutes ago" || diff < 7200 && "1 hour ago" || diff < 86400 && "about " + Math.floor(diff / 3600) + " hours ago") || day_diff == 1 && "Yesterday" || day_diff < 7 && day_diff + " days ago" || day_diff < 31 && Math.ceil(day_diff / 7) + " week" + ((Math.ceil(day_diff / 7)) == 1 ? "" : "s") + " ago";
 	}
 	
-	feri.datetime.getTwitterInterval = function (strDateTime) {
-	    return feri.datetime.prettyDate(feri.datetime.strtotime(strDateTime));
-	};
-	
 	feri.datetime.dayToName = function (day) {
 	    switch (day) {
 	    case 0:
@@ -235,22 +231,6 @@
 	    case 12:
 	        return 'December';
 	    }
-	};
-	
-	feri.datetime.cleanDate = function (date) {
-	    var label;
-	    switch (date.getDate()) {
-	    case 1:
-	        label = 'st';
-	        break;
-	    case 2:
-	        label = 'nd';
-	        break;
-	    default:
-	        label = 'th';
-	    }
-	
-	    return feri.datetime.dayToName(date.getDay()) + ', ' + feri.datetime.monthToName(date.getMonth() + 1) + ' ' + date.getDate() + label;
 	};
 	
 	feri.datetime.cleanTime = function (time) {

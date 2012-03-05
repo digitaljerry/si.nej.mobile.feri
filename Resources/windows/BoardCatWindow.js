@@ -149,14 +149,6 @@
     	
     	var data = [];
     	
-    	// get all uid's from the database
-    	/*var all = getNodeCat(false, false, false, true);
-    	var allUids = '';
-    	for (var allNum = 0, numAll = all.length; allNum < numAll; allNum++) {
-    		allUids = allUids + ',' +all[allNum].uid; 
-    	}
-    	Titanium.API.info('All uids: ' + allUids);*/
-    	
     	// add the favourites
     	if( addFavRows == true ) {
 	        

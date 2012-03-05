@@ -128,7 +128,7 @@ var feri = {
 		var search = Titanium.UI.createSearchBar({
 			barColor:'#414444',
 			showCancel:false,
-			hintText:'search'
+			hintText:'išči'
 		});
 		
 		search.addEventListener('change', function(e)

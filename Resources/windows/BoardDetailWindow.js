@@ -99,23 +99,6 @@
 			html:'<html><body style="font-family: Helvetica !important;"><p><h1 style="font-size: 28px;">'+sessionData.title+'</h1><h3 style="font-size: 18px;">'+dateWithTime+'</h3></p>'+sessionData.body+'</body></html>',
 			height:'100%'
 		});
-
-        /*if (sessionData.author) {
-            var authorList = sessionData.author.split(",");
-            for (var k = 0; k < authorList.length; k++) {
-                authorList[k] = authorList[k].replace(/^\s+|\s+$/g, '');
-            }
-            
-            // Get the author information.
-	        var authorData = Database.entity.db('main', 'user').loadByField('email', authorList); //sessionData.instructors);
-	        
-	        if ( authorData[0] ) { 
-	        	tvData.push(feri.ui.createHeaderRow((authorList.length > 1) ? 'Authors' : 'Author'));
-	        	for (var j in authorData) {
-	        		tvData.push(renderAuthor(authorData[j]));
-            	}
-            }
-        }*/
         
         tvData.push(feri.ui.createHeaderRow('Obvestilo'));
         tvData.push(bodyRow);
@@ -129,25 +112,7 @@
             	tvData.push(renderFile(filesList[k]));
             }
         }
-
-        /*tv.addEventListener('click', function (e) {
-        	alert(e.source);
-            if (e.source.author != undefined) {
-                var fullName = e.source.author.full_name || '';
-                feri.navGroup.open(feri.ui.createPeopleDetailWindow({
-                    title: fullName,
-                    uid: e.source.author.uid
-                }), {
-                    animated: true
-                });
-            }
-            
-            if (e.source.file != undefined) {
-            	Ti.Platform.openURL(e.source.file);
-            }
-            
-        });*/
-       
+        
        	var toolbarActive = false;
        
        if (!feri.isAndroid()) {
