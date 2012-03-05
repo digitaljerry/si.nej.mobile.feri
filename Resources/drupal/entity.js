@@ -423,6 +423,8 @@ Drupal.entity.DefaultSchema.prototype.defaultFetcher = function (bundle, store, 
         if (func) {
             func();
         }
+        
+        feri.ui.activityIndicator.hideModal();
     };
 
     //open the client and encode our URL
