@@ -1,4 +1,5 @@
 
+
 // Declaring variables to prevent implied global error in jslint
 var Ti, Database;
 
@@ -6,7 +7,7 @@ var Ti, Database;
 Ti.UI.setBackgroundColor('#414444');
 
 Ti.include(
-	// Codestrong libraries
+	// FERI libraries
 	'app/feri.js',
 	'app/ui.js',
 	'app/datetime.js',
@@ -18,7 +19,7 @@ Ti.include(
   	'database/entity.js',
   	'database/entity.datastore.js',
   	
-  	// Codestrong specific Database entities
+  	// FERI specific Database entities
   	'app/entity.js'
 );
 
@@ -60,7 +61,7 @@ if (!Database.db.getConnection('main').tableExists('zadnje_diplome')) {
 }
 
 Ti.include(
-	// All Codestrong windows
+	// All FERI windows
   	'windows/ModalActivityIndicatorWindow.js',
   	'windows/BoardCatWindow.js',
   	'windows/BoardCatDetailWindow.js',
