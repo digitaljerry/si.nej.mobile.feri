@@ -179,42 +179,42 @@
 		
 		var winOglasna = feri.ui.createBoardWindow();
 		feri.tabOglasna = Titanium.UI.createTab({  
-		    icon:'images/dashboard/oglasna' + imageSuffix + '.png',
+		    icon:'images/dashboard/oglasnaTab' + imageSuffix + '.png',
 		    title:'Oglasna',
 		    window:winOglasna
 		});
 		feri.tabUrniki = Titanium.UI.createTab({  
-		    icon:'images/dashboard/urniki' + imageSuffix + '.png',
+		    icon:'images/dashboard/urnikiTab' + imageSuffix + '.png',
 		    title:'Urniki',
 		    window:feri.ui.createUrnikiWindow()
 		});
 		feri.tabPeople = Titanium.UI.createTab({  
-		    icon:'images/dashboard/zaposleni' + imageSuffix + '.png',
+		    icon:'images/dashboard/zaposleniTab' + imageSuffix + '.png',
 		    title:'Zaposleni',
 		    window:feri.ui.createPeopleWindow()
 		});
 		feri.tabMap = Titanium.UI.createTab({  
-		    icon:'images/dashboard/zemljevid' + imageSuffix + '.png',
+		    icon:'images/dashboard/zemljevidTab' + imageSuffix + '.png',
 		    title:'Zemljevid',
 		    window:feri.ui.createMapWindow()
 		});
 		feri.tabDiplome = Titanium.UI.createTab({  
-		    icon:'images/dashboard/diplome' + imageSuffix + '.png',
+		    icon:'images/dashboard/diplomeTab' + imageSuffix + '.png',
 		    title:'Diplome',
 		    window:feri.ui.createDiplomeWindow()
 		});
 		feri.tabInformacije = Titanium.UI.createTab({  
-		    icon:'images/dashboard/informacije' + imageSuffix + '.png',
+		    icon:'images/dashboard/informacijeTab' + imageSuffix + '.png',
 		    title:'Informacije',
 		    window:feri.ui.createInformacijeWindow()
 		});
 		feri.tabNastavitve = Titanium.UI.createTab({  
-		    icon:'images/dashboard/nastavitve' + imageSuffix + '.png',
+		    icon:'images/dashboard/nastavitveTab' + imageSuffix + '.png',
 		    title:'Nastavitve',
 		    window:feri.ui.createNastavitveWindow()
 		});
 		feri.tabAbout = Titanium.UI.createTab({  
-		    icon:'images/dashboard/about' + imageSuffix + '.png',
+		    icon:'images/dashboard/aboutTab' + imageSuffix + '.png',
 		    title:'About',
 		    window:feri.ui.createAboutWindow()
 		});
