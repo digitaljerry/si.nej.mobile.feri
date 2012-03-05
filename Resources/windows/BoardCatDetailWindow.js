@@ -3,10 +3,10 @@
 	
 	feri.ui.createBoardCatDetailWindow = function (w) {
 		
-		var conn = Drupal.db.getConnection('main');
+		var conn = Database.db.getConnection('main');
 		
 		// getting entity from db
-		var catData = Drupal.entity.db('main', 'board_children').load(w.category);
+		var catData = Database.entity.db('main', 'board_children').load(w.category);
 		
 		var catTitle = w.title.split(',')[0];
         
@@ -185,7 +185,7 @@
         		catData.favourite = false;
         	
         	// save with force remove
-        	Drupal.entity.db('main', 'board_children').save(catData, true);
+        	Database.entity.db('main', 'board_children').save(catData, true);
         	
         	// update the initial table
         	feri.tableviewFirst.setData(feri.ui.getBoardCatTableData(undefined, true));

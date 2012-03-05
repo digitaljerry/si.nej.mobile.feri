@@ -1,11 +1,11 @@
 
 // Declaring variables to prevent implied global error in jslint
-var Ti, Drupal;
+var Ti, Database;
 
 /**
- * Define a new library for Drupal Entity storage.
+ * Define a new library for Database Entity storage.
  */
-Drupal.db = {
+Database.db = {
 
     /**
      * Flag to indicate a query call should simply return NULL.
@@ -63,7 +63,7 @@ Drupal.db = {
      * @param key
      *   The database connection key. Defaults to NULL which means the active key.
      *
-     * @return {Drupal.db.Connection}
+     * @return {Database.db.Connection}
      *   The corresponding connection object.
      */
     getConnection: function (key) {
@@ -121,7 +121,7 @@ Drupal.db = {
      * Adds database connection information for a given key.
      *
      * In practice, all this method does is register a database name that can 
-     * be used. It is mostly to parallel the Drupal-side method of the same
+     * be used. It is mostly to parallel the Database-side method of the same
      * name, which by necessity is much more complex. In our case we are dealing
      * only with single-use SQLite databases so this is just to register a name
      * as openable.
@@ -150,7 +150,7 @@ Drupal.db = {
             Ti.API.error('ERROR: The specified database connection is not defined: ' + key);
         }
 
-        var newConnection = new Drupal.db.Connection(key);
+        var newConnection = new Database.db.Connection(key);
 
         return newConnection;
     },
@@ -178,19 +178,19 @@ Drupal.db = {
 /**
  * Base Database API class.
  *
- * This class provides a Drupal-specific connection object.
+ * This class provides a Database-specific connection object.
  */
-Drupal.db.Connection = function (key) {
+Database.db.Connection = function (key) {
     this.key = key;
     this.connection = Ti.Database.open(key);
 };
 
-Drupal.db.Connection.prototype.query = function (stmt, args) {
+Database.db.Connection.prototype.query = function (stmt, args) {
     if (!args) {
         args = [];
     }
 
-    if (Drupal.db.errorMode >= Drupal.db.ERROR_LEVEL_DEBUG) {
+    if (Database.db.errorMode >= Database.db.ERROR_LEVEL_DEBUG) {
         Ti.API.debug('Executing query: ' + stmt + "\nArguments: " + args.join(', '));
     }
 
@@ -200,19 +200,19 @@ Drupal.db.Connection.prototype.query = function (stmt, args) {
     return result;
 };
 
-Drupal.db.Connection.prototype.close = function () {
+Database.db.Connection.prototype.close = function () {
     this.connection.close();
 };
 
-Drupal.db.Connection.prototype.remove = function () {
+Database.db.Connection.prototype.remove = function () {
     this.connection.remove();
 };
 
-Drupal.db.Connection.prototype.insert = function (table) {
-    return new Drupal.db.InsertQuery(table, this);
+Database.db.Connection.prototype.insert = function (table) {
+    return new Database.db.InsertQuery(table, this);
 };
 
-Drupal.db.Connection.prototype.dropTable = function (table) {
+Database.db.Connection.prototype.dropTable = function (table) {
     if (this.tableExists(table)) {
         this.query("DROP TABLE IF EXISTS " + table);
         return true;
@@ -221,7 +221,7 @@ Drupal.db.Connection.prototype.dropTable = function (table) {
     return false;
 };
 
-Drupal.db.Connection.prototype.createTable = function (name, table) {
+Database.db.Connection.prototype.createTable = function (name, table) {
     var queries = [];
     queries = queries.concat('CREATE TABLE ' + name + '(' + this.createColumnSql(name, table) + ')').concat(this.createIndexSql(name, table));
 
@@ -230,7 +230,7 @@ Drupal.db.Connection.prototype.createTable = function (name, table) {
     }
 };
 
-Drupal.db.Connection.prototype.createColumnSql = function (tablename, schema) {
+Database.db.Connection.prototype.createColumnSql = function (tablename, schema) {
     var sqlArray = [];
 
     // Add the SQL statement for each field.
@@ -250,7 +250,7 @@ Drupal.db.Connection.prototype.createColumnSql = function (tablename, schema) {
     return sqlArray.join(", \n");
 };
 
-Drupal.db.Connection.prototype.createFieldSql = function (name, spec) {
+Database.db.Connection.prototype.createFieldSql = function (name, spec) {
     var sql;
 
     spec.type = spec.type.toUpperCase();
@@ -294,7 +294,7 @@ Drupal.db.Connection.prototype.createFieldSql = function (name, spec) {
 };
 
 
-Drupal.db.Connection.prototype.createIndexSql = function (table, schema) {
+Database.db.Connection.prototype.createIndexSql = function (table, schema) {
     var sql = [];
     var key;
 
@@ -315,7 +315,7 @@ Drupal.db.Connection.prototype.createIndexSql = function (table, schema) {
     return sql;
 };
 
-Drupal.db.Connection.prototype.createKeySql = function (fields) {
+Database.db.Connection.prototype.createKeySql = function (fields) {
     var ret = [];
     for (var i = 0; i < fields.length; i++) {
         if (typeof fields[i] == 'Array') {
@@ -327,14 +327,14 @@ Drupal.db.Connection.prototype.createKeySql = function (fields) {
     return ret.join(', ');
 };
 
-Drupal.db.Connection.prototype.tableExists = function (table) {
+Database.db.Connection.prototype.tableExists = function (table) {
     var result = this.query('SELECT 1 FROM sqlite_master WHERE type = ? AND name = ?', ['table', table]);
     var ret = Boolean(result.rowCount);
     result.close();
     return ret;
 };
 
-Drupal.db.Query = function (connection) {
+Database.db.Query = function (connection) {
     this.connection = connection;
     this.comments = [];
     this.nextPlaceholder = 0;
@@ -346,7 +346,7 @@ Drupal.db.Query = function (connection) {
  * @return int
  *   Next placeholder value.
  */
-Drupal.db.Query.prototype.nextPlaceholder = function () {
+Database.db.Query.prototype.nextPlaceholder = function () {
     return this.nextPlaceholder++;
 };
 
@@ -361,10 +361,10 @@ Drupal.db.Query.prototype.nextPlaceholder = function () {
  * @param comment
  *   The comment string to be inserted into the query.
  *
- * @return Drupal.db.Query
+ * @return Database.db.Query
  *   The called object.
  */
-Drupal.db.Query.prototype.comment = function (comment) {
+Database.db.Query.prototype.comment = function (comment) {
     this.comments.push(comment);
     return this;
 };
@@ -379,6 +379,6 @@ Drupal.db.Query.prototype.comment = function (comment) {
  * @return Array
  *   A reference to the comments array structure.
  */
-Drupal.db.Query.prototype.getComments = function () {
+Database.db.Query.prototype.getComments = function () {
     return this.comments;
 };

@@ -1,7 +1,7 @@
 
 (function () {
     feri.ui.createHtmlWindow = function (settings) {
-        Drupal.setDefaults(settings, {
+        Database.setDefaults(settings, {
             title: 'title here',
             url: ''
         });

@@ -1,9 +1,9 @@
 
 // Declaring variables to prevent implied global error in jslint
-var Drupal, Ti;
+var Database, Ti;
 
 /**
- * Creates a Drupal Datastore object.
+ * Creates a Database Datastore object.
  *
  * A datastore object serves as a repository for loading
  * and saving cached entities.  Although it uses SQLite
@@ -15,9 +15,9 @@ var Drupal, Ti;
  *   The database connection object for this datastore.
  * @param string
  *   The type of entity this datastore should access.
- * @return Drupal.entity.Datastore
+ * @return Database.entity.Datastore
  */
-Drupal.entity.Datastore = function (site, connection, entityType, entityInfo) {
+Database.entity.Datastore = function (site, connection, entityType, entityInfo) {
     this.site = site;
     this.connection = connection;
     this.entityType = entityType;
@@ -35,7 +35,7 @@ Drupal.entity.Datastore = function (site, connection, entityType, entityInfo) {
  * @return string
  *   The name of the field that holds this entity type's primary key.
  */
-Drupal.entity.Datastore.prototype.getIdField = function () {
+Database.entity.Datastore.prototype.getIdField = function () {
     var idField = this.entityInfo.entity_keys.id;
 
     return idField;
@@ -50,11 +50,11 @@ Drupal.entity.Datastore.prototype.getIdField = function () {
  * defined.
  *
  * @param Object entity
- *   A Drupal entity to save.  This should be an untyped
+ *   A Database entity to save.  This should be an untyped
  *   object.  It is (or should be) safe to simply use an 
- *   entity object retrieved from a Drupal site.
+ *   entity object retrieved from a Database site.
  */
-Drupal.entity.Datastore.prototype.save = function (entity, forceRemove) {
+Database.entity.Datastore.prototype.save = function (entity, forceRemove) {
 	
 	if ( forceRemove == 'undefined' || forceRemove == 0 )
 		forceRemove = false;
@@ -77,14 +77,14 @@ Drupal.entity.Datastore.prototype.save = function (entity, forceRemove) {
  * Inserts a new entity into the local database.
  *
  * @param Object entity
- *   A Drupal entity to insert.  This should be an untyped
+ *   A Database entity to insert.  This should be an untyped
  *   object.  It is (or should be) safe to simply use an 
- *   entity object retrieved from a Drupal site.
+ *   entity object retrieved from a Database site.
  * @return integer
  *   The number of rows affected. This should only ever be 1 for 
  *   a successful insert or 0 if something went wrong.
  */
-Drupal.entity.Datastore.prototype.insert = function (entity) {
+Database.entity.Datastore.prototype.insert = function (entity) {
     if (this.entityInfo.label === 'Node') {
         var timeslot = entity['time'];
         var m = /^(\d+)\s+([^\s]+)\s+(\d\d\:\d\d)\s*\-\s*(\d\d\:\d\d)/.exec(timeslot);
@@ -124,15 +124,15 @@ Drupal.entity.Datastore.prototype.insert = function (entity) {
  * is saved properly call the save() method instead.
  *
  * @param Object entity
- *   A Drupal entity to update.  This should be an untyped
+ *   A Database entity to update.  This should be an untyped
  *   object.  It is (or should be) safe to simply use an
- *   entity object retrieved from a Drupal site.
+ *   entity object retrieved from a Database site.
  * @return integer
  *   The number of rows affected. This should only ever be 1 for
  *   a successful update or 0 if the entity didn't exist in the
  *   first place.
  */
-Drupal.entity.Datastore.prototype.update = function (entity) {
+Database.entity.Datastore.prototype.update = function (entity) {
     var data = JSON.stringify(entity);
     this.connection.query("UPDATE " + this.entityType + " SET type=?, title=?, data=? WHERE nid=?", [entity.type, entity.title, data, entity[this.idField]]);
     return this.connection.rowsAffected;
@@ -150,7 +150,7 @@ Drupal.entity.Datastore.prototype.update = function (entity) {
  *   true if an entity with the specified ID exists, false
  *   if not or if there was an error.
  */
-Drupal.entity.Datastore.prototype.exists = function (id) {
+Database.entity.Datastore.prototype.exists = function (id) {
     var rows = this.connection.query("SELECT 1 FROM " + this.entityType + " WHERE " + this.idField + " = ?", [id]);
     var ret = rows && rows.rowCount;
     if (rows) {
@@ -168,7 +168,7 @@ Drupal.entity.Datastore.prototype.exists = function (id) {
  *   The entity with the specified ID if any, or null
  *   if one was not found.
  */
-Drupal.entity.Datastore.prototype.load = function (id) {
+Database.entity.Datastore.prototype.load = function (id) {
     var entities = this.loadMultiple([id]);
 
     if (entities && entities[0]) {
@@ -194,7 +194,7 @@ Drupal.entity.Datastore.prototype.load = function (id) {
  *   the array will be empty. Note that the order of entities
  *   in the array is undefined.
  */
-Drupal.entity.Datastore.prototype.loadMultiple = function (ids, order, direction) {
+Database.entity.Datastore.prototype.loadMultiple = function (ids, order, direction) {
     var dir = true;
     if ( direction == false)
     	dir = false;
@@ -221,7 +221,7 @@ Drupal.entity.Datastore.prototype.loadMultiple = function (ids, order, direction
  *   An array of loaded entity objects.  If none were found the array will be
  *   empty.
  */
-Drupal.entity.Datastore.prototype.loadByField = function (field, values, order, direction) {
+Database.entity.Datastore.prototype.loadByField = function (field, values, order, direction) {
     var entities = [];
     var placeholders = [];
     
@@ -274,12 +274,12 @@ Drupal.entity.Datastore.prototype.loadByField = function (field, values, order, 
  *   a successful deletion or 0 if the entity didn't exist in the
  *   first place.
  */
-Drupal.entity.Datastore.prototype.remove = function (id) {
+Database.entity.Datastore.prototype.remove = function (id) {
     this.connection.query("DELETE FROM " + this.entityType + " WHERE " + this.idField + " = ?", [id]);
     return this.connection.rowsAffected;
 };
 
-Drupal.entity.Datastore.prototype.doQuery = function (query) {
+Database.entity.Datastore.prototype.doQuery = function (query) {
     
     Ti.API.debug(query);
     var rows = this.connection.query(query);
@@ -296,10 +296,10 @@ Drupal.entity.Datastore.prototype.doQuery = function (query) {
     return entities;
 };
 
-Drupal.entity.Datastore.prototype.fetchUpdates = function (bundle) {
+Database.entity.Datastore.prototype.fetchUpdates = function (bundle) {
     var callback = function () {
         // Let other systems respond to the update completion.
-        Ti.fireEvent('drupal:entity:datastore:update_completed', {
+        Ti.fireEvent('database:entity:datastore:update_completed', {
             entity: this.entityType,
             bundle: bundle
         });
@@ -315,7 +315,7 @@ Drupal.entity.Datastore.prototype.fetchUpdates = function (bundle) {
     }
 };
 
-Drupal.entity.Datastore.prototype.defaultUpdater = function (bundle) {
+Database.entity.Datastore.prototype.defaultUpdater = function (bundle) {
 
 };
 
@@ -326,7 +326,7 @@ Drupal.entity.Datastore.prototype.defaultUpdater = function (bundle) {
  * type.  That is, all existing data will be destroyed.  Did we mention
  * *all existing data for this entity type will be lost*?
  */
-Drupal.entity.Datastore.prototype.initializeSchema = function () {
+Database.entity.Datastore.prototype.initializeSchema = function () {
     this.connection.dropTable(this.entityType);
     this.connection.createTable(this.entityType, this.getSchema());
 };
@@ -334,7 +334,7 @@ Drupal.entity.Datastore.prototype.initializeSchema = function () {
 /**
  * Returns the schema definition for this enity's storage.
  */
-Drupal.entity.Datastore.prototype.getSchema = function () {
+Database.entity.Datastore.prototype.getSchema = function () {
     if (!this.schemaDefinition) {
         var schema = {
             description: 'Storage table for ' + this.entityType + ' entities.',
@@ -394,7 +394,7 @@ Drupal.entity.Datastore.prototype.getSchema = function () {
     return this.schemaDefinition;
 };
 
-Drupal.entity.Datastore.prototype.fixTables = function (table) {
+Database.entity.Datastore.prototype.fixTables = function (table) {
     
     var query = 'SELECT * FROM ' + table;
     Ti.API.debug('Fixing: ' + query);
@@ -438,7 +438,7 @@ Drupal.entity.Datastore.prototype.fixTables = function (table) {
 	resultSet.close();*/
 };
 
-Drupal.entity.Datastore.prototype.truncateTable = function (table) {
+Database.entity.Datastore.prototype.truncateTable = function (table) {
     var query = 'DELETE FROM ' + table;
     Ti.API.debug('Emptying the table: ' + query);
     return this.connection.query(query);

@@ -1,11 +1,11 @@
 
 // Declaring variables to prevent implied global error in jslint
-var Ti, Drupal;
+var Ti, Database;
 
 /**
- * Define a new library for Drupal Entity storage.
+ * Define a new library for Database Entity storage.
  */
-Drupal.entity = {
+Database.entity = {
 
     sites: {
         main: {
@@ -13,7 +13,7 @@ Drupal.entity = {
              * Entity types known to the system.
              *
              * This is a subset of the information provided in hook_entity_info(). We have
-             * to specify it again here because we may not be dealing with Drupal 7 on
+             * to specify it again here because we may not be dealing with Database 7 on
              * the other end.
              *
              * We're using lower_case variables here instead of camelCase so that they
@@ -149,12 +149,12 @@ Drupal.entity = {
      * @param string entityType
      *   The type of entity (node, user, etc.) that we are
      *   accessing.
-     * @return Drupal.entity.Datastore
+     * @return Database.entity.Datastore
      *   A new datastore object for the specified site and entity.
      */
     db: function (site, entityType) {
-        var conn = Drupal.db.openConnection(site);
-        return new Drupal.entity.Datastore(site, conn, entityType, this.entityInfo(site, entityType));
+        var conn = Database.db.openConnection(site);
+        return new Database.entity.Datastore(site, conn, entityType, this.entityInfo(site, entityType));
     },
 
     /**
@@ -192,9 +192,9 @@ Drupal.entity = {
      *   The ID of the entity that is being mirrored.
      */
     mirror: function (site, entityType, id) {
-        var service = Drupal.services.createConnection('main');
+        var service = Database.services.createConnection('main');
         service.loadHandler = function () {
-            Drupal.entity.db(site, entityType).save(JSON.parse(this.responseText));
+            Database.entity.db(site, entityType).save(JSON.parse(this.responseText));
         };
 
         service.request({
@@ -204,22 +204,22 @@ Drupal.entity = {
 };
 
 
-Drupal.entity.DefaultSchema = function () {
+Database.entity.DefaultSchema = function () {
     this.fetchUrl = null;
     this.bypassCache = false;
     this.fetchers = {};
 };
 
 
-Drupal.entity.DefaultSchema.prototype.fields = function () {
+Database.entity.DefaultSchema.prototype.fields = function () {
     return {};
 };
 
-Drupal.entity.DefaultSchema.prototype.getFieldValues = function (entity, values) {
+Database.entity.DefaultSchema.prototype.getFieldValues = function (entity, values) {
     // Do nothing.
 };
 
-Drupal.entity.DefaultSchema.prototype.defaultFetcher = function (bundle, store, func, fetchUrl, preDataFunc) {
+Database.entity.DefaultSchema.prototype.defaultFetcher = function (bundle, store, func, fetchUrl, preDataFunc) {
 	
 	var xhr = Titanium.Network.createHTTPClient();
     xhr.onload = function () {
@@ -413,7 +413,7 @@ Drupal.entity.DefaultSchema.prototype.defaultFetcher = function (bundle, store, 
         Ti.API.debug('Downloading ' + length + ' entities of type ' + store.entityType);
         
         // ok we apperantly got new data, so we can do a TRUNCATE
-        Drupal.entity.db('main', bundle).truncateTable(bundle);
+        Database.entity.db('main', bundle).truncateTable(bundle);
 		
         for (var i = 0; i < length; i++) {
             store.save(entities[i].entity);

@@ -13,7 +13,7 @@
         });
         
         // Build session data
-        var sessionData = Drupal.entity.db('main', 'zadnje_diplome').load(w.uid);
+        var sessionData = Database.entity.db('main', 'zadnje_diplome').load(w.uid);
         
         var commonPadding = 15;
         

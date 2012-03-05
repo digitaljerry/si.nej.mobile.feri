@@ -1,6 +1,6 @@
 
 // Define our entity storage rules.
-Drupal.entity.sites.main.types.node.schema = {
+Database.entity.sites.main.types.node.schema = {
     fields: function () {
         return {
             fields: {
@@ -51,7 +51,7 @@ Drupal.entity.sites.main.types.node.schema = {
      *
      * @param {string} bundle
      *   The bundle type we want to retrieve.
-     * @param {Drupal.entity.Datastore} store
+     * @param {Database.entity.Datastore} store
      *   The datastore to which to save the retrieved entities.
      * @param func
      *   A callback function to call after the fetching process has been completed.
@@ -70,9 +70,9 @@ Drupal.entity.sites.main.types.node.schema = {
         this.prototype.defaultFetcher.apply(this, [bundle, store, func, url]);
     }
 };
-Drupal.entity.sites.main.types.node.schema.prototype = Drupal.constructPrototype(Drupal.entity.DefaultSchema);
+Database.entity.sites.main.types.node.schema.prototype = Database.constructPrototype(Database.entity.DefaultSchema);
 
-Drupal.entity.sites.main.types.user.schema = {
+Database.entity.sites.main.types.user.schema = {
     fields: function () {
         return {
             fields: {
@@ -122,7 +122,7 @@ Drupal.entity.sites.main.types.user.schema = {
      *
      * @param {string} bundle
      *   The bundle type we want to retrieve.
-     * @param {Drupal.entity.Datastore} store
+     * @param {Database.entity.Datastore} store
      *   The datastore to which to save the retrieved entities.
      * @param {function} func
      *   A callback functino that will be called when the fetch is complete.
@@ -139,10 +139,10 @@ Drupal.entity.sites.main.types.user.schema = {
     }
 
 };
-Drupal.entity.sites.main.types.user.schema.prototype = Drupal.constructPrototype(Drupal.entity.DefaultSchema);
+Database.entity.sites.main.types.user.schema.prototype = Database.constructPrototype(Database.entity.DefaultSchema);
 
 // Define our entity storage rules.
-Drupal.entity.sites.main.types.node_cat.schema = {
+Database.entity.sites.main.types.node_cat.schema = {
     fields: function () {
         return {
             fields: {
@@ -165,7 +165,7 @@ Drupal.entity.sites.main.types.node_cat.schema = {
      *
      * @param {string} bundle
      *   The bundle type we want to retrieve.
-     * @param {Drupal.entity.Datastore} store
+     * @param {Database.entity.Datastore} store
      *   The datastore to which to save the retrieved entities.
      * @param func
      *   A callback function to call after the fetching process has been completed.
@@ -176,10 +176,10 @@ Drupal.entity.sites.main.types.node_cat.schema = {
         this.prototype.defaultFetcher.apply(this, [bundle, store, func, url]);
     }
 };
-Drupal.entity.sites.main.types.node_cat.schema.prototype = Drupal.constructPrototype(Drupal.entity.DefaultSchema);
+Database.entity.sites.main.types.node_cat.schema.prototype = Database.constructPrototype(Database.entity.DefaultSchema);
 
 // Define our entity storage rules.
-Drupal.entity.sites.main.types.board_parents.schema = {
+Database.entity.sites.main.types.board_parents.schema = {
     fields: function () {
         return {
             fields: {
@@ -204,10 +204,10 @@ Drupal.entity.sites.main.types.board_parents.schema = {
         values.changed = entity.changed;
     }
 };
-Drupal.entity.sites.main.types.board_parents.schema.prototype = Drupal.constructPrototype(Drupal.entity.DefaultSchema);
+Database.entity.sites.main.types.board_parents.schema.prototype = Database.constructPrototype(Database.entity.DefaultSchema);
 
 // Define our entity storage rules.
-Drupal.entity.sites.main.types.board_children.schema = {
+Database.entity.sites.main.types.board_children.schema = {
     fields: function () {
         return {
             fields: {
@@ -238,10 +238,10 @@ Drupal.entity.sites.main.types.board_children.schema = {
         values.changed = entity.changed;
     }
 };
-Drupal.entity.sites.main.types.board_children.schema.prototype = Drupal.constructPrototype(Drupal.entity.DefaultSchema);
+Database.entity.sites.main.types.board_children.schema.prototype = Database.constructPrototype(Database.entity.DefaultSchema);
 
 // Define our entity storage rules.
-Drupal.entity.sites.main.types.board_notifications.schema = {
+Database.entity.sites.main.types.board_notifications.schema = {
     fields: function () {
         return {
             fields: {
@@ -275,10 +275,10 @@ Drupal.entity.sites.main.types.board_notifications.schema = {
         values.changed = entity.changed;
     }
 };
-Drupal.entity.sites.main.types.board_notifications.schema.prototype = Drupal.constructPrototype(Drupal.entity.DefaultSchema);
+Database.entity.sites.main.types.board_notifications.schema.prototype = Database.constructPrototype(Database.entity.DefaultSchema);
 
 // Define our entity storage rules.
-Drupal.entity.sites.main.types.people.schema = {
+Database.entity.sites.main.types.people.schema = {
     fields: function () {
         return {
             fields: {
@@ -321,10 +321,10 @@ Drupal.entity.sites.main.types.people.schema = {
         values.changed = entity.changed;
     }
 };
-Drupal.entity.sites.main.types.people.schema.prototype = Drupal.constructPrototype(Drupal.entity.DefaultSchema);
+Database.entity.sites.main.types.people.schema.prototype = Database.constructPrototype(Database.entity.DefaultSchema);
 
 // Define our entity storage rules.
-Drupal.entity.sites.main.types.aktualne_diplome.schema = {
+Database.entity.sites.main.types.aktualne_diplome.schema = {
     fields: function () {
         return {
             fields: {
@@ -356,7 +356,7 @@ Drupal.entity.sites.main.types.aktualne_diplome.schema = {
      *
      * @param {string} bundle
      *   The bundle type we want to retrieve.
-     * @param {Drupal.entity.Datastore} store
+     * @param {Database.entity.Datastore} store
      *   The datastore to which to save the retrieved entities.
      * @param func
      *   A callback function to call after the fetching process has been completed.
@@ -368,9 +368,9 @@ Drupal.entity.sites.main.types.aktualne_diplome.schema = {
         this.prototype.defaultFetcher.apply(this, [bundle, store, func, url]);
     }
 };
-Drupal.entity.sites.main.types.aktualne_diplome.schema.prototype = Drupal.constructPrototype(Drupal.entity.DefaultSchema);
+Database.entity.sites.main.types.aktualne_diplome.schema.prototype = Database.constructPrototype(Database.entity.DefaultSchema);
 
-Drupal.entity.sites.main.types.zadnje_diplome.schema = {
+Database.entity.sites.main.types.zadnje_diplome.schema = {
     fields: function () {
         return {
             fields: {
@@ -408,7 +408,7 @@ Drupal.entity.sites.main.types.zadnje_diplome.schema = {
      *
      * @param {string} bundle
      *   The bundle type we want to retrieve.
-     * @param {Drupal.entity.Datastore} store
+     * @param {Database.entity.Datastore} store
      *   The datastore to which to save the retrieved entities.
      * @param func
      *   A callback function to call after the fetching process has been completed.
@@ -420,4 +420,4 @@ Drupal.entity.sites.main.types.zadnje_diplome.schema = {
         this.prototype.defaultFetcher.apply(this, [bundle, store, func, url]);
     }
 };
-Drupal.entity.sites.main.types.zadnje_diplome.schema.prototype = Drupal.constructPrototype(Drupal.entity.DefaultSchema);
+Database.entity.sites.main.types.zadnje_diplome.schema.prototype = Database.constructPrototype(Database.entity.DefaultSchema);

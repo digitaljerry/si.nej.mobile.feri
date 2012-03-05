@@ -1,6 +1,6 @@
 
 // Declaring variables to prevent implied global error in jslint
-var Ti, Drupal;
+var Ti, Database;
 
 // this sets the background color of the master UIView (when there are no windows/tab groups on it)
 Ti.UI.setBackgroundColor('#414444');
@@ -11,52 +11,52 @@ Ti.include(
 	'app/ui.js',
 	'app/datetime.js',
 	
-	// Drupal connection libraries
-  	'drupal/drupal.js',
-  	'drupal/db.js',
-  	'drupal/db.insert.js',
-  	'drupal/entity.js',
-  	'drupal/entity.datastore.js',
+	// Database connection libraries
+  	'database/database.js',
+  	'database/db.js',
+  	'database/db.insert.js',
+  	'database/entity.js',
+  	'database/entity.datastore.js',
   	
-  	// Codestrong specific Drupal entities
+  	// Codestrong specific Database entities
   	'app/entity.js'
 );
 
 // Register our database information.
-Drupal.db.addConnectionInfo('main');
+Database.db.addConnectionInfo('main');
 Ti.Database.install('main.sql', 'main');
 
 // If we haven't created the tables yet, make empty ones to ensure that the
 // app doesn't crash.
-if (!Drupal.db.getConnection('main').tableExists('node')) {
-  	Drupal.entity.db('main', 'node').initializeSchema();
+if (!Database.db.getConnection('main').tableExists('node')) {
+  	Database.entity.db('main', 'node').initializeSchema();
 }
-if (!Drupal.db.getConnection('main').tableExists('user')) {
-  	Drupal.entity.db('main', 'user').initializeSchema();
+if (!Database.db.getConnection('main').tableExists('user')) {
+  	Database.entity.db('main', 'user').initializeSchema();
 }
-if (!Drupal.db.getConnection('main').tableExists('node_cat')) {
-  	Drupal.entity.db('main', 'node_cat').initializeSchema();
+if (!Database.db.getConnection('main').tableExists('node_cat')) {
+  	Database.entity.db('main', 'node_cat').initializeSchema();
 }
-if (!Drupal.db.getConnection('main').tableExists('board_parents')) {
-  	Drupal.entity.db('main', 'board_parents').initializeSchema();
+if (!Database.db.getConnection('main').tableExists('board_parents')) {
+  	Database.entity.db('main', 'board_parents').initializeSchema();
 }
-if (!Drupal.db.getConnection('main').tableExists('board_children')) {
-  	Drupal.entity.db('main', 'board_children').initializeSchema();
+if (!Database.db.getConnection('main').tableExists('board_children')) {
+  	Database.entity.db('main', 'board_children').initializeSchema();
 }
-if (!Drupal.db.getConnection('main').tableExists('board_notifications')) {
-  	Drupal.entity.db('main', 'board_notifications').initializeSchema();
+if (!Database.db.getConnection('main').tableExists('board_notifications')) {
+  	Database.entity.db('main', 'board_notifications').initializeSchema();
 }
-if (!Drupal.db.getConnection('main').tableExists('people')) {
-  	Drupal.entity.db('main', 'people').initializeSchema();
+if (!Database.db.getConnection('main').tableExists('people')) {
+  	Database.entity.db('main', 'people').initializeSchema();
 }
-if (!Drupal.db.getConnection('main').tableExists('degrees')) {
-  	Drupal.entity.db('main', 'degrees').initializeSchema();
+if (!Database.db.getConnection('main').tableExists('degrees')) {
+  	Database.entity.db('main', 'degrees').initializeSchema();
 }
-if (!Drupal.db.getConnection('main').tableExists('aktualne_diplome')) {
-  	Drupal.entity.db('main', 'aktualne_diplome').initializeSchema();
+if (!Database.db.getConnection('main').tableExists('aktualne_diplome')) {
+  	Database.entity.db('main', 'aktualne_diplome').initializeSchema();
 }
-if (!Drupal.db.getConnection('main').tableExists('zadnje_diplome')) {
-  	Drupal.entity.db('main', 'zadnje_diplome').initializeSchema();
+if (!Database.db.getConnection('main').tableExists('zadnje_diplome')) {
+  	Database.entity.db('main', 'zadnje_diplome').initializeSchema();
 }
 
 Ti.include(

@@ -1,10 +1,10 @@
 
 /**
- * Main Drupal factory.
+ * Main Database factory.
  *
- * This object serves as a central router for Drupal integration.
+ * This object serves as a central router for Database integration.
  */
-var Drupal = {
+var Database = {
 
     /**
      * Sets default values for an object.
@@ -37,7 +37,7 @@ var Drupal = {
 /**
  * For fancy-schmancy inheritance building.
  */
-Drupal.constructPrototype = function (o) {
+Database.constructPrototype = function (o) {
     var f = function () {};
     f.prototype = o.prototype;
     return new f();
@@ -58,7 +58,7 @@ Drupal.constructPrototype = function (o) {
  * @return {string}
  *   The ISO formatted version of the date object.
  */
-Drupal.getISODate = function (date, utc) {
+Database.getISODate = function (date, utc) {
 
     function pad(n) {
         return n < 10 ? '0' + n : n;
@@ -73,7 +73,7 @@ Drupal.getISODate = function (date, utc) {
 
 
 
-Drupal.getObjectProperties = function (o) {
+Database.getObjectProperties = function (o) {
     var properties = [];
     var values = [];
     var prop;

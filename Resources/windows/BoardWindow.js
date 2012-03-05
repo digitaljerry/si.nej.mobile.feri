@@ -3,7 +3,7 @@
 	
 	feri.ui.createBoardWindow = function (w) {
 		
-		var conn = Drupal.db.getConnection('main');
+		var conn = Database.db.getConnection('main');
         
         // Base row properties
         var baseRow = {
@@ -145,7 +145,7 @@
 		if ( catUid != undefined )
 			where = "WHERE category = " + catUid;
         
-        var conn = Drupal.db.getConnection('main');
+        var conn = Database.db.getConnection('main');
         var rows = conn.query("SELECT nid FROM node "+where+" ORDER BY nid DESC LIMIT 25");
         Ti.API.debug("SELECT nid FROM node "+where+" ORDER BY nid DESC LIMIT 25");
         
@@ -159,7 +159,7 @@
         
 		// Create session rows
 		var lastDate = '';
-        var sessions = Drupal.entity.db('main', 'node').loadMultiple(nids, ['nid'], false);
+        var sessions = Database.entity.db('main', 'node').loadMultiple(nids, ['nid'], false);
         for (var sessionNum = 0, numSessions = sessions.length; sessionNum < numSessions; sessionNum++) {
             var session = sessions[sessionNum];
             var sessionTitle = feri.cleanSpecialChars(session.title);

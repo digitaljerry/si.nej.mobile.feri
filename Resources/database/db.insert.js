@@ -1,8 +1,8 @@
 
 // Declaring variables to prevent implied global error in jslint
-var Drupal, Ti;
+var Database, Ti;
 
-Drupal.db.InsertQuery = function (table, connection) {
+Database.db.InsertQuery = function (table, connection) {
     /**
      * The table on which to insert.
      *
@@ -10,7 +10,7 @@ Drupal.db.InsertQuery = function (table, connection) {
      */
     this.table = table;
 
-    Drupal.db.Query.apply(this, [connection]);
+    Database.db.Query.apply(this, [connection]);
 
     /**
      * An array of fields on which to insert.
@@ -50,7 +50,7 @@ Drupal.db.InsertQuery = function (table, connection) {
      */
     this.fromQuery = null;
 };
-Drupal.db.InsertQuery.prototype = Drupal.constructPrototype(Drupal.db.Query);
+Database.db.InsertQuery.prototype = Database.constructPrototype(Database.db.Query);
 
 
 /**
@@ -70,10 +70,10 @@ Drupal.db.InsertQuery.prototype = Drupal.constructPrototype(Drupal.db.Query);
  *   An array of fields to insert into the database. The values must be
  *   specified in the same order as the fields array.
  *
- * @return Drupal.db.InsertQuery
+ * @return Database.db.InsertQuery
  *   The called object.
  */
-Drupal.db.InsertQuery.prototype.fields = function (fields, values) {
+Database.db.InsertQuery.prototype.fields = function (fields, values) {
     if (this.insertFields.length === 0) {
         if (!values) {
             // If fields is an array, then we're specifying only the fields, not values.
@@ -116,10 +116,10 @@ Drupal.db.InsertQuery.prototype.fields = function (fields, values) {
  * @param values
  *   An array of values to add to the query.
  *
- * @return Drupal.db.InsertQuery
+ * @return Database.db.InsertQuery
  *   The called object.
  */
-Drupal.db.InsertQuery.prototype.values = function (values) {
+Database.db.InsertQuery.prototype.values = function (values) {
     if (Array.isArray(values)) {
         this.insertValues.push(values);
     } else {
@@ -152,10 +152,10 @@ Drupal.db.InsertQuery.prototype.values = function (values) {
  *   An array of values for which to use the default values
  *   specified in the table definition.
  *
- * @return Drupal.db.InsertQuery
+ * @return Database.db.InsertQuery
  *   The called object.
  */
-Drupal.db.InsertQuery.prototype.useDefaults = function (fields) {
+Database.db.InsertQuery.prototype.useDefaults = function (fields) {
     this.defaultFields = fields;
     return this;
 };
@@ -169,7 +169,7 @@ Drupal.db.InsertQuery.prototype.useDefaults = function (fields) {
  * @throws FieldsOverlapException
  * @throws NoFieldsException
  */
-Drupal.db.InsertQuery.prototype.preExecute = function () {
+Database.db.InsertQuery.prototype.preExecute = function () {
     if ((this.insertFields.length + this.defaultFields.length) === 0) {
         Ti.API.error('ERROR: There are no fields available to insert with.');
         throw new Error('There are no fields available to insert with.');
@@ -193,7 +193,7 @@ Drupal.db.InsertQuery.prototype.preExecute = function () {
  *   undefined. If no fields are specified, this method will do nothing and
  *   return NULL. That makes it safe to use in multi-insert loops.
  */
-Drupal.db.InsertQuery.prototype.execute = function () {
+Database.db.InsertQuery.prototype.execute = function () {
     // If validation fails, simply return NULL. Note that validation routines
     // in preExecute() may throw exceptions instead.
     if (!this.preExecute()) {
@@ -221,7 +221,7 @@ Drupal.db.InsertQuery.prototype.execute = function () {
 /**
  * Convert this query to a SQL string.
  */
-Drupal.db.InsertQuery.prototype.sqlString = function () {
+Database.db.InsertQuery.prototype.sqlString = function () {
     // Create a comments string to prepend to the query.
     var comments = (this.comments.length) ? '/* ' + this.comments.join('; ') + ' */ ' : '';
 
@@ -236,7 +236,7 @@ Drupal.db.InsertQuery.prototype.sqlString = function () {
 };
 
 
-Drupal.getObjectProperties = function (o) {
+Database.getObjectProperties = function (o) {
     var properties = [];
     var values = [];
     for (var prop in o) {

@@ -12,7 +12,7 @@
         });
         
         var data = [];
-        var conn = Drupal.db.getConnection('main');
+        var conn = Database.db.getConnection('main');
         
         data.push(feri.ui.createHeaderRow('Aktualni zagovori'));
         
@@ -28,7 +28,7 @@
         rows.close();
         
 		// Create aktualne diploma rows
-		var diplome = Drupal.entity.db('main', 'aktualne_diplome').loadMultiple(uids, ['uid'], false);
+		var diplome = Database.entity.db('main', 'aktualne_diplome').loadMultiple(uids, ['uid'], false);
         for (var diplomeNum = 0, numDiplome = diplome.length; diplomeNum < numDiplome; diplomeNum++) {
             var diploma = diplome[diplomeNum];
             var diplomaTitle = feri.cleanSpecialChars(diploma.title);
@@ -100,7 +100,7 @@
         rows.close();
         
         // Create zadnje diploma rows
-		var diplome = Drupal.entity.db('main', 'zadnje_diplome').loadMultiple(uids, ['uid'], false);
+		var diplome = Database.entity.db('main', 'zadnje_diplome').loadMultiple(uids, ['uid'], false);
         for (var diplomeNum = 0, numDiplome = diplome.length; diplomeNum < numDiplome; diplomeNum++) {
             var diploma = diplome[diplomeNum];
             var diplomaTitle = feri.cleanSpecialChars(diploma.title);

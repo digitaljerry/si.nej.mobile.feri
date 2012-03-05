@@ -154,7 +154,7 @@
 
 
     function getNameList() {
-        var conn = Drupal.db.getConnection('main');
+        var conn = Database.db.getConnection('main');
         var rows = conn.query("SELECT uid, name, full_name FROM user ORDER BY surname ASC");
         var nameList = [];
         

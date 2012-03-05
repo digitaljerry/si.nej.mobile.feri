@@ -2,13 +2,13 @@
 (function () {
     feri.ui.createPeopleDetailWindow = function (settings) {
     	
-        Drupal.setDefaults(settings, {
+        Database.setDefaults(settings, {
             title: 'title here',
             uid: '',
             name: ''
         });
 
-        var peopleData = Drupal.entity.db('main', 'user').load(settings.uid);
+        var peopleData = Database.entity.db('main', 'user').load(settings.uid);
         var peopleDetailWindow = Titanium.UI.createWindow({
             id: 'peopleDetailWindow',
             title: peopleData.full_name,
@@ -294,7 +294,7 @@
     };
 
     function getRelatedSessions(name) {
-        var conn = Drupal.db.getConnection('main');
+        var conn = Database.db.getConnection('main');
         var rows = conn.query("SELECT nid, title FROM node WHERE instructors LIKE ? ORDER BY start_date, nid", ['%' + name + '%']);
 
         var nids = [];
@@ -304,7 +304,7 @@
         }
         rows.close();
 
-        return Drupal.entity.db('main', 'node').loadMultiple(nids, ['start_date', 'nid']);
+        return Database.entity.db('main', 'node').loadMultiple(nids, ['start_date', 'nid']);
     }
 
 })();

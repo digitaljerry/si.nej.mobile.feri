@@ -27,7 +27,7 @@
 		if ( getAll == true )
 			where = '';
 		
-		var conn = Drupal.db.getConnection('main');
+		var conn = Database.db.getConnection('main');
 		
 		Ti.API.debug('SQL WHERE: ' + where);
 		
@@ -48,7 +48,7 @@
 	        
 	        // Create session rows
 	        Ti.API.debug('UIDs: ' + uids);
-	        nodes1 = Drupal.entity.db('main', 'board_parents').loadMultiple(uids, ['title'], true);
+	        nodes1 = Database.entity.db('main', 'board_parents').loadMultiple(uids, ['title'], true);
 	        for (var num = 0, numNodes = nodes1.length; num < numNodes; num++) {
 	        	nodes1[num].kind = 'leaf';
         	}
@@ -63,7 +63,7 @@
         }
         rows2.close();
         
-        nodes2 = Drupal.entity.db('main', 'board_children').loadMultiple(uids2, ['title'], true);
+        nodes2 = Database.entity.db('main', 'board_children').loadMultiple(uids2, ['title'], true);
         for (var num = 0, numNodes = nodes2.length; num < numNodes; num++) {
         	nodes2[num].kind = 'node';
         }
@@ -161,7 +161,7 @@
     	if( addFavRows == true ) {
 	        
 	        var favs = getNodeCat(false, false, true);
-	        var conn = Drupal.db.getConnection('main');
+	        var conn = Database.db.getConnection('main');
 	        
 	        if ( favs.length > 0 ) {
 	        	

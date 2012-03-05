@@ -2,7 +2,7 @@
 (function () {
 
     feri.ui.createBoardDetailWindow = function (settings) {
-        Drupal.setDefaults(settings, {
+        Database.setDefaults(settings, {
             title: 'title here',
             nid: ''
         });
@@ -18,7 +18,7 @@
         sessionDetailWindow.orientationModes = [Ti.UI.PORTRAIT];
 
         // Build session data
-        var sessionData = Drupal.entity.db('main', 'node').load(settings.nid);
+        var sessionData = Database.entity.db('main', 'node').load(settings.nid);
         
         var tvData = [];
         var tv = Ti.UI.createTableView({
@@ -107,7 +107,7 @@
             }
             
             // Get the author information.
-	        var authorData = Drupal.entity.db('main', 'user').loadByField('email', authorList); //sessionData.instructors);
+	        var authorData = Database.entity.db('main', 'user').loadByField('email', authorList); //sessionData.instructors);
 	        
 	        if ( authorData[0] ) { 
 	        	tvData.push(feri.ui.createHeaderRow((authorList.length > 1) ? 'Authors' : 'Author'));
