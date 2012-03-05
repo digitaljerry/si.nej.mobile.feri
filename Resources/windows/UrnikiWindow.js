@@ -58,21 +58,13 @@
 		feri.ui.activityIndicator.showModal('Nalagam ...', feri.loadTimeout, 'Napaka pri povezavi.');
 		webview.setVisible(false);
         
-        urnikiWindow.add(webview);
-		
-		// adding the view
-		urnikiWindow.add(webview);
-        urnikiWindow.addEventListener('focus', function (e) {
-            webview.url = feri.informacije_url;
-            webview.height = '100%';
-            webview.width = '100%';
-        });
-        
         var xhr = Ti.Network.createHTTPClient();
 		xhr.open('POST', feri.urniki_url);
 		xhr.onload = function () {
 			webview.html = this.responseText;
-			
+			webview.height = '100%';
+            webview.width = '100%';
+            
 			webview.setVisible(true);
 		    feri.ui.activityIndicator.hideModal();
 		};
@@ -83,6 +75,9 @@
 			groups_index:"1,2,3,4,5,6,7,8,9",
 			groups_values:"64,71,72,73,148,149,150,258,259"
 		});
+		
+        // adding the view
+		urnikiWindow.add(webview);
         
         return urnikiWindow;
     };
