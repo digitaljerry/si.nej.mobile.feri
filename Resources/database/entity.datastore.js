@@ -424,18 +424,6 @@ Database.entity.Datastore.prototype.fixTables = function (table) {
 	    resultSet.next();
 	};
 	resultSet.close();
-	
-	/*var query = 'SELECT data FROM node_cat';
-    Ti.API.debug('Fixing: ' + query);
-    
-    var resultSet = this.connection.query(query);
-    var nekej;
-	while (resultSet.isValidRow()) {
-	    nekej = resultSet.fieldByName('data');
-	    resultSet.next();
-	};
-	Ti.API.debug(nekej);
-	resultSet.close();*/
 };
 
 Database.entity.Datastore.prototype.truncateTable = function (table) {

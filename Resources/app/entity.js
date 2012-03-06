@@ -142,43 +142,6 @@ Database.entity.sites.main.types.user.schema = {
 Database.entity.sites.main.types.user.schema.prototype = Database.constructPrototype(Database.entity.DefaultSchema);
 
 // Define our entity storage rules.
-Database.entity.sites.main.types.node_cat.schema = {
-    fields: function () {
-        return {
-            fields: {
-                title: {
-                    type: 'VARCHAR'
-                }
-            },
-            indexes: {
-                title_idx: ['title']
-            }
-        };
-    },
-
-    getFieldValues: function (entity, values) {
-        values.changed = entity.changed;
-    },
-
-    /**
-     * Retrieves updates for this entity type.
-     *
-     * @param {string} bundle
-     *   The bundle type we want to retrieve.
-     * @param {Database.entity.Datastore} store
-     *   The datastore to which to save the retrieved entities.
-     * @param func
-     *   A callback function to call after the fetching process has been completed.
-     */
-    defaultFetcher: function (bundle, store, func) {
-        var url = 'http://feri.tux.si/mobile/board/tree/';
-        //var url = 'http://codestrong.com/mobile/sessions/' + bundle;
-        this.prototype.defaultFetcher.apply(this, [bundle, store, func, url]);
-    }
-};
-Database.entity.sites.main.types.node_cat.schema.prototype = Database.constructPrototype(Database.entity.DefaultSchema);
-
-// Define our entity storage rules.
 Database.entity.sites.main.types.board_parents.schema = {
     fields: function () {
         return {
@@ -276,52 +239,6 @@ Database.entity.sites.main.types.board_notifications.schema = {
     }
 };
 Database.entity.sites.main.types.board_notifications.schema.prototype = Database.constructPrototype(Database.entity.DefaultSchema);
-
-// Define our entity storage rules.
-Database.entity.sites.main.types.people.schema = {
-    fields: function () {
-        return {
-            fields: {
-                uid: {
-                    type: 'INTEGER'
-                },
-                title: {
-                    type: 'VARCHAR'
-                },
-                position: {
-                    type: 'VARCHAR'
-                },
-                first_name: {
-                    type: 'VARCHAR'
-                },
-                last_name: {
-                    type: 'VARCHAR'
-                },
-                email: {
-                    type: 'VARCHAR'
-                },
-                office: {
-                    type: 'VARCHAR'
-                },
-                hours: {
-                    type: 'VARCHAR'
-                },
-                phone: {
-                    type: 'VARCHAR'
-                }
-            },
-            indexes: {
-                uid_idx: ['uid'],
-                last_name_idx: ['last_name']
-            }
-        };
-    },
-
-    getFieldValues: function (entity, values) {
-        values.changed = entity.changed;
-    }
-};
-Database.entity.sites.main.types.people.schema.prototype = Database.constructPrototype(Database.entity.DefaultSchema);
 
 // Define our entity storage rules.
 Database.entity.sites.main.types.aktualne_diplome.schema = {

@@ -35,9 +35,6 @@ if (!Database.db.getConnection('main').tableExists('node')) {
 if (!Database.db.getConnection('main').tableExists('user')) {
   	Database.entity.db('main', 'user').initializeSchema();
 }
-if (!Database.db.getConnection('main').tableExists('node_cat')) {
-  	Database.entity.db('main', 'node_cat').initializeSchema();
-}
 if (!Database.db.getConnection('main').tableExists('board_parents')) {
   	Database.entity.db('main', 'board_parents').initializeSchema();
 }
@@ -46,12 +43,6 @@ if (!Database.db.getConnection('main').tableExists('board_children')) {
 }
 if (!Database.db.getConnection('main').tableExists('board_notifications')) {
   	Database.entity.db('main', 'board_notifications').initializeSchema();
-}
-if (!Database.db.getConnection('main').tableExists('people')) {
-  	Database.entity.db('main', 'people').initializeSchema();
-}
-if (!Database.db.getConnection('main').tableExists('degrees')) {
-  	Database.entity.db('main', 'degrees').initializeSchema();
 }
 if (!Database.db.getConnection('main').tableExists('aktualne_diplome')) {
   	Database.entity.db('main', 'aktualne_diplome').initializeSchema();

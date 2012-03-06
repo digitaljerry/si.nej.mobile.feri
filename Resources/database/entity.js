@@ -34,19 +34,6 @@ Database.entity = {
                         return 'node/' + id;
                     }
                 },
-                node_cat: {
-                    label: 'Node cat',
-                    entity_keys: {
-                        id: 'uid',
-                        revision: 'vid',
-                        bundle: 'type',
-                        label: 'title'
-                    },
-                    schema: {},
-                    requestUrl: function (id) {
-                        return 'node_cat/' + id;
-                    }
-                },
                 user: {
                     label: Ti.Locale.getString('User', 'User'),
                     entity_keys: {
@@ -93,30 +80,6 @@ Database.entity = {
                     schema: {},
                     requestUrl: function (id) {
                         return 'board_notifications/' + id;
-                    }
-                },
-                people: {
-                    label: 'People',
-                    entity_keys: {
-                        id: 'uid',
-                        bundle: 'type',
-                        label: 'title'
-                    },
-                    schema: {},
-                    requestUrl: function (id) {
-                        return 'people/' + id;
-                    }
-                },
-                degrees: {
-                    label: 'Degrees',
-                    entity_keys: {
-                        id: 'uid',
-                        bundle: 'type',
-                        label: 'title'
-                    },
-                    schema: {},
-                    requestUrl: function (id) {
-                        return 'degrees/' + id;
                     }
                 },
                 zadnje_diplome: {
