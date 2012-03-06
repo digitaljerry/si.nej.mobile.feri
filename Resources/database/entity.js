@@ -24,7 +24,7 @@ Database.entity = {
                 node: {
                     label: Ti.Locale.getString('Node', 'Node'),
                     entity_keys: {
-                        id: 'nid',
+                        id: 'uid',
                         revision: 'vid',
                         bundle: 'type',
                         label: 'title'
@@ -259,7 +259,7 @@ Database.entity.DefaultSchema.prototype.defaultFetcher = function (bundle, store
 				
 				// mapping
     			var entity = {
-    				nid: guid,
+    				uid: guid,
     				title: item.getElementsByTagName("title").item(0).text,
     				body: item.getElementsByTagName("description").item(0).text,
     				author: author,

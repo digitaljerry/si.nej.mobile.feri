@@ -4,7 +4,7 @@
     feri.ui.createBoardDetailWindow = function (settings) {
         Database.setDefaults(settings, {
             title: 'title here',
-            nid: ''
+            uid: ''
         });
         
         var commonPadding = 15;
@@ -18,7 +18,7 @@
         sessionDetailWindow.orientationModes = [Ti.UI.PORTRAIT];
 
         // Build session data
-        var sessionData = Database.entity.db('main', 'node').load(settings.nid);
+        var sessionData = Database.entity.db('main', 'node').load(settings.uid);
         
         var tvData = [];
         var tv = Ti.UI.createTableView({
@@ -130,10 +130,10 @@
 			bb2.addEventListener('click',function(ce)
 			{
 				//feri.ui.activityIndicator.showModal('Nalagam ...', feri.loadTimeout, 'Napaka pri povezavi.');
-				//boardDetailWebview.url = 'http://www.feri.uni-mb.si/odeska/brnj2.asp?id=' + sessionData.nid;
+				//boardDetailWebview.url = 'http://www.feri.uni-mb.si/odeska/brnj2.asp?id=' + sessionData.uid;
 				//feri.getWebcontrols(sessionDetailWindow, boardDetailWebview);
 				
-				var url = 'http://www.feri.uni-mb.si/odeska/brnj2.asp?id=' + settings.nid;
+				var url = 'http://www.feri.uni-mb.si/odeska/brnj2.asp?id=' + settings.uid;
 				if (feri.useDashboard) {
 					feri.navGroup.open(feri.ui.createWebViewWindow({url: url}), {
 						animated: true

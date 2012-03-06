@@ -134,7 +134,7 @@ Database.entity.Datastore.prototype.insert = function (entity) {
  */
 Database.entity.Datastore.prototype.update = function (entity) {
     var data = JSON.stringify(entity);
-    this.connection.query("UPDATE " + this.entityType + " SET type=?, title=?, data=? WHERE nid=?", [entity.type, entity.title, data, entity[this.idField]]);
+    this.connection.query("UPDATE " + this.entityType + " SET type=?, title=?, data=? WHERE uid=?", [entity.type, entity.title, data, entity[this.idField]]);
     return this.connection.rowsAffected;
 };
 

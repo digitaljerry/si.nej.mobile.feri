@@ -4,7 +4,7 @@ Database.entity.sites.main.types.node.schema = {
     fields: function () {
         return {
             fields: {
-                nid: {
+                uid: {
                     type: 'INTEGER'
                 },
                 title: {
@@ -24,7 +24,7 @@ Database.entity.sites.main.types.node.schema = {
                 }
             },
             indexes: {
-            	nid_idx: ['nid']
+            	uid_idx: ['uid']
             }
         };
     },

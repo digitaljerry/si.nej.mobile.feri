@@ -295,16 +295,16 @@
 
     function getRelatedSessions(name) {
         var conn = Database.db.getConnection('main');
-        var rows = conn.query("SELECT nid, title FROM node WHERE instructors LIKE ? ORDER BY start_date, nid", ['%' + name + '%']);
+        var rows = conn.query("SELECT uid, title FROM node WHERE instructors LIKE ? ORDER BY start_date, uid", ['%' + name + '%']);
 
-        var nids = [];
+        var uids = [];
         while (rows.isValidRow()) {
-            nids.push(rows.fieldByName('nid'));
+            uids.push(rows.fieldByName('uid'));
             rows.next();
         }
         rows.close();
 
-        return Database.entity.db('main', 'node').loadMultiple(nids, ['start_date', 'nid']);
+        return Database.entity.db('main', 'node').loadMultiple(uids, ['start_date', 'uid']);
     }
 
 })();

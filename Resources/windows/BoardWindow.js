@@ -73,13 +73,13 @@
         
         // zadnje objave click handler
         feri.tableview.addEventListener('click', function (e) {
-			if (e.rowData.nid) {
+			if (e.rowData.uid) {
                 
                 if (feri.useDashboard) {
                 	feri.navGroup.open(feri.ui.createBoardDetailWindow({
                     	title: e.rowData.sessionTitle,
                     	sessionTitle: e.rowData.sessionTitle,
-                    	nid: e.rowData.nid
+                    	uid: e.rowData.uid
                 	}), {
                     	animated: true
                 	});
@@ -87,7 +87,7 @@
                 	feri.tabOglasna.open(feri.ui.createBoardDetailWindow({
                     	title: e.rowData.sessionTitle,
                     	sessionTitle: e.rowData.sessionTitle,
-                    	nid: e.rowData.nid
+                    	uid: e.rowData.uid
                 	}),{animated:true});
                 }
             }
@@ -146,20 +146,20 @@
 			where = "WHERE category = " + catUid;
         
         var conn = Database.db.getConnection('main');
-        var rows = conn.query("SELECT nid FROM node "+where+" ORDER BY nid DESC LIMIT 25");
-        Ti.API.debug("SELECT nid FROM node "+where+" ORDER BY nid DESC LIMIT 25");
+        var rows = conn.query("SELECT uid FROM node "+where+" ORDER BY uid DESC LIMIT 25");
+        Ti.API.debug("SELECT uid FROM node "+where+" ORDER BY uid DESC LIMIT 25");
         
-        var nids = [];
+        var uids = [];
 
         while (rows.isValidRow()) {
-            nids.push(rows.fieldByName('nid'));
+            uids.push(rows.fieldByName('uid'));
             rows.next();
         }
         rows.close();
         
 		// Create session rows
 		var lastDate = '';
-        var sessions = Database.entity.db('main', 'node').loadMultiple(nids, ['nid'], false);
+        var sessions = Database.entity.db('main', 'node').loadMultiple(uids, ['uid'], false);
         for (var sessionNum = 0, numSessions = sessions.length; sessionNum < numSessions; sessionNum++) {
             var session = sessions[sessionNum];
             var sessionTitle = feri.cleanSpecialChars(session.title);
@@ -170,7 +170,7 @@
                 backgroundColor: '#fff',
                 color: '#000',
                 date: session.date,
-                nid: session.nid,
+                uid: session.uid,
                 sessionTitle: sessionTitle,
                 height: 'auto',
                 layout: 'vertical',
@@ -244,7 +244,7 @@
                 backgroundColor: '#fff',
                 color: '#CCCCCC',
                 date: '',
-                nid: 0,
+                uid: 0,
                 height: 'auto',
                 layout: 'vertical',
                 focusable: true,
