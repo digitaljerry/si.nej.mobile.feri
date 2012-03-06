@@ -234,7 +234,7 @@ Database.entity.DefaultSchema.prototype.defaultFetcher = function (bundle, store
     		
     		var entities = [];
     		
-    		Ti.API.info('>>> got the feed! ... ');
+    		Ti.API.info('>>> got the feed <<<');
     			
 			var doc = fetchedData.documentElement;
 			var items = doc.getElementsByTagName("item");
@@ -277,7 +277,7 @@ Database.entity.DefaultSchema.prototype.defaultFetcher = function (bundle, store
     		
     		var entities = [];
     		
-    		Ti.API.info('>>> got the feed! ... ');
+    		Ti.API.info('>>> got the feed <<<');
     		
     		var doc = fetchedData.documentElement;
 			var items = doc.getElementsByTagName("li");
@@ -316,7 +316,7 @@ Database.entity.DefaultSchema.prototype.defaultFetcher = function (bundle, store
     		
     		var entities = [];
     		
-    		Ti.API.info('>>> got the feed! ... ');
+    		Ti.API.info('>>> got the feed <<<');
     			
 			var doc = fetchedData.documentElement;
 			var items = doc.getElementsByTagName("item");

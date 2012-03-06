@@ -17,7 +17,6 @@
         data.push(feri.ui.createHeaderRow('Aktualni zagovori'));
         
         var rows = conn.query("SELECT uid FROM aktualne_diplome ORDER BY uid DESC LIMIT 25");
-        Ti.API.debug("SELECT uid FROM aktualne_diplome ORDER BY uid DESC LIMIT 25");
         
         var uids = [];
 
@@ -89,7 +88,6 @@
         data.push(feri.ui.createHeaderRow('Zadnje diplome'));
         
         var rows = conn.query("SELECT uid FROM zadnje_diplome ORDER BY uid DESC LIMIT 25");
-        Ti.API.debug("SELECT uid FROM zadnje_diplome ORDER BY uid DESC LIMIT 25");
         
         var uids = [];
 

@@ -101,11 +101,6 @@ var feri = {
 			window.setToolbar([flexSpace,bb2,flexSpace]);
 		} else {}
 		
-		webview.addEventListener('load',function(e)
-		{
-			Ti.API.debug("url = "+webview.url);
-			Ti.API.debug("event url = "+e.url);
-		});
 		bb2.addEventListener('click',function(ce)
 		{
 			if (ce.index == 0)

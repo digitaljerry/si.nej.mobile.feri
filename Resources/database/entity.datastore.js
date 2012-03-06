@@ -233,10 +233,6 @@ Database.entity.Datastore.prototype.loadByField = function (field, values, order
     if (order !== undefined) {
         query += ' ORDER BY ' + order.join(', ') + ((direction == true) ? '' : ' DESC');
     }
-    Ti.API.debug(query);
-    Ti.API.debug(values);
-    Ti.API.debug('Values length: ' + values.length);
-    
     var rows = this.connection.query(query, values);
     
     if (rows) {
@@ -244,15 +240,10 @@ Database.entity.Datastore.prototype.loadByField = function (field, values, order
             var data = rows.fieldByName('data');
             var entity = JSON.parse(data);
             entities.push(entity);
-            
-            // json debug
-            Ti.API.debug('+ ' + entity.title);
-            
             rows.next();
         }
         rows.close();
     }
-    Ti.API.debug('Rows length: ' + entities.length);
 
     return entities;
 };
@@ -418,8 +409,7 @@ Database.entity.Datastore.prototype.fixTables = function (table) {
 	    var json_result = JSON.stringify(result).replace(/\'/g, "\\'");;
 		
 		var query2 = 'UPDATE ' + table + ' SET data = \'' + json_result + '\' WHERE uid = ' + uid;
-		this.connection.query(query2);
-		Ti.API.debug(query2);	    
+		this.connection.query(query2);  
 	    
 	    resultSet.next();
 	};
@@ -428,6 +418,5 @@ Database.entity.Datastore.prototype.fixTables = function (table) {
 
 Database.entity.Datastore.prototype.truncateTable = function (table) {
     var query = 'DELETE FROM ' + table;
-    Ti.API.debug('Emptying the table: ' + query);
     return this.connection.query(query);
 };

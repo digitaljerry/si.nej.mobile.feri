@@ -29,8 +29,6 @@
 		
 		var conn = Database.db.getConnection('main');
 		
-		Ti.API.debug('SQL WHERE: ' + where);
-		
 		var uids = [];
 		var uids2 = [];
 		var nodes1 = [];
@@ -47,7 +45,6 @@
 	        rows.close();
 	        
 	        // Create session rows
-	        Ti.API.debug('UIDs: ' + uids);
 	        nodes1 = Database.entity.db('main', 'board_parents').loadMultiple(uids, ['title'], true);
 	        for (var num = 0, numNodes = nodes1.length; num < numNodes; num++) {
 	        	nodes1[num].kind = 'leaf';
@@ -219,8 +216,6 @@
         	cats = getNodeCat(w.uid, true, false);
         else
         	cats = getNodeCat(0, true, false);
-        
-        Ti.API.debug('Length: ' + cats.length);
         
         for (var catNum = 0, numCats = cats.length; catNum < numCats; catNum++) {
             var cat = cats[catNum];

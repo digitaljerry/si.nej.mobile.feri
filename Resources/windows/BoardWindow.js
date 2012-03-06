@@ -147,7 +147,6 @@
         
         var conn = Database.db.getConnection('main');
         var rows = conn.query("SELECT uid FROM node "+where+" ORDER BY uid DESC LIMIT 25");
-        Ti.API.debug("SELECT uid FROM node "+where+" ORDER BY uid DESC LIMIT 25");
         
         var uids = [];
 
