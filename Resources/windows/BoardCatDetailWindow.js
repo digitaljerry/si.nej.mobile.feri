@@ -19,7 +19,6 @@
                 fontWeight: 'bold'
             }
         };
-        baseRow[feri.ui.backgroundSelectedProperty + 'Color'] = feri.ui.backgroundSelectedColor;
         
         var data = [];
         var commonPadding = 15;
