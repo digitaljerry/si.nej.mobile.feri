@@ -35,11 +35,25 @@
         // create main day window
         feri.boardWindow = Titanium.UI.createWindow({
             id: 'boardWindow',
-            title: 'Zadnja obvestila',
+            title: '',
             backgroundColor: '#fff',
             barColor: feri.ui.barColor,
             fullscreen: false
         });
+        
+        // tabbar control
+        var tabbar = Ti.UI.iOS.createTabbedBar({
+			labels:['Aktualno', 'Deska'],
+			backgroundColor:feri.ui.barColor,
+			index: 0,
+			style:Titanium.UI.iPhone.SystemButtonStyle.BAR
+		});
+		feri.boardWindow.setTitleControl(tabbar);
+		
+		tabbar.addEventListener('click', function(e)
+		{
+			Ti.fireEvent('feri:flip_oglasna');
+		});
         
         //////////////////////
         // ZADNJA OBVESTILA //
@@ -66,8 +80,12 @@
 		// if user has set oglasna deska as default view do thise
 		if (Titanium.App.Properties.getString('boardLatest') == 'latest') {
 			feri.oglasnaTableView.add(feri.tableview);
+			tabbar.index = 0;
+			feri.boardWindow.title = 'Aktualno';
 		} else {
 			feri.oglasnaTableView.add(feri.tableviewFirst);
+			tabbar.index = 1;
+			feri.boardWindow.title = 'Deska';
 		}
         
         // zadnje objave click handler

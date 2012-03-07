@@ -108,30 +108,6 @@
 	                    });
 	                }
 	            }
-	            
-	            if (icon.flip) {
-	                if (feri.isAndroid()) {
-	                    feri.iconWin.addEventListener('open', function () {
-	                        feri.android.menu.init({
-	                            win: feri.iconWin,
-	                            buttons: [{
-	                                title: "Flip",
-	                                clickevent: function () {
-	                                    Ti.fireEvent('feri:flip_oglasna');
-	                                }
-	                            }]
-	                        });
-	                    });
-	                } else {
-	                    var rightButton = Ti.UI.createButton({
-	                        systemButton: Ti.UI.iPhone.SystemButton.BOOKMARKS
-	                    });
-	                    feri.iconWin.rightNavButton = rightButton;
-	                    rightButton.addEventListener('click', function () {
-	                        Ti.fireEvent('feri:flip_oglasna');
-	                    });
-	                }
-	            }
 	
 	            feri.iconWin.navBarHidden = false;
 	            feri.navGroup.open(feri.iconWin, {
@@ -177,20 +153,22 @@
 		    title:'Urniki',
 		    window:feri.ui.createUrnikiWindow()
 		});
+		var winZaposleni = feri.ui.createPeopleWindow();
 		feri.tabPeople = Titanium.UI.createTab({  
 		    icon:'images/dashboard/zaposleniTab' + imageSuffix + '.png',
 		    title:'Zaposleni',
-		    window:feri.ui.createPeopleWindow()
+		    window:winZaposleni
 		});
 		feri.tabMap = Titanium.UI.createTab({  
 		    icon:'images/dashboard/zemljevidTab' + imageSuffix + '.png',
 		    title:'Zemljevid',
 		    window:feri.ui.createMapWindow()
 		});
+		var winDiplome = feri.ui.createDiplomeWindow();
 		feri.tabDiplome = Titanium.UI.createTab({  
 		    icon:'images/dashboard/diplomeTab' + imageSuffix + '.png',
 		    title:'Diplome',
-		    window:feri.ui.createDiplomeWindow()
+		    window:winDiplome
 		});
 		feri.tabInformacije = Titanium.UI.createTab({  
 		    icon:'images/dashboard/informacijeTab' + imageSuffix + '.png',
@@ -208,19 +186,26 @@
 		    window:feri.ui.createAboutWindow()
 		});
 		
-		// refresh in flip gumbi
-		var leftButtonOglasna = Ti.UI.createButton({
-			systemButton: Ti.UI.iPhone.SystemButton.BOOKMARKS
-        });
-        winOglasna.leftNavButton = leftButtonOglasna;
-        leftButtonOglasna.addEventListener('click', function () {
-            Ti.fireEvent('feri:flip_oglasna');
-        });
-        var rightButtonOglasna = Ti.UI.createButton({
+		// refresh buttons
+		var rightButtonOglasna = Ti.UI.createButton({
             systemButton: Ti.UI.iPhone.SystemButton.REFRESH
         });
         winOglasna.rightNavButton = rightButtonOglasna;
         rightButtonOglasna.addEventListener('click', function () {
+            Ti.fireEvent('feri:update_data');
+        });
+        var rightButtonDiplome = Ti.UI.createButton({
+            systemButton: Ti.UI.iPhone.SystemButton.REFRESH
+        });
+        winDiplome.rightNavButton = rightButtonDiplome;
+        rightButtonDiplome.addEventListener('click', function () {
+            Ti.fireEvent('feri:update_data');
+        });
+        var rightButtonZaposleni = Ti.UI.createButton({
+            systemButton: Ti.UI.iPhone.SystemButton.REFRESH
+        });
+        winZaposleni.rightNavButton = rightButtonZaposleni;
+        rightButtonZaposleni.addEventListener('click', function () {
             Ti.fireEvent('feri:update_data');
         });
 		
@@ -238,8 +223,6 @@
 		
 		// open tab group
 		tabGroup.open();
-
-		
 	}
 
     Ti.addEventListener('feri:update_data', function (e) {
@@ -256,14 +239,14 @@
     		function () {
     			feri.boardWindow.setTitle(e.table);
     			Titanium.App.Properties.setString('boardLatest','category');
-    			feri.boardWindow.setTitle('Oglasna deska');
+    			feri.boardWindow.setTitle('Deska');
     		});
     	} else {
 			feri.oglasnaTableView.animate({view:feri.tableview,transition:Ti.UI.iPhone.AnimationStyle.FLIP_FROM_LEFT},
 			function () {
     			feri.boardWindow.setTitle(e.table);
     			Titanium.App.Properties.setString('boardLatest','latest');
-    			feri.boardWindow.setTitle('Zadnja obvestila');
+    			feri.boardWindow.setTitle('Aktualno');
     		});    		
     	}
     });

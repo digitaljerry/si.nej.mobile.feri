@@ -16,8 +16,7 @@
 			{
 				image: 'images/dashboard/oglasna' + imageSuffix + '.png',
 				func: feri.ui.createBoardWindow,
-				flip: true,
-				refresh: false
+				refresh: true
 			},
 			{
 				image: 'images/dashboard/urniki' + imageSuffix + '.png',
@@ -34,7 +33,8 @@
 			},
 			{
 				image: 'images/dashboard/diplome' + imageSuffix + '.png',
-				func: feri.ui.createDiplomeWindow
+				func: feri.ui.createDiplomeWindow,
+				refresh: true
 			},
 			{
 				image: 'images/dashboard/informacije' + imageSuffix + '.png',

@@ -15,7 +15,7 @@
 			{title:'Dashboard', switchAppUse: 'dashboard', header:'Oblika'},
 			{title:'Zavihki', switchAppUse: 'tabs'},
 			{title:'Dashboard', hasCheck:true, header:'Začetna stran'},
-			{title:'Oglasna deska'},
+			{title:'Deska'},
 			{title:'Urnik'},
 			{title:'Zaposleni'},
 			{title:'Zemljevid'},

@@ -20,7 +20,7 @@
 	}
 	
 	feri.extend(feri.ui, {
-		backgroundSelectedColor: '#00000',
+		backgroundSelectedColor: '#000000',
 		tabBarHeight: 76,
 		mainBackgroundColor: '#004076',
 		barColor: '#004076',
