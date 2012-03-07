@@ -4,7 +4,7 @@
 var Ti, Database;
 
 // this sets the background color of the master UIView (when there are no windows/tab groups on it)
-Ti.UI.setBackgroundColor('#414444');
+Ti.UI.setBackgroundColor('#1a5384');
 
 Ti.include(
 	// FERI libraries

@@ -12,7 +12,7 @@
             id: 'boardDetailWindow',
             title: settings.title,
             backgroundColor: '#FFF',
-            barColor: '#414444',
+            barColor: feri.ui.barColor,
             fullscreen: false
         });
         sessionDetailWindow.orientationModes = [Ti.UI.PORTRAIT];

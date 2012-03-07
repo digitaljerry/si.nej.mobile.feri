@@ -5,14 +5,14 @@
         var PeopleWindow = Titanium.UI.createWindow({
             id: 'peopleWindow',
             title: 'Zaposleni',
-            backgroundColor: '#FFF',
-            barColor: '#414444',
+            backgroundColor: '#cd1717',
+            barColor: feri.ui.barColor,
             fullscreen: false
         });
 
         // Create the table view
         var tableview = Titanium.UI.createTableView({
-            backgroundColor: '#fff',
+            backgroundColor: '#dddddd',
             filterAttribute:'search'
         });
         
@@ -42,15 +42,12 @@
                     hasChild: feri.isAndroid(),
                     className: 'people_row',
                     selectedColor: '#999',
-                    backgroundColor: '#fff',
-                    color: '#000',
                     search: name,
                     uid: uid,
                     height: 40,
                     layout: 'auto'
                 });
-                presenterRow[feri.ui.backgroundSelectedProperty + 'Color'] = feri.ui.backgroundSelectedColor;
-
+			
                 if (fullName == shortName) {
                     fullName = '';
                 } else {

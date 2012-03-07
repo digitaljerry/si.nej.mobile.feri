@@ -1,11 +1,11 @@
 (function() {
-	var iconHeight = 85;
-	var iconWidth = 102;
+	var iconHeight = 122;
+	var iconWidth = 107;
 	var imageSuffix = '';
 	
 	if (feri.isLargeScreen()) {
-		iconHeight = 170;
-		iconWidth = 204;
+		iconHeight = 243;
+		iconWidth = 213;
 		imageSuffix = '@2x';
 	} 
 	

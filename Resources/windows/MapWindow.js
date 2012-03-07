@@ -6,7 +6,7 @@
             id: 'mapWindow',
             title: 'Zemljevid',
             backgroundColor: '#FFF',
-            barColor: '#414444',
+            barColor: feri.ui.barColor,
             height: '100%',
             fullscreen: false
         });

@@ -13,7 +13,7 @@
             id: 'peopleDetailWindow',
             title: peopleData.full_name,
             backgroundColor: '#FFF',
-            barColor: '#414444',
+            barColor: feri.ui.barColor,
             fullscreen: false
         });
         peopleDetailWindow.orientationModes = [Ti.UI.PORTRAIT];

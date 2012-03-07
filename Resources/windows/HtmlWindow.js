@@ -10,7 +10,7 @@
             id: 'htmlWindow',
             title: settings.title,
             backgroundColor: '#FFF',
-            barColor: '#414444',
+            barColor: feri.ui.barColor,
             width: '100%',
             height: '100%',
             fullscreen: false

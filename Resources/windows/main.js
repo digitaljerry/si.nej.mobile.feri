@@ -21,16 +21,6 @@
 	        navBarHidden: true,
 	        exitOnClose: true
 	    });
-	    var viewFade = Ti.UI.createView({
-	        backgroundColor: '#fff',
-	        borderColor: '#FF7132',
-	        borderWidth: 4,
-	        height: feri.ui.dashboardHeight,
-	        width: feri.ui.dashboardWidth,
-	        bottom: 20,
-	        opacity: 0.75,
-	        borderRadius: 8
-	    });
 	    var viewIcons = Ti.UI.createView({
 	        height: feri.ui.dashboardHeight,
 	        width: feri.ui.dashboardWidth,
@@ -38,7 +28,6 @@
 	        borderRadius: 0,
 	        layout: 'horizontal'
 	    });
-	    mainWindow.add(viewFade);
 	    mainWindow.add(viewIcons);
 	
 	    // handle cross-platform navigation

@@ -6,7 +6,7 @@
             id: 'nastavitveWindow',
             title: 'Nastavitve',
             backgroundColor: '#FFF',
-            barColor: '#414444',
+            barColor: feri.ui.barColor,
             fullscreen: false
         });
         

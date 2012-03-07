@@ -78,7 +78,7 @@
             id: 'boardCatWindow',
             title: w.title,
             backgroundColor: '#fff',
-            barColor: '#414444',
+            barColor: feri.ui.barColor,
             fullscreen: false
         });
         

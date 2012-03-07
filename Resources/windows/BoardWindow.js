@@ -37,7 +37,7 @@
             id: 'boardWindow',
             title: 'Zadnja obvestila',
             backgroundColor: '#fff',
-            barColor: '#414444',
+            barColor: feri.ui.barColor,
             fullscreen: false
         });
         

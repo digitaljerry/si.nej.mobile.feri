@@ -1,15 +1,15 @@
 (function() {
 	if (feri.isLargeScreen()) {
 		feri.ui = {
-			mainBackgroundImage: 'images/home_ipad.png',
-			dashboardHeight: 510,
-			dashboardWidth: 612
+			mainBackgroundImage: 'images/home@2x.png',
+			dashboardHeight: 846,
+			dashboardWidth: 640
 		};
 	} else {
 		feri.ui = {
 			mainBackgroundImage: 'images/home.png',
-			dashboardHeight: 255,
-			dashboardWidth: 306
+			dashboardHeight: 365,
+			dashboardWidth: 326
 		};
 	}
 	
@@ -20,8 +20,11 @@
 	}
 	
 	feri.extend(feri.ui, {
-		backgroundSelectedColor: '#999',
-		tabBarHeight: 36
+		backgroundSelectedColor: '#00000',
+		tabBarHeight: 76,
+		mainBackgroundColor: '#004076',
+		barColor: '#004076',
+		backgroundColor: '#cccccc'
 	});
 	
 	feri.ui.createHeaderRow = function(title) {

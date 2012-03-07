@@ -7,7 +7,7 @@
             id: 'diplomeZadnjeWindow',
             title: 'Zadnje diplome',
             backgroundColor: '#FFF',
-            barColor: '#414444',
+            barColor: feri.ui.barColor,
             navBarHidden: false,
             fullscreen: false
         });

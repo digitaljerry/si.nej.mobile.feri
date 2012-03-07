@@ -37,7 +37,7 @@
             id: 'boardCatDetailWindow',
             title: catTitle,
             backgroundColor: '#fff',
-            barColor: '#414444',
+            barColor: feri.ui.barColor,
             fullscreen: false
         });
         

@@ -4,8 +4,8 @@
         var aboutWindow = Titanium.UI.createWindow({
             id: 'aboutWindow',
             title: 'About',
-            backgroundColor: '#FFF',
-            barColor: '#414444',
+            backgroundColor: '#dddddd',
+            barColor: feri.ui.barColor,
             navBarHidden: false,
             fullscreen: false
         });

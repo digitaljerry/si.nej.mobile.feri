@@ -121,7 +121,7 @@ var feri = {
 	feri.getSearchbar = function(tableview) {
 		// search bar
 		var search = Titanium.UI.createSearchBar({
-			barColor:'#414444',
+			barColor: feri.ui.barColor,
 			showCancel:false,
 			hintText:'išči'
 		});

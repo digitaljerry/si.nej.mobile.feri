@@ -8,7 +8,7 @@
             id: 'urnikiWindow',
             title: 'Urniki',
             backgroundColor: '#FFF',
-            barColor: '#414444',
+            barColor: feri.ui.barColor,
             navBarHidden: false,
             fullscreen: false
         });

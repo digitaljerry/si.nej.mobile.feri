@@ -9,7 +9,7 @@
             id: 'webViewWindow',
             title: w.title,
             backgroundColor: '#FFF',
-            barColor: '#414444',
+            barColor: feri.ui.barColor,
             navBarHidden: false,
             fullscreen: false
         });
