@@ -84,7 +84,7 @@
 	            // add a left navigation button for ios
 	            if (!feri.isAndroid()) {
 	                var leftButton = Ti.UI.createButton({
-	                    backgroundImage: 'images/6dots.png',
+	                    backgroundImage: '/images/6dots.png',
 	                    width: 41,
 	                    height: 30
 	                });
@@ -136,6 +136,7 @@
 	            // bring the icon back
 	            view.backgroundImage = icon.image;
 	        });
+	        
 	        return view;
 	    };
 	
@@ -169,44 +170,44 @@
 		
 		var winOglasna = feri.ui.createBoardWindow();
 		feri.tabOglasna = Titanium.UI.createTab({  
-		    icon:'images/dashboard/oglasnaTab' + imageSuffix + '.png',
+		    icon:'/images/dashboard/oglasnaTab' + imageSuffix + '.png',
 		    title:'Oglasna',
 		    window:winOglasna
 		});
 		feri.tabUrniki = Titanium.UI.createTab({  
-		    icon:'images/dashboard/urnikiTab' + imageSuffix + '.png',
+		    icon:'/images/dashboard/urnikiTab' + imageSuffix + '.png',
 		    title:'Urniki',
 		    window:feri.ui.createUrnikiWindow()
 		});
 		var winZaposleni = feri.ui.createPeopleWindow();
 		feri.tabPeople = Titanium.UI.createTab({  
-		    icon:'images/dashboard/zaposleniTab' + imageSuffix + '.png',
+		    icon:'/images/dashboard/zaposleniTab' + imageSuffix + '.png',
 		    title:'Zaposleni',
 		    window:winZaposleni
 		});
 		feri.tabMap = Titanium.UI.createTab({  
-		    icon:'images/dashboard/zemljevidTab' + imageSuffix + '.png',
+		    icon:'/images/dashboard/zemljevidTab' + imageSuffix + '.png',
 		    title:'Zemljevid',
 		    window:feri.ui.createMapWindow()
 		});
 		var winDiplome = feri.ui.createDiplomeWindow();
 		feri.tabDiplome = Titanium.UI.createTab({  
-		    icon:'images/dashboard/diplomeTab' + imageSuffix + '.png',
+		    icon:'/images/dashboard/diplomeTab' + imageSuffix + '.png',
 		    title:'Diplome',
 		    window:winDiplome
 		});
 		feri.tabInformacije = Titanium.UI.createTab({  
-		    icon:'images/dashboard/informacijeTab' + imageSuffix + '.png',
+		    icon:'/images/dashboard/informacijeTab' + imageSuffix + '.png',
 		    title:'Informacije',
 		    window:feri.ui.createInformacijeWindow()
 		});
 		feri.tabNastavitve = Titanium.UI.createTab({  
-		    icon:'images/dashboard/nastavitveTab' + imageSuffix + '.png',
+		    icon:'/images/dashboard/nastavitveTab' + imageSuffix + '.png',
 		    title:'Nastavitve',
 		    window:feri.ui.createNastavitveWindow()
 		});
 		feri.tabAbout = Titanium.UI.createTab({  
-		    icon:'images/dashboard/aboutTab' + imageSuffix + '.png',
+		    icon:'/images/dashboard/aboutTab' + imageSuffix + '.png',
 		    title:'FERI',
 		    window:feri.ui.createAboutWindow()
 		});

@@ -24,7 +24,7 @@
         // inject our css when the web view finishes loading (because we need to inject into the head element)
 		webview.addEventListener('load', function () {
 		    // first, specify the CSS file that we should load
-		    var cssFileName = 'pages/styles_urniki_injection.css';
+		    var cssFileName = '/pages/styles_urniki_injection.css';
 		    // read in the contents
 		    var cssFromFile = Ti.Filesystem.getFile(cssFileName);
 		    // clean the contents so we can put them in a JS string
@@ -78,6 +78,17 @@
 		
         // adding the view
 		urnikiWindow.add(webview);
+        
+        // android back button listener
+		if (feri.isAndroid()) {
+			urnikiWindow.addEventListener('android:back',function(){
+				feri.navGroup.close(feri.iconWin, {
+                    animated: true
+                });
+                // re-enabling the icons on the dashboard
+                feri.dashboardActive = true;
+			});
+		}
         
         return urnikiWindow;
     };

@@ -19,7 +19,7 @@
         	{
 	            title: 'Pritličje',
 	            shortTitle: 'P',
-	            url: 'pages/maps/1_Pritlicje.html',
+	            url: '/pages/maps/1_Pritlicje.html',
 	            animateOut: {
 	                left: Ti.Platform.displayCaps.platformWidth,
 	                top: feri.ui.tabBarHeight,
@@ -35,7 +35,7 @@
         	{
 	            title: 'Nadstropje 1',
 	            shortTitle: 'N1',
-	            url: 'pages/maps/2_Nadstropje1.html',
+	            url: '/pages/maps/2_Nadstropje1.html',
 	            animateOut: {
 	                left: Ti.Platform.displayCaps.platformWidth,
 	                top: feri.ui.tabBarHeight,
@@ -51,7 +51,7 @@
         	{
 	            title: 'Medetaža',
 	            shortTitle: 'M',
-	            url: 'pages/maps/3_Medetaza.html',
+	            url: '/pages/maps/3_Medetaza.html',
 	            animateOut: {
 	                left: Ti.Platform.displayCaps.platformWidth,
 	                top: feri.ui.tabBarHeight,
@@ -67,7 +67,7 @@
         	{
 	            title: 'Nadstropje 2',
 	            shortTitle: 'N2',
-	            url: 'pages/maps/4_Nadstropje2.html',
+	            url: '/pages/maps/4_Nadstropje2.html',
 	            animateOut: {
 	                left: Ti.Platform.displayCaps.platformWidth,
 	                top: feri.ui.tabBarHeight,
@@ -83,7 +83,7 @@
         	{
 	            title: 'Nadstropje 3',
 	            shortTitle: 'N3',
-	            url: 'pages/maps/5_Nadstropje3.html',
+	            url: '/pages/maps/5_Nadstropje3.html',
 	            animateOut: {
 	                left: Ti.Platform.displayCaps.platformWidth,
 	                top: feri.ui.tabBarHeight,
@@ -99,7 +99,7 @@
         	{
 	            title: 'Nadstropje 4',
 	            shortTitle: 'N4',
-	            url: 'pages/maps/6_Nadstropje4.html',
+	            url: '/pages/maps/6_Nadstropje4.html',
 	            animateOut: {
 	                left: Ti.Platform.displayCaps.platformWidth,
 	                top: feri.ui.tabBarHeight,
@@ -139,7 +139,7 @@
             });
 
             var tabView = Ti.UI.createView({
-                backgroundImage: (i == 0) ? 'images/buttonbar/button2_selected.png' : 'images/buttonbar/button2_unselected_shadowL.png',
+                backgroundImage: (i == 0) ? '/images/buttonbar/button2_selected.png' : '/images/buttonbar/button2_unselected_shadowL.png',
                 height: feri.ui.tabBarHeight,
                 left: i * (Ti.Platform.displayCaps.platformWidth / data.length),
                 right: Ti.Platform.displayCaps.platformWidth - ((parseInt(i) + 1) * (Ti.Platform.displayCaps.platformWidth / data.length)),
@@ -163,47 +163,47 @@
             		return;
             	
                 if (e.source.index == 0) {
-                    data[0].tabView.backgroundImage = 'images/buttonbar/button2_selected.png';
-                    data[1].tabView.backgroundImage = 'images/buttonbar/button2_unselected_shadowL.png';
-                    data[2].tabView.backgroundImage = 'images/buttonbar/button2_unselected_shadowL.png';
-                    data[3].tabView.backgroundImage = 'images/buttonbar/button2_unselected_shadowL.png';
-                    data[4].tabView.backgroundImage = 'images/buttonbar/button2_unselected_shadowL.png';
-                    data[5].tabView.backgroundImage = 'images/buttonbar/button2_unselected_shadowL.png';
+                    data[0].tabView.backgroundImage = '/images/buttonbar/button2_selected.png';
+                    data[1].tabView.backgroundImage = '/images/buttonbar/button2_unselected_shadowL.png';
+                    data[2].tabView.backgroundImage = '/images/buttonbar/button2_unselected_shadowL.png';
+                    data[3].tabView.backgroundImage = '/images/buttonbar/button2_unselected_shadowL.png';
+                    data[4].tabView.backgroundImage = '/images/buttonbar/button2_unselected_shadowL.png';
+                    data[5].tabView.backgroundImage = '/images/buttonbar/button2_unselected_shadowL.png';
                 } else if (e.source.index == 1) {
-                    data[0].tabView.backgroundImage = 'images/buttonbar/button2_unselected_shadowR.png';
-                    data[1].tabView.backgroundImage = 'images/buttonbar/button2_selected.png';
-                    data[2].tabView.backgroundImage = 'images/buttonbar/button2_unselected_shadowL.png';
-                    data[3].tabView.backgroundImage = 'images/buttonbar/button2_unselected_shadowL.png';
-                    data[4].tabView.backgroundImage = 'images/buttonbar/button2_unselected_shadowL.png';
-                    data[5].tabView.backgroundImage = 'images/buttonbar/button2_unselected_shadowL.png';
+                    data[0].tabView.backgroundImage = '/images/buttonbar/button2_unselected_shadowR.png';
+                    data[1].tabView.backgroundImage = '/images/buttonbar/button2_selected.png';
+                    data[2].tabView.backgroundImage = '/images/buttonbar/button2_unselected_shadowL.png';
+                    data[3].tabView.backgroundImage = '/images/buttonbar/button2_unselected_shadowL.png';
+                    data[4].tabView.backgroundImage = '/images/buttonbar/button2_unselected_shadowL.png';
+                    data[5].tabView.backgroundImage = '/images/buttonbar/button2_unselected_shadowL.png';
                 } else if (e.source.index == 2) {
-                    data[0].tabView.backgroundImage = 'images/buttonbar/button2_unselected_shadowR.png';
-                    data[1].tabView.backgroundImage = 'images/buttonbar/button2_unselected_shadowR.png';
-                    data[2].tabView.backgroundImage = 'images/buttonbar/button2_selected.png';
-                    data[3].tabView.backgroundImage = 'images/buttonbar/button2_unselected_shadowL.png';
-                    data[4].tabView.backgroundImage = 'images/buttonbar/button2_unselected_shadowL.png';
-                    data[5].tabView.backgroundImage = 'images/buttonbar/button2_unselected_shadowL.png';
+                    data[0].tabView.backgroundImage = '/images/buttonbar/button2_unselected_shadowR.png';
+                    data[1].tabView.backgroundImage = '/images/buttonbar/button2_unselected_shadowR.png';
+                    data[2].tabView.backgroundImage = '/images/buttonbar/button2_selected.png';
+                    data[3].tabView.backgroundImage = '/images/buttonbar/button2_unselected_shadowL.png';
+                    data[4].tabView.backgroundImage = '/images/buttonbar/button2_unselected_shadowL.png';
+                    data[5].tabView.backgroundImage = '/images/buttonbar/button2_unselected_shadowL.png';
                 } else if (e.source.index == 3) {
-                    data[0].tabView.backgroundImage = 'images/buttonbar/button2_unselected_shadowR.png';
-                    data[1].tabView.backgroundImage = 'images/buttonbar/button2_unselected_shadowR.png';
-                    data[2].tabView.backgroundImage = 'images/buttonbar/button2_unselected_shadowR.png';
-                    data[3].tabView.backgroundImage = 'images/buttonbar/button2_selected.png';
-                    data[4].tabView.backgroundImage = 'images/buttonbar/button2_unselected_shadowL.png';
-                    data[5].tabView.backgroundImage = 'images/buttonbar/button2_unselected_shadowL.png';
+                    data[0].tabView.backgroundImage = '/images/buttonbar/button2_unselected_shadowR.png';
+                    data[1].tabView.backgroundImage = '/images/buttonbar/button2_unselected_shadowR.png';
+                    data[2].tabView.backgroundImage = '/images/buttonbar/button2_unselected_shadowR.png';
+                    data[3].tabView.backgroundImage = '/images/buttonbar/button2_selected.png';
+                    data[4].tabView.backgroundImage = '/images/buttonbar/button2_unselected_shadowL.png';
+                    data[5].tabView.backgroundImage = '/images/buttonbar/button2_unselected_shadowL.png';
                 } else if (e.source.index == 4) {
-                    data[0].tabView.backgroundImage = 'images/buttonbar/button2_unselected_shadowR.png';
-                    data[1].tabView.backgroundImage = 'images/buttonbar/button2_unselected_shadowR.png';
-                    data[2].tabView.backgroundImage = 'images/buttonbar/button2_unselected_shadowR.png';
-                    data[3].tabView.backgroundImage = 'images/buttonbar/button2_unselected_shadowR.png';
-                    data[4].tabView.backgroundImage = 'images/buttonbar/button2_selected.png';
-                    data[5].tabView.backgroundImage = 'images/buttonbar/button2_unselected_shadowL.png';
+                    data[0].tabView.backgroundImage = '/images/buttonbar/button2_unselected_shadowR.png';
+                    data[1].tabView.backgroundImage = '/images/buttonbar/button2_unselected_shadowR.png';
+                    data[2].tabView.backgroundImage = '/images/buttonbar/button2_unselected_shadowR.png';
+                    data[3].tabView.backgroundImage = '/images/buttonbar/button2_unselected_shadowR.png';
+                    data[4].tabView.backgroundImage = '/images/buttonbar/button2_selected.png';
+                    data[5].tabView.backgroundImage = '/images/buttonbar/button2_unselected_shadowL.png';
                 } else if (e.source.index == 5) {
-                    data[0].tabView.backgroundImage = 'images/buttonbar/button2_unselected_shadowR.png';
-                    data[1].tabView.backgroundImage = 'images/buttonbar/button2_unselected_shadowR.png';
-                    data[2].tabView.backgroundImage = 'images/buttonbar/button2_unselected_shadowR.png';
-                    data[3].tabView.backgroundImage = 'images/buttonbar/button2_unselected_shadowR.png';
-                    data[4].tabView.backgroundImage = 'images/buttonbar/button2_unselected_shadowR.png';
-                    data[5].tabView.backgroundImage = 'images/buttonbar/button2_selected.png';
+                    data[0].tabView.backgroundImage = '/images/buttonbar/button2_unselected_shadowR.png';
+                    data[1].tabView.backgroundImage = '/images/buttonbar/button2_unselected_shadowR.png';
+                    data[2].tabView.backgroundImage = '/images/buttonbar/button2_unselected_shadowR.png';
+                    data[3].tabView.backgroundImage = '/images/buttonbar/button2_unselected_shadowR.png';
+                    data[4].tabView.backgroundImage = '/images/buttonbar/button2_unselected_shadowR.png';
+                    data[5].tabView.backgroundImage = '/images/buttonbar/button2_selected.png';
                 }
 
                 for (var j = 0; j < data.length; j++) {
@@ -244,6 +244,17 @@
         mapWindow.add(data[3].webview);
         mapWindow.add(data[4].webview);
         mapWindow.add(data[5].webview);
+        
+        // android back button listener
+		if (feri.isAndroid()) {
+			mapWindow.addEventListener('android:back',function(){
+				feri.navGroup.close(feri.iconWin, {
+                    animated: true
+                });
+                // re-enabling the icons on the dashboard
+                feri.dashboardActive = true;
+			});
+		}
         
         return mapWindow;
     };

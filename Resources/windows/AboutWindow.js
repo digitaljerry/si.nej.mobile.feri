@@ -13,18 +13,29 @@
         	{
 	            title: 'FERI',
 	            view: Ti.UI.createWebView({
-	                url: 'pages/about.html'
+	                url: '/pages/about.html'
 	            })
         	}, 
         	{
 	            title: 'Aplikacija',
 	            view: Ti.UI.createWebView({
-	                url: 'pages/app.html'
+	                url: '/pages/app.html'
 	            })
         	}
         ];
         
         aboutWindow.add(feri.ui.createTabbedScrollableView({data:data}));
+        
+        // android back button listener
+		if (feri.isAndroid()) {
+			aboutWindow.addEventListener('android:back',function(){
+				feri.navGroup.close(feri.iconWin, {
+                    animated: true
+                });
+                // re-enabling the icons on the dashboard
+                feri.dashboardActive = true;
+			});
+		}
         
         return aboutWindow;
     };
