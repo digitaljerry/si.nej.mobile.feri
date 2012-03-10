@@ -11,7 +11,6 @@
         var sessionDetailWindow = Titanium.UI.createWindow({
             id: 'boardDetailWindow',
             title: settings.title,
-            backgroundColor: '#FFF',
             barColor: feri.ui.barColor,
             fullscreen: false
         });
@@ -23,8 +22,7 @@
         var tvData = [];
         var tv = Ti.UI.createTableView({
             textAlign: 'left',
-            layout: 'vertical',
-            separatorColor: '#fff'
+            layout: 'vertical'
         });
         tv.footerView = Ti.UI.createView({
             height: 1,
@@ -45,13 +43,13 @@
         var bodyRow = Ti.UI.createTableViewRow({
             hasChild: false,
             height: 'auto',
-            backgroundColor: '#fff',
             left: 0,
             top: -5,
             bottom: 10,
             layout: 'vertical',
             className: 'bodyRow',
-            selectionStyle: 'none'
+            selectionStyle: 'none',
+            selectedBackgroundColor: feri.ui.selectedBackgroundColor
         });
 
         if (sessionData.title) {
@@ -62,7 +60,7 @@
                     fontWeight: 'bold'
                 },
                 textAlign: 'left',
-                color: '#000',
+                color: feri.ui.darkText,
                 left: commonPadding,
                 top: 18,
                 bottom: 7,
@@ -85,7 +83,7 @@
                     fontWeight: 'normal'
                 },
                 textAlign: 'left',
-                color: '#000',
+                color: feri.ui.darkText,
                 left: commonPadding,
                 top: 'auto',
                 bottom: 5,
@@ -103,23 +101,13 @@
         tvData.push(feri.ui.createHeaderRow('Obvestilo'));
         tvData.push(bodyRow);
         
-        // files
-        if (sessionData.files) {
-        	
-        	var filesList = sessionData.files.split(",");
-        	tvData.push(feri.ui.createHeaderRow((filesList.length > 1) ? 'Datoteke' : 'Datoteka'));
-            for (var k = 0; k < filesList.length; k++) {
-            	tvData.push(renderFile(filesList[k]));
-            }
-        }
-        
-       	var toolbarActive = false;
+        var toolbarActive = false;
        
        if (!feri.isAndroid()) {
 	       	// open on web
 			var bb2 = Titanium.UI.createButtonBar({
 				labels:['Odpri na spletu'],
-				backgroundColor:'#003'
+				backgroundColor:feri.ui.toolbarColor
 			});
 			var flexSpace = Titanium.UI.createButton({
 				systemButton:Titanium.UI.iPhone.SystemButton.FLEXIBLE_SPACE
@@ -161,94 +149,5 @@
 
         return sessionDetailWindow;
     };
-
-    function renderAuthor(author) {
-       var presRow = Ti.UI.createTableViewRow({
-            author: author,
-            height: 60,
-            className: 'authorRow',
-            borderColor: '#C4E2EF',
-            hasChild: true,
-            backgroundColor: '#6ca2c8',
-            layout: 'vertical'
-        });
-        presRow[feri.ui.backgroundSelectedProperty + 'Color'] = feri.ui.backgroundSelectedColor;
-        
-        var authorFullName2 = Ti.UI.createLabel({
-            author: author,
-            text: feri.cleanSpecialChars(author.full_name),
-            font: {
-                fontSize: 18,
-                fontWeight: 'bold'
-            },
-            left: 75,
-            top: -45,
-            height: 'auto',
-            color: '#fff',
-            touchEnabled: false
-        });
-
-        var authorName2 = Ti.UI.createLabel({
-            author: author,
-            text: feri.cleanSpecialChars(author.position),
-            font: {
-                fontSize: 14,
-                fontWeight: 'normal'
-            },
-            left: 75,
-            bottom: 10,
-            height: 'auto',
-            color: "#fff",
-            touchEnabled: false
-        });
-
-        presRow.add(authorFullName2);
-        presRow.add(authorName2);
-
-        return presRow;
-    }
-    
-    function getFileName(filename) {
-		//this gets the full url
-		var url = filename;
-		//this removes the anchor at the end, if there is one
-		url = url.substring(0, (url.indexOf("#") == -1) ? url.length : url.indexOf("#"));
-		//this removes the query after the file name, if there is one
-		url = url.substring(0, (url.indexOf("?") == -1) ? url.length : url.indexOf("?"));
-		//this removes everything before the last slash in the path
-		url = url.substring(url.lastIndexOf("/") + 1, url.length);
-		//return
-		return url;
-	}
-    
-    function renderFile(filename) {
-
-        var fileRow = Ti.UI.createTableViewRow({
-        	file:filename,
-            className: 'fileRow',
-            borderColor: '#C4E2EF',
-            hasChild: true,
-            layout: 'vertical'
-        });
-        //fileRow[feri.ui.backgroundSelectedProperty + 'Color'] = feri.ui.backgroundSelectedColor;
-        
-        var filename = Ti.UI.createLabel({
-            text: feri.cleanSpecialChars(getFileName(filename)),
-            font: {
-                fontSize: 14
-            },
-            top: 14,
-            bottom: 10,
-            right: 10,
-            left: 75,
-            height: 'auto',
-            color: '#000',
-            touchEnabled: false
-        });
-
-        fileRow.add(filename);
-        
-    	return fileRow;
-    }
     
 })();

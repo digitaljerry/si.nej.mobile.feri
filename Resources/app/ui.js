@@ -19,12 +19,23 @@
 		feri.ui.backgroundSelectedProperty = 'selectedBackground';
 	}
 	
+	// ffffff = snow white
+	// 1C4980 = kind a blue
+	// 004076 = dark blue
+	// 000000 = black as night
+	
 	feri.extend(feri.ui, {
-		backgroundSelectedColor: '#000000',
 		tabBarHeight: 76,
 		mainBackgroundColor: '#004076',
+		backgroundSelectedColor: '#004076',
 		barColor: '#004076',
-		backgroundColor: '#cccccc'
+		toolbarColor: '#004076',
+		backgroundColor: '#ffffff',
+		darkText: '#000000',
+		blueText: '#1C4980',
+		inactiveText: '#cccccc',
+		selectedBackgroundColor: '#cccccc', 
+		dark: '#000000'
 	});
 	
 	feri.ui.createHeaderRow = function(title) {

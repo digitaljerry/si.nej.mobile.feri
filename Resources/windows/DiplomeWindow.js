@@ -42,7 +42,8 @@
                 diplomaTitle: diplomaTitle,
                 height: 'auto',
                 layout: 'vertical',
-                search: diplomaTitle + ' ' + diploma.candidate
+                search: diplomaTitle + ' ' + diploma.candidate,
+                selectedBackgroundColor: feri.ui.selectedBackgroundColor
             });
 			
             var leftSpace = 10;
@@ -113,7 +114,8 @@
                 height: 'auto',
                 layout: 'vertical',
                 focusable: true,
-                search: diplomaTitle + ' ' + diploma.author
+                search: diplomaTitle + ' ' + diploma.author,
+                selectedBackgroundColor: feri.ui.selectedBackgroundColor
             });
 			
             var leftSpace = 10;
@@ -168,7 +170,8 @@
             layout: 'vertical',
             focusable: true,
             title: 'Več diplom na DKUM',
-            dkum: true
+            dkum: true,
+            selectedBackgroundColor: feri.ui.selectedBackgroundColor
         });
 		
         var titleLabel = Ti.UI.createLabel({

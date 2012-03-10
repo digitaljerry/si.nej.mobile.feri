@@ -5,14 +5,14 @@
         var PeopleWindow = Titanium.UI.createWindow({
             id: 'peopleWindow',
             title: 'Zaposleni',
-            backgroundColor: '#cd1717',
+            backgroundColor: feri.ui.backgroundColor,
             barColor: feri.ui.barColor,
             fullscreen: false
         });
 
         // Create the table view
         var tableview = Titanium.UI.createTableView({
-            backgroundColor: '#dddddd',
+            backgroundColor: feri.ui.backgroundColor,
             filterAttribute:'search'
         });
         
@@ -41,11 +41,10 @@
                 presenterRow = Ti.UI.createTableViewRow({
                     hasChild: feri.isAndroid(),
                     className: 'people_row',
-                    selectedColor: '#999',
                     search: name,
                     uid: uid,
                     height: 40,
-                    layout: 'auto'
+                    selectedBackgroundColor: feri.ui.selectedBackgroundColor
                 });
 			
                 if (fullName == shortName) {
@@ -68,7 +67,7 @@
                         },
                         left: (fullName != '') ? 9 : 0,
                         height: 40,
-                        color: '#000',
+                        color: feri.ui.darkText,
                         touchEnabled: false
                     }));
                 } else {
@@ -84,7 +83,7 @@
                             left: 10,
                             height: 40,
                             width: 'auto',
-                            color: '#000',
+                            color: feri.ui.darkText,
                             touchEnabled: false
                         });
                         nameView.add(firstNameLabel);
@@ -95,7 +94,7 @@
                             left: 5,
                             height: 40,
                             width: 'auto',
-                            color: '#000',
+                            color: feri.ui.darkText,
                             touchEnabled: false
                         });
                         nameView.add(lastNameLabel);

@@ -3,7 +3,7 @@
     feri.ui.createPeopleDetailWindow = function (settings) {
     	
         Database.setDefaults(settings, {
-            title: 'title here',
+            title: '',
             uid: '',
             name: ''
         });
@@ -12,7 +12,6 @@
         var peopleDetailWindow = Titanium.UI.createWindow({
             id: 'peopleDetailWindow',
             title: peopleData.full_name,
-            backgroundColor: '#FFF',
             barColor: feri.ui.barColor,
             fullscreen: false
         });
@@ -23,8 +22,7 @@
         
         var tv = Ti.UI.createTableView({
             textAlign: 'left',
-            width: '100%',
-            separatorColor: '#fff'
+            width: '100%'
         });
         tv.footerView = Ti.UI.createView({
             height: 1,
@@ -46,42 +44,48 @@
             hasChild: false,
             height: 'auto',
             width: '100%',
-            selectionStyle: 'none'
+            selectionStyle: 'none',
+            selectedBackgroundColor: feri.ui.selectedBackgroundColor
         });
         
         var bioRow = Ti.UI.createTableViewRow({
             hasChild: false,
             height: 'auto',
             width: '100%',
-            selectionStyle: 'none'
+            selectionStyle: 'none',
+            selectedBackgroundColor: feri.ui.selectedBackgroundColor
         });
         
         var officeRow = Ti.UI.createTableViewRow({
             hasChild: false,
             height: 'auto',
             width: '100%',
-            selectionStyle: 'none'
+            selectionStyle: 'none',
+            selectedBackgroundColor: feri.ui.selectedBackgroundColor
         });
         
         var hoursRow = Ti.UI.createTableViewRow({
             hasChild: false,
             height: 'auto',
             width: '100%',
-            selectionStyle: 'none'
+            selectionStyle: 'none',
+            selectedBackgroundColor: feri.ui.selectedBackgroundColor
         });
         
         var emailRow = Ti.UI.createTableViewRow({
             hasDetail: true,
             height: 'auto',
             width: '100%',
-            selectionStyle: 'none'
+            selectionStyle: 'none',
+            selectedBackgroundColor: feri.ui.selectedBackgroundColor
         });
         
         var telRow = Ti.UI.createTableViewRow({
             hasDetail: true,
             height: 'auto',
             width: '100%',
-            selectionStyle: 'none'
+            selectionStyle: 'none',
+            selectedBackgroundColor: feri.ui.selectedBackgroundColor
         });
 
         if (peopleData.full_name != undefined) {
@@ -142,7 +146,7 @@
 
 		if ( peopleData.title ) {
         	titleRow.add(title);
-        	tvData.push(feri.ui.createHeaderRow('Title'));
+        	tvData.push(feri.ui.createHeaderRow('Naziv'));
         	tvData.push(titleRow);
         }
 		
@@ -239,7 +243,7 @@
         telRow.add(tel);
         
         if ( peopleData.office || peopleData.hours || peopleData.tel ) {
-        	tvData.push(feri.ui.createHeaderRow('Office'));
+        	tvData.push(feri.ui.createHeaderRow('Kabinet'));
         	if ( peopleData.office )
         		tvData.push(officeRow);
         	if ( peopleData.hours )

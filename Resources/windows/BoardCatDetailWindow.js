@@ -13,8 +13,6 @@
         // Base row properties
         var baseRow = {
             hasChild: true,
-            color: '#000',
-            backgroundColor: '#fff',
             font: {
                 fontWeight: 'bold'
             }
@@ -36,7 +34,6 @@
         var boardDetailWindow = Titanium.UI.createWindow({
             id: 'boardCatDetailWindow',
             title: catTitle,
-            backgroundColor: '#fff',
             barColor: feri.ui.barColor,
             fullscreen: false
         });
@@ -50,7 +47,8 @@
             layout: 'vertical',
             className: 'mainHeaderRow',
             backgroundPosition: 'bottom left',
-            selectionStyle: 'none'
+            selectionStyle: 'none',
+            selectedBackgroundColor: feri.ui.selectedBackgroundColor
         });
         
         var titleLabel = Ti.UI.createLabel({
@@ -60,7 +58,7 @@
                 fontWeight: 'bold'
             },
             textAlign: 'left',
-            color: '#000',
+            color: feri.ui.darkText,
             left: commonPadding,
             top: 18,
             bottom: 10,
@@ -87,7 +85,7 @@
 	                fontWeight: 'bold'
 	            },
 	            textAlign: 'left',
-	            color: '#000',
+	            color: feri.ui.darkText,
 	            left: commonPadding,
 	            top: 0,
 	            bottom: 10,

@@ -8,8 +8,6 @@
         // Base row properties
         var baseRow = {
             hasChild: true,
-            color: '#000',
-            backgroundColor: '#fff',
             font: {
                 fontWeight: 'bold'
             }
@@ -36,7 +34,6 @@
         feri.boardWindow = Titanium.UI.createWindow({
             id: 'boardWindow',
             title: '',
-            backgroundColor: '#fff',
             barColor: feri.ui.barColor,
             fullscreen: false
         });
@@ -188,21 +185,17 @@
             var sessionRow = Ti.UI.createTableViewRow({
                 hasChild: true,
                 className: 'cs_session',
-                selectedColor: '#000',
-                backgroundColor: '#fff',
-                color: '#000',
                 date: session.date,
                 uid: session.uid,
                 sessionTitle: sessionTitle,
                 height: 'auto',
                 layout: 'vertical',
                 focusable: true,
-                search: sessionTitle
+                search: sessionTitle,
+                selectedBackgroundColor: feri.ui.selectedBackgroundColor
             });
-			sessionRow[feri.ui.backgroundSelectedProperty + 'Color'] = feri.ui.backgroundSelectedColor;
 
             var leftSpace = 10;
-            var titleColor = '#1C4980';
             
             // If there is a new session time, insert a header in the table.
             var headerRow = undefined;
@@ -221,7 +214,7 @@
                     fontSize: 16,
                     fontWeight: 'bold'
                 },
-                color: titleColor,
+                color: feri.ui.blueText,
                 left: leftSpace,
                 top: 10,
                 bottom: 10,
@@ -237,7 +230,7 @@
                     fontSize: 14,
                     fontWeight: 'normal'
                 },
-                color: '#000',
+                color: feri.ui.darkText,
                 left: leftSpace,
                 top: 4,
                 bottom: 10,
@@ -262,15 +255,14 @@
         	var sessionRow = Ti.UI.createTableViewRow({
                 hasChild: false,
                 className: 'cs_session',
-                selectedColor: '#000',
-                backgroundColor: '#fff',
-                color: '#CCCCCC',
                 date: '',
                 uid: 0,
                 height: 'auto',
                 layout: 'vertical',
-                focusable: true,
-                title: 'Ni obvestil'
+                color: feri.ui.inactiveText,
+                focusable: false,
+                title: 'Ni obvestil',
+                selectedBackgroundColor: feri.ui.selectedBackgroundColor
             });
             
             data.push(sessionRow);

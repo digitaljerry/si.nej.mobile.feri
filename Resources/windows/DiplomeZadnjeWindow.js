@@ -48,7 +48,8 @@
             bottom: 10,
             layout: 'vertical',
             className: 'bodyRow',
-            selectionStyle: 'none'
+            selectionStyle: 'none',
+            selectedBackgroundColor: feri.ui.selectedBackgroundColor
         });
 
         if (sessionData.title) {

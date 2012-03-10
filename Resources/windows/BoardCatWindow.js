@@ -77,7 +77,6 @@
         var boardWindow = Titanium.UI.createWindow({
             id: 'boardCatWindow',
             title: w.title,
-            backgroundColor: '#fff',
             barColor: feri.ui.barColor,
             fullscreen: false
         });
@@ -172,20 +171,17 @@
 		            
 		            var favRow = Ti.UI.createTableViewRow({
 		                className: 'cs_fav',
-		                selectedColor: '#000',
-		                backgroundColor: '#fff',
-		                color: '#000',
 		                uid: fav.uid,
 		                catTitle: favTitle,
 		                hasDetail: false,
 		                hasChild: true,
 		                height: 'auto',
 		                layout: 'vertical',
-		                focusable: true
+		                focusable: true,
+		                selectedBackgroundColor: feri.ui.selectedBackgroundColor
 		            });
 		            
 		            var leftSpace = 10;
-		            var titleColor = '#1C4980';
 		            
 		            var favLabel = Ti.UI.createLabel({
 		                text: favTitle,
@@ -222,14 +218,12 @@
             var catTitle = feri.cleanSpecialChars(cat.title);
             var catRow = Ti.UI.createTableViewRow({
                 className: 'cs_cat',
-                selectedColor: '#000',
-                backgroundColor: '#fff',
-                color: '#000',
                 uid: cat.uid,
                 catTitle: catTitle,
                 height: 'auto',
                 layout: 'vertical',
-                focusable: true
+                focusable: true,
+                selectedBackgroundColor: feri.ui.selectedBackgroundColor
             });
             
             if ( cat.kind == 'node' ) {
@@ -239,7 +233,6 @@
             }
 			
             var leftSpace = 10;
-            var titleColor = '#1C4980';
             
             var catLabel = Ti.UI.createLabel({
                 text: catTitle,
