@@ -8,7 +8,8 @@ var feri = {
     __isAndroid: undefined,
     navGroup: undefined,
     updateTimeout: 25000,
-    loadTimeout: 10000
+    loadTimeout: 10000,
+    dashboardActive: true
 };
 
 (function() {

@@ -129,7 +129,8 @@
 	            layout: 'vertical',
 	            focusable: true,
 	            title: 'Več o diplomi',
-	            dkum_url: sessionData.link
+	            dkum_url: sessionData.link,
+	            selectedBackgroundColor: feri.ui.selectedBackgroundColor
 	        });
             
             tvData.push(tableRow);

@@ -4,7 +4,8 @@
 	if (
 		Titanium.App.Properties.getString('feri.useDashboard') == 'true' ||
 		Titanium.App.Properties.getString('feri.useDashboard') == '' ||
-		Titanium.App.Properties.getString('feri.useDashboard') == 'undefined'
+		Titanium.App.Properties.getString('feri.useDashboard') == 'undefined' ||
+		feri.isAndroid()
 	)	{
 		feri.useDashboard = true;
 	} else {
@@ -66,6 +67,17 @@
 	            width: feri.ui.icons.width
 	        });
 	        view.addEventListener('click', function (e) {
+	        	
+	        	// preventing clicks on the dashboard after some icon was already clicked
+	        	if ( feri.dashboardActive == false )
+	        		return;
+	        	else
+	        		feri.dashboardActive = false;
+	        	
+	        	// feedback on the icon when clicked 
+	        	icon.imageActive = 'undefined';
+	        	view.backgroundImage = icon.imageActive;
+	        	
 	        	feri.iconWin = icon.func(icon.args);
 	            feri.iconWin.orientationModes = [Ti.UI.PORTRAIT];
 	
@@ -80,6 +92,8 @@
 	                    feri.navGroup.close(feri.iconWin, {
 	                        animated: true
 	                    });
+	                    // re-enabling the icons on the dashboard
+	                    feri.dashboardActive = true;
 	                });
 	                feri.iconWin.leftNavButton = leftButton;
 	            }
@@ -118,6 +132,9 @@
 	            feri.navGroup.open(feri.iconWin, {
 	                animated: true
 	            });
+	            
+	            // bring the icon back
+	            view.backgroundImage = icon.image;
 	        });
 	        return view;
 	    };
@@ -290,6 +307,13 @@
     	Titanium.App.Properties.getString('feri.refreshOnShake') == 'undefined'
     ) {
     	Titanium.App.Properties.setString('feri.refreshOnShake', 'true');
+    }
+    
+    if (
+    	Titanium.App.Properties.getString('feri.useDashboard') == '' ||
+    	Titanium.App.Properties.getString('feri.useDashboard') == 'undefined'
+    ) {
+    	Titanium.App.Properties.setString('feri.useDashboard', 'true');
     }
     	
     Ti.Gesture.addEventListener('shake',function(e) {
