@@ -79,14 +79,20 @@
 		
 		// if user has set oglasna deska as default view do thise
 		if (Titanium.App.Properties.getString('boardLatest') == 'latest') {
-			feri.oglasnaTableView.add(feri.tableview);
+			//feri.oglasnaTableView.add(feri.tableview);
+			feri.tableview.show();
+			feri.tableviewFirst.hide();
 			tabbar.index = 0;
 			feri.boardWindow.title = 'Aktualno';
 		} else {
-			feri.oglasnaTableView.add(feri.tableviewFirst);
+			//feri.oglasnaTableView.add(feri.tableviewFirst);
+			feri.tableviewFirst.show();
+			feri.tableview.hide();
 			tabbar.index = 1;
 			feri.boardWindow.title = 'Deska';
 		}
+		feri.oglasnaTableView.add(feri.tableview);
+		feri.oglasnaTableView.add(feri.tableviewFirst);
         
         // zadnje objave click handler
         feri.tableview.addEventListener('click', function (e) {

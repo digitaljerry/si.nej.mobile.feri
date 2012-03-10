@@ -234,20 +234,22 @@
     });
     
     Ti.addEventListener('feri:flip_oglasna', function (e) {
-    	if ( Titanium.App.Properties.getString('boardLatest') == 'latest' ) {
-    		feri.oglasnaTableView.animate({view:feri.tableviewFirst,transition:Ti.UI.iPhone.AnimationStyle.FLIP_FROM_RIGHT},
-    		function () {
-    			feri.boardWindow.setTitle(e.table);
-    			Titanium.App.Properties.setString('boardLatest','category');
-    			feri.boardWindow.setTitle('Deska');
-    		});
+    	if ( Titanium.App.Properties.getString('boardLatest') == 'category' ) {
+    		
+    		feri.tableview.show();
+    		feri.tableviewFirst.hide();
+    		
+    		Titanium.App.Properties.setString('boardLatest','latest');
+    		feri.boardWindow.setTitle('Aktualno');
+    		
     	} else {
-			feri.oglasnaTableView.animate({view:feri.tableview,transition:Ti.UI.iPhone.AnimationStyle.FLIP_FROM_LEFT},
-			function () {
-    			feri.boardWindow.setTitle(e.table);
-    			Titanium.App.Properties.setString('boardLatest','latest');
-    			feri.boardWindow.setTitle('Aktualno');
-    		});    		
+    		
+    		feri.tableviewFirst.show();
+    		feri.tableview.hide();
+    		
+			Titanium.App.Properties.setString('boardLatest','category');
+    		feri.boardWindow.setTitle('Deska');
+    		
     	}
     });
     
