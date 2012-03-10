@@ -66,7 +66,7 @@
 	            width: feri.ui.icons.width
 	        });
 	        view.addEventListener('click', function (e) {
-	            feri.iconWin = icon.func(icon.args);
+	        	feri.iconWin = icon.func(icon.args);
 	            feri.iconWin.orientationModes = [Ti.UI.PORTRAIT];
 	
 	            // add a left navigation button for ios
@@ -93,7 +93,12 @@
 	                            buttons: [{
 	                                title: "Update",
 	                                clickevent: function () {
-	                                    Ti.fireEvent('feri:update_data');
+	                                	if ( icon.func == 'feri.ui.createBoardWindow' )
+	                                    	Ti.fireEvent('feri:update_data_oglasna');
+	                                    else if ( icon.func == 'feri.ui.createPeopleWindow' )
+	                                    	Ti.fireEvent('feri:update_data_zaposleni');
+	                                    else if ( icon.func == 'feri.ui.createDiplomeWindow' )
+	                                    	Ti.fireEvent('feri:update_data_diplome');
 	                                }
 	                            }]
 	                        });
@@ -195,21 +200,21 @@
         });
         winOglasna.rightNavButton = rightButtonOglasna;
         rightButtonOglasna.addEventListener('click', function () {
-            Ti.fireEvent('feri:update_data');
+            Ti.fireEvent('feri:update_data_oglasna');
         });
         var rightButtonDiplome = Ti.UI.createButton({
             systemButton: Ti.UI.iPhone.SystemButton.REFRESH
         });
         winDiplome.rightNavButton = rightButtonDiplome;
         rightButtonDiplome.addEventListener('click', function () {
-            Ti.fireEvent('feri:update_data');
+            Ti.fireEvent('feri:update_data_diplome');
         });
         var rightButtonZaposleni = Ti.UI.createButton({
             systemButton: Ti.UI.iPhone.SystemButton.REFRESH
         });
         winZaposleni.rightNavButton = rightButtonZaposleni;
         rightButtonZaposleni.addEventListener('click', function () {
-            Ti.fireEvent('feri:update_data');
+            Ti.fireEvent('feri:update_data_zaposleni');
         });
 		
 		//
@@ -230,10 +235,26 @@
 
     Ti.addEventListener('feri:update_data', function (e) {
         feri.ui.activityIndicator.showModal('Posodabljam ...', feri.updateTimeout, 'Napaka pri povezavi.');
-        //Database.entity.db('main', 'user').fetchUpdates('user');
+        Database.entity.db('main', 'user').fetchUpdates('user');
         Database.entity.db('main', 'node').fetchUpdates('node');
-        //Database.entity.db('main', 'aktualne_diplome').fetchUpdates('aktualne_diplome');
-        //Database.entity.db('main', 'zadnje_diplome').fetchUpdates('zadnje_diplome');
+        Database.entity.db('main', 'aktualne_diplome').fetchUpdates('aktualne_diplome');
+        Database.entity.db('main', 'zadnje_diplome').fetchUpdates('zadnje_diplome');
+    });
+    
+    Ti.addEventListener('feri:update_data_oglasna', function (e) {
+        feri.ui.activityIndicator.showModal('Posodabljam ...', feri.updateTimeout, 'Napaka pri povezavi.');
+        Database.entity.db('main', 'node').fetchUpdates('node');
+    });
+    
+    Ti.addEventListener('feri:update_data_diplome', function (e) {
+        feri.ui.activityIndicator.showModal('Posodabljam ...', feri.updateTimeout, 'Napaka pri povezavi.');
+        Database.entity.db('main', 'aktualne_diplome').fetchUpdates('aktualne_diplome');
+        Database.entity.db('main', 'zadnje_diplome').fetchUpdates('zadnje_diplome');
+    });
+    
+    Ti.addEventListener('feri:update_data_zaposleni', function (e) {
+        feri.ui.activityIndicator.showModal('Posodabljam ...', feri.updateTimeout, 'Napaka pri povezavi.');
+        Database.entity.db('main', 'user').fetchUpdates('user');
     });
     
     Ti.addEventListener('feri:flip_oglasna', function (e) {
@@ -273,14 +294,14 @@
     	
     Ti.Gesture.addEventListener('shake',function(e) {
 		if ( Titanium.App.Properties.getString('feri.refreshOnShake') == 'true' ) {
-			Ti.fireEvent('feri:update_data');
+			Ti.fireEvent('feri:update_data_oglasna');
 			//Ti.fireEvent('feri:fix_tables');
 		}
 	});
 	
 	// check if we need to reload data on load
 	if ( Titanium.App.Properties.getString('feri.refreshOnLoad') == 'true' ) {
-		Ti.fireEvent('feri:update_data');
+		Ti.fireEvent('feri:update_data_oglasna');
 	}
 	
 })();
