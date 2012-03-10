@@ -3,7 +3,7 @@
     feri.ui.createAboutWindow = function () {
         var aboutWindow = Titanium.UI.createWindow({
             id: 'aboutWindow',
-            title: 'About',
+            title: 'FERI',
             backgroundColor: '#dddddd',
             barColor: feri.ui.barColor,
             navBarHidden: false,

@@ -140,7 +140,10 @@
 		}
 		
 		// create tab group
-		var tabGroup = Titanium.UI.createTabGroup();
+		var tabGroup = Titanium.UI.createTabGroup({
+				barColor: '#004586',
+				allowUserCustomization: false
+		});
 		
 		var winOglasna = feri.ui.createBoardWindow();
 		feri.tabOglasna = Titanium.UI.createTab({  
@@ -182,7 +185,7 @@
 		});
 		feri.tabAbout = Titanium.UI.createTab({  
 		    icon:'images/dashboard/aboutTab' + imageSuffix + '.png',
-		    title:'About',
+		    title:'FERI',
 		    window:feri.ui.createAboutWindow()
 		});
 		
