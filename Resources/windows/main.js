@@ -107,7 +107,7 @@
 	                feri.iconWin.leftNavButton = leftButton;
 	            }
 				
-	            // add sessions and speaker refresh 
+				// adding refresh icon click
 	            if (icon.refresh) {
 	                if (feri.isAndroid()) {
 	                    feri.iconWin.addEventListener('open', function () {
@@ -116,11 +116,11 @@
 	                            buttons: [{
 	                                title: "Update",
 	                                clickevent: function () {
-	                                	if ( icon.func == 'feri.ui.createBoardWindow' )
+	                                	if ( icon.name == 'board' )
 	                                    	Ti.fireEvent('feri:update_data_oglasna');
-	                                    else if ( icon.func == 'feri.ui.createPeopleWindow' )
+	                                    else if ( icon.name == 'people' )
 	                                    	Ti.fireEvent('feri:update_data_zaposleni');
-	                                    else if ( icon.func == 'feri.ui.createDiplomeWindow' )
+	                                    else if ( icon.name == 'diplome' )
 	                                    	Ti.fireEvent('feri:update_data_diplome');
 	                                }
 	                            }]
@@ -132,7 +132,12 @@
 	                    });
 	                    feri.iconWin.rightNavButton = rightButton;
 	                    rightButton.addEventListener('click', function () {
-	                        Ti.fireEvent('feri:update_data');
+	                        if ( icon.name == 'board' )
+	                        	Ti.fireEvent('feri:update_data_oglasna');
+	                        else if ( icon.name == 'people' )
+	                        	Ti.fireEvent('feri:update_data_zaposleni');
+	                        else if ( icon.name == 'diplome' )
+	                        	Ti.fireEvent('feri:update_data_diplome');
 	                    });
 	                }
 	            }

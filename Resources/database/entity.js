@@ -388,6 +388,16 @@ Database.entity.DefaultSchema.prototype.defaultFetcher = function (bundle, store
         }
         
         feri.ui.activityIndicator.hideModal();
+        
+        if (bundle == 'user') {
+            Ti.fireEvent('refresh:people');
+        } else if (bundle == 'node') {
+        	Ti.fireEvent('refresh:oglasna');
+        } else if (bundle == 'aktualne_diplome') {
+        	Ti.fireEvent('refresh:diplome');
+        } else if (bundle == 'zadnje_diplome') {
+        	Ti.fireEvent('refresh:diplome');
+        }
     };
 
     //open the client and encode our URL

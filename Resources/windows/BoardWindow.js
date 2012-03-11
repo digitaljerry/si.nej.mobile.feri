@@ -57,6 +57,10 @@
         //////////////////////
 		
         data = feri.ui.getBoardData();
+        Ti.addEventListener('refresh:oglasna', function () {
+        	data = feri.ui.getBoardData();
+            feri.tableview.setData(data);
+        });
         
         // TABLES
         feri.tableview = Titanium.UI.createTableView({

@@ -16,6 +16,7 @@
 			{
 				image: '/images/dashboard/oglasna' + imageSuffix + '.png',
 				func: feri.ui.createBoardWindow,
+				name: 'board',
 				refresh: true
 			},
 			{
@@ -26,6 +27,7 @@
 			{
 				image: '/images/dashboard/zaposleni' + imageSuffix + '.png',
 				func: feri.ui.createPeopleWindow,
+				name: 'people',
 				refresh: true
 			},
 			{
@@ -35,6 +37,7 @@
 			{
 				image: '/images/dashboard/diplome' + imageSuffix + '.png',
 				func: feri.ui.createDiplomeWindow,
+				name: 'diplome',
 				refresh: true
 			},
 			{

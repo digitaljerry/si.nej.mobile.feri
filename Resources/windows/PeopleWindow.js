@@ -115,8 +115,8 @@
         };
 
         PeopleWindow.doRefresh();
-        Ti.App.addEventListener('app:update_people', function () {
-            PeopleWindow.doRefresh();
+        Ti.addEventListener('refresh:people', function () {
+        	PeopleWindow.doRefresh();
         });
 
         // create table view event listener
