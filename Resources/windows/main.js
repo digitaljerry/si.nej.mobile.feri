@@ -78,9 +78,18 @@
 	        	icon.imageActive = 'undefined';
 	        	view.backgroundImage = icon.imageActive;
 	        	
+	        	var ind = Titanium.UI.createActivityIndicator({
+	        		width: 50,
+	        		height: 50,
+	        		message: ''
+	        	});
+	        	if ( feri.isAndroid() )
+	        		ind.message = 'Nalagam ...';
+	        	view.add(ind);
+	        	ind.show();
+	        	
 	        	feri.iconWin = icon.func(icon.args);
-	            feri.iconWin.orientationModes = [Ti.UI.PORTRAIT];
-	
+	            
 	            // add a left navigation button for ios
 	            if (!feri.isAndroid()) {
 	                var leftButton = Ti.UI.createButton({
@@ -97,7 +106,7 @@
 	                });
 	                feri.iconWin.leftNavButton = leftButton;
 	            }
-	
+				
 	            // add sessions and speaker refresh 
 	            if (icon.refresh) {
 	                if (feri.isAndroid()) {
@@ -149,6 +158,7 @@
 	            });
 	            
 	            // bring the icon back
+	            ind.hide();
 	            view.backgroundImage = icon.image;
 	        });
 	        
@@ -159,7 +169,7 @@
 	    for (i = 0; i < feri.ui.icons.list.length; i++) {
 	        viewIcons.add(createIcon(feri.ui.icons.list[i]));
 	    }
-	
+		
 	    if (feri.isAndroid()) {
 	        mainWindow.open({
 	            animated: true
