@@ -55,9 +55,6 @@
 		                urniki_data: program.urniki_data
 		            });
 		            
-		            if ( current_branch == program.urniki_data.branch_id )
-		            	programRow.hasCheck = true;
-		            
 		            if ( program.header != prevHeader ) {
 		            	programRow.header = program.header;
 		            	prevHeader = programRow.header; 
@@ -79,6 +76,11 @@
 		                height: 'auto',
 		                touchEnabled: false
 		            });
+		            
+		            if ( current_branch == program.urniki_data.branch_id ) {
+		            	programRow.hasCheck = true;
+		            	titleLabel.color = '#336699';
+		            }
 		
 		            programRow.add(titleLabel);
 					
