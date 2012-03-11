@@ -12,7 +12,7 @@ body, html {
 }
 	
 h1	{
-	font-size: 12px;
+	font-size: 13px;
 	margin: 0px;
 	font-weight: bold;
 	padding-left:5px;
@@ -21,7 +21,7 @@ h1	{
 }
 
 h2	{
-	font-size: 14px;
+	font-size: 13px;
 	margin: 0px;
 	font-weight: bold;
 	letter-spacing: -0.0em;
@@ -29,18 +29,18 @@ h2	{
 }
 
 h3	{
-	font-size: 14px;
+	font-size: 13px;
 	margin: 0px;
 	font-weight: normal;
-	letter-spacing: 0.2em;
+	letter-spacing: -0.0em;
 	font-family: Arial, Helvetica, sans-serif;
 }
 
 h4	{
-	font-size: 14px;
-	margin: 0px;
+	font-size: 13px;
+	margin: 5px;
 	font-weight: normal;
-	letter-spacing: 0.2em;
+	letter-spacing: -0.0em;
 	font-family: Arial, Helvetica, sans-serif;
 	text-align:center;
 }
@@ -181,7 +181,6 @@ select, textarea {
 .classCell {
 	border-bottom: solid 1px #fff;
 	border-left: solid 2px #798da1;
-	padding: 15px;
 }
 .roomsMainCell {
 	border-bottom: 1px solid #fff;
@@ -424,4 +423,20 @@ div.main_menu a.selected {
 
 .spanOnlyPrint{
 	display:none
+}
+
+
+#data_form {
+	display: none !important;
+}
+
+body {
+	margin-top: 0;
+	margin-left: 5px;
+	margin-right: 5px;
+	margin-bottom: 5px;
+}
+
+.scheduleDetails {
+	font-size: 13px;
 }

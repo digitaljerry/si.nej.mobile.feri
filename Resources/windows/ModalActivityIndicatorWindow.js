@@ -55,7 +55,11 @@ feri.ui.activityIndicator = (function() {
 					});
 					alertDialog.show();
 				}
-			}, timeout);	
+				
+				// re-enabling the icons on the dashboard
+                feri.dashboardActive = true;
+                
+			}, timeout);
 		}
 	};
 	

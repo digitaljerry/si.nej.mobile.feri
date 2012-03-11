@@ -64,6 +64,8 @@ Ti.include(
   	'windows/PeopleDetailWindow.js',
   	'windows/InformacijeWindow.js',
   	'windows/UrnikiWindow.js',
+  	'windows/UrnikiSelectionWindow.js',
+  	'windows/UrnikiSelection2Window.js',
   	'windows/DiplomeWindow.js',
   	'windows/WebViewWindow.js',
   	'windows/DiplomeZadnjeWindow.js',

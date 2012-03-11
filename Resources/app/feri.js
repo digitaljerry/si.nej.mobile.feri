@@ -91,14 +91,14 @@ var feri = {
 		// web controls
 		var bb2 = Titanium.UI.createButtonBar({
 			labels:['Back', 'Reload', 'Forward'],
-			backgroundColor:'#003'
+			backgroundColor:feri.ui.toolbarColor
 		});
 		var flexSpace = Titanium.UI.createButton({
 			systemButton:Titanium.UI.iPhone.SystemButton.FLEXIBLE_SPACE
 		});
 		
 		// TODO
-		if ( !feri.isAndroid ) {
+		if ( !feri.isAndroid() ) {
 			window.setToolbar([flexSpace,bb2,flexSpace]);
 		} else {}
 		

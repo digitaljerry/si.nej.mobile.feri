@@ -22,6 +22,7 @@
 	// ffffff = snow white
 	// 1C4980 = kind a blue
 	// 004076 = dark blue
+	// 33587C = urniki color
 	// 000000 = black as night
 	
 	feri.extend(feri.ui, {
@@ -34,6 +35,7 @@
 		darkText: '#000000',
 		blueText: '#1C4980',
 		inactiveText: '#cccccc',
+		urnikiColor: '#33587C',
 		selectedBackgroundColor: '#cccccc', 
 		dark: '#000000'
 	});

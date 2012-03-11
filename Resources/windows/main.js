@@ -127,6 +127,21 @@
 	                    });
 	                }
 	            }
+	            
+	            // add sessions and speaker refresh 
+	            if (icon.urniki) {
+	                if (feri.isAndroid()) {
+	                    // TODO
+	                } else {
+	                    var rightButton = Ti.UI.createButton({
+	                        systemButton: Ti.UI.iPhone.SystemButton.BOOKMARKS
+	                    });
+	                    feri.iconWin.rightNavButton = rightButton;
+	                    rightButton.addEventListener('click', function () {
+	                        Ti.fireEvent('feri:set_urniki');
+	                    });
+	                }
+	            }
 	
 	            feri.iconWin.navBarHidden = false;
 	            feri.navGroup.open(feri.iconWin, {

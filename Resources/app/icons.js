@@ -20,7 +20,8 @@
 			},
 			{
 				image: '/images/dashboard/urniki' + imageSuffix + '.png',
-				func: feri.ui.createUrnikiWindow
+				func: feri.ui.createUrnikiWindow,
+				urniki: true
 			},
 			{
 				image: '/images/dashboard/zaposleni' + imageSuffix + '.png',
