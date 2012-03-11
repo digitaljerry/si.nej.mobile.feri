@@ -2,25 +2,23 @@
 (function () {
     feri.ui.createUrnikiSelection2Window = function (settings) {
     	
-    	feri.urniki_helper = 'http://www.feri.uni-mb.si/urniki1/lib/helper.php?type=branch&branch_id=';
+    	feri.urniki_helper2 = 'http://www.feri.uni-mb.si/urniki1/lib/helper.php?type=branch&branch_id=';
     	
         var urnikiSelection2Window = Titanium.UI.createWindow({
             id: 'urnikiSelection2Window',
-            title: 'Letnik',
+            title: 'Letnik in smer',
             barColor: feri.ui.barColor,
+            backgroundColor: feri.ui.backgroundColor,
             fullscreen: false
         });
         
+        // to check current row
+        var current_branch = 0;
+        if ( Titanium.App.Properties.getString('urniki_branch') )
+        	var current_branch = Titanium.App.Properties.getString('urniki_branch');
+        
         var data = [];
-		
-		//alert(settings.data.result[1]);		
 		var inputData = [];
-		/*var inputData = [
-			{letnik:1, title:'1. letnik', header: 'Izberi letnik'},
-			{letnik:2, title:'2. letnik'},
-			{letnik:3, title:'3. letnik'}
-		];*/
-		
 		var sections = [];
 		sections[0] = [];
 		sections[1] = [];
@@ -56,6 +54,9 @@
 		                selectedBackgroundColor: feri.ui.selectedBackgroundColor,
 		                urniki_data: program.urniki_data
 		            });
+		            
+		            if ( current_branch == program.urniki_data.branch_id )
+		            	programRow.hasCheck = true;
 		            
 		            if ( program.header != prevHeader ) {
 		            	programRow.header = program.header;
@@ -119,7 +120,7 @@
 			feri.ui.activityIndicator.showModal('Nalagam ...', feri.loadTimeout, 'Napaka pri povezavi.');
 			
 	        var xhr = Ti.Network.createHTTPClient();
-	        xhr.open('GET', feri.urniki_helper + row.urniki_data.branch_id);
+	        xhr.open('GET', feri.urniki_helper2 + row.urniki_data.branch_id);
 	        xhr.send();
 	        
 			xhr.onload = function () {
@@ -134,6 +135,8 @@
 
 				Titanium.App.Properties.setString('urniki_groups', groups);
 				Titanium.App.Properties.setString('urniki_branch', row.urniki_data.branch_id);
+				Titanium.App.Properties.setString('urniki_program', settings.program);
+				Titanium.App.Properties.setString('urniki_changed', 'true');
 				
 				feri.ui.activityIndicator.hideModal();
 			};	

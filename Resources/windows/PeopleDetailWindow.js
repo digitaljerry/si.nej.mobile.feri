@@ -81,12 +81,14 @@
         });
         
         var telRow = Ti.UI.createTableViewRow({
-            hasDetail: true,
+            hasDetail: false,
             height: 'auto',
             width: '100%',
             selectionStyle: 'none',
             selectedBackgroundColor: feri.ui.selectedBackgroundColor
         });
+        if (Titanium.Platform.osname != 'ipad')
+        	telRow.hasDetail = true;
 
         if (peopleData.full_name != undefined) {
             var fullName = Ti.UI.createLabel({
@@ -291,7 +293,8 @@
         
         // make a phone cal
         telRow.addEventListener('click', function () {
-        	Ti.Platform.openURL('tel://'+peopleData.tel.replace(/\s/g, ""));
+        	if (Titanium.Platform.osname != 'ipad')
+        		Ti.Platform.openURL('tel://'+peopleData.tel.replace(/\s/g, ""));
         });
 
         return peopleDetailWindow;

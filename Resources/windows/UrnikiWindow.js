@@ -14,7 +14,6 @@
             fullscreen: false
         });
         
-        //infoWindow.add(feri.ui.createTabbedScrollableView({data:data}));
         var webview = Ti.UI.createWebView({
         	backgroundColor: feri.ui.urnikiColor,
             width: '100%',
@@ -93,6 +92,14 @@
                 }),{animated:true});
             }
 		});
+		
+		// new urnik was selected so we need to refresh
+		urnikiWindow.addEventListener('focus', function () {
+			if ( Titanium.App.Properties.getString('urniki_changed') == 'true' ) {
+				refreshUrniki(0);
+				Titanium.App.Properties.setString('urniki_changed', 'false');
+			}
+        });
 		
 		function refreshUrniki(customDate) {
 			
