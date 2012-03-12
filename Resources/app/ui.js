@@ -122,20 +122,22 @@
 
 			// adjust images and scroll ScrollableView on tab bar clicks
             tabView.addEventListener('click', function (e) {
-            	var index = e.source.index;
-            	for (var j = 0; j < data.length; j++) {
-            		if (index == j) {
-            			data[j].tabView.backgroundImage = images.selected;
-            		} else if (index-1 == j && data[index-1]) {
-            			data[j].tabView.backgroundImage = images.unselectedRS;
-            		} else if (index+1 == j && data[index+1]) {
-            			data[j].tabView.backgroundImage = images.unselectedLS;
-            		} else {
-            			data[j].tabView.backgroundImage = images.unselected;
-            		}	
+            	if ( e.source !== undefined ) {
+            		var index = e.source.index;
+	            	for (var j = 0; j < data.length; j++) {
+	            		if (index == j) {
+	            			data[j].tabView.backgroundImage = images.selected;
+	            		} else if (index-1 == j && data[index-1]) {
+	            			data[j].tabView.backgroundImage = images.unselectedRS;
+	            		} else if (index+1 == j && data[index+1]) {
+	            			data[j].tabView.backgroundImage = images.unselectedLS;
+	            		} else {
+	            			data[j].tabView.backgroundImage = images.unselected;
+	            		}	
+	            	}
+	
+					scrollable.scrollToView(data[index].view);
             	}
-
-				scrollable.scrollToView(data[index].view);
             });
 
 			// layout the tabbed scrollableview

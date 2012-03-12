@@ -11,22 +11,44 @@
         });
         
         // Create the table view
-        var inputData = [
-			{title:'Dashboard', switchAppUse: 'dashboard', header:'Oblika'},
-			{title:'Zavihki', switchAppUse: 'tabs'}
-		];
-		
-		if ( feri.useDashboard == true )
-			inputData[0].hasCheck = true;
-		else
+        if ( !feri.isAndroid() ) {
+        	var inputData = [
+				{title:'Dashboard', switchAppUse: 'dashboard', header:'Oblika'},
+				{title:'Zavihki', switchAppUse: 'tabs'}
+			];
+			
+			if ( feri.useDashboard == true )
+				inputData[0].hasCheck = true;
+			else
 			inputData[1].hasCheck = true;
+        } else {
+        	var inputData = [];
+        }
 		
 		var row1 = Ti.UI.createTableViewRow({
 			height:50,
 			title:'Shake to reload',
+			color: 'green',
 			header:'Osveži oglasno desko',
 			refreshOnShake:true
 		});
+		if ( feri.isAndroid() ) {
+			var titleLabel1 = Ti.UI.createLabel({
+	            text: 'Shake to reload',
+	            font: {
+	                fontSize: 16,
+	                fontWeight: 'bold'
+	            },
+	            color: feri.ui.darkText,
+	            left: 10,
+	            top: 10,
+	            bottom: 10,
+	            right: 10,
+	            height: 'auto',
+	        });
+	        row1.add(titleLabel1);
+		}
+		
 		var sw1 = Ti.UI.createSwitch({
 			right:10,
 			value:false
@@ -36,6 +58,22 @@
 			title:'Ob zagonu',
 			refreshOnLoad:true
 		});
+		if ( feri.isAndroid() ) {
+			var titleLabel2 = Ti.UI.createLabel({
+	            text: 'Ob zagonu',
+	            font: {
+	                fontSize: 16,
+	                fontWeight: 'bold'
+	            },
+	            color: feri.ui.darkText,
+	            left: 10,
+	            top: 10,
+	            bottom: 10,
+	            right: 10,
+	            height: 'auto',
+	        });
+	        row2.add(titleLabel2);
+		}
 		var sw2 = Ti.UI.createSwitch({
 			right:10,
 			value:false
