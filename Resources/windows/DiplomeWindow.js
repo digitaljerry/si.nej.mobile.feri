@@ -88,6 +88,23 @@
 				data.push(diplomaRow);
 	        }
 	        
+	        if ( uids.length == 0 ) {
+	        	var sessionRow = Ti.UI.createTableViewRow({
+	                hasChild: false,
+	                className: 'cs_session',
+	                date: '',
+	                uid: 0,
+	                height: 'auto',
+	                layout: 'vertical',
+	                color: feri.ui.inactiveText,
+	                focusable: false,
+	                title: 'Ni aktualnih zagovorov',
+	                selectedBackgroundColor: feri.ui.selectedBackgroundColor
+	            });
+	            
+	            data.push(sessionRow);
+	        }
+	        
 	        data.push(feri.ui.createHeaderRow('Zadnje diplome'));
 	        
 	        var rows = conn.query("SELECT uid FROM zadnje_diplome ORDER BY uid DESC LIMIT 25");

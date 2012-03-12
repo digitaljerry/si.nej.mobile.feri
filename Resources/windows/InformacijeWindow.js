@@ -26,7 +26,7 @@
         // inject our css when the web view finishes loading (because we need to inject into the head element)
 		webview.addEventListener('load', function () {
 			// first, specify the CSS file that we should load
-		    var cssFileName = '/pages/styles_info_injection.css';
+		    var cssFileName = 'pages/styles_info_injection.css';
 		    // read in the contents
 		    var cssFromFile = Ti.Filesystem.getFile(cssFileName);
 		    // clean the contents so we can put them in a JS string
@@ -47,8 +47,6 @@
 		    // running this on an external URL, so it won't have Ti injected! web.url is the same method evalJS uses
 		    
 		    webview.setVisible(true);
-		    
-		    webview.setBottom(30);
 		    
 		    feri.ui.activityIndicator.hideModal();
 		});

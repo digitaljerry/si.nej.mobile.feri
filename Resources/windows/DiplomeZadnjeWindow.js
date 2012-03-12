@@ -125,7 +125,6 @@
 	            selectedColor: '#000',
 	            backgroundColor: '#fff',
 	            color: '#000',
-	            height: 'auto',
 	            layout: 'vertical',
 	            focusable: true,
 	            title: 'Več o diplomi',

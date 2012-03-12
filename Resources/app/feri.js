@@ -90,7 +90,7 @@ var feri = {
 	feri.getWebcontrols = function(window, webview) {
 		// web controls
 		var bb2 = Titanium.UI.createButtonBar({
-			labels:['Back', 'Reload', 'Forward'],
+			labels:['Nazaj', 'Osveži', 'Naprej'],
 			backgroundColor:feri.ui.toolbarColor
 		});
 		var flexSpace = Titanium.UI.createButton({
