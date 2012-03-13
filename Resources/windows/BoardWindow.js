@@ -35,22 +35,25 @@
             id: 'boardWindow',
             title: '',
             barColor: feri.ui.barColor,
+            backgroundColor: feri.ui.backgroundColor,
             fullscreen: false
         });
         
         // tabbar control
-        var tabbar = Ti.UI.iOS.createTabbedBar({
-			labels:['Aktualno', 'Deska'],
-			backgroundColor:feri.ui.barColor,
-			index: 0,
-			style:Titanium.UI.iPhone.SystemButtonStyle.BAR
-		});
-		feri.boardWindow.setTitleControl(tabbar);
-		
-		tabbar.addEventListener('click', function(e)
-		{
-			Ti.fireEvent('feri:flip_oglasna');
-		});
+        if ( !feri.isAndroid() ) {
+	        var tabbar = Ti.UI.iOS.createTabbedBar({
+				labels:['Aktualno', 'Deska'],
+				backgroundColor:feri.ui.barColor,
+				index: 0,
+				style:Titanium.UI.iPhone.SystemButtonStyle.BAR
+			});
+			feri.boardWindow.setTitleControl(tabbar);
+			
+			tabbar.addEventListener('click', function(e)
+			{
+				Ti.fireEvent('feri:flip_oglasna');
+			});
+		}
         
         //////////////////////
         // ZADNJA OBVESTILA //
@@ -65,6 +68,7 @@
         // TABLES
         feri.tableview = Titanium.UI.createTableView({
             data: data,
+            backgroundColor: feri.ui.backgroundColor,
             filterAttribute:'search'
         });
         
@@ -78,19 +82,27 @@
 			Titanium.App.Properties.setString('boardLatest','latest');
 		}
 		
+		feri.tableview.hide();
+		feri.tableviewFirst.hide();
+		
 		// if user has set oglasna deska as default view do thise
 		if (Titanium.App.Properties.getString('boardLatest') == 'latest') {
 			//feri.oglasnaTableView.add(feri.tableview);
 			feri.tableview.show();
 			feri.tableviewFirst.hide();
-			tabbar.index = 0;
 			feri.boardWindow.title = 'Aktualno';
+			
+			if ( !feri.isAndroid() )
+				tabbar.index = 0;
+			
 		} else {
 			//feri.oglasnaTableView.add(feri.tableviewFirst);
 			feri.tableviewFirst.show();
 			feri.tableview.hide();
-			tabbar.index = 1;
 			feri.boardWindow.title = 'Deska';
+			
+			if ( !feri.isAndroid() )
+				tabbar.index = 1;
 		}
 		feri.oglasnaTableView.add(feri.tableview);
 		feri.oglasnaTableView.add(feri.tableviewFirst);

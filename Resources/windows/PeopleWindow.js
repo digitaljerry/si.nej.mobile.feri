@@ -162,7 +162,6 @@
 
     function getNameList() {
         var conn = Database.db.getConnection('main');
-        conn.query("SET NAMES 'utf8'");  
         var rows = conn.query("SELECT uid, name, full_name FROM user ORDER BY surname ASC");
         var nameList = [];
         

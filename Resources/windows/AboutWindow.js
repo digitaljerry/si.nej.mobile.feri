@@ -29,6 +29,7 @@
         // android back button listener
 		if (feri.isAndroid()) {
 			aboutWindow.addEventListener('android:back',function(){
+				alert(feri.iconWin);
 				feri.navGroup.close(feri.iconWin, {
                     animated: true
                 });

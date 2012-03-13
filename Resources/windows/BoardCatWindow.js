@@ -78,6 +78,7 @@
             id: 'boardCatWindow',
             title: w.title,
             barColor: feri.ui.barColor,
+            backgroundColor: feri.ui.backgroundColor,
             fullscreen: false
         });
         
@@ -135,7 +136,8 @@
     	// geting the data from new method
     	var data = feri.ui.getBoardCatTableData(w, addFavRows);
         var tableview = Titanium.UI.createTableView({
-        	data: data
+        	data: data,
+        	backgroundColor: feri.ui.backgroundColor
         });
         
         return tableview;
