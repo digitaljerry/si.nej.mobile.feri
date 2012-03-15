@@ -18,6 +18,9 @@
         
         // make it searchable
         feri.getSearchbar(tableview);
+        
+        var index = [];
+        var count = 0;
 
         PeopleWindow.doRefresh = function () {
             var nameList = getNameList();
@@ -105,11 +108,18 @@
                 // If there is a new last name first letter, insert a header in the table.
                 if (headerLetter == '' || name.charAt(0).toUpperCase() != headerLetter) {
                     headerLetter = name.charAt(0).toUpperCase();
-                    data.push(feri.ui.createHeaderRow(headerLetter));
+                    //data.push(feri.ui.createHeaderRow(headerLetter));
+                    presenterRow.header = headerLetter;
+                    index.push({title:headerLetter, index:count});
                 }
                 
+                count++;
                 data.push(presenterRow);
             }
+            
+            ////
+            tableview.index = index;
+            ////
 
             tableview.setData(data);
         };
@@ -121,6 +131,7 @@
 
         // create table view event listener
         tableview.addEventListener('click', function (e) {
+        	
             if (!e.rowData.uid) {
                 return;
             }
@@ -171,21 +182,16 @@
 
     function getNameList() {
         var conn = Database.db.getConnection('main');
-        var rows = conn.query("SELECT uid, name, full_name FROM user ORDER BY surname ASC");
+        var rows = conn.query("SELECT uid, name, full_name, surname FROM user ORDER BY surname ASC");
         var nameList = [];
         
         if (rows) {
             while (rows.isValidRow()) {
                 var uid = rows.fieldByName('uid');
-                var full = rows.fieldByName('full_name');
-                if (full) {
-                    var names = rows.fieldByName('full_name').split(' ');
-                    var lastName = names[names.length - 1];
-                    var firstName = full.substr(0, full.length - (lastName.length + 1));
-                    nameList.push(lastName + ', ' + firstName + ':' + rows.fieldByName('uid') + ':' + rows.fieldByName('name'));
-                } else {
-                    nameList.push(rows.fieldByName('name') + ':' + rows.fieldByName('uid') + ':' + rows.fieldByName('name'));
-                }
+                var lastName = rows.fieldByName('surname');
+                var firstName = rows.fieldByName('name');
+                nameList.push(lastName + ', ' + firstName + ':' + uid + ':' + firstName);
+                
                 rows.next();
             }
             rows.close();
