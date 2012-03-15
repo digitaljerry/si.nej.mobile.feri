@@ -59,14 +59,7 @@ Database.entity.sites.main.types.node.schema = {
     defaultFetcher: function (bundle, store, func) {
     	
     	// get all uid's from the database
-    	
-    	
-        //var url = 'http://feri.tux.si/mobile/board/latest' + bundle;
-        //var url = 'http://www.feri.uni-mb.si/odeska/getxml.aspx?pIDs=13,51,42,15,25,45,77,81&max=25&stDni=60';
-        var url = 'http://www.feri.uni-mb.si/odeska/getxml.aspx?pIDs=7,4,5,112,144,150,151,152,153,154,155,156,157,143,145,159,160,83,84,85,86,87,88,89,90,91,92,93,94,95,97,96,98,99,101,102,100,158,77,105,130,118,162,135,128,62,78,79,80,131,137,146,129,111,113,114,119,125,147,148,161,82,121,108,124,107,123,81,120,104,122,8,9,115,116,117,29,30,31,32,126,53,54,20,22,23,55,56,57,58,10,12,33,26,27,34,43,44,35,11,18,67,36,110,134,16,17,138,139,140,142,13,51,41,46,106,19,136,47,63,64,68,70,71,69,72,73,74,75,76,48,14,24,59,45,65,66,60,37,15,25,42,61&max=25&stDni=60';
-        //var url = 'http://rss.cnn.com/services/podcasting/newscast/rss.xml';
-        
-        //var url = 'http://codestrong.com/mobile/sessions/' + bundle;
+    	var url = 'http://www.feri.uni-mb.si/odeska/getxml.aspx?pIDs=7,4,5,112,144,150,151,152,153,154,155,156,157,143,145,159,160,83,84,85,86,87,88,89,90,91,92,93,94,95,97,96,98,99,101,102,100,158,77,105,130,118,162,135,128,62,78,79,80,131,137,146,129,111,113,114,119,125,147,148,161,82,121,108,124,107,123,81,120,104,122,8,9,115,116,117,29,30,31,32,126,53,54,20,22,23,55,56,57,58,10,12,33,26,27,34,43,44,35,11,18,67,36,110,134,16,17,138,139,140,142,13,51,41,46,106,19,136,47,63,64,68,70,71,69,72,73,74,75,76,48,14,24,59,45,65,66,60,37,15,25,42,61&max=30&stDni=60';
         this.prototype.defaultFetcher.apply(this, [bundle, store, func, url]);
     }
 };
@@ -129,13 +122,7 @@ Database.entity.sites.main.types.user.schema = {
      */
     // read more @ http://osebje.feri.uni-mb.si/
     defaultFetcher: function (bundle, store, func) {
-    	
-    	// obsolete:
-    	//this.prototype.defaultFetcher.apply(this, [bundle, store, func, 'http://feri.tux.si/mobile/zaposleni/']);
-    	//this.prototype.defaultFetcher.apply(this, [bundle, store, func, 'http://codestrong.com/mobile/speakers']);
-    	
-    	//this.prototype.defaultFetcher.apply(this, [bundle, store, func, 'http://feri.tux.si/mobile/zaposleni2/']);
-        this.prototype.defaultFetcher.apply(this, [bundle, store, func, 'http://osebje.feri.uni-mb.si/cache/data/sm=7038.txt']);
+    	this.prototype.defaultFetcher.apply(this, [bundle, store, func, 'http://osebje.feri.uni-mb.si/cache/data/sm=7038.txt']);
     }
 
 };

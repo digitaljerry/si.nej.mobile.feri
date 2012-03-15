@@ -142,7 +142,7 @@
 			
 			} else {
 				
-				feri.ui.activityIndicator.showModal('Nalagam ...', feri.loadTimeout, 'Napaka pri povezavi.');
+				feri.ui.activityIndicator.showModal('Nalagam ...', feri.loadLongTimeout, 'Napaka pri povezavi.');
 				
 				var xhr = Ti.Network.createHTTPClient();
 				xhr.open('POST', feri.urniki_url);

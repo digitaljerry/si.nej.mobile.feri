@@ -9,6 +9,7 @@ var feri = {
     navGroup: undefined,
     updateTimeout: 25000,
     loadTimeout: 10000,
+    loadLongTimeout: 25000,
     dashboardActive: true
 };
 

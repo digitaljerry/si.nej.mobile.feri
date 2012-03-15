@@ -187,7 +187,7 @@
                 feri.dashboardActive = true;
 			});
 			
-			/*var activity = feri.boardWindow.activity;
+			var activity = feri.boardWindow.activity;
 			activity.onCreateOptionsMenu = function(e) {
 			    var menu = e.menu;
 			    var menuItemRefresh = menu.add({ title: 'Osveži' });
@@ -213,7 +213,7 @@
 					feri.tableview.hide();
 					Titanium.App.Properties.setString('boardLatest','category');
 			    });
-			};*/
+			};
 		}
 
         return feri.boardWindow;

@@ -31,6 +31,18 @@ feri.ui.activityIndicator = (function() {
 	}
 	
 	activityIndicator.showModal = function(message, timeout, timeoutMessage) {
+		
+		// check for connectivty
+		if (Titanium.Network.networkType === Titanium.Network.NETWORK_NONE) {
+			var alertDialog = Ti.UI.createAlertDialog({
+				title: 'Napaka',
+				message: 'Nimate povezave z internetom.',
+				buttonNames: ['OK']
+			});
+			alertDialog.show();
+			return;
+		}
+		
 		if (isShowing) {
 			return;	
 		}
@@ -49,7 +61,7 @@ feri.ui.activityIndicator = (function() {
 				activityIndicator.hideModal();	
 				if (timeoutMessage) {
 					var alertDialog = Ti.UI.createAlertDialog({
-						title: 'Update Timeout',
+						title: 'Napaka',
 						message: timeoutMessage,
 						buttonNames: ['OK']
 					});

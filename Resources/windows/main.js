@@ -263,7 +263,7 @@
 	}
 
     Ti.addEventListener('feri:update_data', function (e) {
-        feri.ui.activityIndicator.showModal('Posodabljam ...', feri.updateTimeout, 'Napaka pri povezavi.');
+    	feri.ui.activityIndicator.showModal('Posodabljam ...', feri.updateTimeout, 'Napaka pri povezavi.');
         Database.entity.db('main', 'user').fetchUpdates('user');
         Database.entity.db('main', 'node').fetchUpdates('node');
         Database.entity.db('main', 'aktualne_diplome').fetchUpdates('aktualne_diplome');

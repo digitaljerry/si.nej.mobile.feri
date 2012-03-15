@@ -141,11 +141,7 @@
         });
         
         function openOnWeb(settings) {
-        	//feri.ui.activityIndicator.showModal('Nalagam ...', feri.loadTimeout, 'Napaka pri povezavi.');
-			//boardDetailWebview.url = 'http://www.feri.uni-mb.si/odeska/brnj2.asp?id=' + sessionData.uid;
-			//feri.getWebcontrols(sessionDetailWindow, boardDetailWebview);
-			
-			var url = 'http://www.feri.uni-mb.si/odeska/brnj2.asp?id=' + settings.uid;
+        	var url = 'http://www.feri.uni-mb.si/odeska/brnj2.asp?id=' + settings.uid;
 			if (feri.useDashboard) {
 				feri.navGroup.open(feri.ui.createWebViewWindow({url: url}), {
 					animated: true
