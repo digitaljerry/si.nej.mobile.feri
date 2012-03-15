@@ -285,7 +285,14 @@
                 touchEnabled: false
             });
 
-            // Some sessions have multiple people
+            // details
+            /*
+            if ( session.author == '' )
+            	session.author = 'objavljeno ob' + feri.datetime.cleanTime(session.date);
+            else
+            	session.author = 'objavljeno ob' + feri.datetime.cleanTime(session.date) + ', ' + session.author;
+            */
+           
             var authorLabel = Ti.UI.createLabel({
                 text: session.author,
                 font: {
@@ -302,7 +309,7 @@
             });
 
             sessionRow.add(titleLabel);
-            sessionRow.add(authorLabel);
+            //sessionRow.add(authorLabel);
 
 			if (headerRow) {
 				data.push(headerRow);	
