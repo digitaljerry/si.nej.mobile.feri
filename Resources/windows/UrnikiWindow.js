@@ -29,44 +29,73 @@
         // adding the view
 		urnikiWindow.add(webview);
 		
-		// reload controls listeners
-		var bb2 = Titanium.UI.createButtonBar({
-			labels:['Prejšnji', 'Trenutni teden', 'Naslednji'],
-			backgroundColor:feri.ui.toolbarColor
-		});
-		var flexSpace = Titanium.UI.createButton({
-			systemButton:Titanium.UI.iPhone.SystemButton.FLEXIBLE_SPACE
-		});
-		
-		// TODO
 		if ( !feri.isAndroid() ) {
+			// reload controls listeners
+			var bb2 = Titanium.UI.createButtonBar({
+				labels:['Prejšnji', 'Trenutni teden', 'Naslednji'],
+				backgroundColor:feri.ui.toolbarColor
+			});
+			var flexSpace = Titanium.UI.createButton({
+				systemButton:Titanium.UI.iPhone.SystemButton.FLEXIBLE_SPACE
+			});
+			
 			urnikiWindow.setToolbar([flexSpace,bb2,flexSpace]);
-		} else {}
-		
-		bb2.addEventListener('click',function(ce)
-		{
-			if (ce.index == 0)
+			
+			bb2.addEventListener('click',function(ce)
 			{
-				if ( diff > 0 )
+				if (ce.index == 0)
+				{
+					if ( diff > 0 )
+						diff = 0;
+					
+					diff = diff - 1;
+					refreshUrniki(diff);
+				}
+				else if (ce.index == 1)
+				{
 					diff = 0;
-				
-				diff = diff - 1;
-				refreshUrniki(diff);
-			}
-			else if (ce.index == 1)
-			{
-				diff = 0;
-				refreshUrniki(diff);
-			}
-			else
-			{
-				if ( diff < 0 )
-					diff = 0;
-				
-				diff = diff + 1;
-				refreshUrniki(diff);
-			}
-		});
+					refreshUrniki(diff);
+				}
+				else
+				{
+					if ( diff < 0 )
+						diff = 0;
+					
+					diff = diff + 1;
+					refreshUrniki(diff);
+				}
+			});
+		} else {
+			var activity = urnikiWindow.activity;
+			activity.onCreateOptionsMenu = function(e) {
+			    var menu = e.menu;
+			    var menuItemBack = menu.add({ title: 'Prejšnji teden' });
+			    menuItemBack.addEventListener("click", function(e) {
+			        if ( diff > 0 )
+						diff = 0;
+					
+					diff = diff - 1;
+					refreshUrniki(diff);
+			    });
+			    var menuItemRefresh = menu.add({ title: 'Trenutni teden' });
+			    menuItemRefresh.addEventListener("click", function(e) {
+			        diff = 0;
+					refreshUrniki(diff);
+			    });
+			    var menuItemForward = menu.add({ title: 'Naslednji teden' });
+			    menuItemForward.addEventListener("click", function(e) {
+			        if ( diff < 0 )
+						diff = 0;
+					
+					diff = diff + 1;
+					refreshUrniki(diff);
+			    });
+			    var menuItemSet = menu.add({ title: 'Izberi študij' });
+			    menuItemSet.addEventListener("click", function(e) {
+			    	Ti.fireEvent('feri:set_urniki');
+			    });
+			};
+		}
         
         // android back button listener
 		if (feri.isAndroid()) {

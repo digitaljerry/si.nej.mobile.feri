@@ -110,22 +110,7 @@
 				// adding refresh icon click
 	            if (icon.refresh) {
 	                if (feri.isAndroid()) {
-	                    feri.iconWin.addEventListener('open', function () {
-	                        feri.android.menu.init({
-	                            win: feri.iconWin,
-	                            buttons: [{
-	                                title: "Update",
-	                                clickevent: function () {
-	                                	if ( icon.name == 'board' )
-	                                    	Ti.fireEvent('feri:update_data_oglasna');
-	                                    else if ( icon.name == 'people' )
-	                                    	Ti.fireEvent('feri:update_data_zaposleni');
-	                                    else if ( icon.name == 'diplome' )
-	                                    	Ti.fireEvent('feri:update_data_diplome');
-	                                }
-	                            }]
-	                        });
-	                    });
+	                    
 	                } else {
 	                    var rightButton = Ti.UI.createButton({
 	                        systemButton: Ti.UI.iPhone.SystemButton.REFRESH
@@ -305,24 +290,22 @@
         Database.entity.db('main', 'user').fetchUpdates('user');
     });
     
-    Ti.addEventListener('feri:flip_oglasna', function (e) {
-    	if ( Titanium.App.Properties.getString('boardLatest') == 'category' ) {
-    		
-    		feri.tableview.show();
-    		feri.tableviewFirst.hide();
-    		
-    		Titanium.App.Properties.setString('boardLatest','latest');
-    		feri.boardWindow.setTitle('Aktualno');
-    		
-    	} else {
-    		
-    		feri.tableviewFirst.show();
-    		feri.tableview.hide();
-    		
-			Titanium.App.Properties.setString('boardLatest','category');
-    		feri.boardWindow.setTitle('Deska');
-    		
-    	}
+    Ti.addEventListener('feri:flip_oglasna_deska', function (e) {
+    	if ( !feri.isAndroid() ) {
+			feri.tableviewFirst.show();
+			feri.tableview.hide();
+		}
+		feri.boardWindow.setTitle('Deska');
+		Titanium.App.Properties.setString('boardLatest','category');
+    });
+    
+    Ti.addEventListener('feri:flip_oglasna_aktualno', function (e) {
+    	if ( !feri.isAndroid() ) {
+			feri.tableview.show();
+			feri.tableviewFirst.hide();
+		}		
+		feri.boardWindow.setTitle('Aktualno');
+		Titanium.App.Properties.setString('boardLatest','latest');
     });
     
     Ti.addEventListener('feri:fix_tables', function (e) {

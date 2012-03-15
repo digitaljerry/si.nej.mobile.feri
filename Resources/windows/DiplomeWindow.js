@@ -242,16 +242,24 @@
             diplomeTableView.setData(getDiplomeData());
         });
         
-        // android back button listener
+        // android back button listener and refresh menu
 		if (feri.isAndroid()) {
 			diplomeWindow.addEventListener('android:back',function(){
-				alert(feri.iconWin);
 				feri.navGroup.close(feri.iconWin, {
                     animated: true
                 });
                 // re-enabling the icons on the dashboard
                 feri.dashboardActive = true;
 			});
+			
+			var activity = diplomeWindow.activity;
+			activity.onCreateOptionsMenu = function(e) {
+			    var menu = e.menu;
+			    var menuItemRefresh = menu.add({ title: 'Osveži' });
+			    menuItemRefresh.addEventListener("click", function(e) {
+			        Ti.fireEvent('refresh:diplome');
+			    });
+			};
 		}
         
         return diplomeWindow;

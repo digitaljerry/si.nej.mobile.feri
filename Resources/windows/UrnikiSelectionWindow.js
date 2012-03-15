@@ -77,9 +77,11 @@
         }
 		
 		var tableView = Titanium.UI.createTableView({
-			data:data,
-			style:Titanium.UI.iPhone.TableViewStyle.GROUPED
+			data:data
 		});
+		
+		if ( !feri.isAndroid() )
+			tableView.style = Titanium.UI.iPhone.TableViewStyle.GROUPED;
 		
 		urnikiSelectionWindow.add(tableView);
 		
@@ -123,10 +125,14 @@
 				current_program = Titanium.App.Properties.getString('urniki_program');
 				
 				for (var programNum = 0, numProgram = data.length; programNum < numProgram; programNum++) {
-					if (data[programNum].uid == current_program )
-						data[programNum].children[0].color = '#336699';
-					else
-						data[programNum].children[0].color = '#000';
+					if ( !feri.isAndroid()) {
+						if (data[programNum].uid == current_program )
+							data[programNum].children[0].color = '#336699';
+						else
+							data[programNum].children[0].color = '#000';
+					} else {
+						// TODO
+					}
 				}
 			}
         });

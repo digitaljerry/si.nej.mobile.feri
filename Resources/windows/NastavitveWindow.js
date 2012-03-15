@@ -91,9 +91,11 @@
 		inputData.push(row2);
 		
 		var tableView = Titanium.UI.createTableView({
-			data:inputData,
-			style:Titanium.UI.iPhone.TableViewStyle.GROUPED
+			data:inputData
 		});
+		
+		if ( !feri.isAndroid() )
+			tableView.style = Titanium.UI.iPhone.TableViewStyle.GROUPED;
 
         // create table view event listener
         tableView.addEventListener('click', function (e) {

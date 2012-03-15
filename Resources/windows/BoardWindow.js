@@ -51,7 +51,11 @@
 			
 			tabbar.addEventListener('click', function(e)
 			{
-				Ti.fireEvent('feri:flip_oglasna');
+				if ( e.index == 0 )
+					Ti.fireEvent('feri:flip_oglasna_aktualno');
+				else if ( e.index == 1 )
+					Ti.fireEvent('feri:flip_oglasna_deska');
+				
 			});
 		}
         
@@ -99,7 +103,10 @@
 			//feri.oglasnaTableView.add(feri.tableviewFirst);
 			feri.tableviewFirst.show();
 			feri.tableview.hide();
-			feri.boardWindow.title = 'Deska';
+			if ( feri.isAndroid() )
+				feri.boardWindow.title = 'Oglasna deska';
+			else
+				feri.boardWindow.title = 'Deska';
 			
 			if ( !feri.isAndroid() )
 				tabbar.index = 1;
@@ -179,6 +186,34 @@
                 // re-enabling the icons on the dashboard
                 feri.dashboardActive = true;
 			});
+			
+			/*var activity = feri.boardWindow.activity;
+			activity.onCreateOptionsMenu = function(e) {
+			    var menu = e.menu;
+			    var menuItemRefresh = menu.add({ title: 'Osveži' });
+			    menuItemRefresh.addEventListener("click", function(e) {
+			        feri.ui.activityIndicator.showModal('Posodabljam ...', feri.updateTimeout, 'Napaka pri povezavi.');
+        			Database.entity.db('main', 'node').fetchUpdates('node');
+			    });
+			    var menuItemAktualno = menu.add({ title: 'Aktualno' });
+			    menuItemAktualno.addEventListener("click", function(e) {
+			        // fireEvent doesn't work on android ... strange :( 
+			        //Ti.fireEvent('feri:flip_oglasna_aktualno');
+					feri.boardWindow.setTitle('Aktualno');
+			        feri.tableview.show();
+					feri.tableviewFirst.hide();
+					Titanium.App.Properties.setString('boardLatest','latest');
+			    });
+			    var menuItemDeska = menu.add({ title: 'Oglasna deska' });
+			    menuItemDeska.addEventListener("click", function(e) {
+			    	// fireEvent doesn't work on android ... strange :(
+			    	//Ti.fireEvent('feri:flip_oglasna_deska');
+			    	feri.boardWindow.setTitle('Oglasna deska');
+			    	feri.tableviewFirst.show();
+					feri.tableview.hide();
+					Titanium.App.Properties.setString('boardLatest','category');
+			    });
+			};*/
 		}
 
         return feri.boardWindow;

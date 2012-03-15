@@ -154,6 +154,15 @@
                 // re-enabling the icons on the dashboard
                 feri.dashboardActive = true;
 			});
+			
+			var activity = PeopleWindow.activity;
+			activity.onCreateOptionsMenu = function(e) {
+			    var menu = e.menu;
+			    var menuItemRefresh = menu.add({ title: 'Osveži' });
+			    menuItemRefresh.addEventListener("click", function(e) {
+			        Ti.fireEvent('refresh:people');
+			    });
+			};
 		}
 
         return PeopleWindow;

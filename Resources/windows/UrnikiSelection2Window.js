@@ -92,9 +92,11 @@
         }
 		
 		var tableView = Titanium.UI.createTableView({
-			data:data,
-			style:Titanium.UI.iPhone.TableViewStyle.GROUPED
+			data:data
 		});
+		
+		if ( !feri.isAndroid() )
+			tableView.style = Titanium.UI.iPhone.TableViewStyle.GROUPED;
 		
 		urnikiSelection2Window.add(tableView);
 		

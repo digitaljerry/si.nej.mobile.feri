@@ -118,28 +118,20 @@
 			
 			bb2.addEventListener('click',function(ce)
 			{
-				//feri.ui.activityIndicator.showModal('Nalagam ...', feri.loadTimeout, 'Napaka pri povezavi.');
-				//boardDetailWebview.url = 'http://www.feri.uni-mb.si/odeska/brnj2.asp?id=' + sessionData.uid;
-				//feri.getWebcontrols(sessionDetailWindow, boardDetailWebview);
-				
-				var url = 'http://www.feri.uni-mb.si/odeska/brnj2.asp?id=' + settings.uid;
-				if (feri.useDashboard) {
-					feri.navGroup.open(feri.ui.createWebViewWindow({url: url}), {
-						animated: true
-					});
-				} else {
-					feri.tabOglasna.open(feri.ui.createWebViewWindow({url: url}),{animated:true});
-				}
+				openOnWeb(settings);
 			});
+		} else {
+			var activity = sessionDetailWindow.activity;
+			activity.onCreateOptionsMenu = function(e) {
+			    var menu = e.menu;
+			    var menuItemOpen = menu.add({ title: 'Odpri na spletu' });
+			    menuItemOpen.addEventListener("click", function(e) {
+			        openOnWeb(settings);
+			    });
+			};
 		}
        
-       	boardDetailWebview.addEventListener('beforeload', function (e) {
-       		if (e.url && toolbarActive == false)
-       			feri.getWebcontrols(sessionDetailWindow, boardDetailWebview);
-       		return;
-        	//feri.getWebcontrols(sessionDetailWindow, boardDetailWebview);
-        });
-        //tv.setData(tvData);
+       	//tv.setData(tvData);
         //sessionDetailWindow.add(tv);
         sessionDetailWindow.add(boardDetailWebview);
         
@@ -147,6 +139,21 @@
        		feri.ui.activityIndicator.hideModal();
        		return;
         });
+        
+        function openOnWeb(settings) {
+        	//feri.ui.activityIndicator.showModal('Nalagam ...', feri.loadTimeout, 'Napaka pri povezavi.');
+			//boardDetailWebview.url = 'http://www.feri.uni-mb.si/odeska/brnj2.asp?id=' + sessionData.uid;
+			//feri.getWebcontrols(sessionDetailWindow, boardDetailWebview);
+			
+			var url = 'http://www.feri.uni-mb.si/odeska/brnj2.asp?id=' + settings.uid;
+			if (feri.useDashboard) {
+				feri.navGroup.open(feri.ui.createWebViewWindow({url: url}), {
+					animated: true
+				});
+			} else {
+				feri.tabOglasna.open(feri.ui.createWebViewWindow({url: url}),{animated:true});
+			}
+        }
 
         return sessionDetailWindow;
     };

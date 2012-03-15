@@ -19,7 +19,7 @@
             height: '100%'
         });
         
-        //feri.getWebcontrols(infoWindow, webview);
+        feri.getWebcontrols(infoWindow, webview);
         
         // injecting css for better display on mobile
         // inject our css when the web view finishes loading (because we need to inject into the head element)
@@ -34,7 +34,7 @@
 			    
 			    // read in the contents
 			    var cssFromFile = Ti.Filesystem.getFile(cssFileName);
-			    alert(cssFromFile);
+			    
 			    // clean the contents so we can put them in a JS string
 			    var contents = String(cssFromFile.read())
 			        .split('\r').join('')
