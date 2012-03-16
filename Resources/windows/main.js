@@ -185,10 +185,11 @@
 		    title:'Oglasna',
 		    window:winOglasna
 		});
+		var winUrniki = feri.ui.createUrnikiWindow();
 		feri.tabUrniki = Titanium.UI.createTab({  
 		    icon:'/images/dashboard/urnikiTab' + imageSuffix + '.png',
 		    title:'Urniki',
-		    window:feri.ui.createUrnikiWindow()
+		    window:winUrniki
 		});
 		var winZaposleni = feri.ui.createPeopleWindow();
 		feri.tabPeople = Titanium.UI.createTab({  
@@ -244,6 +245,13 @@
         winZaposleni.rightNavButton = rightButtonZaposleni;
         rightButtonZaposleni.addEventListener('click', function () {
             Ti.fireEvent('feri:update_data_zaposleni');
+        });
+        var rightButtonUrniki = Ti.UI.createButton({
+            systemButton: Ti.UI.iPhone.SystemButton.BOOKMARKS
+        });
+        winUrniki.rightNavButton = rightButtonUrniki;
+        rightButtonUrniki.addEventListener('click', function () {
+            Ti.fireEvent('feri:set_urniki');
         });
 		
 		//

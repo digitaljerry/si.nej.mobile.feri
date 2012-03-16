@@ -111,13 +111,13 @@
 		Ti.addEventListener('feri:set_urniki', function () {
 			if (feri.useDashboard) {
 				feri.navGroup.open(feri.ui.createUrnikiSelectionWindow({
-                    title: 'Program'
+                    title: 'Urniki'
                 }), {
                     animated: true
                 });
             } else {
-            	feri.tabOglasna.open(feri.ui.createUrnikiSelectionWindow({
-                    title: 'Program'
+            	feri.tabUrniki.open(feri.ui.createUrnikiSelectionWindow({
+                    title: 'Urniki'
                 }),{animated:true});
             }
 		});

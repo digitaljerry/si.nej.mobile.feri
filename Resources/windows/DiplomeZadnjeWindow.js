@@ -136,12 +136,19 @@
         }
  
         tv.addEventListener('click', function (e) {
-        	alert('123');
+        	
         	if ( e.rowData.dkum_url ) {
-        		feri.navGroup.open(feri.ui.createWebViewWindow({url: e.rowData.dkum_url}), {
-	                animated: true
-	            });
-	        }
+	        	if (feri.useDashboard) {
+	            	feri.navGroup.open(feri.ui.createWebViewWindow({url: e.rowData.dkum_url}), {
+	            		animated: true
+	            	});
+	            } else {
+	            	feri.tabDiplome.open(feri.ui.createWebViewWindow({
+	                	url: e.rowData.dkum_url
+	            	}),{animated:true});
+	            }
+            }
+            
         });
         
         tv.setData(tvData);

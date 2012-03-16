@@ -108,7 +108,7 @@
 		                    animated: true
 		                });
 		            } else {
-		            	feri.tabOglasna.open(feri.ui.createUrnikiSelection2Window({
+		            	feri.tabUrniki.open(feri.ui.createUrnikiSelection2Window({
 		                    title: 'Letnik in smer',
 		                    program: e.rowData.uid,
 		                    data: remoteData
