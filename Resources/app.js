@@ -41,9 +41,6 @@ if (!Database.db.getConnection('main').tableExists('board_parents')) {
 if (!Database.db.getConnection('main').tableExists('board_children')) {
   	Database.entity.db('main', 'board_children').initializeSchema();
 }
-if (!Database.db.getConnection('main').tableExists('board_notifications')) {
-  	Database.entity.db('main', 'board_notifications').initializeSchema();
-}
 if (!Database.db.getConnection('main').tableExists('aktualne_diplome')) {
   	Database.entity.db('main', 'aktualne_diplome').initializeSchema();
 }

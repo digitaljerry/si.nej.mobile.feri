@@ -28,7 +28,7 @@
 		var row1 = Ti.UI.createTableViewRow({
 			height:50,
 			title:'Shake to reload',
-			color: 'green',
+			color: feri.ui.darkText,
 			header:'Osveži oglasno desko',
 			refreshOnShake:true
 		});

@@ -191,43 +191,6 @@ Database.entity.sites.main.types.board_children.schema = {
 Database.entity.sites.main.types.board_children.schema.prototype = Database.constructPrototype(Database.entity.DefaultSchema);
 
 // Define our entity storage rules.
-Database.entity.sites.main.types.board_notifications.schema = {
-    fields: function () {
-        return {
-            fields: {
-                uid: {
-                    type: 'INTEGER'
-                },
-                category: {
-                    type: 'INTEGER'
-                },
-                title: {
-                    type: 'VARCHAR'
-                },
-                description: {
-                    type: 'TEXT'
-                },
-                pubDate: {
-                    type: 'VARCHAR'
-                },
-                author: {
-                    type: 'VARCHAR'
-                }
-            },
-            indexes: {
-                uid_idx: ['uid'],
-                category_idx: ['category']
-            }
-        };
-    },
-
-    getFieldValues: function (entity, values) {
-        values.changed = entity.changed;
-    }
-};
-Database.entity.sites.main.types.board_notifications.schema.prototype = Database.constructPrototype(Database.entity.DefaultSchema);
-
-// Define our entity storage rules.
 Database.entity.sites.main.types.aktualne_diplome.schema = {
     fields: function () {
         return {

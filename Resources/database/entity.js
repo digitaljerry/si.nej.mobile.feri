@@ -70,18 +70,6 @@ Database.entity = {
                         return 'board_children/' + id;
                     }
                 },
-                board_notifications: {
-                    label: 'Board notifications',
-                    entity_keys: {
-                        id: 'uid',
-                        bundle: 'type',
-                        label: 'title'
-                    },
-                    schema: {},
-                    requestUrl: function (id) {
-                        return 'board_notifications/' + id;
-                    }
-                },
                 zadnje_diplome: {
                     label: 'Zadnje diplome',
                     entity_keys: {
