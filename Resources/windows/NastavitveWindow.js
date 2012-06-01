@@ -11,7 +11,7 @@
         });
         
         // Create the table view
-        if ( !feri.isAndroid() ) {
+        if ( !feri.isAndroid() ) {
         	var inputData = [
 				{title:'Dashboard', switchAppUse: 'dashboard', header:'Oblika'},
 				{title:'Zavihki', switchAppUse: 'tabs'}
