@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ti:app xmlns:ti="http://ti.appcelerator.org">
+    <property name="acs-oauth-secret-production" type="string">4pwjvDcxSZifuAzFZ7X1lfsbIMAk2Jvb</property>
+    <property name="acs-oauth-key-production" type="string">hlh7xYeA5yD0hgCY1stYlbWuAghr3smX</property>
+    <property name="acs-api-key-production" type="string">jCeB7rodSn7MSLqGJ5TDB8gc9zD8BEWn</property>
+    <property name="acs-oauth-secret-development" type="string">8LuYHt0RSSNhWosBVnXQ44zPNh5fP9wT</property>
+    <property name="acs-oauth-key-development" type="string">mJgP6gxpcsAXDk86FwQPwHnaVDsa5w6i</property>
+    <property name="acs-api-key-development" type="string">zGbO2wA7ngswO5MwshLDuIVjjRQx9mrh</property>
     <property name="ti.android.runtime">v8</property>
     <sdk-version>2.0.2.GA</sdk-version>
     <deployment-targets>
@@ -40,6 +46,8 @@
         </manifest>
         <icon>appicon.png</icon>
     </android>
-    <modules/>
+    <modules>
+        <module platform="commonjs" version="2.0.5">ti.cloud</module>
+    </modules>
     <property name="ti.android.threadstacksize" type="int">32768</property>
 </ti:app>
