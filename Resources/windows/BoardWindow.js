@@ -45,7 +45,9 @@
 				labels:['Aktualno', 'Deska'],
 				backgroundColor:feri.ui.barColor,
 				index: 0,
-				style:Titanium.UI.iPhone.SystemButtonStyle.BAR
+				style:Titanium.UI.iPhone.SystemButtonStyle.BAR,
+				height:30,
+				width:200
 			});
 			feri.boardWindow.setTitleControl(tabbar);
 			
