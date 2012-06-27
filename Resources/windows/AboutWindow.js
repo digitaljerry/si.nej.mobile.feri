@@ -9,21 +9,25 @@
             navBarHidden: false,
             fullscreen: false
         });
+        
+        var version = Ti.App.getVersion();
+        var feriWindow = Ti.UI.createWebView({url: '/pages/about.html'});
+        var appWindow = Ti.UI.createWebView({url: '/pages/app.html'});
+        
+        appWindow.addEventListener('load', function() {
+			appWindow.evalJS("document.getElementById('version').innerText='"+version+"';");
+		});
+        
         var data = [
         	{
 	            title: 'FERI',
-	            view: Ti.UI.createWebView({
-	                url: '/pages/about.html'
-	            })
+	            view: feriWindow
         	}, 
         	{
 	            title: 'Aplikacija',
-	            view: Ti.UI.createWebView({
-	                url: '/pages/app.html'
-	            })
+	            view: appWindow
         	}
         ];
-        
         aboutWindow.add(feri.ui.createTabbedScrollableView({data:data}));
         
         // android back button listener
