@@ -41,10 +41,8 @@
         
         // add a header
     	var headerRow = Ti.UI.createTableViewRow({
-            height: 'auto',
-            left: 0,
-            top: -5,
-            bottom: 10,
+            left: 10,
+            top: 10,
             layout: 'vertical',
             className: 'mainHeaderRow',
             backgroundPosition: 'bottom left',
