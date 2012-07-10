@@ -72,5 +72,6 @@ Ti.include(
   	// Create icons based on previous custom windows and
   	// load them into the main dashboard window
   	'app/icons.js',
-  	'windows/main.js'
+  	'windows/main.js',
+  	'app/push.js'
 );

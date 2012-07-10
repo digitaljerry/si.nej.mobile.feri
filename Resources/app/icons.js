@@ -17,7 +17,8 @@
 				image: '/images/dashboard/oglasna' + imageSuffix + '.png',
 				func: feri.ui.createBoardWindow,
 				name: 'board',
-				refresh: true
+				refresh: true,
+				badgeReset: true
 			},
 			{
 				image: '/images/dashboard/urniki' + imageSuffix + '.png',
