@@ -137,6 +137,10 @@
                         Ti.fireEvent('feri:set_urniki');
                     });
 	            }
+	            
+	            if (icon.badgeReset) {
+	            	Titanium.UI.iPhone.setAppBadge(0);
+	            }
 	
 	            feri.iconWin.navBarHidden = false;
 	            feri.navGroup.open(feri.iconWin, {
