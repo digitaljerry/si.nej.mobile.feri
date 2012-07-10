@@ -187,6 +187,22 @@
         	feri.tableviewFirst.setData(feri.ui.getBoardCatTableData(undefined, true));
         });
         
+        // switch click listeners
+        pushSwitch.addEventListener('change', function (e) {
+        	if (e.value == true) {
+        		catData.push = true;
+        		feri.subscribeToServerPush(catData.uid);
+        	}
+        	else
+        	{
+        		catData.push = false;
+        		feri.unsubscribeToServerPush(catData.uid);
+        	}
+        	
+        	// save with force remove
+        	Database.entity.db('main', 'board_children').save(catData, true);
+        });
+        
         boardDetailWindow.add(tableview);
 
         return boardDetailWindow;
