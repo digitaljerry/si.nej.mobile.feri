@@ -7,7 +7,7 @@
     <property name="acs-oauth-key-development" type="string">mJgP6gxpcsAXDk86FwQPwHnaVDsa5w6i</property>
     <property name="acs-api-key-development" type="string">zGbO2wA7ngswO5MwshLDuIVjjRQx9mrh</property>
     <property name="ti.android.runtime">v8</property>
-    <sdk-version>2.0.2.GA</sdk-version>
+    <sdk-version>2.1.0.GA</sdk-version>
     <deployment-targets>
         <target device="mobileweb">false</target>
         <target device="iphone">true</target>
