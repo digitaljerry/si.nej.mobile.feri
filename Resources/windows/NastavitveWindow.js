@@ -107,14 +107,14 @@
 				if ( e.rowData.switchAppUse == 'dashboard' && feri.useDashboard == false) {
 					section.rows[0].hasCheck = true;
 					section.rows[1].hasCheck = false;
-					Titanium.App.Properties.setString('feri.useDashboard', 'true');
+					Titanium.App.Properties.setString('feri.mainView', 'dashboard');
 					feri.useDashboard = true;
 					feri.dashboardActive = true;
 					Ti.include('windows/main.js');
 				} else if ( e.rowData.switchAppUse == 'tabs' && feri.useDashboard == true) {
 					section.rows[0].hasCheck = false;
 					section.rows[1].hasCheck = true;
-					Titanium.App.Properties.setString('feri.useDashboard', 'false');
+					Titanium.App.Properties.setString('feri.mainView', 'tabs');
 					feri.useDashboard = false;
 					feri.dashboardActive = true;
 					feri.ui.activityIndicator.showModal('Posodabljam ...');

@@ -2,9 +2,7 @@
 (function () {
 	
 	if (
-		Titanium.App.Properties.getString('feri.useDashboard') == 'true' ||
-		Titanium.App.Properties.getString('feri.useDashboard') == '' ||
-		Titanium.App.Properties.getString('feri.useDashboard') == 'undefined' ||
+		Titanium.App.Properties.getString('feri.mainView') != 'tabs' ||
 		feri.isAndroid()
 	)	{
 		feri.useDashboard = true;
@@ -331,13 +329,6 @@
     	Titanium.App.Properties.setString('feri.refreshOnShake', 'true');
     }
     
-    if (
-    	Titanium.App.Properties.getString('feri.useDashboard') == '' ||
-    	Titanium.App.Properties.getString('feri.useDashboard') == 'undefined'
-    ) {
-    	Titanium.App.Properties.setString('feri.useDashboard', 'true');
-    }
-    	
     Ti.Gesture.addEventListener('shake',function(e) {
 		if ( Titanium.App.Properties.getString('feri.refreshOnShake') == 'true' ) {
 			Ti.fireEvent('feri:update_data_oglasna');
