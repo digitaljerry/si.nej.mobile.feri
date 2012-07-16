@@ -26,7 +26,7 @@
 	// 000000 = black as night
 	
 	feri.extend(feri.ui, {
-		tabBarHeight: 76,
+		tabBarHeight: 60,
 		mainBackgroundColor: '#004076',
 		backgroundSelectedColor: '#004076',
 		barColor: '#004076',
@@ -157,11 +157,6 @@
             	}
             	return views;
             })()
-        });
-        scrollable.addEventListener('scroll', function (e) {
-            if (e.view) {
-                data[e.currentPage].tabView.fireEvent('click');
-            }
         });
         
         container.add(scrollable);

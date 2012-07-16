@@ -9,7 +9,8 @@
             backgroundColor: '#FFF',
             barColor: feri.ui.barColor,
             navBarHidden: false,
-            fullscreen: false
+            fullscreen: false,
+            layout: 'vertical'
         });
         
         // Build session data
@@ -23,15 +24,9 @@
             layout: 'vertical',
             separatorColor: '#fff'
         });
-        tv.footerView = Ti.UI.createView({
-            height: 1,
-            opacity: 0
-        });
  
         var headerRow = Ti.UI.createTableViewRow({
-            height: 'auto',
             left: 0,
-            top: -5,
             bottom: 10,
             layout: 'vertical',
             className: 'mainHeaderRow',
@@ -41,10 +36,8 @@
  
         var bodyRow = Ti.UI.createTableViewRow({
             hasChild: false,
-            height: 'auto',
             backgroundColor: '#fff',
             left: 0,
-            top: -5,
             bottom: 10,
             layout: 'vertical',
             className: 'bodyRow',
@@ -64,8 +57,8 @@
                 left: commonPadding,
                 top: 18,
                 bottom: 7,
-                right: commonPadding,
-                height: 'auto'
+                height: 'auto',
+                right: commonPadding
             });
             headerRow.add(titleLabel);
         }
@@ -80,9 +73,7 @@
                 textAlign: 'left',
                 color: '#000',
                 left: commonPadding,
-                top: 'auto',
                 bottom: 5,
-                right: 'auto',
                 height: 'auto'
             });
             headerRow.add(author);
@@ -94,13 +85,13 @@
                 backgroundColor: '#fff',
                 textAlign: 'left',
                 color: '#000',
-                height: 'auto',
                 width: feri.isAndroid() ? '92%' : 'auto',
                 top: 15,
                 bottom: 15,
                 font: {
                     fontSize: 16
-                }
+                },
+                height: 'auto'
             });
             bodyRow.add(body);
         }
