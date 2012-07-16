@@ -17,7 +17,7 @@
     </deployment-targets>
     <id>si.zadrga.mobile.feri</id>
     <name>FERI</name>
-    <version>1.0</version>
+    <version>0.1</version>
     <publisher>Jernej Zorec</publisher>
     <url>http://nej.si</url>
     <description>FERI Mobile App</description>
