@@ -31,9 +31,7 @@
 				alert("USER CREATED SUCCESSFULLY.");
 				// user created successfully
 				Ti.App.Properties.setString("push_username", username);
-				
-				if ( e.login )
-					Ti.fireEvent("feri:login");
+				Ti.fireEvent("feri:login");
 				
 			} else {
 				// oops, something went wrong
