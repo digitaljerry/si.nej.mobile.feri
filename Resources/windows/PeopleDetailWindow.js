@@ -14,7 +14,8 @@
             title: peopleData.full_name,
             barColor: feri.ui.barColor,
             backgroundColor: feri.ui.backgroundColor,
-            fullscreen: false
+            fullscreen: false,
+            layout: 'vertical'
         });
         peopleDetailWindow.orientationModes = [Ti.UI.PORTRAIT];
 
@@ -31,9 +32,7 @@
         });
         
         var headerRow = Ti.UI.createTableViewRow({
-            height: 'auto',
             left: 0,
-            top: -5,
             bottom: 10,
             layout: 'vertical',
             className: 'mainHeaderRow',
@@ -43,7 +42,6 @@
 
         var titleRow = Ti.UI.createTableViewRow({
             hasChild: false,
-            height: 'auto',
             width: '100%',
             selectionStyle: 'none',
             selectedBackgroundColor: feri.ui.selectedBackgroundColor
@@ -51,7 +49,6 @@
         
         var bioRow = Ti.UI.createTableViewRow({
             hasChild: false,
-            height: 'auto',
             width: '100%',
             selectionStyle: 'none',
             selectedBackgroundColor: feri.ui.selectedBackgroundColor
@@ -59,7 +56,6 @@
         
         var officeRow = Ti.UI.createTableViewRow({
             hasChild: false,
-            height: 'auto',
             width: '100%',
             selectionStyle: 'none',
             selectedBackgroundColor: feri.ui.selectedBackgroundColor
@@ -67,7 +63,6 @@
         
         var hoursRow = Ti.UI.createTableViewRow({
             hasChild: false,
-            height: 'auto',
             width: '100%',
             selectionStyle: 'none',
             selectedBackgroundColor: feri.ui.selectedBackgroundColor
@@ -75,7 +70,6 @@
         
         var emailRow = Ti.UI.createTableViewRow({
             hasDetail: true,
-            height: 'auto',
             width: '100%',
             selectionStyle: 'none',
             selectedBackgroundColor: feri.ui.selectedBackgroundColor
@@ -83,7 +77,6 @@
         
         var telRow = Ti.UI.createTableViewRow({
             hasDetail: false,
-            height: 'auto',
             width: '100%',
             selectionStyle: 'none',
             selectedBackgroundColor: feri.ui.selectedBackgroundColor
@@ -98,13 +91,13 @@
 	                fontSize: 28,
 	                fontWeight: 'bold'
 	            },
+	            height: 'auto',
 	            textAlign: 'left',
 	            color: '#000',
 	            left: commonPadding,
 	            top: 18,
 	            bottom: 10,
-	            right: commonPadding,
-	            height: 'auto'
+	            right: commonPadding
 	        });
             headerRow.add(fullName);
         }
@@ -118,7 +111,6 @@
                 },
                 textAlign: 'left',
                 color: '#666',
-                height: 'auto',
                 left: commonPadding,
                 touchEnabled: false,
                 bottom: commonPadding
@@ -133,8 +125,8 @@
             backgroundColor: '#fff',
             textAlign: 'left',
             color: '#000',
-            height: 'auto',
             width: feri.isAndroid() ? '92%' : 'auto',
+            height: 'auto',
             top: 10,
             bottom: 10,
             font: {
@@ -158,8 +150,8 @@
             text: bioText,
             backgroundColor: '#fff',
             textAlign: 'left',
-            color: '#000',
             height: 'auto',
+            color: '#000',
             width: feri.isAndroid() ? '92%' : 'auto',
             top: 10,
             bottom: 10,
@@ -185,8 +177,8 @@
             backgroundColor: '#fff',
             textAlign: 'left',
             color: '#000',
-            height: 'auto',
             width: feri.isAndroid() ? '92%' : 'auto',
+            height: 'auto',
             top: 10,
             bottom: 10,
             font: {
@@ -207,8 +199,8 @@
             backgroundColor: '#fff',
             textAlign: 'left',
             color: '#000',
-            height: 'auto',
             width: feri.isAndroid() ? '92%' : 'auto',
+            height: 'auto',
             top: 10,
             bottom: 10,
             font: {
@@ -229,8 +221,8 @@
             backgroundColor: '#fff',
             textAlign: 'left',
             color: '#000',
-            height: 'auto',
             width: feri.isAndroid() ? '92%' : 'auto',
+            height: 'auto',
             top: 10,
             bottom: 10,
             font: {
@@ -261,8 +253,8 @@
             backgroundColor: '#fff',
             textAlign: 'left',
             color: '#000',
-            height: 'auto',
             width: feri.isAndroid() ? '92%' : 'auto',
+            height: 'auto',
             top: 10,
             bottom: 10,
             font: {
