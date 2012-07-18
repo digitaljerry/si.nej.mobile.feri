@@ -95,7 +95,8 @@ var feri = {
 		
 			var bb2 = Titanium.UI.createButtonBar({
 				labels:['Nazaj', 'Osveži', 'Naprej'],
-				backgroundColor:feri.ui.toolbarColor
+				backgroundColor:feri.ui.toolbarColor,
+				height:30
 			});
 			var flexSpace = Titanium.UI.createButton({
 				systemButton:Titanium.UI.iPhone.SystemButton.FLEXIBLE_SPACE

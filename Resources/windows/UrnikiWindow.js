@@ -33,7 +33,8 @@
 			// reload controls listeners
 			var bb2 = Titanium.UI.createButtonBar({
 				labels:['Prejšnji', 'Trenutni teden', 'Naslednji'],
-				backgroundColor:feri.ui.toolbarColor
+				backgroundColor:feri.ui.toolbarColor,
+				height:30
 			});
 			var flexSpace = Titanium.UI.createButton({
 				systemButton:Titanium.UI.iPhone.SystemButton.FLEXIBLE_SPACE
