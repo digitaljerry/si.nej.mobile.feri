@@ -67,6 +67,7 @@ Ti.include(
   	'windows/WebViewWindow.js',
   	'windows/DiplomeZadnjeWindow.js',
   	'windows/NastavitveWindow.js',
+  	'windows/NastavitveBoardEditListWindow.js',
   	'windows/HtmlWindow.js',
   
   	// Create icons based on previous custom windows and

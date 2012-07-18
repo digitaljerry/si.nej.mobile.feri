@@ -20,7 +20,7 @@
 			if ( feri.useDashboard == true )
 				inputData[0].hasCheck = true;
 			else
-			inputData[1].hasCheck = true;
+				inputData[1].hasCheck = true;
         } else {
         	var inputData = [];
         }
@@ -29,9 +29,10 @@
 			height:50,
 			title:'Shake to reload',
 			color: feri.ui.darkText,
-			header:'Osveži oglasno desko',
+			header:'Oglasna deska',
 			refreshOnShake:true
 		});
+		
 		if ( feri.isAndroid() ) {
 			var titleLabel1 = Ti.UI.createLabel({
 	            text: 'Shake to reload',
@@ -55,12 +56,24 @@
 		});
 		var row2 = Ti.UI.createTableViewRow({
 			height:50,
-			title:'Ob zagonu',
+			title:'Osveži ob zagonu',
 			refreshOnLoad:true
+		});
+		var row3 = Ti.UI.createTableViewRow({
+			height:50,
+			title:'Priljubljene',
+			editList:'favorites',
+			hasChild: true
+		});
+		var row4 = Ti.UI.createTableViewRow({
+			height:50,
+			title:'Push obvestila',
+			editList:'push',
+			hasChild: true
 		});
 		if ( feri.isAndroid() ) {
 			var titleLabel2 = Ti.UI.createLabel({
-	            text: 'Ob zagonu',
+	            text: 'Osveži ob zagonu',
 	            font: {
 	                fontSize: 16,
 	                fontWeight: 'bold'
@@ -73,6 +86,36 @@
 	            height: 'auto',
 	        });
 	        row2.add(titleLabel2);
+	        
+	        var titleLabel3 = Ti.UI.createLabel({
+	            text: 'Priljubljene',
+	            font: {
+	                fontSize: 16,
+	                fontWeight: 'bold'
+	            },
+	            color: feri.ui.darkText,
+	            left: 10,
+	            top: 10,
+	            bottom: 10,
+	            right: 10,
+	            height: 'auto',
+	        });
+	        row3.add(titleLabel3);
+	        
+	        var titleLabel4 = Ti.UI.createLabel({
+	            text: 'Push obvestila',
+	            font: {
+	                fontSize: 16,
+	                fontWeight: 'bold'
+	            },
+	            color: feri.ui.darkText,
+	            left: 10,
+	            top: 10,
+	            bottom: 10,
+	            right: 10,
+	            height: 'auto',
+	        });
+	        row4.add(titleLabel4);
 		}
 		var sw2 = Ti.UI.createSwitch({
 			right:10,
@@ -89,6 +132,15 @@
 		
 		inputData.push(row1);
 		inputData.push(row2);
+		inputData.push(row3);
+		inputData.push(row4);
+		
+		var oglasnaDeskaSettings = [
+			{title:'Priljubljene', editList: 'favorites', header:'Oglasna deska'},
+			{title:'Push obvestila', editList: 'push'}
+		];
+		
+		inputData.push(oglasnaDeskaSettings);
 		
 		var tableView = Titanium.UI.createTableView({
 			data:inputData
@@ -121,6 +173,40 @@
 					Ti.include('windows/main.js');
 				}
 			}
+			
+			if ( e.rowData.editList == 'favorites' ) {
+				
+				if (feri.useDashboard) {
+					feri.navGroup.open(feri.ui.createNastavitveBoardEditListWindow({
+						title: 'Priljubljene',
+	                    edit: e.rowData.editList
+	                }), {
+	                    animated: true
+	                });
+	            } else {
+	            	feri.tabOglasna.open(feri.ui.createNastavitveBoardEditListWindow({
+	            		title: 'Priljubljene',
+	                    edit: e.rowData.editList
+	                }),{animated:true});
+	            }
+	            
+	        } else if ( e.rowData.editList == 'push' ) {
+				
+				if (feri.useDashboard) {
+					feri.navGroup.open(feri.ui.createNastavitveBoardEditListWindow({
+						title: 'Push obvestila',
+	                    edit: e.rowData.editList
+	                }), {
+	                    animated: true
+	                });
+	            } else {
+	            	feri.tabOglasna.open(feri.ui.createNastavitveBoardEditListWindow({
+	            		title: 'Push obvestila',
+	                    edit: e.rowData.editList
+	                }),{animated:true});
+	            }
+	            
+	        }
 			
 		});
 		
