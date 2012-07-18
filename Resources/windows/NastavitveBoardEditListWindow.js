@@ -79,27 +79,31 @@
         	allowsSelectionDuringEditing:true
         });
         
-        var edit = Titanium.UI.createButton({
-        	title:'Uredi'
-		});
-		
-		edit.addEventListener('click', function()
-		{
-			listWindow.setRightNavButton(cancel);
-			tableview.editing = true;
-		});
-		
-		var cancel = Titanium.UI.createButton({
-			title:'Prekliči',
-			style:Titanium.UI.iPhone.SystemButtonStyle.DONE
-		});
-		cancel.addEventListener('click', function()
-		{
+        if ( !feri.isAndroid() ) {
+        	
+	        var edit = Titanium.UI.createButton({
+	        	title:'Uredi'
+			});
+			
+			edit.addEventListener('click', function()
+			{
+				listWindow.setRightNavButton(cancel);
+				tableview.editing = true;
+			});
+			
+			var cancel = Titanium.UI.createButton({
+				title:'Prekliči',
+				style:Titanium.UI.iPhone.SystemButtonStyle.DONE
+			});
+			cancel.addEventListener('click', function()
+			{
+				listWindow.setRightNavButton(edit);
+				tableview.editing = false;
+			});
+			
 			listWindow.setRightNavButton(edit);
-			tableview.editing = false;
-		});
 		
-		listWindow.setRightNavButton(edit);
+		}
         
 		listWindow.add(tableview);
 		

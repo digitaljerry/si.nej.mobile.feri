@@ -136,7 +136,7 @@
                     });
 	            }
 	            
-	            if (icon.badgeReset) {
+	            if (icon.badgeReset && !feri.isAndroid()) {
 	            	Titanium.UI.iPhone.setAppBadge(0);
 	            }
 	
