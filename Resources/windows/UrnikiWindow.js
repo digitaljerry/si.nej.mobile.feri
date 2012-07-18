@@ -146,7 +146,11 @@
 				
 				var xhr = Ti.Network.createHTTPClient();
 				xhr.open('POST', feri.urniki_url);
-				xhr.setRequestHeader('Content-Type', 'text/html; charset=Windows-1250');
+				//xhr.setRequestHeader('Content-Type', 'text/html; charset=windows-1250');
+				//xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+				//xhr.setRequestHeader('Accept-Charset', 'ISO-8859-1,utf-8;q=0.7,*;q=0.3');
+				xhr.setRequestHeader('Content-Type', 'text/html; charset=windows-1250');
+				
 				xhr.onload = function () {
 					webview.html = this.responseText;
 					webview.setVisible(true);
