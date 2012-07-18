@@ -28,14 +28,14 @@
 			last_name: username
 		}, function (e) {
 			if (e.success) {
-				alert("USER CREATED SUCCESSFULLY.");
+				trace("USER CREATED SUCCESSFULLY.");
 				// user created successfully
 				Ti.App.Properties.setString("push_username", username);
 				Ti.fireEvent("feri:login");
 				
 			} else {
 				// oops, something went wrong
-				alert("USER not created. something went wrong "+e);
+				trace("USER not created. something went wrong "+e);
 				Ti.App.Properties.setString("push_username", null);
 			}
 		});
@@ -53,12 +53,12 @@
 		}, function (e) {
 			if (e.success) {
 				var user = e.users[0];
-				/*alert(	'Success:\\n' +
+				trace(	'Success:\\n' +
 						'id: ' + user.id + '\\n' +
 						'first name: ' + user.first_name + '\\n' +
-						'last name: ' + user.last_name);*/
+						'last name: ' + user.last_name);
 			} else {
-				alert(	'Error:\\n' +
+				trace(	'Error:\\n' +
 						((e.error && e.message) || JSON.stringify(e)));
 			}
 		});
@@ -76,13 +76,13 @@
 		}, function (e) {
 			if (e.success) {
 				var user = e.users[0];
-				alert(	'Success logging out:\\n' +
+				trace(	'Success logging out:\\n' +
 						'id: ' + user.id + '\\n' +
 						'first name: ' + user.first_name + '\\n' +
 						'last name: ' + user.last_name);
 				Ti.App.Properties.setString("push_username", null);
 			} else {
-				alert(	'Error:\\n' +
+				trace(	'Error:\\n' +
 						((e.error && e.message) || JSON.stringify(e)));
 			}
 		});
@@ -102,16 +102,16 @@
 			{
 				user_device_token = e.deviceToken;
 				Ti.App.Properties.setString("device_token",user_device_token);
-				alert("Device token received "+user_device_token);
+				trace("Device token received "+user_device_token);
 			},
 			error:function(e)
 			{
-				alert("Error during registration: "+e.error);
+				trace("Error during registration: "+e.error);
 			},
 			callback:function(e)
 			{
 				// called when a push notification is received.
-				alert("Received a push notification\n\nPayload:\n\n"+JSON.stringify(e.data));
+				trace("Received a push notification\n\nPayload:\n\n"+JSON.stringify(e.data));
 			}
 		});
 	}
@@ -133,10 +133,10 @@
 			device_token: token
 		}, function (e) {
 			if (e.success) {
-				alert('Success'+((e.error && e.message) || JSON.stringify(e)));
+				trace('Success'+((e.error && e.message) || JSON.stringify(e)));
 				return true;
 			} else {
-				alert('Error:\\n' + ((e.error && e.message) || JSON.stringify(e)));
+				trace('Error:\\n' + ((e.error && e.message) || JSON.stringify(e)));
 				return false;
 			}
 		});
@@ -159,10 +159,10 @@
 			device_token: token
 		}, function (e) {
 			if (e.success) {
-				alert('Success'+((e.error && e.message) || JSON.stringify(e)));
+				trace('Success'+((e.error && e.message) || JSON.stringify(e)));
 				return true;
 			} else {
-				alert('Error:\\n' + ((e.error && e.message) || JSON.stringify(e)));
+				trace('Error:\\n' + ((e.error && e.message) || JSON.stringify(e)));
 				return false;
 			}
 		});
