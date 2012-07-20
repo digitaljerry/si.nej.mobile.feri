@@ -214,7 +214,7 @@
         });
         
         // make it searchable
-        feri.getSearchbar(diplomeTableView);
+        //feri.getSearchbar(diplomeTableView);
         
         diplomeWindow.add(diplomeTableView);
         
