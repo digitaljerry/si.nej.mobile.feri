@@ -111,6 +111,29 @@
 		// add delete event listener
 		tableview.addEventListener('delete',function(e)
 		{
+			deleteFromList(e);
+		});
+		
+		// delete for android
+		if ( feri.isAndroid() ) {
+			tableview.addEventListener('click', function(e)
+			{
+				var a = Titanium.UI.createAlertDialog({
+					message:'Izbriši iz seznama?'
+				});
+				a.buttonNames = ['OK','Prekliči'];
+				a.cancel = 1;
+				a.show()
+				
+				a.addEventListener('click', function(f)
+				{
+					if(f.index == 0)
+						deleteFromList(e);
+				});
+			});
+		}
+		
+		function deleteFromList(e) {
 			// getting entity from db
 			var catData = Database.entity.db('main', 'board_children').load(e.row.uid);
 			
@@ -121,8 +144,12 @@
 			
 			Database.entity.db('main', 'board_children').save(catData, true);
 			
-		});
-		
+			if ( feri.isAndroid() ) {
+				tableview.deleteRow(e.index);
+			}
+			
+			return true;
+		}
 
         return listWindow;
     };
