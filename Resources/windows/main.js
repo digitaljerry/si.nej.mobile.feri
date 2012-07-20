@@ -72,9 +72,11 @@
 	        	else
 	        		feri.dashboardActive = false;
 	        	
-	        	// feedback on the icon when clicked 
-	        	icon.imageActive = 'undefined';
-	        	view.backgroundImage = icon.imageActive;
+	        	if ( !feri.isAndroid()) {
+	        		// feedback on the icon when clicked 
+	        		icon.imageActive = 'undefined';
+	        		view.backgroundImage = icon.imageActive;
+	        	}
 	        	
 	        	var ind = Titanium.UI.createActivityIndicator({
 	        		width: 50,
