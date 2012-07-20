@@ -3,6 +3,41 @@
 	
 	feri.ui.createBoardWindow = function (w) {
 		
+		var alreadyAddedCategory = false;
+		var alreadyAddedLatest = false;
+		
+		function addLatest() {
+			if (alreadyAddedLatest)
+				return;
+			
+			feri.oglasnaTableView.add(feri.tableview);
+			alreadyAddedLatest = true;
+		}
+		
+		function addCategory() {
+			if (alreadyAddedCategory)
+				return;
+			
+			feri.oglasnaTableView.add(feri.tableviewFirst);
+			alreadyAddedCategory = true;
+		}
+		
+		function showLatest() {
+			addLatest();
+			feri.boardWindow.setTitle('Aktualno');
+	        feri.tableview.show();
+			feri.tableviewFirst.hide();
+			Titanium.App.Properties.setString('boardLatest','latest');
+		}
+		
+		function showCategory() {
+			addCategory();
+			feri.boardWindow.setTitle('Oglasna deska');
+	    	feri.tableviewFirst.show();
+			feri.tableview.hide();
+			Titanium.App.Properties.setString('boardLatest','category');
+		}
+		
 		var conn = Database.db.getConnection('main');
         
         // Base row properties
@@ -19,7 +54,7 @@
         // Creates a TableViewRow using the base row properties and a given
         // params object
         var createDayRow = function (params) {
-            return feri.extend(Ti.UI.createTableViewRow(params), baseRow);
+        	return feri.extend(Ti.UI.createTableViewRow(params), baseRow);
         }
         
         // Create data for TableView
@@ -92,19 +127,18 @@
 		feri.tableviewFirst.hide();
 		
 		// if user has set oglasna deska as default view do thise
+		
 		if (Titanium.App.Properties.getString('boardLatest') == 'latest') {
 			//feri.oglasnaTableView.add(feri.tableview);
-			feri.tableview.show();
-			feri.tableviewFirst.hide();
-			feri.boardWindow.title = 'Aktualno';
+			showLatest();
 			
 			if ( !feri.isAndroid() )
 				tabbar.index = 0;
 			
 		} else {
 			//feri.oglasnaTableView.add(feri.tableviewFirst);
-			feri.tableviewFirst.show();
-			feri.tableview.hide();
+			showCategory();
+			
 			if ( feri.isAndroid() )
 				feri.boardWindow.title = 'Oglasna deska';
 			else
@@ -113,9 +147,14 @@
 			if ( !feri.isAndroid() )
 				tabbar.index = 1;
 		}
-		feri.oglasnaTableView.add(feri.tableview);
-		feri.oglasnaTableView.add(feri.tableviewFirst);
-        
+		
+		if ( !feri.isAndroid() ) {
+			feri.oglasnaTableView.add(feri.tableview);
+			feri.oglasnaTableView.add(feri.tableviewFirst);
+			alreadyAddedLatest = true;
+			alreadyAddedCategory = true;
+		}
+		
         // zadnje objave click handler
         feri.tableview.addEventListener('click', function (e) {
 			if (e.rowData.uid) {
@@ -201,19 +240,13 @@
 			    menuItemAktualno.addEventListener("click", function(e) {
 			        // fireEvent doesn't work on android ... strange :( 
 			        //Ti.fireEvent('feri:flip_oglasna_aktualno');
-					feri.boardWindow.setTitle('Aktualno');
-			        feri.tableview.show();
-					feri.tableviewFirst.hide();
-					Titanium.App.Properties.setString('boardLatest','latest');
+					showLatest();
 			    });
 			    var menuItemDeska = menu.add({ title: 'Oglasna deska' });
 			    menuItemDeska.addEventListener("click", function(e) {
 			    	// fireEvent doesn't work on android ... strange :(
 			    	//Ti.fireEvent('feri:flip_oglasna_deska');
-			    	feri.boardWindow.setTitle('Oglasna deska');
-			    	feri.tableviewFirst.show();
-					feri.tableview.hide();
-					Titanium.App.Properties.setString('boardLatest','category');
+			    	showCategory();
 			    });
 			};
 		}
