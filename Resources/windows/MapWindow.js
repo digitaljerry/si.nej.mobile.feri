@@ -130,13 +130,17 @@
             var myEntry = data[i];
 
             myEntry.webview = Ti.UI.createWebView({
-                scalesPageToFit: true,
                 url: myEntry.url,
                 top: feri.ui.tabBarHeight,
                 bottom: 0,
                 left: myEntry.left,
                 width: Ti.Platform.displayCaps.platformWidth
             });
+            if ( !feri.isAndroid() ) {
+            	myEntry.webview.scalesPageToFit = true;
+            } else {
+            	myEntry.webview.focusable = true;
+            }
 
             var tabView = Ti.UI.createView({
                 backgroundImage: (i == 0) ? '/images/buttonbar/button2_selected.png' : '/images/buttonbar/button2_unselected_shadowL.png',
