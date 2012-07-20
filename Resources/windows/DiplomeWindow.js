@@ -187,7 +187,7 @@
 	            color: '#000',
 	            //height: 'auto',
 	            layout: 'vertical',
-	            focusable: true,
+	            //focusable: true,
 	            title: 'Več diplom na DKUM',
 	            dkum: true,
 	            selectedBackgroundColor: feri.ui.selectedBackgroundColor
@@ -219,6 +219,7 @@
         diplomeWindow.add(diplomeTableView);
         
         diplomeTableView.addEventListener('click', function (e) {
+        	
         	if ( e.rowData.dkum == true ) {
         		if (feri.useDashboard) {
 	        		feri.navGroup.open(feri.ui.createWebViewWindow({url: 'http://dkum.uni-mb.si/Iskanje.php?type=napredno&niz0=&vrsta=dip&vir=3&chkFullOnly=on'}), {
