@@ -193,6 +193,7 @@
         
         // switch click listeners
         pushSwitch.addEventListener('change', function (e) {
+        	
         	if (e.value == true) {
         		catData.push = true;
         		feri.subscribeToServerPush(catData.uid);

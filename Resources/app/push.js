@@ -2,7 +2,7 @@
 	
 	//REGISTER USER ON CLOUD
 	Ti.addEventListener('feri:registerUser', function (e) {
-		trace("REGISTER");
+		//alert("REGISTER");
 		
 		var username = Ti.App.Properties.getString("push_username");
 		var password = 'pusher';
@@ -28,14 +28,14 @@
 			last_name: username
 		}, function (e) {
 			if (e.success) {
-				trace("USER CREATED SUCCESSFULLY.");
+				//alert("USER CREATED SUCCESSFULLY.");
 				// user created successfully
 				Ti.App.Properties.setString("push_username", username);
 				Ti.fireEvent("feri:login");
 				
 			} else {
 				// oops, something went wrong
-				trace("USER not created. something went wrong "+e);
+				//alert("USER not created. something went wrong "+e);
 				Ti.App.Properties.setString("push_username", null);
 			}
 		});
@@ -53,13 +53,13 @@
 		}, function (e) {
 			if (e.success) {
 				var user = e.users[0];
-				trace(	'Success:\\n' +
+				/*trace(	'Success:\\n' +
 						'id: ' + user.id + '\\n' +
 						'first name: ' + user.first_name + '\\n' +
-						'last name: ' + user.last_name);
+						'last name: ' + user.last_name);*/
 			} else {
-				trace(	'Error:\\n' +
-						((e.error && e.message) || JSON.stringify(e)));
+				/*trace(	'Error:\\n' +
+						((e.error && e.message) || JSON.stringify(e)));*/
 			}
 		});
 	});
@@ -76,44 +76,75 @@
 		}, function (e) {
 			if (e.success) {
 				var user = e.users[0];
-				trace(	'Success logging out:\\n' +
+				/*trace(	'Success logging out:\\n' +
 						'id: ' + user.id + '\\n' +
 						'first name: ' + user.first_name + '\\n' +
-						'last name: ' + user.last_name);
+						'last name: ' + user.last_name);*/
 				Ti.App.Properties.setString("push_username", null);
 			} else {
-				trace(	'Error:\\n' +
-						((e.error && e.message) || JSON.stringify(e)));
+				/*trace(	'Error:\\n' +
+						((e.error && e.message) || JSON.stringify(e)));*/
 			}
 		});
 	});
 	
 	//REGISTER LOCAL PUSH NOTIFICATION HERE
 	feri.getDeviceToken = function (){
-		trace("REGISTERING LOCAL PUSH");
+		//alert("REGISTERING LOCAL PUSH");
 		
-		Ti.Network.registerForPushNotifications({
-			types: [
-				Titanium.Network.NOTIFICATION_TYPE_BADGE,
-				Titanium.Network.NOTIFICATION_TYPE_ALERT,
-				Titanium.Network.NOTIFICATION_TYPE_SOUND
-			],
-			success:function(e)
-			{
-				user_device_token = e.deviceToken;
-				Ti.App.Properties.setString("device_token",user_device_token);
-				trace("Device token received "+user_device_token);
-			},
-			error:function(e)
-			{
-				trace("Error during registration: "+e.error);
-			},
-			callback:function(e)
-			{
-				// called when a push notification is received.
-				trace("Received a push notification\n\nPayload:\n\n"+JSON.stringify(e.data));
-			}
-		});
+		if ( feri.isAndroid() ) {
+			
+			var deviceid;
+			var CloudPush = require('ti.cloudpush');
+			CloudPush.debug = false;
+			CloudPush.enabled = true;
+			CloudPush.showTrayNotificationsWhenFocused = true;
+			CloudPush.focusAppOnPush = false;
+			
+			
+			var deviceToken;
+			
+			var Cloud = require('ti.cloud');
+			Cloud.debug = true;
+			
+			CloudPush.retrieveDeviceToken({
+				success: function deviceTokenSuccess(e) {
+					//alert('Device Token: ' + e.deviceToken);
+					user_device_token = e.deviceToken;
+					Ti.App.Properties.setString("device_token",user_device_token);
+			 	},
+			    error: function deviceTokenError(e) {
+			    	//loginDefault();
+			    	//alert('Failed to register for push! ' + e.error);
+			    }
+			});
+			
+		} else {
+			
+			Ti.Network.registerForPushNotifications({
+				types: [
+					Titanium.Network.NOTIFICATION_TYPE_BADGE,
+					Titanium.Network.NOTIFICATION_TYPE_ALERT,
+					Titanium.Network.NOTIFICATION_TYPE_SOUND
+				],
+				success:function(e)
+				{
+					user_device_token = e.deviceToken;
+					Ti.App.Properties.setString("device_token",user_device_token);
+					//alert("Device token received "+user_device_token);
+				},
+				error:function(e)
+				{
+					//alert("Error during registration: "+e.error);
+				},
+				callback:function(e)
+				{
+					// called when a push notification is received.
+					//alert("Received a push notification\n\nPayload:\n\n"+JSON.stringify(e.data));
+				}
+			});
+			
+		}
 	}
 	
 	//REGISTER SERVER PUSH
@@ -127,19 +158,39 @@
 		if (channel == null)
 			channel = 'global';
 		
-		Cloud.PushNotifications.subscribe({
-			channel: channel,
-			type:'ios',
-			device_token: token
-		}, function (e) {
-			if (e.success) {
-				trace('Success'+((e.error && e.message) || JSON.stringify(e)));
-				return true;
-			} else {
-				trace('Error:\\n' + ((e.error && e.message) || JSON.stringify(e)));
-				return false;
-			}
-		});
+		if ( feri.isAndroid() ) {
+			
+			Cloud.PushNotifications.subscribe({
+				channel: channel,
+				type:'android',
+				device_token: token
+			}, function (e) {
+				if (e.success) {
+					//alert('Success'+((e.error && e.message) || JSON.stringify(e)));
+					return true;
+				} else {
+					//alert('Error:\\n' + ((e.error && e.message) || JSON.stringify(e)));
+					return false;
+				}
+			});
+			
+		} else {
+			
+			Cloud.PushNotifications.subscribe({
+				channel: channel,
+				type:'ios',
+				device_token: token
+			}, function (e) {
+				if (e.success) {
+					//alert('Success'+((e.error && e.message) || JSON.stringify(e)));
+					return true;
+				} else {
+					//alert('Error:\\n' + ((e.error && e.message) || JSON.stringify(e)));
+					return false;
+				}
+			});
+			
+		}
 	}
 	
 	//UNREGISTER SERVER PUSH
@@ -153,36 +204,56 @@
 		if (channel == null)
 			channel = 'global';
 		
-		Cloud.PushNotifications.unsubscribe({
-			channel: channel,
-			type:'ios',
-			device_token: token
-		}, function (e) {
-			if (e.success) {
-				trace('Success'+((e.error && e.message) || JSON.stringify(e)));
-				return true;
-			} else {
-				trace('Error:\\n' + ((e.error && e.message) || JSON.stringify(e)));
-				return false;
-			}
-		});
+		if ( feri.isAndroid() ) {
+			
+			Cloud.PushNotifications.unsubscribe({
+				channel: channel,
+				type:'android',
+				device_token: token
+			}, function (e) {
+				if (e.success) {
+					//alert('Success'+((e.error && e.message) || JSON.stringify(e)));
+					return true;
+				} else {
+					//alert('Error:\\n' + ((e.error && e.message) || JSON.stringify(e)));
+					return false;
+				}
+			});
+			
+		} else {
+			
+			Cloud.PushNotifications.unsubscribe({
+				channel: channel,
+				type:'ios',
+				device_token: token
+			}, function (e) {
+				if (e.success) {
+					//alert('Success'+((e.error && e.message) || JSON.stringify(e)));
+					return true;
+				} else {
+					//alert('Error:\\n' + ((e.error && e.message) || JSON.stringify(e)));
+					return false;
+				}
+			});
+			
+		}
 	}
 	
 	// check if we have a user and then try to subscribe for push notifications
-	if ( !feri.isAndroid() ) {
-		
-		var Cloud = require('ti.cloud');
-		var trace = Ti.API.info;
-		var user_device_token = Ti.App.Properties.getString("device_token",null);
-		var username = Ti.App.Properties.getString("push_username");
-		
-		// if no user, first register
-		if ( username == null ) {
-			Ti.fireEvent("feri:registerUser", {'login': true});
-		} else {
-			Ti.fireEvent("feri:login");
-		}
+	var Cloud = require('ti.cloud');
+	var trace = Ti.API.info;
+	var user_device_token = Ti.App.Properties.getString("device_token",null);
 	
+	if ( user_device_token == null )
+		feri.getDeviceToken();
+	
+	var username = Ti.App.Properties.getString("push_username");
+	// if no user, first register
+	// do we even need login?
+	if ( username == null ) {
+		Ti.fireEvent("feri:registerUser", {'login': true});
+	} else {
+		Ti.fireEvent("feri:login");
 	}
 	
 })();
