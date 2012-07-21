@@ -373,4 +373,13 @@
 		Ti.fireEvent('feri:update_data_oglasna');
 	}
 	
+	if (
+    	Titanium.App.Properties.getString('feri.initialStart') != 'false'
+    ) {
+    	setTimeout(function(){
+    		Ti.fireEvent('feri:update_data_oglasna');
+    		Titanium.App.Properties.setString('feri.initialStart', 'false');
+    	}, 1000);
+    }
+	
 })();
