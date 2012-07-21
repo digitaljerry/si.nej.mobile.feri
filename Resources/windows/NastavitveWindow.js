@@ -2,6 +2,11 @@
 (function () {
 
     feri.ui.createNastavitveWindow = function () {
+    	
+    	if ( feri.testflight == true && !feri.isAndroid() ) {
+			testflight.passCheckpoint("Nastavitve window");	
+		}
+    	
         var NastavitveWindow = Titanium.UI.createWindow({
             id: 'nastavitveWindow',
             title: 'Nastavitve',
@@ -71,6 +76,7 @@
 			editList:'push',
 			hasChild: true
 		});
+		
 		if ( feri.isAndroid() ) {
 			var titleLabel2 = Ti.UI.createLabel({
 	            text: 'Osveži ob zagonu',
@@ -142,6 +148,17 @@
 		
 		inputData.push(oglasnaDeskaSettings);
 		
+		if ( feri.testflight == true && !feri.isAndroid() ) {
+			var row99 = Ti.UI.createTableViewRow({
+				height:50,
+				title:'Pošlji feedback',
+				feedback:true,
+				hasChild: true,
+				header:'Samo v beta verziji'
+			});
+			inputData.push(row99);
+		}
+		
 		var tableView = Titanium.UI.createTableView({
 			data:inputData
 		});
@@ -207,6 +224,11 @@
 	            }
 	            
 	        }
+	        
+	        if ( feri.testflight == true && !feri.isAndroid() && e.rowData.feedback == true ) {
+		        Ti.API.warn("Open Feedback View");
+		        testflight.openFeedbackView();
+			}
 			
 		});
 		

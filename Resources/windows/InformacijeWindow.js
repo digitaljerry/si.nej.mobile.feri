@@ -2,6 +2,10 @@
 (function () {
     feri.ui.createInformacijeWindow = function () {
     	
+    	if ( feri.testflight == true && !feri.isAndroid() ) {
+			testflight.passCheckpoint("Informacije window");	
+		}
+		
     	feri.informacije_url = 'http://www.feri.uni-mb.si/podrocje.aspx?id=2';
     	
         var infoWindow = Titanium.UI.createWindow({

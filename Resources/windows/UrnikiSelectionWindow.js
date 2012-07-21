@@ -2,6 +2,10 @@
 (function () {
     feri.ui.createUrnikiSelectionWindow = function (settings) {
     	
+    	if ( feri.testflight == true && !feri.isAndroid() ) {
+			testflight.passCheckpoint("Urniki selection window");	
+		}
+		
     	feri.urniki_helper = 'http://www.feri.uni-mb.si/urniki1/lib/helper.php?type=program&program_id='; 
     	
         var urnikiSelectionWindow = Titanium.UI.createWindow({

@@ -2,6 +2,11 @@
 (function () {
 
     feri.ui.createMapWindow = function () {
+    	
+    	if ( feri.testflight == true && !feri.isAndroid() ) {
+			testflight.passCheckpoint("Map window");	
+		}
+    	
         var mapWindow = Titanium.UI.createWindow({
             id: 'mapWindow',
             title: 'Zemljevid',

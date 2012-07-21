@@ -2,6 +2,10 @@
 (function () {
     feri.ui.createDiplomeWindow = function () {
     	
+    	if ( feri.testflight == true && !feri.isAndroid() ) {
+			testflight.passCheckpoint("Diplome window");	
+		}
+		
     	var diplomeWindow = Titanium.UI.createWindow({
             id: 'diplomeWindow',
             title: 'Diplome',

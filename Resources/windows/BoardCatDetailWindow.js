@@ -3,6 +3,10 @@
 	
 	feri.ui.createBoardCatDetailWindow = function (w) {
 		
+		if ( feri.testflight == true && !feri.isAndroid() ) {
+			testflight.passCheckpoint("Board Category Detail window");	
+		}
+		
 		var conn = Database.db.getConnection('main');
 		
 		// getting entity from db

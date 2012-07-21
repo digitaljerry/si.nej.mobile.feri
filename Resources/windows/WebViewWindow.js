@@ -2,6 +2,10 @@
 (function () {
     feri.ui.createWebViewWindow = function (w) {
     	
+    	if ( feri.testflight == true && !feri.isAndroid() ) {
+			testflight.passCheckpoint("WebView window");	
+		}
+		
     	if ( w.title == 'undefined')
     		w.title = '';
     	

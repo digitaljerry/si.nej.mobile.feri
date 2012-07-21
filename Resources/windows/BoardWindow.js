@@ -64,6 +64,10 @@
 			height:'100%',
 			width:'100%'
 		});
+		
+		if ( feri.testflight == true && !feri.isAndroid() ) {
+			testflight.passCheckpoint("Board window");	
+		}
 
         // create main day window
         feri.boardWindow = Titanium.UI.createWindow({

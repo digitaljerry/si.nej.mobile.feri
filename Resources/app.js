@@ -76,3 +76,13 @@ Ti.include(
   	'windows/main.js',
   	'app/push.js'
 );
+
+if ( feri.testflight == true && !feri.isAndroid() ) {
+	// testflight
+	var testflight = require('com.0x82.testflight');
+	Ti.API.info("module is => " + testflight);
+	
+	// WARNING: ONLY USE THIS ON DEVELOPMENT! DON'T GO TO THE APP STORE WITH THIS LINE!!
+	testflight.setDeviceIdenifier(Ti.Platform.id);
+	testflight.takeOff('99487208b500edc7b5bc7b342d9e8fe0_MTEyODExMjAxMi0wNy0yMSAwNToyMzowNy4xMzYyMzM');	
+}

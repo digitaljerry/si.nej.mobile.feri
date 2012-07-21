@@ -7,6 +7,10 @@
             uid: ''
         });
         
+        if ( feri.testflight == true && !feri.isAndroid() ) {
+			testflight.passCheckpoint("Board detail window");	
+		}
+        
         var commonPadding = 15;
         var sessionDetailWindow = Titanium.UI.createWindow({
             id: 'boardDetailWindow',

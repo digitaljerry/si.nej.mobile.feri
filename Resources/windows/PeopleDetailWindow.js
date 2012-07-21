@@ -2,6 +2,10 @@
 (function () {
     feri.ui.createPeopleDetailWindow = function (settings) {
     	
+    	if ( feri.testflight == true && !feri.isAndroid() ) {
+			testflight.passCheckpoint("People detail window");	
+		}
+		
         Database.setDefaults(settings, {
             title: '',
             uid: '',

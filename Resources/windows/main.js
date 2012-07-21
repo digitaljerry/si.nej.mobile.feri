@@ -275,6 +275,11 @@
 	}
 
     Ti.addEventListener('feri:update_data', function (e) {
+    	
+    	if ( feri.testflight == true && !feri.isAndroid() ) {
+			testflight.passCheckpoint("feri:update_data");	
+		}
+		
     	feri.ui.activityIndicator.showModal('Posodabljam ...', feri.updateTimeout, 'Napaka pri povezavi.');
         Database.entity.db('main', 'user').fetchUpdates('user');
         Database.entity.db('main', 'node').fetchUpdates('node');
@@ -283,17 +288,32 @@
     });
     
     Ti.addEventListener('feri:update_data_oglasna', function (e) {
+    	
+    	if ( feri.testflight == true && !feri.isAndroid() ) {
+			testflight.passCheckpoint("feri:update_data_oglasna");	
+		}
+		
         feri.ui.activityIndicator.showModal('Posodabljam ...', feri.updateTimeout, 'Napaka pri povezavi.');
         Database.entity.db('main', 'node').fetchUpdates('node');
     });
     
     Ti.addEventListener('feri:update_data_diplome', function (e) {
+    	
+    	if ( feri.testflight == true && !feri.isAndroid() ) {
+			testflight.passCheckpoint("feri:update_data_diplome");	
+		}
+		
         feri.ui.activityIndicator.showModal('Posodabljam ...', feri.updateTimeout, 'Napaka pri povezavi.');
         Database.entity.db('main', 'aktualne_diplome').fetchUpdates('aktualne_diplome');
         Database.entity.db('main', 'zadnje_diplome').fetchUpdates('zadnje_diplome');
     });
     
     Ti.addEventListener('feri:update_data_zaposleni', function (e) {
+    	
+    	if ( feri.testflight == true && !feri.isAndroid() ) {
+			testflight.passCheckpoint("feri:update_data_zaposleni");	
+		}
+		
         feri.ui.activityIndicator.showModal('Posodabljam ...', feri.updateTimeout, 'Napaka pri povezavi.');
         Database.entity.db('main', 'user').fetchUpdates('user');
     });
@@ -317,7 +337,7 @@
     });
     
     Ti.addEventListener('feri:fix_tables', function (e) {
-        Database.entity.db('main', 'board_parents').fixTables('board_parents');
+    	Database.entity.db('main', 'board_parents').fixTables('board_parents');
         Database.entity.db('main', 'board_children').fixTables('board_children');
         Database.entity.db('main', 'aktualne_diplome').fixTables('aktualne_diplome');
         Database.entity.db('main', 'zadnje_diplome').fixTables('zadnje_diplome');
@@ -333,6 +353,11 @@
     
     Ti.Gesture.addEventListener('shake',function(e) {
 		if ( Titanium.App.Properties.getString('feri.refreshOnShake') == 'true' ) {
+			
+			if ( feri.testflight == true && !feri.isAndroid() ) {
+				testflight.passCheckpoint("feri:refreshOnShake");	
+			}
+			
 			Ti.fireEvent('feri:update_data_oglasna');
 			//Ti.fireEvent('feri:fix_tables');
 		}
@@ -340,6 +365,11 @@
 	
 	// check if we need to reload data on load
 	if ( Titanium.App.Properties.getString('feri.refreshOnLoad') == 'true' ) {
+		
+		if ( feri.testflight == true && !feri.isAndroid() ) {
+			testflight.passCheckpoint("feri:update_data_oglasna");	
+		}
+		
 		Ti.fireEvent('feri:update_data_oglasna');
 	}
 	

@@ -1,0 +1,83 @@
+<h1>testflight Module</h1>
+
+<h2>Description</h2>
+
+<p>This Titanium module wraps the oficial Testflight SDK, available at https://testflightapp.com/sdk/.</p>
+
+<p>It allows you to write Titanium apps and still benefict from using the Testflight SDK.</p>
+
+<h2>Installation</h2>
+
+<p><a href="">http://wiki.appcelerator.org/display/tis/Using+Titanium+Modules</a></p>
+
+<h2>Changelog</h2>
+
+<p>See <a href="changelog.html">here</a></p>
+
+<h2>Accessing the testflight Module</h2>
+
+<p>To access this module from JavaScript, you would do the following:</p>
+
+<pre><code>var testflight = require("com.0x82.testflight");
+</code></pre>
+
+<p>The testflight variable is a reference to the Module object.</p>
+
+<h2>Reference</h2>
+
+<h3>testflight.takeOff(teamToken)</h3>
+
+<p>This should be the first function you should call to initialize the module. It
+starts a TestFlight session, setups the crash handler, and sends pending notifications
+to the server.</p>
+
+<p>It accepts a single argument <em>teamToken</em>, with your TestFlight team token. You can obtain
+that token at https://testflightapp.com/dashboard/team/edit</p>
+
+<h3>testflight.passCheckpoint(checkPointName)</h3>
+
+<p>Track when a user has passed a checkppint after the flight has taken off. Eg. passed
+level 1, posted hight score, etc.</p>
+
+<p>It accepts a single argument <em>checkPointName</em> with the String name of the checkpoint.</p>
+
+<h3>testflight.openFeedbackView()</h3>
+
+<p>Opens a feedback window that is not attached to a checkpoint. You should just call it
+with no arguments. The windows open modally.</p>
+
+<h3>testflight.addCustomEnvironmentInformation(hashOptions)</h3>
+
+<p>Add custom environment information. If you want to track a user name from your application you
+can add it here.</p>
+
+<p>It accepts a single hash/dictionary argument <em>hashOptions</em>, with key/value pairs of options
+you want to set on your environment.</p>
+
+<h3>testflight.submitFeedback(text)</h3>
+
+<p>Sends a custom feedback to the server without showing the feedback view. Accepts a single parameter
+which should be a String with the text to send to the testflight server.</p>
+
+<h3>testflight.setDeviceIdentifier(string)</h3>
+
+<p>The module no longer obtains the device unique identifier. This method should only
+be used during testing so that you can identify a testers test data with them.
+If you do not provide the identifier you will still see all session data, with
+checkpoints and logs, but the data will be anonymized.  It is recommended that
+you only use this method during testing. </p>
+
+<p><em>TL;DR:</em> Using this method on production could make you app fail the approval process!</p>
+
+<h2>Usage</h2>
+
+<p>Please check the examples/app.js for the full API demonstration.</p>
+
+<h2>Author</h2>
+
+<p>Ruben Fonseca
+root@cpan.org</p>
+
+<h2>License</h2>
+
+<p>This module is licensed under the MIT License. Please see the LICENSE file for details.</p>

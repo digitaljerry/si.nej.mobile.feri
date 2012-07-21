@@ -1,6 +1,11 @@
 
 (function () {
     feri.ui.createAboutWindow = function () {
+    	
+    	if ( feri.testflight == true && !feri.isAndroid() ) {
+			testflight.passCheckpoint("About window");	
+		}
+    	
         var aboutWindow = Titanium.UI.createWindow({
             id: 'aboutWindow',
             title: 'FERI',

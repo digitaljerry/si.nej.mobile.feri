@@ -63,6 +63,10 @@
             
             data.push(nodeRow);
         }
+        
+        if ( feri.testflight == true && !feri.isAndroid() ) {
+			testflight.passCheckpoint("Nastavitve board edit window");	
+		}
 		
 		// create main day window
         var listWindow = Titanium.UI.createWindow({

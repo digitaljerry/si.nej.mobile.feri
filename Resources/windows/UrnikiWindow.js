@@ -2,6 +2,10 @@
 (function () {
     feri.ui.createUrnikiWindow = function () {
     	
+    	if ( feri.testflight == true && !feri.isAndroid() ) {
+			testflight.passCheckpoint("Urniki window");	
+		}
+		
     	var diff = 0;
     	feri.urniki_url = 'http://www.feri.uni-mb.si/urniki1/groups.php';
     	

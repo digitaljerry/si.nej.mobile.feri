@@ -1,6 +1,11 @@
 
 (function () {
     feri.ui.createHtmlWindow = function (settings) {
+    	
+    	if ( feri.testflight == true && !feri.isAndroid() ) {
+			testflight.passCheckpoint("HTML window");	
+		}
+    	
         Database.setDefaults(settings, {
             title: 'title here',
             url: ''

@@ -73,6 +73,10 @@
 
     feri.ui.createBoardCatWindow = function (w) {
         
+        if ( feri.testflight == true && !feri.isAndroid() ) {
+			testflight.passCheckpoint("Board category window");	
+		}
+		
         // create main day window
         var boardWindow = Titanium.UI.createWindow({
             id: 'boardCatWindow',

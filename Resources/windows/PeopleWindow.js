@@ -2,6 +2,11 @@
 (function () {
 
     feri.ui.createPeopleWindow = function () {
+    	
+    	if ( feri.testflight == true && !feri.isAndroid() ) {
+			testflight.passCheckpoint("People window");	
+		}
+    	
         var PeopleWindow = Titanium.UI.createWindow({
             id: 'peopleWindow',
             title: 'Zaposleni',
