@@ -20,7 +20,7 @@
         
         var webview = Ti.UI.createWebView({
         	backgroundColor: feri.ui.urnikiColor,
-            width: '100%',
+        	width: '100%',
             height: '100%'
         });
         
@@ -150,6 +150,7 @@
 				feri.ui.activityIndicator.showModal('Nalagam ...', feri.loadLongTimeout, 'Napaka pri povezavi.');
 				
 				var xhr = Ti.Network.createHTTPClient();
+				
 				xhr.open('POST', feri.urniki_url);
 				//xhr.setRequestHeader('Content-Type', 'text/html; charset=windows-1250');
 				//xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
@@ -157,12 +158,12 @@
 				xhr.setRequestHeader('Content-Type', 'text/html; charset=windows-1250');
 				
 				xhr.onload = function () {
-					webview.html = this.responseText;
 					webview.setVisible(true);
 				    feri.ui.activityIndicator.hideModal();
 				    
 				    // we cache it
-					urniki_local.write(this.responseText);
+					urniki_local.write(this.responseData);
+					webview.url = urniki_local.nativePath;
 				};
 				
 				var groups = Titanium.App.Properties.getString('urniki_groups');
@@ -171,7 +172,7 @@
 				// set the date
 				var date = getDate(customDate);
 				
-		        xhr.send({
+				xhr.send({
 					date_field:date,
 					branch_id:branch,
 					//program_index:"15",
