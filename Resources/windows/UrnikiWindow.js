@@ -142,10 +142,20 @@
 			
 			if( urniki_local.exists() && customDate === undefined ) {
 				
-				webview.html = urniki_local.read().text;
+				webview.url = urniki_local.read().nativePath;
 				webview.setVisible(true);
 			
 			} else {
+				
+				// copying needed files
+				var designDir = Titanium.Filesystem.getFile(Titanium.Filesystem.applicationDataDirectory,'design');
+				if ( !designDir.exists() )
+					designDir.createDirectory();
+				var fromFile = Titanium.Filesystem.getFile(Titanium.Filesystem.resourcesDirectory,'design/design.css');
+				var toFile = Ti.Filesystem.getFile( Ti.Filesystem.applicationDataDirectory, 'design/design.css' );
+				if ( fromFile.exists() && (!toFile.exists()) ) {
+					toFile.write( fromFile.read() );
+				}
 				
 				feri.ui.activityIndicator.showModal('Nalagam ...', feri.loadLongTimeout, 'Napaka pri povezavi.');
 				
@@ -155,15 +165,26 @@
 				//xhr.setRequestHeader('Content-Type', 'text/html; charset=windows-1250');
 				//xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 				//xhr.setRequestHeader('Accept-Charset', 'ISO-8859-1,utf-8;q=0.7,*;q=0.3');
-				xhr.setRequestHeader('Content-Type', 'text/html; charset=windows-1250');
+				//xhr.setRequestHeader('Content-Type', 'text/html; charset=windows-1250');
+				xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 				
 				xhr.onload = function () {
 					webview.setVisible(true);
 				    feri.ui.activityIndicator.hideModal();
 				    
 				    // we cache it
-					urniki_local.write(this.responseData);
-					webview.url = urniki_local.nativePath;
+				    urniki_local.write(this.getResponseData());
+					
+					// remove the view and add it again, so it gets redrawn correctly
+					urnikiWindow.remove(webview);
+					webview = null;
+					webview = Ti.UI.createWebView({
+			        	backgroundColor: feri.ui.urnikiColor,
+			        	width: '100%',
+			            height: '100%',
+			            url: urniki_local.nativePath
+			        });
+			        urnikiWindow.add(webview);
 				};
 				
 				var groups = Titanium.App.Properties.getString('urniki_groups');
