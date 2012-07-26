@@ -141,11 +141,7 @@
                 left: myEntry.left,
                 width: Ti.Platform.displayCaps.platformWidth
             });
-            if ( !feri.isAndroid() ) {
-            	myEntry.webview.scalesPageToFit = true;
-            } else {
-            	myEntry.webview.focusable = true;
-            }
+            myEntry.webview.scalesPageToFit = true;
 
             var tabView = Ti.UI.createView({
                 backgroundImage: (i == 0) ? '/images/buttonbar/button2_selected.png' : '/images/buttonbar/button2_unselected_shadowL.png',
@@ -214,28 +210,51 @@
                     data[4].tabView.backgroundImage = '/images/buttonbar/button2_unselected_shadowR.png';
                     data[5].tabView.backgroundImage = '/images/buttonbar/button2_selected.png';
                 }
-
-                for (var j = 0; j < data.length; j++) {
-                	data[currentTab].webview.animate(data[currentTab].animateOut, function() {
-                		
-                		if (e.source.index == 0) {
-	                        data[0].webview.animate(data[0].animateIn);
-	                    } else if (e.source.index == 1) {
-	                        data[1].webview.animate(data[1].animateIn);
-	                     } else if (e.source.index == 2) {
-	                        data[2].webview.animate(data[2].animateIn);
-	                    } else if (e.source.index == 3) {
-	                        data[3].webview.animate(data[3].animateIn);
-	                    } else if (e.source.index == 4) {
-	                        data[4].webview.animate(data[4].animateIn);
-	                    } else if (e.source.index == 5) {
-	                        data[5].webview.animate(data[5].animateIn);
-	                    }
-                		
-                	});
-					
-                }
                 
+                	for (var j = 0; j < data.length; j++) {
+                		if ( !feri.isAndroid() ) {
+	                	
+		                	data[currentTab].webview.animate(data[currentTab].animateOut, function() {
+		                		
+		                		if (e.source.index == 0) {
+			                        data[0].webview.animate(data[0].animateIn);
+			                    } else if (e.source.index == 1) {
+			                        data[1].webview.animate(data[1].animateIn);
+			                     } else if (e.source.index == 2) {
+			                        data[2].webview.animate(data[2].animateIn);
+			                    } else if (e.source.index == 3) {
+			                        data[3].webview.animate(data[3].animateIn);
+			                    } else if (e.source.index == 4) {
+			                        data[4].webview.animate(data[4].animateIn);
+			                    } else if (e.source.index == 5) {
+			                        data[5].webview.animate(data[5].animateIn);
+			                    }
+			                
+			                });
+	                		
+	                	} else {
+	                		
+	                		data[currentTab].webview.left = Ti.Platform.displayCaps.platformWidth;
+	                		
+	                		if (e.source.index == 0) {
+		                        data[0].webview.left = 0;
+		                    } else if (e.source.index == 1) {
+		                        data[1].webview.left = 0;
+		                     } else if (e.source.index == 2) {
+		                        data[2].webview.left = 0;
+		                    } else if (e.source.index == 3) {
+		                        data[3].webview.left = 0;
+		                    } else if (e.source.index == 4) {
+		                        data[4].webview.left = 0;
+		                    } else if (e.source.index == 5) {
+		                        data[5].webview.left = 0;
+		                    }
+	                		
+	                	}
+	                	
+						
+	                }
+
                 // store current index
                 currentTab = e.source.index;
             });
