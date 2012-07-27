@@ -112,7 +112,8 @@
 	       	// open on web
 			var bb2 = Titanium.UI.createButtonBar({
 				labels:['Odpri na spletu'],
-				backgroundColor:feri.ui.toolbarColor
+				backgroundColor:feri.ui.toolbarColor,
+				height:30
 			});
 			var flexSpace = Titanium.UI.createButton({
 				systemButton:Titanium.UI.iPhone.SystemButton.FLEXIBLE_SPACE
