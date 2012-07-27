@@ -5,12 +5,18 @@
 			dashboardHeight: 846,
 			dashboardWidth: 640
 		};
+		if ( feri.isAndroid() ) {
+			feri.ui.mainBackgroundImage = '/images/home_android@2x.png';
+		}
 	} else {
 		feri.ui = {
 			mainBackgroundImage: '/images/home.png',
 			dashboardHeight: 365,
 			dashboardWidth: 326
 		};
+		if ( feri.isAndroid() ) {
+			feri.ui.mainBackgroundImage = '/images/home_android.png';
+		}
 	}
 	
 	if (feri.isAndroid()) {
