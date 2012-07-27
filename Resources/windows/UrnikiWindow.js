@@ -97,7 +97,7 @@
 			    });
 			    var menuItemSet = menu.add({ title: 'Izberi študij' });
 			    menuItemSet.addEventListener("click", function(e) {
-			    	Ti.fireEvent('feri:set_urniki');
+			    	Ti.App.fireEvent('feri:set_urniki');
 			    });
 			};
 		}
@@ -113,7 +113,7 @@
 			});
 		}
 		
-		Ti.addEventListener('feri:set_urniki', function () {
+		Ti.App.addEventListener('feri:set_urniki', function () {
 			if (feri.useDashboard) {
 				feri.navGroup.open(feri.ui.createUrnikiSelectionWindow({
                     title: 'Urniki'

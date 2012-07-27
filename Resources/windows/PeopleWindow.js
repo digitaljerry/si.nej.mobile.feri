@@ -130,7 +130,7 @@
         };
 
         PeopleWindow.doRefresh();
-        Ti.addEventListener('refresh:people', function () {
+        Ti.App.addEventListener('refresh:people', function () {
         	PeopleWindow.doRefresh();
         });
 
@@ -176,7 +176,7 @@
 			    var menu = e.menu;
 			    var menuItemRefresh = menu.add({ title: 'Osveži' });
 			    menuItemRefresh.addEventListener("click", function(e) {
-			        Ti.fireEvent('refresh:people');
+			        Ti.App.fireEvent('feri:update_data_zaposleni');
 			    });
 			};
 		}

@@ -290,7 +290,7 @@ Database.entity.Datastore.prototype.doQuery = function (query) {
 Database.entity.Datastore.prototype.fetchUpdates = function (bundle) {
     var callback = function () {
         // Let other systems respond to the update completion.
-        Ti.fireEvent('database:entity:datastore:update_completed', {
+        Ti.App.fireEvent('database:entity:datastore:update_completed', {
             entity: this.entityType,
             bundle: bundle
         });

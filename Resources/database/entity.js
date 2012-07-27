@@ -378,13 +378,13 @@ Database.entity.DefaultSchema.prototype.defaultFetcher = function (bundle, store
         feri.ui.activityIndicator.hideModal();
         
         if (bundle == 'user') {
-            Ti.fireEvent('refresh:people');
+            Ti.App.fireEvent('refresh:people');
         } else if (bundle == 'node') {
-        	Ti.fireEvent('refresh:oglasna');
+        	Ti.App.fireEvent('refresh:oglasna');
         } else if (bundle == 'aktualne_diplome') {
-        	Ti.fireEvent('refresh:diplome');
+        	Ti.App.fireEvent('refresh:diplome');
         } else if (bundle == 'zadnje_diplome') {
-        	Ti.fireEvent('refresh:diplome');
+        	Ti.App.fireEvent('refresh:diplome');
         }
     };
 

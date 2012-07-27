@@ -118,11 +118,11 @@
 	                    feri.iconWin.rightNavButton = rightButton;
 	                    rightButton.addEventListener('click', function () {
 	                        if ( icon.name == 'board' )
-	                        	Ti.fireEvent('feri:update_data_oglasna');
+	                        	Ti.App.fireEvent('feri:update_data_oglasna');
 	                        else if ( icon.name == 'people' )
-	                        	Ti.fireEvent('feri:update_data_zaposleni');
+	                        	Ti.App.fireEvent('feri:update_data_zaposleni');
 	                        else if ( icon.name == 'diplome' )
-	                        	Ti.fireEvent('feri:update_data_diplome');
+	                        	Ti.App.fireEvent('feri:update_data_diplome');
 	                    });
 	                }
 	            }
@@ -134,7 +134,7 @@
                     });
                     feri.iconWin.rightNavButton = rightButton;
                     rightButton.addEventListener('click', function () {
-                        Ti.fireEvent('feri:set_urniki');
+                        Ti.App.fireEvent('feri:set_urniki');
                     });
 	            }
 	            
@@ -234,28 +234,28 @@
         });
         winOglasna.rightNavButton = rightButtonOglasna;
         rightButtonOglasna.addEventListener('click', function () {
-            Ti.fireEvent('feri:update_data_oglasna');
+            Ti.App.fireEvent('feri:update_data_oglasna');
         });
         var rightButtonDiplome = Ti.UI.createButton({
             systemButton: Ti.UI.iPhone.SystemButton.REFRESH
         });
         winDiplome.rightNavButton = rightButtonDiplome;
         rightButtonDiplome.addEventListener('click', function () {
-            Ti.fireEvent('feri:update_data_diplome');
+            Ti.App.fireEvent('feri:update_data_diplome');
         });
         var rightButtonZaposleni = Ti.UI.createButton({
             systemButton: Ti.UI.iPhone.SystemButton.REFRESH
         });
         winZaposleni.rightNavButton = rightButtonZaposleni;
         rightButtonZaposleni.addEventListener('click', function () {
-            Ti.fireEvent('feri:update_data_zaposleni');
+            Ti.App.fireEvent('feri:update_data_zaposleni');
         });
         var rightButtonUrniki = Ti.UI.createButton({
             systemButton: Ti.UI.iPhone.SystemButton.BOOKMARKS
         });
         winUrniki.rightNavButton = rightButtonUrniki;
         rightButtonUrniki.addEventListener('click', function () {
-            Ti.fireEvent('feri:set_urniki');
+            Ti.App.fireEvent('feri:set_urniki');
         });
 		
 		//
@@ -274,7 +274,7 @@
 		tabGroup.open();
 	}
 
-    Ti.addEventListener('feri:update_data', function (e) {
+    Ti.App.addEventListener('feri:update_data', function (e) {
     	
     	if ( feri.testflight == true && !feri.isAndroid() ) {
 			testflight.passCheckpoint("feri:update_data");	
@@ -287,7 +287,7 @@
         Database.entity.db('main', 'zadnje_diplome').fetchUpdates('zadnje_diplome');
     });
     
-    Ti.addEventListener('feri:update_data_oglasna', function (e) {
+    Ti.App.addEventListener('feri:update_data_oglasna', function (e) {
     	
     	if ( feri.testflight == true && !feri.isAndroid() ) {
 			testflight.passCheckpoint("feri:update_data_oglasna");	
@@ -297,7 +297,7 @@
         Database.entity.db('main', 'node').fetchUpdates('node');
     });
     
-    Ti.addEventListener('feri:update_data_diplome', function (e) {
+    Ti.App.addEventListener('feri:update_data_diplome', function (e) {
     	
     	if ( feri.testflight == true && !feri.isAndroid() ) {
 			testflight.passCheckpoint("feri:update_data_diplome");	
@@ -308,7 +308,7 @@
         Database.entity.db('main', 'zadnje_diplome').fetchUpdates('zadnje_diplome');
     });
     
-    Ti.addEventListener('feri:update_data_zaposleni', function (e) {
+    Ti.App.addEventListener('feri:update_data_zaposleni', function (e) {
     	
     	if ( feri.testflight == true && !feri.isAndroid() ) {
 			testflight.passCheckpoint("feri:update_data_zaposleni");	
@@ -318,7 +318,7 @@
         Database.entity.db('main', 'user').fetchUpdates('user');
     });
     
-    Ti.addEventListener('feri:flip_oglasna_deska', function (e) {
+    Ti.App.addEventListener('feri:flip_oglasna_deska', function (e) {
     	if ( !feri.isAndroid() ) {
 			feri.tableviewFirst.show();
 			feri.tableview.hide();
@@ -327,7 +327,7 @@
 		Titanium.App.Properties.setString('boardLatest','category');
     });
     
-    Ti.addEventListener('feri:flip_oglasna_aktualno', function (e) {
+    Ti.App.addEventListener('feri:flip_oglasna_aktualno', function (e) {
     	if ( !feri.isAndroid() ) {
 			feri.tableview.show();
 			feri.tableviewFirst.hide();
@@ -336,7 +336,7 @@
 		Titanium.App.Properties.setString('boardLatest','latest');
     });
     
-    Ti.addEventListener('feri:fix_tables', function (e) {
+    Ti.App.addEventListener('feri:fix_tables', function (e) {
     	Database.entity.db('main', 'board_parents').fixTables('board_parents');
         Database.entity.db('main', 'board_children').fixTables('board_children');
         Database.entity.db('main', 'aktualne_diplome').fixTables('aktualne_diplome');
@@ -358,8 +358,8 @@
 				testflight.passCheckpoint("feri:refreshOnShake");	
 			}
 			
-			Ti.fireEvent('feri:update_data_oglasna');
-			//Ti.fireEvent('feri:fix_tables');
+			Ti.App.fireEvent('feri:update_data_oglasna');
+			//Ti.App.fireEvent('feri:fix_tables');
 		}
 	});
 	
@@ -370,14 +370,14 @@
 			testflight.passCheckpoint("feri:update_data_oglasna");	
 		}
 		
-		Ti.fireEvent('feri:update_data_oglasna');
+		Ti.App.fireEvent('feri:update_data_oglasna');
 	}
 	
 	if (
     	Titanium.App.Properties.getString('feri.initialStart') != 'false'
     ) {
     	setTimeout(function(){
-    		Ti.fireEvent('feri:update_data_oglasna');
+    		Ti.App.fireEvent('feri:update_data_oglasna');
     		Titanium.App.Properties.setString('feri.initialStart', 'false');
     	}, 1000);
     }

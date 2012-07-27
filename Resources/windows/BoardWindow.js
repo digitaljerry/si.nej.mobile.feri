@@ -93,9 +93,9 @@
 			tabbar.addEventListener('click', function(e)
 			{
 				if ( e.index == 0 )
-					Ti.fireEvent('feri:flip_oglasna_aktualno');
+					Ti.App.fireEvent('feri:flip_oglasna_aktualno');
 				else if ( e.index == 1 )
-					Ti.fireEvent('feri:flip_oglasna_deska');
+					Ti.App.fireEvent('feri:flip_oglasna_deska');
 				
 			});
 		}
@@ -105,7 +105,7 @@
         //////////////////////
 		
         data = feri.ui.getBoardData();
-        Ti.addEventListener('refresh:oglasna', function () {
+        Ti.App.addEventListener('refresh:oglasna', function () {
         	data = feri.ui.getBoardData();
             feri.tableview.setData(data);
         });
@@ -237,19 +237,14 @@
 			    var menu = e.menu;
 			    var menuItemRefresh = menu.add({ title: 'Osveži' });
 			    menuItemRefresh.addEventListener("click", function(e) {
-			        feri.ui.activityIndicator.showModal('Posodabljam ...', feri.updateTimeout, 'Napaka pri povezavi.');
-        			Database.entity.db('main', 'node').fetchUpdates('node');
+			        Ti.App.fireEvent('feri:update_data_oglasna');
 			    });
 			    var menuItemAktualno = menu.add({ title: 'Aktualno' });
 			    menuItemAktualno.addEventListener("click", function(e) {
-			        // fireEvent doesn't work on android ... strange :( 
-			        //Ti.fireEvent('feri:flip_oglasna_aktualno');
-					showLatest();
+			        showLatest();
 			    });
 			    var menuItemDeska = menu.add({ title: 'Oglasna deska' });
 			    menuItemDeska.addEventListener("click", function(e) {
-			    	// fireEvent doesn't work on android ... strange :(
-			    	//Ti.fireEvent('feri:flip_oglasna_deska');
 			    	showCategory();
 			    });
 			};

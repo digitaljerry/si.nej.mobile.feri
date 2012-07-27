@@ -1,7 +1,7 @@
 (function() {
 	
 	//REGISTER USER ON CLOUD
-	Ti.addEventListener('feri:registerUser', function (e) {
+	Ti.App.addEventListener('feri:registerUser', function (e) {
 		//alert("REGISTER");
 		
 		var username = Ti.App.Properties.getString("push_username");
@@ -31,7 +31,7 @@
 				//alert("USER CREATED SUCCESSFULLY.");
 				// user created successfully
 				Ti.App.Properties.setString("push_username", username);
-				Ti.fireEvent("feri:login");
+				Ti.App.fireEvent("feri:login");
 				
 			} else {
 				// oops, something went wrong
@@ -42,7 +42,7 @@
 	});
 	
 	//LOGIN TO CLOUD AS A USER THAT WE CREATED BEFORE
-	Ti.addEventListener('feri:login', function (e) {
+	Ti.App.addEventListener('feri:login', function (e) {
 		
 		var username = Ti.App.Properties.getString("push_username");
 		var password = 'pusher';
@@ -65,7 +65,7 @@
 	});
 	
 	//LOGOUT
-	Ti.addEventListener('feri:logout', function(e){
+	Ti.App.addEventListener('feri:logout', function(e){
 		
 		var username = Ti.App.Properties.getString("push_username");
 		var password = 'pusher';
@@ -251,9 +251,9 @@
 	// if no user, first register
 	// do we even need login?
 	if ( username == null ) {
-		Ti.fireEvent("feri:registerUser", {'login': true});
+		Ti.App.fireEvent("feri:registerUser", {'login': true});
 	} else {
-		Ti.fireEvent("feri:login");
+		Ti.App.fireEvent("feri:login");
 	}
 	
 })();

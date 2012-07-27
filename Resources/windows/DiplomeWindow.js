@@ -243,7 +243,7 @@
 	        }
         });
         
-        Ti.addEventListener('refresh:diplome', function () {
+        Ti.App.addEventListener('refresh:diplome', function () {
             diplomeTableView.setData(getDiplomeData());
         });
         
@@ -262,7 +262,7 @@
 			    var menu = e.menu;
 			    var menuItemRefresh = menu.add({ title: 'Osveži' });
 			    menuItemRefresh.addEventListener("click", function(e) {
-			        Ti.fireEvent('refresh:diplome');
+			        Ti.App.fireEvent('feri:update_data_diplome');
 			    });
 			};
 		}
