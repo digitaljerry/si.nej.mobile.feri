@@ -24,10 +24,7 @@
         rows.close();
         
         nodes = Database.entity.db('main', 'board_children').loadMultiple(uids, ['title'], true);
-        /*for (var num = 0, numNodes = nodes.length; num < numNodes; num++) {
-        	
-        }*/
-       
+        
        	// Create data for TableView
         var data = [];
        	
