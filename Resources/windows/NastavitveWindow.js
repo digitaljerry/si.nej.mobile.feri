@@ -64,6 +64,35 @@
 			title:'Osveži ob zagonu',
 			refreshOnLoad:true
 		});
+		var row5 = Ti.UI.createTableViewRow({
+			height:50,
+			title:'Push obvestila',
+			color: feri.ui.darkText,
+			pushRegister:true
+		});
+		
+		if ( feri.isAndroid() ) {
+			var titleLabel5 = Ti.UI.createLabel({
+	            text: 'Push obvestila',
+	            font: {
+	                fontSize: 16,
+	                fontWeight: 'bold'
+	            },
+	            color: feri.ui.darkText,
+	            left: 10,
+	            top: 10,
+	            bottom: 10,
+	            right: 10,
+	            height: 'auto',
+	        });
+	        row5.add(titleLabel5);
+		}
+		
+		var sw5 = Ti.UI.createSwitch({
+			right:10,
+			value:false
+		});
+		
 		var row3 = Ti.UI.createTableViewRow({
 			height:50,
 			title:'Priljubljene',
@@ -72,7 +101,7 @@
 		});
 		var row4 = Ti.UI.createTableViewRow({
 			height:50,
-			title:'Push obvestila',
+			title:'Push kategorije',
 			editList:'push',
 			hasChild: true
 		});
@@ -109,7 +138,7 @@
 	        row3.add(titleLabel3);
 	        
 	        var titleLabel4 = Ti.UI.createLabel({
-	            text: 'Push obvestila',
+	            text: 'Push kategorije',
 	            font: {
 	                fontSize: 16,
 	                fontWeight: 'bold'
@@ -132,18 +161,22 @@
 			sw1.value = true;
 		if ( Titanium.App.Properties.getString('feri.refreshOnLoad') == 'true' )
 			sw2.value = true;
+		if ( Titanium.App.Properties.getString('push') == 'true' )
+			sw5.value = true;
 	
 		row1.add(sw1);
 		row2.add(sw2);
+		row5.add(sw5);
 		
 		inputData.push(row1);
 		inputData.push(row2);
+		inputData.push(row5);
 		inputData.push(row3);
 		inputData.push(row4);
 		
 		var oglasnaDeskaSettings = [
 			{title:'Priljubljene', editList: 'favorites', header:'Oglasna deska'},
-			{title:'Push obvestila', editList: 'push'}
+			{title:'Push kategorije', editList: 'push'}
 		];
 		
 		inputData.push(oglasnaDeskaSettings);
@@ -244,6 +277,13 @@
 				Titanium.App.Properties.setString('feri.refreshOnLoad', 'true');
 			else
 				Titanium.App.Properties.setString('feri.refreshOnLoad', 'false');
+		});
+		
+		sw5.addEventListener('change',function(e) {
+			if ( e.value )
+				feri.registerForPush();
+			else
+				feri.unregisterForPush();
 		});
 				
 		// add table view to the window
