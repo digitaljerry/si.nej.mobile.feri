@@ -4,20 +4,21 @@
 	feri.ui.createNastavitveBoardEditListWindow = function (w) {
 		
 		var conn = Database.db.getConnection('main');
+		var where = '';
 		
 		// getting entity from db
 		if ( w.edit == 'favorites' )
-			var where = ' WHERE favourite = 1';
+			where = ' WHERE favourite = 1 OR push = \'true\'';
 		else if ( w.edit == 'push' )
-			var where = ' WHERE push = 1';
+			where = ' WHERE push = 1 OR push = \'true\'';
 		else
 			return;
-			
+		
 		var uids = [];
 		var nodes = [];
 		var rows = conn.query("SELECT uid FROM board_children" + where);
 		
-        while (rows.isValidRow()) {
+		while (rows.isValidRow()) {
             uids.push(rows.fieldByName('uid'));
             rows.next();
         }
@@ -59,6 +60,24 @@
             nodeRow.add(nodeLabel);
             
             data.push(nodeRow);
+        }
+        
+        if (data.length == 0) {
+        	
+        	var sessionRow = Ti.UI.createTableViewRow({
+                hasChild: false,
+                className: 'cs_session',
+                date: '',
+                uid: 0,
+                height: 'auto',
+                layout: 'vertical',
+                color: feri.ui.inactiveText,
+                focusable: false,
+                title: 'Ni kategorij',
+                selectedBackgroundColor: feri.ui.selectedBackgroundColor
+            });
+            
+            data.push(sessionRow);
         }
         
         if ( feri.testflight == true && !feri.isAndroid() ) {
@@ -119,12 +138,15 @@
 		if ( feri.isAndroid() ) {
 			tableview.addEventListener('click', function(e)
 			{
+				if ( e.row.uid == undefined || e.row.uid == 0 )
+					return;
+				
 				var a = Titanium.UI.createAlertDialog({
 					message:'Izbriši iz seznama?'
 				});
 				a.buttonNames = ['OK','Prekliči'];
 				a.cancel = 1;
-				a.show()
+				a.show();
 				
 				a.addEventListener('click', function(f)
 				{
@@ -148,6 +170,9 @@
 			if ( feri.isAndroid() ) {
 				tableview.deleteRow(e.index);
 			}
+			
+			if ( w.edit == 'push' )
+				feri.unsubscribeToServerPush(e.row.uid);
 			
 			return true;
 		}
