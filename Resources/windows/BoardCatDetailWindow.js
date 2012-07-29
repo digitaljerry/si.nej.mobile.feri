@@ -143,7 +143,9 @@
 		});
 		pushRow.add(pushLabel);
 		pushRow.add(pushSwitch);
-		data.push(pushRow);
+		
+		if ( Ti.App.Properties.getString("push") == 'true' )
+			data.push(pushRow);
 		
 		// here
 		if (catData.favourite)
