@@ -1,18 +1,72 @@
-Welcome to your Appcelerator Titanium Mobile Project
 
-This is a blank project.  Start by editing your application's app.js to 
-make your first mobile project using Titanium.
+# FERI Mobile App
 
-
+si.nej.mobile.feri
 
 ----------------------------------
-Stuff our legal folk make us say:
+
+## Description
+
+Suspendisse ultrices, quam vitae aliquam ornare, sem mi iaculis mi, a mollis orci diam et diam.
+Aenean sit amet quam libero. Phasellus ultrices, metus mollis rhoncus blandit, massa erat ullamcorper arcu,
+ut sagittis sem nibh eu dolor. Ut semper condimentum lectus vitae congue. Integer eu erat tortor, quis 
+adipiscing arcu. Fusce dictum venenatis mauris, vel egestas dolor ultrices vitae. Nullam quis quam ante, 
+in convallis massa. Phasellus euismod nibh ac leo dapibus ultrices. Vivamus semper adipiscing risus, sit 
+amet pulvinar sem luctus a. Praesent risus lorem, consectetur quis fringilla ut, commodo eu metus.
+Suspendisse potenti. Aliquam iaculis enim eget eros tristique eget euismod lectus vehicula. Pellentesque 
+et orci libero. Nullam sagittis erat leo. Curabitur vel eleifend magna.
+
+## How to install
+
+Aliquam elementum erat nec sapien dignissim placerat. Integer non tellus.
+
+## License
+
+(The MIT License)
+
+Copyright (c) 2011 Jernej Zorec &lt;jernejz@gmail.com&gt;
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+'Software'), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+----------------------------------
 
 Appcelerator, Appcelerator Titanium and associated marks and logos are 
 trademarks of Appcelerator, Inc. 
 
-Titanium is Copyright (c) 2009-2010 by Appcelerator, Inc. All Rights Reserved.
+Titanium is Copyright (c) 2009-2012 by Appcelerator, Inc. All Rights Reserved.
 
 Titanium is licensed under the Apache Public License (Version 2). Please
 see the LICENSE file for the full license.
 
+----------------------------------
+
+FERI, Fakulteta za elektrotehniko, računalništvo in informatiko
+Smetanova ulica 17, 2000 Maribor :: tel.: 02/220 7000 :: faks: 02/220 7272 :: e-pošta: feri@uni-mb.si
+
+----------------------------------
+
+Author / developer:
+Jernej Zorec
+http://nej.si
+@nej2222
+
+UI Designer:
+Matej Grušovnik
+http://matejgrusovnik.com
