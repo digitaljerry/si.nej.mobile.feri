@@ -128,6 +128,16 @@ aside#sidebar p.repo-owner a {
   margin-bottom: 40px;
 }
 
+ul.gallery {
+	
+}
+
+ul.gallery li {
+	float: left;
+	list-style: none;
+	padding-bottom: 20px;
+}
+
 a.button {
   width: 134px;
   height: 58px;
