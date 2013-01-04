@@ -11,7 +11,7 @@ var feri = {
     loadTimeout: 10000,
     loadLongTimeout: 25000,
     dashboardActive: true,
-    testflight: true,
+    testflight: false,
 };
 
 (function() {
