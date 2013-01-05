@@ -1,51 +1,53 @@
+(function() {
+  feri.ui.createAboutWindow = function() {
 
-(function () {
-    feri.ui.createAboutWindow = function () {
-    	
-    	if ( feri.testflight == true && !feri.isAndroid() ) {
-			testflight.passCheckpoint("About window");	
-		}
-    	
-        var aboutWindow = Titanium.UI.createWindow({
-            id: 'aboutWindow',
-            title: 'FERI',
-            backgroundColor: '#dddddd',
-            barColor: feri.ui.barColor,
-            navBarHidden: false,
-            fullscreen: false
+    if (feri.testflight == true && !feri.isAndroid()) {
+      testflight.passCheckpoint("About window");
+    }
+
+    var aboutWindow = Titanium.UI.createWindow({
+      id : 'aboutWindow',
+      title : 'FERI',
+      backgroundColor : '#dddddd',
+      barColor : feri.ui.barColor,
+      navBarHidden : false,
+      fullscreen : false
+    });
+
+    var version = Ti.App.getVersion();
+    var feriWindow = Ti.UI.createWebView({
+      url : '/pages/about.html'
+    });
+    var appWindow = Ti.UI.createWebView({
+      url : '/pages/app.html'
+    });
+
+    appWindow.addEventListener('load', function() {
+      appWindow.evalJS("document.getElementById('version').innerText='" + version + "';");
+    });
+
+    var data = [{
+      title : 'FERI',
+      view : feriWindow
+    }, {
+      title : 'Aplikacija',
+      view : appWindow
+    }];
+    aboutWindow.add(feri.ui.createTabbedScrollableView({
+      data : data
+    }));
+
+    // android back button listener
+    if (feri.isAndroid()) {
+      aboutWindow.addEventListener('android:back', function() {
+        feri.navGroup.close(feri.iconWin, {
+          animated : true
         });
-        
-        var version = Ti.App.getVersion();
-        var feriWindow = Ti.UI.createWebView({url: '/pages/about.html'});
-        var appWindow = Ti.UI.createWebView({url: '/pages/app.html'});
-        
-        appWindow.addEventListener('load', function() {
-			appWindow.evalJS("document.getElementById('version').innerText='"+version+"';");
-		});
-        
-        var data = [
-        	{
-	            title: 'FERI',
-	            view: feriWindow
-        	}, 
-        	{
-	            title: 'Aplikacija',
-	            view: appWindow
-        	}
-        ];
-        aboutWindow.add(feri.ui.createTabbedScrollableView({data:data}));
-        
-        // android back button listener
-		if (feri.isAndroid()) {
-			aboutWindow.addEventListener('android:back',function(){
-				feri.navGroup.close(feri.iconWin, {
-                    animated: true
-                });
-                // re-enabling the icons on the dashboard
-                feri.dashboardActive = true;
-			});
-		}
-        
-        return aboutWindow;
-    };
-})();
+        // re-enabling the icons on the dashboard
+        feri.dashboardActive = true;
+      });
+    }
+
+    return aboutWindow;
+  };
+})(); 

@@ -1,55 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ti:app xmlns:ti="http://ti.appcelerator.org">
-    <property name="acs-oauth-secret-production" type="string">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</property>
-    <property name="acs-oauth-key-production" type="string">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</property>
-    <property name="acs-api-key-production" type="string">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</property>
-    <property name="acs-oauth-secret-development" type="string">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</property>
-    <property name="acs-oauth-key-development" type="string">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</property>
-    <property name="acs-api-key-development" type="string">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</property>
-    <property name="ti.android.runtime">v8</property>
-    <sdk-version>2.1.0.GA</sdk-version>
-    <deployment-targets>
-        <target device="mobileweb">false</target>
-        <target device="iphone">true</target>
-        <target device="ipad">true</target>
-        <target device="blackberry">false</target>
-        <target device="android">true</target>
-    </deployment-targets>
-    <id>si.zadrga.mobile.feri</id>
-    <name>FERI</name>
-    <version>0.3</version>
-    <publisher>Jernej Zorec</publisher>
-    <url>http://nej.si</url>
-    <description>FERI Mobile App</description>
-    <copyright>2012 by Jernej Zorec</copyright>
+  <property name="acs-oauth-secret-production" type="string">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</property>
+  <property name="acs-oauth-key-production" type="string">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</property>
+  <property name="acs-api-key-production" type="string">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</property>
+  <property name="acs-oauth-secret-development" type="string">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</property>
+  <property name="acs-oauth-key-development" type="string">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</property>
+  <property name="acs-api-key-development" type="string">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</property>
+  <property name="ti.android.runtime">v8</property>
+  <sdk-version>2.1.0.GA</sdk-version>
+  <deployment-targets>
+    <target device="mobileweb">false</target>
+    <target device="iphone">true</target>
+    <target device="ipad">true</target>
+    <target device="blackberry">false</target>
+    <target device="android">true</target>
+  </deployment-targets>
+  <id>si.zadrga.mobile.feri</id>
+  <name>FERI</name>
+  <version>0.3</version>
+  <publisher>Jernej Zorec</publisher>
+  <url>http://nej.si</url>
+  <description>FERI Mobile App</description>
+  <copyright>2012 by Jernej Zorec</copyright>
+  <icon>appicon.png</icon>
+  <persistent-wifi>false</persistent-wifi>
+  <prerendered-icon>false</prerendered-icon>
+  <statusbar-style>opaque</statusbar-style>
+  <statusbar-hidden>false</statusbar-hidden>
+  <fullscreen>false</fullscreen>
+  <navbar-hidden>false</navbar-hidden>
+  <analytics>true</analytics>
+  <guid>e9381aa6-8656-4ece-add6-37185c9557a2</guid>
+  <iphone>
+    <orientations device="iphone">
+      <orientation>Ti.UI.PORTRAIT</orientation>
+    </orientations>
+    <orientations device="ipad">
+      <orientation>Ti.UI.PORTRAIT</orientation>
+    </orientations>
     <icon>appicon.png</icon>
-    <persistent-wifi>false</persistent-wifi>
-    <prerendered-icon>false</prerendered-icon>
-    <statusbar-style>opaque</statusbar-style>
-    <statusbar-hidden>false</statusbar-hidden>
-    <fullscreen>false</fullscreen>
-    <navbar-hidden>false</navbar-hidden>
-    <analytics>true</analytics>
-    <guid>e9381aa6-8656-4ece-add6-37185c9557a2</guid>
-    <iphone>
-        <orientations device="iphone">
-            <orientation>Ti.UI.PORTRAIT</orientation>
-        </orientations>
-        <orientations device="ipad">
-            <orientation>Ti.UI.PORTRAIT</orientation>
-        </orientations>
-        <icon>appicon.png</icon>
     </iphone>
-    <android xmlns:android="http://schemas.android.com/apk/res/android">
-        <manifest>
-            <supports-screens android:anyDensity="false"/>
-        </manifest>
-        <icon>appicon.png</icon>
-    </android>
-    <modules>
-        <module platform="commonjs" version="2.0.5">ti.cloud</module>
-        <module platform="iphone" version="1.3">com.0x82.testflight</module>
-        <module platform="android" version="2.0.5">ti.cloudpush</module>
-    </modules>
-    <property name="ti.android.threadstacksize" type="int">32768</property>
+  <android xmlns:android="http://schemas.android.com/apk/res/android">
+    <manifest>
+      <supports-screens android:anyDensity="false"/>
+    </manifest>
+    <icon>appicon.png</icon>
+  </android>
+  <modules>
+    <module platform="commonjs" version="2.0.5">ti.cloud</module>
+    <module platform="iphone" version="1.3">com.0x82.testflight</module>
+    <module platform="android" version="2.0.5">ti.cloudpush</module>
+  </modules>
+  <property name="ti.android.threadstacksize" type="int">32768</property>
 </ti:app>
