@@ -344,6 +344,10 @@
         Database.entity.db('main', 'user').fixTables('user');
     });
     
+    Ti.App.addEventListener('feri:openExternalURL', function(e){
+			Ti.Platform.openURL(e.url);
+		});
+    
     if (
     	Titanium.App.Properties.getString('feri.refreshOnShake') == '' ||
     	Titanium.App.Properties.getString('feri.refreshOnShake') == 'undefined'
