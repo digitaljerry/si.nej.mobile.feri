@@ -77,14 +77,15 @@
 			CloudPush.focusAppOnPush = false;
 			
 			CloudPush.addEventListener('callback', function (evt) {
-				//alert(evt.payload);
-		    });
-		    CloudPush.addEventListener('trayClickLaunchedApp', function (evt) {
-		        //alert('Tray Click Launched App (app was not running)');
-		    });
-		    CloudPush.addEventListener('trayClickFocusedApp', function (evt) {
-		        //alert('Tray Click Focused App (app was already running)');
-		    });
+				//alert('Callback: ' + evt.payload);
+				Ti.App.fireEvent('feri:update_data_oglasna');
+		  });
+		  CloudPush.addEventListener('trayClickLaunchedApp', function (evt) {
+		    //alert('Tray Click Launched App (app was not running)');
+		  });
+		  CloudPush.addEventListener('trayClickFocusedApp', function (evt) {
+		    //alert('Tray Click Focused App (app was already running)');
+		  });
 			
 		} else {
 			
@@ -109,6 +110,7 @@
 				{
 					// called when a push notification is received.
 					//alert("Received a push notification\n\nPayload:\n\n"+JSON.stringify(e.data));
+					Ti.App.fireEvent('feri:update_data_oglasna');
 				}
 			});
 			
@@ -164,7 +166,8 @@
 				callback:function(e)
 				{
 					// called when a push notification is received.
-					//alert("Received a push notification\n\nPayload:\n\n"+JSON.stringify(e.data));
+					//alert("Received a push notification \n\nPayload:\n\n"+JSON.stringify(e.data));
+					Ti.App.fireEvent('feri:update_data_oglasna');
 				}
 			});
 			
