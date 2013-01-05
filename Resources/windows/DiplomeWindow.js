@@ -107,6 +107,8 @@
 	            });
 	            
 	            data.push(sessionRow);
+	            
+	            Ti.App.fireEvent('feri:update_data_diplome');
 	        }
 	        
 	        data.push(feri.ui.createHeaderRow('Zadnje diplome'));
