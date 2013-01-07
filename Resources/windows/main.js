@@ -310,7 +310,7 @@
       testflight.passCheckpoint("feri:update_data_zaposleni");
     }
 
-    feri.ui.activityIndicator.showModal('Posodabljam ...', feri.updateTimeout, 'Napaka pri povezavi.');
+    feri.ui.activityIndicator.showModal('Posodabljam ...', feri.bigUpdateTimeout, 'Napaka pri povezavi.');
     Database.entity.db('main', 'user').fetchUpdates('user');
   });
 
