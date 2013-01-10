@@ -10,7 +10,7 @@
 
     var urnikiWindow = Titanium.UI.createWindow({
       id : 'urnikiWindow',
-      title : 'Urniki',
+      title : lang['win_urniki'],
       backgroundColor : feri.ui.urnikiColor,
       barColor : feri.ui.barColor,
       navBarHidden : false,
@@ -35,7 +35,7 @@
     if (!feri.isAndroid()) {
       // reload controls listeners
       var bb2 = Titanium.UI.createButtonBar({
-        labels : ['Prejšnji', 'Trenutni teden', 'Naslednji'],
+        labels : [lang['prejsnji'], lang['trenutni_teden'], lang['naslednji']],
         backgroundColor : feri.ui.toolbarColor,
         height : 30
       });
@@ -68,7 +68,7 @@
       activity.onCreateOptionsMenu = function(e) {
         var menu = e.menu;
         var menuItemBack = menu.add({
-          title : 'Prejšnji teden'
+          title : lang['prejsnji_teden']
         });
         menuItemBack.addEventListener("click", function(e) {
           if (diff > 0)
@@ -78,14 +78,14 @@
           refreshUrniki(diff);
         });
         var menuItemRefresh = menu.add({
-          title : 'Trenutni teden'
+          title : lang['trenutni_teden']
         });
         menuItemRefresh.addEventListener("click", function(e) {
           diff = 0;
           refreshUrniki(diff);
         });
         var menuItemForward = menu.add({
-          title : 'Naslednji teden'
+          title : lang['naslednji_teden']
         });
         menuItemForward.addEventListener("click", function(e) {
           if (diff < 0)
@@ -95,7 +95,7 @@
           refreshUrniki(diff);
         });
         var menuItemSet = menu.add({
-          title : 'Izberi študij'
+          title : lang['izberi_studij']
         });
         menuItemSet.addEventListener("click", function(e) {
           Ti.App.fireEvent('feri:set_urniki');
@@ -117,13 +117,13 @@
     Ti.App.addEventListener('feri:set_urniki', function() {
       if (feri.useDashboard) {
         feri.navGroup.open(feri.ui.createUrnikiSelectionWindow({
-          title : 'Urniki'
+          title : lang['urniki']
         }), {
           animated : true
         });
       } else {
         feri.tabUrniki.open(feri.ui.createUrnikiSelectionWindow({
-          title : 'Urniki'
+          title : lang['urniki']
         }), {
           animated : true
         });
@@ -160,7 +160,7 @@
           toFile.write(fromFile.read());
         }
 
-        feri.ui.activityIndicator.showModal('Nalagam ...', feri.loadLongTimeout, 'Napaka pri povezavi.');
+        feri.ui.activityIndicator.showModal(lang['nalagam'], feri.loadLongTimeout, lang['napaka_pri_povezavi']);
 
         var xhr = Ti.Network.createHTTPClient();
 

@@ -98,14 +98,14 @@
     }
 
     data.push(headerRow);
-    data.push(feri.ui.createHeaderRow('Nastavitve'));
+    data.push(feri.ui.createHeaderRow(lang['nastavitve']));
 
     // do the priljubljene row
     var favRow = Ti.UI.createTableViewRow({
       height : 45
     });
     var favLabel = Ti.UI.createLabel({
-      text : 'Priljubljene',
+      text : lang['priljubljene'],
       font : {
         fontSize : 16,
         fontWeight : 'bold'
@@ -128,7 +128,7 @@
       height : 45
     });
     var pushLabel = Ti.UI.createLabel({
-      text : 'Push obvestila',
+      text : lang['push_obvestila'],
       font : {
         fontSize : 16,
         fontWeight : 'bold'

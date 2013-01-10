@@ -1,6 +1,12 @@
 // Declaring variables to prevent implied global error in jslint
 var Ti, Database;
 
+// determine the language
+if (!Titanium.App.Properties.getString('locale')) {
+  Titanium.App.Properties.setString('locale','sl');
+}
+Titanium.include ('lang/'+Titanium.App.Properties.getString('locale')+'.js')
+
 // this sets the background color of the master UIView (when there are no windows/tab groups on it)
 Ti.UI.setBackgroundColor('#1a5384');
 

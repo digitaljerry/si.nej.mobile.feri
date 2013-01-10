@@ -7,7 +7,7 @@
 
     var diplomeWindow = Titanium.UI.createWindow({
       id : 'diplomeWindow',
-      title : 'Diplome',
+      title : lang['diplome'],
       backgroundColor : '#FFF',
       barColor : feri.ui.barColor,
       navBarHidden : false,
@@ -19,7 +19,7 @@
       var data = [];
       var conn = Database.db.getConnection('main');
 
-      data.push(feri.ui.createHeaderRow('Aktualni zagovori'));
+      data.push(feri.ui.createHeaderRow(lang['aktualni_zagovori']));
 
       var rows = conn.query("SELECT uid FROM aktualne_diplome ORDER BY uid DESC LIMIT 25");
 
@@ -101,7 +101,7 @@
           layout : 'vertical',
           color : feri.ui.inactiveText,
           focusable : false,
-          title : 'Ni aktualnih zagovorov',
+          title : lang['ni_aktualnih_zagovorov'],
           selectedBackgroundColor : feri.ui.selectedBackgroundColor
         });
 
@@ -110,7 +110,7 @@
         Ti.App.fireEvent('feri:update_data_diplome');
       }
 
-      data.push(feri.ui.createHeaderRow('Zadnje diplome'));
+      data.push(feri.ui.createHeaderRow(lang['zadnje_diplome']));
 
       var rows = conn.query("SELECT uid FROM zadnje_diplome ORDER BY uid DESC LIMIT 25");
 
@@ -182,7 +182,7 @@
         data.push(diplomaRow);
       }
 
-      data.push(feri.ui.createHeaderRow('DKUM'));
+      data.push(feri.ui.createHeaderRow(lang['dkum']));
 
       var tableRow = Ti.UI.createTableViewRow({
         hasChild : true,
@@ -193,7 +193,7 @@
         //height: 'auto',
         layout : 'vertical',
         //focusable: true,
-        title : 'Več diplom na DKUM',
+        title : lang['vec_diplom_na_dkum'],
         dkum : true,
         selectedBackgroundColor : feri.ui.selectedBackgroundColor
       });
@@ -274,7 +274,7 @@
       activity.onCreateOptionsMenu = function(e) {
         var menu = e.menu;
         var menuItemRefresh = menu.add({
-          title : 'Osveži'
+          title : lang['osvezi']
         });
         menuItemRefresh.addEventListener("click", function(e) {
           Ti.App.fireEvent('feri:update_data_diplome');

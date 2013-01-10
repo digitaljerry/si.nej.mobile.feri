@@ -102,7 +102,7 @@
       height : '100%'
     });
 
-    tvData.push(feri.ui.createHeaderRow('Obvestilo'));
+    tvData.push(feri.ui.createHeaderRow(lang['obvestilo']));
     tvData.push(bodyRow);
 
     var toolbarActive = false;
@@ -110,7 +110,7 @@
     if (!feri.isAndroid()) {
       // open on web
       var bb2 = Titanium.UI.createButtonBar({
-        labels : ['Odpri na spletu'],
+        labels : [lang['odpri_na_spletu']],
         backgroundColor : feri.ui.toolbarColor,
         height : 30
       });
@@ -128,7 +128,7 @@
       activity.onCreateOptionsMenu = function(e) {
         var menu = e.menu;
         var menuItemOpen = menu.add({
-          title : 'Odpri na spletu'
+          title : lang['odpri_na_spletu']
         });
         menuItemOpen.addEventListener("click", function(e) {
           openOnWeb(settings);

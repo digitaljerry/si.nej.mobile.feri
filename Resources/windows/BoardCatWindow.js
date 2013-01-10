@@ -163,7 +163,7 @@
 
       if (favs.length > 0) {
 
-        data.push(feri.ui.createHeaderRow('Priljubljene'));
+        data.push(feri.ui.createHeaderRow(lang['priljubljene']));
 
         for (var favNum = 0, numFavs = favs.length; favNum < numFavs; favNum++) {
           var fav = favs[favNum];
@@ -214,7 +214,7 @@
       }
     }
 
-    data.push(feri.ui.createHeaderRow('Kategorije'));
+    data.push(feri.ui.createHeaderRow(lang['kategorije']));
 
     // OGLASNA DESKA
     var cats = [];

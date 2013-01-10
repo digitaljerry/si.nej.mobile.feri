@@ -8,6 +8,10 @@
     iconWidth = 213;
     imageSuffix = '@2x';
   }
+  
+  if ( Titanium.App.Properties.getString('locale') == 'en' ) {
+    imageSuffix = '_en' + imageSuffix;
+  }
 
   feri.ui.icons = {
     height : iconHeight,
@@ -46,4 +50,4 @@
       func : feri.ui.createAboutWindow
     }]
   };
-})(); 
+})();

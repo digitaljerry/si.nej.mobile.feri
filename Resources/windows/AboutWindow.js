@@ -7,7 +7,7 @@
 
     var aboutWindow = Titanium.UI.createWindow({
       id : 'aboutWindow',
-      title : 'FERI',
+      title : lang['feri'],
       backgroundColor : '#dddddd',
       barColor : feri.ui.barColor,
       navBarHidden : false,
@@ -15,22 +15,34 @@
     });
 
     var version = Ti.App.getVersion();
-    var feriWindow = Ti.UI.createWebView({
-      url : '/pages/about.html'
-    });
-    var appWindow = Ti.UI.createWebView({
-      url : '/pages/app.html'
-    });
-
+    if ( Titanium.App.Properties.getString('locale') == 'en' ) {
+      var feriWindow = Ti.UI.createWebView({
+        url : '/pages/about_en.html'
+      });
+    } else {
+      var feriWindow = Ti.UI.createWebView({
+        url : '/pages/about.html'
+      });
+    }
+    if ( Titanium.App.Properties.getString('locale') == 'en' ) {
+      var appWindow = Ti.UI.createWebView({
+        url : '/pages/app_en.html'
+      });
+    } else {
+      var appWindow = Ti.UI.createWebView({
+        url : '/pages/app.html'
+      });
+    }
+    
     appWindow.addEventListener('load', function() {
       appWindow.evalJS("document.getElementById('version').innerText='" + version + "';");
     });
 
     var data = [{
-      title : 'FERI',
+      title : lang['feri'],
       view : feriWindow
     }, {
-      title : 'Aplikacija',
+      title : lang['aplikacija'],
       view : appWindow
     }];
     aboutWindow.add(feri.ui.createTabbedScrollableView({

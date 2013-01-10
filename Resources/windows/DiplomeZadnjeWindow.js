@@ -8,7 +8,7 @@
 
     var diplomeZadnjeWindow = Titanium.UI.createWindow({
       id : 'diplomeZadnjeWindow',
-      title : 'Zadnje diplome',
+      title : lang['zadnje_diplome'],
       backgroundColor : '#FFF',
       barColor : feri.ui.barColor,
       navBarHidden : false,
@@ -105,13 +105,13 @@
     }
 
     tvData.push(headerRow);
-    tvData.push(feri.ui.createHeaderRow('Obvestilo'));
+    tvData.push(feri.ui.createHeaderRow(lang['opis']));
     tvData.push(bodyRow);
 
     // files
     if (sessionData.link) {
 
-      tvData.push(feri.ui.createHeaderRow('DKUM'));
+      tvData.push(feri.ui.createHeaderRow(lang['dkum']));
 
       var tableRow = Ti.UI.createTableViewRow({
         hasChild : true,
@@ -121,7 +121,7 @@
         color : '#000',
         layout : 'vertical',
         focusable : true,
-        title : 'Več o diplomi',
+        title : lang['vec_o_diplomi'],
         dkum_url : sessionData.link,
         selectedBackgroundColor : feri.ui.selectedBackgroundColor
       });

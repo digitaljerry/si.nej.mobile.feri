@@ -144,7 +144,7 @@
 
     if (peopleData.title) {
       titleRow.add(title);
-      tvData.push(feri.ui.createHeaderRow('Naziv'));
+      tvData.push(feri.ui.createHeaderRow(lang['naziv']));
       tvData.push(titleRow);
     }
 
@@ -241,7 +241,7 @@
     telRow.add(tel);
 
     if (peopleData.office || peopleData.hours || peopleData.tel) {
-      tvData.push(feri.ui.createHeaderRow('Kabinet'));
+      tvData.push(feri.ui.createHeaderRow(lang['kabinet']));
       if (peopleData.office)
         tvData.push(officeRow);
       if (peopleData.hours)
@@ -273,7 +273,7 @@
     emailRow.add(email);
 
     if (peopleData.email) {
-      tvData.push(feri.ui.createHeaderRow('Email'));
+      tvData.push(feri.ui.createHeaderRow(lang['email']));
       tvData.push(emailRow);
     }
 

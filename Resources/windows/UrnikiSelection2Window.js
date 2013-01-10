@@ -9,7 +9,7 @@
 
     var urnikiSelection2Window = Titanium.UI.createWindow({
       id : 'urnikiSelection2Window',
-      title : 'Letnik in smer',
+      title : lang['letnik_in_smer'],
       barColor : feri.ui.barColor,
       backgroundColor : feri.ui.backgroundColor,
       fullscreen : false
@@ -122,7 +122,7 @@
       }, 250);
 
       var remoteData = [];
-      feri.ui.activityIndicator.showModal('Nalagam ...', feri.loadTimeout, 'Napaka pri povezavi.');
+      feri.ui.activityIndicator.showModal(lang['nalagam'], feri.loadTimeout, lang['napaka_pri_povezavi']);
 
       var xhr = Ti.Network.createHTTPClient();
       xhr.open('GET', feri.urniki_helper2 + row.urniki_data.branch_id);

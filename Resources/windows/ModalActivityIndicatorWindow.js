@@ -34,8 +34,8 @@ feri.ui.activityIndicator = (function() {
     // check for connectivty
     if (Titanium.Network.networkType === Titanium.Network.NETWORK_NONE) {
       var alertDialog = Ti.UI.createAlertDialog({
-        title : 'Napaka',
-        message : 'Nimate povezave z internetom.',
+        title : lang['napaka'],
+        message : lang['no_connection'],
         buttonNames : ['OK']
       });
       alertDialog.show();
@@ -62,7 +62,7 @@ feri.ui.activityIndicator = (function() {
         activityIndicator.hideModal();
         if (timeoutMessage) {
           var alertDialog = Ti.UI.createAlertDialog({
-            title : 'Napaka',
+            title : lang['napaka'],
             message : timeoutMessage,
             buttonNames : ['OK']
           });

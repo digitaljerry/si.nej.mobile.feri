@@ -93,7 +93,7 @@ var feri = {
     if (!feri.isAndroid()) {
 
       var bb2 = Titanium.UI.createButtonBar({
-        labels : ['Nazaj', 'Osveži', 'Naprej'],
+        labels : [lang['nazaj'], lang['osvezi'], lang['naprej']],
         backgroundColor : feri.ui.toolbarColor,
         height : 30
       });

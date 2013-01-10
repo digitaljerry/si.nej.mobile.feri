@@ -72,7 +72,7 @@
         layout : 'vertical',
         color : feri.ui.inactiveText,
         focusable : false,
-        title : 'Ni kategorij',
+        title : lang['ni_kategorij'],
         selectedBackgroundColor : feri.ui.selectedBackgroundColor
       });
 
@@ -101,7 +101,7 @@
     if (!feri.isAndroid()) {
 
       var edit = Titanium.UI.createButton({
-        title : 'Uredi'
+        title : lang['uredi']
       });
 
       edit.addEventListener('click', function() {
@@ -110,7 +110,7 @@
       });
 
       var cancel = Titanium.UI.createButton({
-        title : 'Prekliči',
+        title : lang['preklici'],
         style : Titanium.UI.iPhone.SystemButtonStyle.DONE
       });
       cancel.addEventListener('click', function() {
@@ -137,9 +137,9 @@
           return;
 
         var a = Titanium.UI.createAlertDialog({
-          message : 'Izbriši iz seznama?'
+          message : lang['izbrisi_iz_seznama']
         });
-        a.buttonNames = ['OK', 'Prekliči'];
+        a.buttonNames = ['OK', lang['preklici']];
         a.cancel = 1;
         a.show();
 

@@ -9,7 +9,7 @@
 
     var infoWindow = Titanium.UI.createWindow({
       id : 'informacijeWindow',
-      title : 'Informacije',
+      title : lang['informacije'],
       backgroundColor : '#FFF',
       barColor : feri.ui.barColor,
       navBarHidden : false,
@@ -54,7 +54,7 @@
     });
 
     webview.addEventListener('beforeload', function() {
-      feri.ui.activityIndicator.showModal('Nalagam ...', feri.loadTimeout, 'Napaka pri povezavi.');
+      feri.ui.activityIndicator.showModal(lang['nalagam'], feri.loadTimeout, lang['napaka_pri_povezavi']);
     });
 
     infoWindow.add(webview);

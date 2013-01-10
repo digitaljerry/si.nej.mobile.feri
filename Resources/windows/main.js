@@ -80,7 +80,7 @@
           message : ''
         });
         if (feri.isAndroid())
-          ind.message = 'Nalagam ...';
+          ind.message = lang['nalagam'];
         view.add(ind);
         ind.show();
 
@@ -182,45 +182,45 @@
     var winOglasna = feri.ui.createBoardWindow();
     feri.tabOglasna = Titanium.UI.createTab({
       icon : '/images/dashboard/oglasnaTab' + imageSuffix + '.png',
-      title : 'Oglasna',
+      title : lang['win_oglasna'],
       window : winOglasna
     });
     var winUrniki = feri.ui.createUrnikiWindow();
     feri.tabUrniki = Titanium.UI.createTab({
       icon : '/images/dashboard/urnikiTab' + imageSuffix + '.png',
-      title : 'Urniki',
+      title : lang['win_urniki'],
       window : winUrniki
     });
     var winZaposleni = feri.ui.createPeopleWindow();
     feri.tabPeople = Titanium.UI.createTab({
       icon : '/images/dashboard/zaposleniTab' + imageSuffix + '.png',
-      title : 'Zaposleni',
+      title : lang['win_people'],
       window : winZaposleni
     });
     feri.tabMap = Titanium.UI.createTab({
       icon : '/images/dashboard/zemljevidTab' + imageSuffix + '.png',
-      title : 'Zemljevid',
+      title : lang['win_map'],
       window : feri.ui.createMapWindow()
     });
     var winDiplome = feri.ui.createDiplomeWindow();
     feri.tabDiplome = Titanium.UI.createTab({
       icon : '/images/dashboard/diplomeTab' + imageSuffix + '.png',
-      title : 'Diplome',
+      title : lang['win_diplome'],
       window : winDiplome
     });
     feri.tabInformacije = Titanium.UI.createTab({
       icon : '/images/dashboard/informacijeTab' + imageSuffix + '.png',
-      title : 'Informacije',
+      title : lang['win_informacije'],
       window : feri.ui.createInformacijeWindow()
     });
     feri.tabNastavitve = Titanium.UI.createTab({
       icon : '/images/dashboard/nastavitveTab' + imageSuffix + '.png',
-      title : 'Nastavitve',
+      title : lang['win_nastavitve'],
       window : feri.ui.createNastavitveWindow()
     });
     feri.tabAbout = Titanium.UI.createTab({
       icon : '/images/dashboard/aboutTab' + imageSuffix + '.png',
-      title : 'FERI',
+      title : lang['feri'],
       window : feri.ui.createAboutWindow()
     });
 
@@ -276,7 +276,7 @@
       testflight.passCheckpoint("feri:update_data");
     }
 
-    feri.ui.activityIndicator.showModal('Posodabljam ...', feri.updateTimeout, 'Napaka pri povezavi.');
+    feri.ui.activityIndicator.showModal(lang['posodabljam'], feri.updateTimeout, lang['napaka_pri_povezavi']);
     Database.entity.db('main', 'user').fetchUpdates('user');
     Database.entity.db('main', 'node').fetchUpdates('node');
     Database.entity.db('main', 'aktualne_diplome').fetchUpdates('aktualne_diplome');
@@ -289,7 +289,7 @@
       testflight.passCheckpoint("feri:update_data_oglasna");
     }
 
-    feri.ui.activityIndicator.showModal('Posodabljam ...', feri.updateTimeout, 'Napaka pri povezavi.');
+    feri.ui.activityIndicator.showModal(lang['posodabljam'], feri.updateTimeout, lang['napaka_pri_povezavi']);
     Database.entity.db('main', 'node').fetchUpdates('node');
   });
 
@@ -299,7 +299,7 @@
       testflight.passCheckpoint("feri:update_data_diplome");
     }
 
-    feri.ui.activityIndicator.showModal('Posodabljam ...', feri.updateTimeout, 'Napaka pri povezavi.');
+    feri.ui.activityIndicator.showModal(lang['posodabljam'], feri.updateTimeout, lang['napaka_pri_povezavi']);
     Database.entity.db('main', 'aktualne_diplome').fetchUpdates('aktualne_diplome');
     Database.entity.db('main', 'zadnje_diplome').fetchUpdates('zadnje_diplome');
   });
@@ -310,7 +310,7 @@
       testflight.passCheckpoint("feri:update_data_zaposleni");
     }
 
-    feri.ui.activityIndicator.showModal('Posodabljam ...', feri.bigUpdateTimeout, 'Napaka pri povezavi.');
+    feri.ui.activityIndicator.showModal(lang['posodabljam'], feri.bigUpdateTimeout, lang['napaka_pri_povezavi']);
     Database.entity.db('main', 'user').fetchUpdates('user');
   });
 
@@ -319,7 +319,7 @@
       feri.tableviewFirst.show();
       feri.tableview.hide();
     }
-    feri.boardWindow.setTitle('Deska');
+    feri.boardWindow.setTitle(lang['deska']);
     Titanium.App.Properties.setString('boardLatest', 'category');
   });
 
@@ -328,7 +328,7 @@
       feri.tableview.show();
       feri.tableviewFirst.hide();
     }
-    feri.boardWindow.setTitle('Aktualno');
+    feri.boardWindow.setTitle(lang['aktualno']);
     Titanium.App.Properties.setString('boardLatest', 'latest');
   });
 
@@ -342,6 +342,14 @@
 
   Ti.App.addEventListener('feri:openExternalURL', function(e) {
     Ti.Platform.openURL(e.url);
+  });
+  
+  Ti.App.addEventListener('restartApp', function(e) {
+    var a = Titanium.UI.createAlertDialog({
+      message : lang['lang_change_restart']
+    });
+    a.buttonNames = ['OK'];
+    a.show();
   });
 
   if (Titanium.App.Properties.getString('feri.refreshOnShake') == '' || Titanium.App.Properties.getString('feri.refreshOnShake') == 'undefined') {

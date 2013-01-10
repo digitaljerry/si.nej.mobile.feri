@@ -23,7 +23,7 @@
 
     function showLatest() {
       addLatest();
-      feri.boardWindow.setTitle('Aktualno');
+      feri.boardWindow.setTitle(lang['aktualno']);
       feri.tableview.show();
       feri.tableviewFirst.hide();
       Titanium.App.Properties.setString('boardLatest', 'latest');
@@ -31,7 +31,7 @@
 
     function showCategory() {
       addCategory();
-      feri.boardWindow.setTitle('Oglasna deska');
+      feri.boardWindow.setTitle(lang['oglasna_deska']);
       feri.tableviewFirst.show();
       feri.tableview.hide();
       Titanium.App.Properties.setString('boardLatest', 'category');
@@ -79,7 +79,7 @@
     // tabbar control
     if (!feri.isAndroid()) {
       var tabbar = Ti.UI.iOS.createTabbedBar({
-        labels : ['Aktualno', 'Deska'],
+        labels : [lang['aktualno'], lang['deska']],
         backgroundColor : feri.ui.barColor,
         index : 0,
         style : Titanium.UI.iPhone.SystemButtonStyle.BAR,
@@ -141,9 +141,9 @@
       showCategory();
 
       if (feri.isAndroid())
-        feri.boardWindow.title = 'Oglasna deska';
+        feri.boardWindow.title = lang['oglasna_deska'];
       else
-        feri.boardWindow.title = 'Deska';
+        feri.boardWindow.title = lang['deska'];
 
       if (!feri.isAndroid())
         tabbar.index = 1;
@@ -238,19 +238,19 @@
       activity.onCreateOptionsMenu = function(e) {
         var menu = e.menu;
         var menuItemRefresh = menu.add({
-          title : 'Osveži'
+          title : lang['osvezi']
         });
         menuItemRefresh.addEventListener("click", function(e) {
           Ti.App.fireEvent('feri:update_data_oglasna');
         });
         var menuItemAktualno = menu.add({
-          title : 'Aktualno'
+          title : lang['aktualno']
         });
         menuItemAktualno.addEventListener("click", function(e) {
           showLatest();
         });
         var menuItemDeska = menu.add({
-          title : 'Oglasna deska'
+          title : lang['oglasna_deska']
         });
         menuItemDeska.addEventListener("click", function(e) {
           showCategory();
@@ -361,7 +361,7 @@
 
     if (data.length == 0) {
 
-      data.push(feri.ui.createHeaderRow('Obvestila'));
+      data.push(feri.ui.createHeaderRow(lang['obvestila']));
 
       var sessionRow = Ti.UI.createTableViewRow({
         hasChild : false,
@@ -372,7 +372,7 @@
         layout : 'vertical',
         color : feri.ui.inactiveText,
         focusable : false,
-        title : 'Ni obvestil',
+        title : lang['ni_obvestil'],
         selectedBackgroundColor : feri.ui.selectedBackgroundColor
       });
 

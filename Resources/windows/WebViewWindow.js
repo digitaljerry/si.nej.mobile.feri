@@ -22,7 +22,7 @@
     });
 
     webViewWindow.addEventListener('beforeload', function(e) {
-      feri.ui.activityIndicator.showModal('Nalagam ...', feri.loadLongTimeout, 'Napaka pri povezavi.');
+      feri.ui.activityIndicator.showModal(lang['nalagam'], feri.loadLongTimeout, lang['napaka_pri_povezavi']);
     });
 
     webViewWindow.addEventListener('load', function(e) {

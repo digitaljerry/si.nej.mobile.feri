@@ -8,7 +8,7 @@
 
     var mapWindow = Titanium.UI.createWindow({
       id : 'mapWindow',
-      title : 'Zemljevid',
+      title : lang['win_map'],
       backgroundColor : '#FFF',
       barColor : feri.ui.barColor,
       height : '100%',
@@ -20,7 +20,7 @@
     // create table view data object
     var duration = 250;
     var data = [{
-      title : 'Pritličje',
+      title : lang['pritlicje'],
       shortTitle : 'P',
       url : '/pages/maps/1_Pritlicje.html',
       animateOut : {
@@ -35,7 +35,7 @@
       },
       left : 0
     }, {
-      title : 'Nadstropje 1',
+      title : lang['nadstropje']+ ' 1',
       shortTitle : 'N1',
       url : '/pages/maps/2_Nadstropje1.html',
       animateOut : {
@@ -50,7 +50,7 @@
       },
       left : Ti.Platform.displayCaps.platformWidth
     }, {
-      title : 'Medetaža',
+      title : lang['medetaza'],
       shortTitle : 'M',
       url : '/pages/maps/3_Medetaza.html',
       animateOut : {
@@ -65,7 +65,7 @@
       },
       left : Ti.Platform.displayCaps.platformWidth
     }, {
-      title : 'Nadstropje 2',
+      title : lang['nadstropje'] + ' 2',
       shortTitle : 'N2',
       url : '/pages/maps/4_Nadstropje2.html',
       animateOut : {
@@ -80,7 +80,7 @@
       },
       left : Ti.Platform.displayCaps.platformWidth
     }, {
-      title : 'Nadstropje 3',
+      title : lang['nadstropje'] + ' 3',
       shortTitle : 'N3',
       url : '/pages/maps/5_Nadstropje3.html',
       animateOut : {
@@ -95,7 +95,7 @@
       },
       left : Ti.Platform.displayCaps.platformWidth
     }, {
-      title : 'Nadstropje 4',
+      title : lang['nadstropje'] + ' 4',
       shortTitle : 'N4',
       url : '/pages/maps/6_Nadstropje4.html',
       animateOut : {

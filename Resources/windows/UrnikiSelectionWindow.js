@@ -8,7 +8,7 @@
 
     var urnikiSelectionWindow = Titanium.UI.createWindow({
       id : 'urnikiSelectionWindow',
-      title : 'Program',
+      title : lang['program'],
       backgroundColor : feri.ui.backgroundColor,
       barColor : feri.ui.barColor,
       fullscreen : false
@@ -24,7 +24,7 @@
     var inputData = [{
       uid : 1,
       title : 'ELEKTROTEHNIKA UN',
-      header : 'Izberi program'
+      header : lang['izberi_program']
     }, {
       uid : 2,
       title : 'ELEKTROTEHNIKA VS'
@@ -131,7 +131,7 @@
       if (e.rowData.uid) {
 
         var remoteData = [];
-        feri.ui.activityIndicator.showModal('Nalagam ...', feri.loadTimeout, 'Napaka pri povezavi.');
+        feri.ui.activityIndicator.showModal(lang['nalagam'], feri.loadTimeout, lang['napaka_pri_povezavi']);
 
         var xhr = Ti.Network.createHTTPClient();
         xhr.open('GET', feri.urniki_helper + e.rowData.uid);
@@ -143,7 +143,7 @@
 
           if (feri.useDashboard) {
             feri.navGroup.open(feri.ui.createUrnikiSelection2Window({
-              title : 'Letnik in smer',
+              title : lang['letnik_in_smer'],
               program : e.rowData.uid,
               data : remoteData
             }), {
@@ -151,7 +151,7 @@
             });
           } else {
             feri.tabUrniki.open(feri.ui.createUrnikiSelection2Window({
-              title : 'Letnik in smer',
+              title : lang['letnik_in_smer'],
               program : e.rowData.uid,
               data : remoteData
             }), {
