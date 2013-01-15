@@ -13,12 +13,16 @@ feri.ui.activityIndicator = (function() {
     backgroundColor : '#000',
     height : '100%',
     width : '100%',
-    opacity : 0.5
+    opacity : 0.7
   });
   var ai = Ti.UI.createActivityIndicator({
-    style : Titanium.UI.iPhone.ActivityIndicatorStyle.BIG,
     color : '#fff'
   });
+  
+  if (!feri.isAndroid()) {
+    ai.style = Titanium.UI.iPhone.ActivityIndicatorStyle.BIG;
+  }
+  
   activityIndicator.ai = ai;
   activityIndicator.add(view);
   activityIndicator.add(ai);
