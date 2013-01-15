@@ -11,7 +11,7 @@ lang['win_diplome'] = 'Diplome';
 lang['win_informacije'] = 'Informacije';
 lang['win_nastavitve'] = 'Nastavitve';
 lang['win_about'] = 'FERI';
-lang['lang_change_restart'] = 'Za spremembo jezika je potreben ponovni zagon aplikacije.';
+lang['lang_change_restart'] = 'App restart is required to complete the language change.';
 
 // general
 lang['nazaj'] = 'Nazaj';

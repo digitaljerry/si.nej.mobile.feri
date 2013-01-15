@@ -11,7 +11,7 @@ lang['win_diplome'] = 'Thesis';
 lang['win_informacije'] = 'Info';
 lang['win_nastavitve'] = 'Settings';
 lang['win_about'] = 'FERI';
-lang['lang_change_restart'] = 'App restart is required to complete the language change.';
+lang['lang_change_restart'] = 'Za spremembo jezika je potreben ponovni zagon aplikacije.';
 
 // general
 lang['nazaj'] = 'Back';

@@ -37,13 +37,27 @@
       else
         inputData[1].hasCheck = true;
     } else {
-      var inputData = [];
+      var inputData = [{
+        title : lang['slovenski'],
+        switchLang : 'sl',
+        header : lang['lang']
+      }, {
+        title : lang['english'],
+        switchLang : 'en'
+      }];
     }
     
-    if (Titanium.App.Properties.getString('locale') == 'sl')
-      inputData[2].hasCheck = true;
-    else
-      inputData[3].hasCheck = true;
+    if (!feri.isAndroid()) {
+      if (Titanium.App.Properties.getString('locale') == 'sl')
+        inputData[2].hasCheck = true;
+      else
+        inputData[3].hasCheck = true;
+    } else {
+      if (Titanium.App.Properties.getString('locale') == 'sl')
+        inputData[0].hasCheck = true;
+      else
+        inputData[1].hasCheck = true;
+    }
 
     var row1 = Ti.UI.createTableViewRow({
       height : 50,
