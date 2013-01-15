@@ -186,10 +186,10 @@
     // switch click listeners
     favSwitch.addEventListener('change', function(e) {
       if (e.value == true)
-        catData.favourite = true;
+        catData.favourite = 1;
       else
-        catData.favourite = false;
-
+        catData.favourite = 0;
+      
       // save with force remove
       Database.entity.db('main', 'board_children').save(catData, true);
 
@@ -201,10 +201,10 @@
     pushSwitch.addEventListener('change', function(e) {
 
       if (e.value == true) {
-        catData.push = true;
+        catData.push = 1;
         feri.subscribeToServerPush(catData.uid);
       } else {
-        catData.push = false;
+        catData.push = 0;
         feri.unsubscribeToServerPush(catData.uid);
       }
 
