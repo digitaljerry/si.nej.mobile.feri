@@ -119,19 +119,19 @@ var feri = {
       activity.onCreateOptionsMenu = function(e) {
         var menu = e.menu;
         var menuItemBack = menu.add({
-          title : 'Nazaj'
+          title : lang['nazaj']
         });
         menuItemBack.addEventListener("click", function(e) {
           webview.goBack();
         });
         var menuItemRefresh = menu.add({
-          title : 'Osveži'
+          title : lang['osvezi']
         });
         menuItemRefresh.addEventListener("click", function(e) {
           webview.reload();
         });
         var menuItemForward = menu.add({
-          title : 'Naprej'
+          title : lang['naprej']
         });
         menuItemForward.addEventListener("click", function(e) {
           webview.goForward();
