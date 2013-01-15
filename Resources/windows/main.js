@@ -99,11 +99,9 @@
           feri.iconWin.leftNavButton = leftButton;
         }
 
-        // adding refresh icon click
+        // adding refresh icon click for iPhone
         if (icon.refresh) {
-          if (feri.isAndroid()) {
-
-          } else {
+          if (!feri.isAndroid()) {
             var rightButton = Ti.UI.createButton({
               systemButton : Ti.UI.iPhone.SystemButton.REFRESH
             });
