@@ -68,22 +68,9 @@
         else
           feri.dashboardActive = false;
 
-        if (!feri.isAndroid()) {
-          // feedback on the icon when clicked
-          icon.imageActive = 'undefined';
-          view.backgroundImage = icon.imageActive;
-        }
-
-        var ind = Titanium.UI.createActivityIndicator({
-          width : 50,
-          height : 50,
-          message : ''
-        });
-        if (feri.isAndroid())
-          ind.message = lang['nalagam'];
-        view.add(ind);
-        ind.show();
-
+        icon.imageActive = 'undefined';
+        view.backgroundImage = icon.imageActive;
+        
         feri.iconWin = icon.func(icon.args);
 
         // add a left navigation button for ios
