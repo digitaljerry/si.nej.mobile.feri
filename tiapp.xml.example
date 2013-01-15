@@ -15,7 +15,7 @@
     <target device="blackberry">false</target>
     <target device="android">true</target>
   </deployment-targets>
-  <id>si.zadrga.mobile.feri</id>
+  <id>si.nej.mobile.feri</id>
   <name>FERI</name>
   <version>0.3</version>
   <publisher>Jernej Zorec</publisher>
