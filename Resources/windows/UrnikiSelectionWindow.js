@@ -143,6 +143,7 @@
 
           if (feri.useDashboard) {
             feri.navGroup.open(feri.ui.createUrnikiSelection2Window({
+              id : 'urnikiSelection2Window',
               title : lang['letnik_in_smer'],
               program : e.rowData.uid,
               data : remoteData
@@ -151,6 +152,7 @@
             });
           } else {
             feri.tabUrniki.open(feri.ui.createUrnikiSelection2Window({
+              id : 'urnikiSelection2Window',
               title : lang['letnik_in_smer'],
               program : e.rowData.uid,
               data : remoteData

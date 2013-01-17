@@ -149,12 +149,14 @@
       var url = 'http://www.feri.uni-mb.si/odeska/brnj2.asp?id=' + settings.uid;
       if (feri.useDashboard) {
         feri.navGroup.open(feri.ui.createWebViewWindow({
+          id : 'webviewWindow',
           url : url
         }), {
           animated : true
         });
       } else {
         feri.tabOglasna.open(feri.ui.createWebViewWindow({
+          id : 'webviewWindow',
           url : url
         }), {
           animated : true

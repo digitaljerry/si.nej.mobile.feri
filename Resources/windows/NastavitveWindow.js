@@ -292,6 +292,7 @@
 
         if (feri.useDashboard) {
           feri.navGroup.open(feri.ui.createNastavitveBoardEditListWindow({
+            id : 'nastavitveBoardEditListWindow',
             title : lang['priljubljene'],
             edit : e.rowData.editList
           }), {
@@ -299,6 +300,7 @@
           });
         } else {
           feri.tabOglasna.open(feri.ui.createNastavitveBoardEditListWindow({
+            id : 'nastavitveBoardEditListWindow',
             title : lang['priljubljene'],
             edit : e.rowData.editList
           }), {
@@ -310,6 +312,7 @@
 
         if (feri.useDashboard) {
           feri.navGroup.open(feri.ui.createNastavitveBoardEditListWindow({
+            id : 'nastavitveBoardEditListWindow',
             title : lang['push_obvestila'],
             edit : e.rowData.editList
           }), {
@@ -317,6 +320,7 @@
           });
         } else {
           feri.tabOglasna.open(feri.ui.createNastavitveBoardEditListWindow({
+            id : 'nastavitveBoardEditListWindow',
             title : lang['push_obvestila'],
             edit : e.rowData.editList
           }), {

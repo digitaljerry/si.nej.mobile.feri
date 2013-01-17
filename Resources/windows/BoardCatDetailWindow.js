@@ -167,6 +167,7 @@
       if (e.rowData.uid) {
         if (feri.useDashboard) {
           feri.navGroup.open(feri.ui.createBoardDetailWindow({
+            id : 'boardDetailWindow',
             title : e.rowData.sessionTitle,
             uid : e.rowData.uid
           }), {
@@ -174,6 +175,7 @@
           });
         } else {
           feri.tabOglasna.open(feri.ui.createBoardDetailWindow({
+            id : 'boardDetailWindow',
             title : e.rowData.sessionTitle,
             uid : e.rowData.uid
           }), {

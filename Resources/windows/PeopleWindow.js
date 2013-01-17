@@ -145,6 +145,7 @@
 
       if (feri.useDashboard) {
         feri.navGroup.open(feri.ui.createPeopleDetailWindow({
+          id : 'peopleDetailWindow',
           title : e.rowData.name,
           uid : e.rowData.uid,
           name : e.rowData.name
@@ -153,6 +154,7 @@
         });
       } else {
         feri.tabPeople.open(feri.ui.createPeopleDetailWindow({
+          id : 'peopleDetailWindow',
           title : e.rowData.name,
           uid : e.rowData.uid,
           name : e.rowData.name

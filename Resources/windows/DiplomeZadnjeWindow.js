@@ -134,12 +134,14 @@
       if (e.rowData.dkum_url) {
         if (feri.useDashboard) {
           feri.navGroup.open(feri.ui.createWebViewWindow({
+            id : 'webviewWindow',
             url : e.rowData.dkum_url
           }), {
             animated : true
           });
         } else {
           feri.tabDiplome.open(feri.ui.createWebViewWindow({
+            id : 'webviewWindow',
             url : e.rowData.dkum_url
           }), {
             animated : true

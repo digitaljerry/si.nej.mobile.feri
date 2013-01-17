@@ -11,6 +11,7 @@
     var i = 0;
     var navWindow;
     var mainWindow = Ti.UI.createWindow({
+      id : 'mainWindow',
       backgroundImage : feri.ui.mainBackgroundImage,
       title : 'Dashboard',
       navBarHidden : true,

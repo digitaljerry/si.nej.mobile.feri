@@ -97,6 +97,7 @@
 
           if (feri.useDashboard) {
             feri.navGroup.open(feri.ui.createBoardCatDetailWindow({
+              id : 'boardCatDetailWindow',
               title : e.rowData.catTitle,
               category : e.rowData.uid
             }), {
@@ -115,6 +116,7 @@
 
           if (feri.useDashboard) {
             feri.navGroup.open(feri.ui.createBoardCatWindow({
+              id : 'boardCatWindow',
               title : e.rowData.catTitle,
               uid : e.rowData.uid
             }), {
@@ -122,6 +124,7 @@
             });
           } else {
             feri.tabOglasna.open(feri.ui.createBoardCatWindow({
+              id : 'boardCatWindow',
               title : e.rowData.catTitle,
               uid : e.rowData.uid
             }), {

@@ -228,12 +228,14 @@
       if (e.rowData.dkum == true) {
         if (feri.useDashboard) {
           feri.navGroup.open(feri.ui.createWebViewWindow({
+            id : 'dkumWindow',
             url : 'http://dkum.uni-mb.si/Iskanje.php?type=napredno&niz0=&vrsta=dip&vir=3&chkFullOnly=on'
           }), {
             animated : true
           });
         } else {
           feri.tabDiplome.open(feri.ui.createWebViewWindow({
+            id : 'dkumWindow',
             url : 'http://dkum.uni-mb.si/Iskanje.php?type=napredno&niz0=&vrsta=dip&vir=3&chkFullOnly=on'
           }), {
             animated : true
@@ -242,12 +244,14 @@
       } else if (e.rowData.more == true) {
         if (feri.useDashboard) {
           feri.navGroup.open(feri.ui.createDiplomeZadnjeWindow({
+            id : 'diplomeZadnjeWindow',
             uid : e.rowData.uid
           }), {
             animated : true
           });
         } else {
           feri.tabDiplome.open(feri.ui.createDiplomeZadnjeWindow({
+            id : 'diplomeZadnjeWindow',
             uid : e.rowData.uid
           }), {
             animated : true
