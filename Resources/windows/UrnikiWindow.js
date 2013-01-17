@@ -117,12 +117,14 @@
     Ti.App.addEventListener('feri:set_urniki', function() {
       if (feri.useDashboard) {
         feri.navGroup.open(feri.ui.createUrnikiSelectionWindow({
+          id : 'urnikiSelectionWindow',
           title : lang['urniki']
         }), {
           animated : true
         });
       } else {
         feri.tabUrniki.open(feri.ui.createUrnikiSelectionWindow({
+          id : 'urnikiSelectionWindow',
           title : lang['urniki']
         }), {
           animated : true
@@ -139,13 +141,15 @@
     });
 
     function refreshUrniki(customDate) {
-
+      
       // we try to get th efirst request from cache
       var urniki_local = Titanium.Filesystem.getFile(Titanium.Filesystem.applicationDataDirectory, 'urniki_cached.html');
 
-      if (urniki_local.exists() && customDate === undefined) {
+      if (urniki_local.exists() && (customDate === undefined || customDate === '')) {
 
-        webview.url = urniki_local.read().nativePath;
+        //webview.url = urniki_local.read().nativePath;
+        //webview.url = urniki_local.read().text;
+        webview.url = urniki_local.getNativePath();
         webview.setVisible(true);
 
       } else {
@@ -175,19 +179,39 @@
           webview.setVisible(true);
           feri.ui.activityIndicator.hideModal();
 
+          //alert( urniki_local.write(this.getResponseData()) );
           // we cache it
-          urniki_local.write(this.getResponseData());
-
-          // remove the view and add it again, so it gets redrawn correctly
-          urnikiWindow.remove(webview);
-          webview = null;
-          webview = Ti.UI.createWebView({
-            backgroundColor : feri.ui.urnikiColor,
-            width : '100%',
-            height : '100%',
-            url : urniki_local.nativePath
-          });
-          urnikiWindow.add(webview);
+          if ( !feri.isAndroid() ) {
+            
+            if ( urniki_local.write(this.getResponseData()) == false ) {
+              // remove the view and add it again, so it gets redrawn correctly
+              urnikiWindow.remove(webview);
+              webview = null;
+              webview = Ti.UI.createWebView({
+                backgroundColor : feri.ui.urnikiColor,
+                width : '100%',
+                height : '100%',
+                url : urniki_local.getNativePath()
+              });
+              urnikiWindow.add(webview);
+            }
+            
+          } else {
+            
+            urniki_local.write(this.getResponseData());
+            
+            // remove the view and add it again, so it gets redrawn correctly
+            urnikiWindow.remove(webview);
+            webview = null;
+            webview = Ti.UI.createWebView({
+              backgroundColor : feri.ui.urnikiColor,
+              width : '100%',
+              height : '100%',
+              url : urniki_local.getNativePath()
+            });
+            urnikiWindow.add(webview);
+            
+          }
         };
 
         var groups = Titanium.App.Properties.getString('urniki_groups');
@@ -195,7 +219,7 @@
 
         // set the date
         var date = getDate(customDate);
-
+        
         xhr.send({
           date_field : date,
           branch_id : branch,
