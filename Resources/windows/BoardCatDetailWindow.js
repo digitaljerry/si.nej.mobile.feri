@@ -74,6 +74,7 @@
     if (feri.is_int(w.title[0])) {
       var rows = conn.query("SELECT parent FROM board_children WHERE uid = " + w.category);
       var parentUid = rows.fieldByName('parent');
+      rows.close();
 
       var rows = conn.query("SELECT title FROM board_parents WHERE uid = " + parentUid);
       var titleLabelDetail = rows.fieldByName('title');
