@@ -35,12 +35,12 @@
       for (var i in nameList) {
         var user = nameList[i].split(':');
         var uid = parseInt(user[1]) + 0;
-        var fullName = user[0] + '';
-
-        var shortName = user[2] + '';
+        var fullName = user[0];
+        
+        var shortName = user[2];
         var name = shortName;
         if (fullName.charAt(fullName.length - 2) == ',') {
-          fullName = fullName.slice(0, fullName.length - 2);
+          name = fullName.slice(0, fullName.length - 2);
         } else {
           name = fullName;
         }
