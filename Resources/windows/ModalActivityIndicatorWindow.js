@@ -28,7 +28,7 @@ feri.ui.activityIndicator = (function() {
   activityIndicator.add(ai);
 
   activityIndicator.showModal = function(message, timeout, timeoutMessage) {
-
+    
     // check for connectivty
     if (Titanium.Network.networkType === Titanium.Network.NETWORK_NONE) {
       var alertDialog = Ti.UI.createAlertDialog({
@@ -40,16 +40,23 @@ feri.ui.activityIndicator = (function() {
       return;
     }
     
-    if (isShowing) {
+    // android dirty fix
+    if (feri.isAndroid()) {
       return;
+    } else {
+      
+      if (isShowing) {
+        return;
+      }
+      
+      isShowing = true;
+      activityIndicator.ai.message = message;
+      activityIndicator.ai.show();
+      activityIndicator.open({
+        animated : false
+      });
+      
     }
-    
-    isShowing = true;
-    activityIndicator.ai.message = message;
-    activityIndicator.ai.show();
-    activityIndicator.open({
-      animated : false
-    });
 
     if (timeout) {
       myTimeout = setTimeout(function() {
@@ -71,10 +78,17 @@ feri.ui.activityIndicator = (function() {
   };
 
   activityIndicator.hideModal = function() {
+    
     if (myTimeout !== undefined) {
       clearTimeout(myTimeout);
       myTimeout = undefined;
     }
+    
+    // android dirty fix
+    if (feri.isAndroid()) {
+      return;
+    }
+    
     if (isShowing) {
       isShowing = false;
       activityIndicator.ai.hide();
