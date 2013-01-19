@@ -47,18 +47,15 @@
 
       bb2.addEventListener('click', function(ce) {
         if (ce.index == 0) {
-          if (diff > 0)
-            diff = 0;
-
+          // prejsnji teden
           diff = diff - 1;
           refreshUrniki(diff);
         } else if (ce.index == 1) {
+          // trenutni teden
           diff = 0;
           refreshUrniki(diff);
         } else {
-          if (diff < 0)
-            diff = 0;
-
+          // naslednji teden
           diff = diff + 1;
           refreshUrniki(diff);
         }
@@ -71,9 +68,6 @@
           title : lang['prejsnji_teden']
         });
         menuItemBack.addEventListener("click", function(e) {
-          if (diff > 0)
-            diff = 0;
-
           diff = diff - 1;
           refreshUrniki(diff);
         });
@@ -88,9 +82,6 @@
           title : lang['naslednji_teden']
         });
         menuItemForward.addEventListener("click", function(e) {
-          if (diff < 0)
-            diff = 0;
-
           diff = diff + 1;
           refreshUrniki(diff);
         });
