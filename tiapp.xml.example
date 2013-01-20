@@ -7,7 +7,7 @@
   <property name="acs-oauth-key-development" type="string">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</property>
   <property name="acs-api-key-development" type="string">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</property>
   <property name="ti.android.runtime">v8</property>
-  <sdk-version>2.1.0.GA</sdk-version>
+  <sdk-version>3.0.0.GA</sdk-version>
   <deployment-targets>
     <target device="mobileweb">false</target>
     <target device="iphone">true</target>
@@ -17,7 +17,7 @@
   </deployment-targets>
   <id>si.nej.mobile.feri</id>
   <name>FERI</name>
-  <version>1.1</version>
+  <version>1.2</version>
   <publisher>Jernej Zorec</publisher>
   <url>http://nej.si</url>
   <description>FERI Mobile App</description>
