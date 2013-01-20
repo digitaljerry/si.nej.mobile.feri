@@ -110,14 +110,16 @@
         }
 
         // If there is a new last name first letter, insert a header in the table.
-        if (headerLetter == '' || name.charAt(0).toUpperCase() != headerLetter) {
-          headerLetter = name.charAt(0).toUpperCase();
-          //data.push(feri.ui.createHeaderRow(headerLetter));
-          presenterRow.header = headerLetter;
-          index.push({
-            title : headerLetter,
-            index : count
-          });
+        if (!feri.isAndroid()) {
+          if (headerLetter == '' || name.charAt(0).toUpperCase() != headerLetter) {
+            headerLetter = name.charAt(0).toUpperCase();
+            //data.push(feri.ui.createHeaderRow(headerLetter));
+            presenterRow.header = headerLetter;
+            index.push({
+              title : headerLetter,
+              index : count
+            });
+          }
         }
 
         count++;
