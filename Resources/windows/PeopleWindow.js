@@ -78,7 +78,7 @@
             touchEnabled : false
           }));
         } else {
-          if (fullName != '') {
+          //if (fullName != '') {
             var nameView = Ti.UI.createView({
               height : 40,
               layout : 'horizontal'
@@ -106,7 +106,7 @@
             });
             nameView.add(lastNameLabel);
             presenterRow.add(nameView);
-          }
+          //}
         }
 
         // If there is a new last name first letter, insert a header in the table.
@@ -114,11 +114,12 @@
           if (headerLetter == '' || name.charAt(0).toUpperCase() != headerLetter) {
             headerLetter = name.charAt(0).toUpperCase();
             //data.push(feri.ui.createHeaderRow(headerLetter));
-            presenterRow.header = headerLetter;
-            index.push({
+            //presenterRow.header = headerLetter;
+            //Ti.API.debug(headerLetter);
+            /*index.push({
               title : headerLetter,
               index : count
-            });
+            });*/
           }
         }
 
