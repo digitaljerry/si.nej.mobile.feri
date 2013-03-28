@@ -109,6 +109,21 @@
         duration : duration
       },
       left : Ti.Platform.displayCaps.platformWidth
+    }, {
+      title : lang['tf'],
+      shortTitle : 'TF',
+      url : '/pages/maps/TF.html',
+      animateOut : {
+        left : Ti.Platform.displayCaps.platformWidth,
+        top : feri.ui.tabBarHeight,
+        duration : duration
+      },
+      animateIn : {
+        left : 0,
+        top : feri.ui.tabBarHeight,
+        duration : duration
+      },
+      left : Ti.Platform.displayCaps.platformWidth
     }];
 
     var tabbedBarView = Ti.UI.createView({
@@ -166,6 +181,7 @@
           data[3].tabView.backgroundImage = '/images/buttonbar/button2_unselected_shadowL.png';
           data[4].tabView.backgroundImage = '/images/buttonbar/button2_unselected_shadowL.png';
           data[5].tabView.backgroundImage = '/images/buttonbar/button2_unselected_shadowL.png';
+          data[6].tabView.backgroundImage = '/images/buttonbar/button2_unselected_shadowR.png';
         } else if (e.source.index == 1) {
           data[0].tabView.backgroundImage = '/images/buttonbar/button2_unselected_shadowR.png';
           data[1].tabView.backgroundImage = '/images/buttonbar/button2_selected.png';
@@ -173,6 +189,7 @@
           data[3].tabView.backgroundImage = '/images/buttonbar/button2_unselected_shadowL.png';
           data[4].tabView.backgroundImage = '/images/buttonbar/button2_unselected_shadowL.png';
           data[5].tabView.backgroundImage = '/images/buttonbar/button2_unselected_shadowL.png';
+          data[6].tabView.backgroundImage = '/images/buttonbar/button2_unselected_shadowR.png';
         } else if (e.source.index == 2) {
           data[0].tabView.backgroundImage = '/images/buttonbar/button2_unselected_shadowR.png';
           data[1].tabView.backgroundImage = '/images/buttonbar/button2_unselected_shadowR.png';
@@ -180,6 +197,7 @@
           data[3].tabView.backgroundImage = '/images/buttonbar/button2_unselected_shadowL.png';
           data[4].tabView.backgroundImage = '/images/buttonbar/button2_unselected_shadowL.png';
           data[5].tabView.backgroundImage = '/images/buttonbar/button2_unselected_shadowL.png';
+          data[6].tabView.backgroundImage = '/images/buttonbar/button2_unselected_shadowR.png';
         } else if (e.source.index == 3) {
           data[0].tabView.backgroundImage = '/images/buttonbar/button2_unselected_shadowR.png';
           data[1].tabView.backgroundImage = '/images/buttonbar/button2_unselected_shadowR.png';
@@ -187,6 +205,7 @@
           data[3].tabView.backgroundImage = '/images/buttonbar/button2_selected.png';
           data[4].tabView.backgroundImage = '/images/buttonbar/button2_unselected_shadowL.png';
           data[5].tabView.backgroundImage = '/images/buttonbar/button2_unselected_shadowL.png';
+          data[6].tabView.backgroundImage = '/images/buttonbar/button2_unselected_shadowR.png';
         } else if (e.source.index == 4) {
           data[0].tabView.backgroundImage = '/images/buttonbar/button2_unselected_shadowR.png';
           data[1].tabView.backgroundImage = '/images/buttonbar/button2_unselected_shadowR.png';
@@ -194,6 +213,7 @@
           data[3].tabView.backgroundImage = '/images/buttonbar/button2_unselected_shadowR.png';
           data[4].tabView.backgroundImage = '/images/buttonbar/button2_selected.png';
           data[5].tabView.backgroundImage = '/images/buttonbar/button2_unselected_shadowL.png';
+          data[6].tabView.backgroundImage = '/images/buttonbar/button2_unselected_shadowR.png';
         } else if (e.source.index == 5) {
           data[0].tabView.backgroundImage = '/images/buttonbar/button2_unselected_shadowR.png';
           data[1].tabView.backgroundImage = '/images/buttonbar/button2_unselected_shadowR.png';
@@ -201,6 +221,15 @@
           data[3].tabView.backgroundImage = '/images/buttonbar/button2_unselected_shadowR.png';
           data[4].tabView.backgroundImage = '/images/buttonbar/button2_unselected_shadowR.png';
           data[5].tabView.backgroundImage = '/images/buttonbar/button2_selected.png';
+          data[6].tabView.backgroundImage = '/images/buttonbar/button2_unselected_shadowR.png';
+        } else if (e.source.index == 6) {
+          data[0].tabView.backgroundImage = '/images/buttonbar/button2_unselected_shadowR.png';
+          data[1].tabView.backgroundImage = '/images/buttonbar/button2_unselected_shadowR.png';
+          data[2].tabView.backgroundImage = '/images/buttonbar/button2_unselected_shadowR.png';
+          data[3].tabView.backgroundImage = '/images/buttonbar/button2_unselected_shadowR.png';
+          data[4].tabView.backgroundImage = '/images/buttonbar/button2_unselected_shadowR.png';
+          data[5].tabView.backgroundImage = '/images/buttonbar/button2_unselected_shadowR.png';
+          data[6].tabView.backgroundImage = '/images/buttonbar/button2_selected.png';
         }
 
         for (var j = 0; j < data.length; j++) {
@@ -220,6 +249,8 @@
                 data[4].webview.animate(data[4].animateIn);
               } else if (e.source.index == 5) {
                 data[5].webview.animate(data[5].animateIn);
+              } else if (e.source.index == 6) {
+                data[6].webview.animate(data[6].animateIn);
               }
 
             });
@@ -240,6 +271,8 @@
               data[4].webview.left = 0;
             } else if (e.source.index == 5) {
               data[5].webview.left = 0;
+            } else if (e.source.index == 6) {
+              data[6].webview.left = 0;
             }
 
           }
@@ -263,6 +296,7 @@
     mapWindow.add(data[3].webview);
     mapWindow.add(data[4].webview);
     mapWindow.add(data[5].webview);
+    mapWindow.add(data[6].webview);
 
     // android back button listener
     if (feri.isAndroid()) {

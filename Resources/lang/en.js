@@ -57,6 +57,7 @@ lang['naziv'] = 'Title';
 lang['pritlicje'] = 'Ground floor';
 lang['nadstropje'] = 'Floor';
 lang['medetaza'] = 'Middle floor';
+lang['tf'] = 'TF';
 
 // diplome
 lang['diplome'] = 'Thesis';

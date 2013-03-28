@@ -57,6 +57,7 @@ lang['naziv'] = 'Naziv';
 lang['pritlicje'] = 'Pritličje';
 lang['nadstropje'] = 'Nadstropje';
 lang['medetaza'] = 'Medetaža';
+lang['tf'] = 'TF';
 
 // diplome
 lang['diplome'] = 'Diplome';
