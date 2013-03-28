@@ -307,6 +307,9 @@
 
     feri.ui.activityIndicator.showModal(lang['posodabljam'], feri.bigUpdateTimeout, lang['napaka_pri_povezavi']);
     Database.entity.db('main', 'user').fetchUpdates('user');
+    
+    var timestamp = String(new Date().getTime());
+    Titanium.App.Properties.setString('last_people_update', timestamp);
   });
 
   Ti.App.addEventListener('feri:flip_oglasna_deska', function(e) {

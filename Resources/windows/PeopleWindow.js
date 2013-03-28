@@ -138,6 +138,13 @@
     Ti.App.addEventListener('refresh:people', function() {
       PeopleWindow.doRefresh();
     });
+    
+    // if it is more than two weeks from last refresh do it automaticaly
+    var last_people_update = Titanium.App.Properties.getString('last_people_update');
+    var timestamp = String(new Date().getTime());
+    if (last_people_update == null || (timestamp - last_people_update > 10*1000)) {
+      Ti.App.fireEvent('feri:update_data_zaposleni');
+    }
 
     // create table view event listener
     tableview.addEventListener('click', function(e) {
