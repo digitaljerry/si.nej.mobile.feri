@@ -6,7 +6,7 @@
     }
 
     var diff = 0;
-    feri.urniki_url = 'http://www.feri.uni-mb.si/urniki1/groups.php';
+    feri.urniki_url = 'http://www.feri.uni-mb.si/urniki2/groups.php';
 
     var urnikiWindow = Titanium.UI.createWindow({
       id : 'urnikiWindow',

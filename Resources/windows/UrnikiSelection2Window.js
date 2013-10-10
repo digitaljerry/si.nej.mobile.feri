@@ -5,7 +5,7 @@
       testflight.passCheckpoint("Urniki selection 2 window");
     }
 
-    feri.urniki_helper2 = 'http://www.feri.uni-mb.si/urniki1/lib/helper.php?type=branch&branch_id=';
+    feri.urniki_helper2 = 'http://www.feri.uni-mb.si/urniki2/lib/helper.php?type=branch&branch_id=';
 
     var urnikiSelection2Window = Titanium.UI.createWindow({
       id : 'urnikiSelection2Window',
