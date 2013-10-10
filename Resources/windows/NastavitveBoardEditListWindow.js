@@ -89,7 +89,9 @@
       barColor : feri.ui.barColor,
       backgroundColor : feri.ui.backgroundColor,
       fullscreen : false,
-      title : w.title
+      title : w.title,
+      tintColor: '#ffffff',
+      navTintColor: '#ffffff'
     });
 
     var tableview = Titanium.UI.createTableView({

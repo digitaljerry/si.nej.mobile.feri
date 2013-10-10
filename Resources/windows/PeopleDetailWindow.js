@@ -18,7 +18,9 @@
       barColor : feri.ui.barColor,
       backgroundColor : feri.ui.backgroundColor,
       fullscreen : false,
-      layout : 'vertical'
+      layout : 'vertical',
+      tintColor: '#ffffff',
+      navTintColor: '#ffffff'
     });
     peopleDetailWindow.orientationModes = [Ti.UI.PORTRAIT];
 

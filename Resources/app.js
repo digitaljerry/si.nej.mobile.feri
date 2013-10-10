@@ -8,7 +8,7 @@ if (!Titanium.App.Properties.getString('locale')) {
 Titanium.include ('lang/'+Titanium.App.Properties.getString('locale')+'.js')
 
 // this sets the background color of the master UIView (when there are no windows/tab groups on it)
-Ti.UI.setBackgroundColor('#1a5384');
+Ti.UI.setBackgroundColor('#006286');
 
 Ti.include(
 // FERI libraries

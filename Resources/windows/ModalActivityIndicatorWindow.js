@@ -6,7 +6,9 @@ feri.ui.activityIndicator = (function() {
   var activityIndicator = Ti.UI.createWindow({
     modal : false,
     navBarHidden : true,
-    touchEnabled : true
+    touchEnabled : true,
+    tintColor: '#ffffff',
+    navTintColor: '#ffffff'
   });
   activityIndicator.orientationModes = [Ti.UI.PORTRAIT];
   var view = Ti.UI.createView({

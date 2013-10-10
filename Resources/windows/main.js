@@ -170,7 +170,7 @@
 
     // create tab group
     var tabGroup = Titanium.UI.createTabGroup({
-      barColor : '#004586',
+      barColor : 'white',
       allowUserCustomization : false
     });
 

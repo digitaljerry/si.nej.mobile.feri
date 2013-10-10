@@ -73,14 +73,16 @@
       title : '',
       barColor : feri.ui.barColor,
       backgroundColor : feri.ui.backgroundColor,
-      fullscreen : false
+      fullscreen : false,
+      tintColor: '#ffffff',
+      navTintColor: '#ffffff'
     });
 
     // tabbar control
     if (!feri.isAndroid()) {
       var tabbar = Ti.UI.iOS.createTabbedBar({
         labels : [lang['aktualno'], lang['deska']],
-        backgroundColor : feri.ui.barColor,
+        backgroundColor : '#ffffff',
         index : 0,
         style : Titanium.UI.iPhone.SystemButtonStyle.BAR,
         height : 30,

@@ -33,15 +33,15 @@
 
   feri.extend(feri.ui, {
     tabBarHeight : 60,
-    mainBackgroundColor : '#004076',
-    backgroundSelectedColor : '#004076',
-    barColor : '#004076',
-    toolbarColor : '#004076',
+    mainBackgroundColor : '#006286',
+    backgroundSelectedColor : '#006286',
+    barColor : '006286',
+    toolbarColor : '#006286',
     backgroundColor : '#ffffff',
     darkText : '#000000',
     blueText : '#1C4980',
     inactiveText : '#cccccc',
-    urnikiColor : '#33587C',
+    urnikiColor : '#006286',
     selectedBackgroundColor : '#cccccc',
     dark : '#000000'
   });

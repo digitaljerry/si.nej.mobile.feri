@@ -16,7 +16,9 @@
       title : settings.title,
       barColor : feri.ui.barColor,
       backgroundColor : feri.ui.backgroundColor,
-      fullscreen : false
+      fullscreen : false,
+      tintColor: '#ffffff',
+      navTintColor: '#ffffff'
     });
     sessionDetailWindow.orientationModes = [Ti.UI.PORTRAIT];
 

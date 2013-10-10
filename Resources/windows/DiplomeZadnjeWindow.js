@@ -13,7 +13,9 @@
       barColor : feri.ui.barColor,
       navBarHidden : false,
       fullscreen : false,
-      layout : 'vertical'
+      layout : 'vertical',
+      tintColor: '#ffffff',
+      navTintColor: '#ffffff'
     });
 
     // Build session data

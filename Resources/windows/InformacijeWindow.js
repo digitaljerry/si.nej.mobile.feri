@@ -13,7 +13,9 @@
       backgroundColor : '#FFF',
       barColor : feri.ui.barColor,
       navBarHidden : false,
-      fullscreen : false
+      fullscreen : false,
+      tintColor: '#ffffff',
+      navTintColor: '#ffffff'
     });
 
     var webview = Ti.UI.createWebView({

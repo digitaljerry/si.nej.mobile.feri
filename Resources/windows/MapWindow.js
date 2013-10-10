@@ -12,7 +12,9 @@
       backgroundColor : '#FFF',
       barColor : feri.ui.barColor,
       height : '100%',
-      fullscreen : false
+      fullscreen : false,
+      tintColor: '#ffffff',
+      navTintColor: '#ffffff'
     });
 
     var currentTab = 0;

@@ -11,7 +11,9 @@
       title : lang['program'],
       backgroundColor : feri.ui.backgroundColor,
       barColor : feri.ui.barColor,
-      fullscreen : false
+      fullscreen : false,
+      tintColor: '#ffffff',
+      navTintColor: '#ffffff'
     });
 
     // to check current row

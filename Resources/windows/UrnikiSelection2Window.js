@@ -12,7 +12,9 @@
       title : lang['letnik_in_smer'],
       barColor : feri.ui.barColor,
       backgroundColor : feri.ui.backgroundColor,
-      fullscreen : false
+      fullscreen : false,
+      tintColor: '#ffffff',
+      navTintColor: '#ffffff'
     });
 
     // to check current row

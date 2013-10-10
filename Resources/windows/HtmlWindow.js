@@ -17,7 +17,9 @@
       barColor : feri.ui.barColor,
       width : '100%',
       height : '100%',
-      fullscreen : false
+      fullscreen : false,
+      tintColor: '#ffffff',
+      navTintColor: '#ffffff'
     });
     htmlWindow.orientationModes = [Ti.UI.PORTRAIT];
 

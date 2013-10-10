@@ -11,7 +11,9 @@
       title : lang['win_people'],
       backgroundColor : feri.ui.backgroundColor,
       barColor : feri.ui.barColor,
-      fullscreen : false
+      fullscreen : false,
+      tintColor: '#ffffff',
+      navTintColor: '#ffffff'
     });
 
     // Create the table view

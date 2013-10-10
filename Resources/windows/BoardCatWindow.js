@@ -83,7 +83,9 @@
       title : w.title,
       barColor : feri.ui.barColor,
       backgroundColor : feri.ui.backgroundColor,
-      fullscreen : false
+      fullscreen : false,
+      tintColor: '#ffffff',
+      navTintColor: '#ffffff'
     });
 
     // OGLASNA DESKA

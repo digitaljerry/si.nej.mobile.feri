@@ -11,7 +11,9 @@
       title : lang['win_nastavitve'],
       backgroundColor : '#FFF',
       barColor : feri.ui.barColor,
-      fullscreen : false
+      fullscreen : false,
+      tintColor: '#ffffff',
+      navTintColor: '#ffffff'
     });
 
     // Create the table view
