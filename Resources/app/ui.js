@@ -41,7 +41,7 @@
     darkText : '#000000',
     blueText : '#1C4980',
     inactiveText : '#cccccc',
-    urnikiColor : '#006286',
+    urnikiColor : '#33587C',
     selectedBackgroundColor : '#cccccc',
     dark : '#000000'
   });
